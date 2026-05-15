@@ -11,8 +11,8 @@ class QuestionService:
     """Handle question generation and management"""
     
     @staticmethod
-    def generate_questions(lesson_ids, solo_levels, questions_per_level, 
-                          section_ids=None, save_to_db=True):
+    def generate_questions(lesson_ids, solo_levels, questions_per_level,
+                          section_ids=None, save_to_db=True, progress_cb=None):
         """Generate SOLO taxonomy questions from lessons"""
         
         # Validate input
@@ -56,7 +56,8 @@ class QuestionService:
                 solo_levels=solo_levels,
                 questions_per_level=questions_per_level,
                 section_ids=section_ids,
-                ontology_relationships=ontology_relationships
+                ontology_relationships=ontology_relationships,
+                progress_cb=progress_cb,
             )
             
             # Save to database if requested

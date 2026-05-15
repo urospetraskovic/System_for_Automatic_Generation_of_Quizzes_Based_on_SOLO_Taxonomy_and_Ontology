@@ -15,7 +15,7 @@ import requests
 import hashlib
 import random
 from datetime import datetime
-from typing import Dict, List, Any, Optional, Set
+from typing import Dict, List, Any, Optional, Set, Callable
 
 # Single source of truth for Ollama URL/model lives in backend/config.py
 from config import OLLAMA_BASE_URL, OLLAMA_MODEL
@@ -48,10 +48,13 @@ class SoloQuizGeneratorLocal:
         
         self.api_exhausted = False
         self._content_summary_cache = {}
-        
-        # Track generated questions to avoid duplicates
+
+        # Track generated questions to avoid duplicates.
+        # _generated_question_hashes is keyed by hash(question_text) for exact matches.
+        # _generated_answer_keys is keyed by (anchor_id, normalized_correct_answer)
+        # which catches "different wording, same anchor + same answer".
         self._generated_question_hashes: Set[str] = set()
-        self._generated_question_texts: List[str] = []
+        self._generated_answer_keys: Set[str] = set()
     
     def _test_ollama_connection(self) -> bool:
         """Test if Ollama server is responding"""
@@ -70,69 +73,98 @@ class SoloQuizGeneratorLocal:
         normalized = re.sub(r'[^\w\s]', '', normalized)
         return hashlib.md5(normalized.encode()).hexdigest()
     
-    def _is_question_unique(self, question_text: str, similarity_threshold: float = 0.7) -> bool:
+    @staticmethod
+    def _answer_key(question: Dict[str, Any]) -> Optional[str]:
         """
-        Check if a question is sufficiently unique from already generated ones.
-        Uses both hash matching and simple word overlap check.
+        Build a deterministic key for a question based on its anchor (LO or
+        section) and its normalized correct answer. Two questions with the
+        same key are testing the same fact and are functional duplicates.
         """
-        if not question_text:
+        anchor = question.get('learning_object_id') or question.get('section_id')
+        if anchor is None:
+            return None
+        correct = (question.get('correct_answer') or '').lower().strip()
+        correct = re.sub(r'^[a-d]\)\s*', '', correct)
+        correct = re.sub(r'[^\w\s]', '', correct).strip()
+        if not correct:
+            return None
+        return f"{anchor}::{correct}"
+
+    def _is_question_unique(self, question: Dict[str, Any]) -> bool:
+        """
+        A question is unique if its (anchor, correct_answer) key has not been
+        seen, AND its question text hasn't been seen verbatim. Looser checks
+        like word-overlap caused false positives on short MCQ questions, so we
+        drop them.
+        """
+        text = question.get('question_text', '') or ''
+        if not text:
             return False
-        
-        # Check exact hash match
-        q_hash = self._get_question_hash(question_text)
+
+        q_hash = self._get_question_hash(text)
         if q_hash in self._generated_question_hashes:
-            print(f"[QuizGenerator-Local] Duplicate question detected (hash match)")
+            print(f"[QuizGenerator-Local] Duplicate question detected (exact text match)")
             return False
-        
-        # Check word overlap with existing questions
-        new_words = set(question_text.lower().split())
-        for existing in self._generated_question_texts:
-            existing_words = set(existing.lower().split())
-            if len(new_words) == 0 or len(existing_words) == 0:
-                continue
-            
-            overlap = len(new_words.intersection(existing_words))
-            max_len = max(len(new_words), len(existing_words))
-            similarity = overlap / max_len
-            
-            if similarity > similarity_threshold:
-                print(f"[QuizGenerator-Local] Similar question detected ({similarity:.1%} overlap)")
-                return False
-        
+
+        key = self._answer_key(question)
+        if key and key in self._generated_answer_keys:
+            print(f"[QuizGenerator-Local] Duplicate question detected (same anchor + correct answer): {key}")
+            return False
+
         return True
+
+    def _register_question(self, question: Dict[str, Any]) -> None:
+        """Register a question as generated to avoid future duplicates."""
+        text = question.get('question_text', '') or ''
+        if text:
+            self._generated_question_hashes.add(self._get_question_hash(text))
+        key = self._answer_key(question)
+        if key:
+            self._generated_answer_keys.add(key)
     
-    def _register_question(self, question_text: str):
-        """Register a question as generated to avoid future duplicates"""
-        self._generated_question_hashes.add(self._get_question_hash(question_text))
-        self._generated_question_texts.append(question_text)
-    
-    def _call_ollama(self, prompt: str, timeout: int = 300) -> Optional[str]:
+    def _call_ollama(
+        self,
+        prompt: str,
+        timeout: int = 300,
+        json_mode: bool = True,
+        use_cache: bool = True,
+    ) -> Optional[str]:
         """
-        Call Ollama API with the 14B model
-        
-        Args:
-            prompt: The prompt to send to the model
-            timeout: Timeout in seconds
-            
-        Returns:
-            Generated text or None on error
+        Call Ollama API with the 14B model, with SQLite-backed response caching.
+
+        Cache key: (model, prompt, temperature, json_mode). A cache hit skips
+        the network call entirely. Pass use_cache=False to force a fresh call
+        (e.g. when the user explicitly wants question variety).
         """
+        from core import llm_cache
+
+        temperature = 0.7
+        if use_cache:
+            cached = llm_cache.get(self.ollama_model, prompt, temperature, json_mode)
+            if cached is not None:
+                print(f"[QuizGenerator-Local] Cache HIT ({len(cached)} chars)")
+                return cached
+
         try:
             url = f"{self.ollama_base_url}/api/generate"
             payload = {
                 "model": self.ollama_model,
                 "prompt": prompt,
                 "stream": False,
-                "temperature": 0.7,
+                "temperature": temperature,
             }
-            
-            print(f"[QuizGenerator-Local] Calling Ollama ({len(prompt)} chars prompt)...")
+            if json_mode:
+                payload["format"] = "json"
+
+            print(f"[QuizGenerator-Local] Calling Ollama ({len(prompt)} chars prompt, json_mode={json_mode})...")
             response = requests.post(url, json=payload, timeout=timeout)
-            
+
             if response.status_code == 200:
                 data = response.json()
                 result = data.get("response", "")
                 print(f"[QuizGenerator-Local] Ollama returned {len(result)} chars")
+                if result and use_cache:
+                    llm_cache.put(self.ollama_model, prompt, temperature, json_mode, result)
                 return result
             else:
                 print(f"[QuizGenerator-Local] Ollama error: {response.status_code}")
@@ -151,7 +183,8 @@ class SoloQuizGeneratorLocal:
         solo_levels: List[str],
         questions_per_level: int = 3,
         section_ids: List[int] = None,
-        ontology_relationships: List[Dict[str, Any]] = None
+        ontology_relationships: List[Dict[str, Any]] = None,
+        progress_cb: Optional[Callable[..., None]] = None,
     ) -> List[Dict[str, Any]]:
         """
         Generate questions based on SOLO taxonomy levels from parsed lessons.
@@ -174,31 +207,58 @@ class SoloQuizGeneratorLocal:
         self.ontology_relationships = ontology_relationships or []
         if self.ontology_relationships:
             print(f"[SOLO-Local] ✓ Using {len(self.ontology_relationships)} ontology relationships to enhance questions")
-        
+
+        # Detect lesson language once and apply to every generated question.
+        from core.lang_detect import detect_language, language_name
+        primary = lessons_data[0] if lessons_data else None
+        sample_text = ""
+        if primary:
+            for section in primary.get('sections', []):
+                if section.get('content'):
+                    sample_text = section['content']
+                    break
+            if not sample_text:
+                sample_text = primary.get('summary') or primary.get('title') or ""
+        self.language = detect_language(sample_text)
+        print(f"[SOLO-Local] Detected lesson language: {language_name(self.language)} ({self.language})")
+
         # Honor requested questions per level (no artificial cap - running locally)
         # The user can request whatever they want, we'll generate it
         print(f"[SOLO-Local] Questions per level: {questions_per_level}")
         
         # Reset question tracking for this generation session
         self._generated_question_hashes.clear()
-        self._generated_question_texts.clear()
+        self._generated_answer_keys.clear()
         
         generated_questions = []
         primary_lesson = lessons_data[0] if lessons_data else None
-        
+
         if not primary_lesson:
             raise ValueError("At least one lesson is required")
-        
+
         # Skip content summary generation to save memory
         content_summary = ""
-        
+
+        total_target = questions_per_level * len(solo_levels)
+        total_generated = 0
+
+        def _emit(msg: str) -> None:
+            if progress_cb:
+                try:
+                    progress_cb(message=msg, current=total_generated, total=total_target)
+                except Exception:
+                    pass
+
+        _emit(f"Starting generation of {total_target} questions")
+
         for level in solo_levels:
             print(f"\n[SOLO-Local] Generating {questions_per_level} {level} questions...")
-            
+            _emit(f"Generating {level} questions (0/{questions_per_level})")
+
             level_questions = 0
             max_attempts = questions_per_level * 2  # Allow up to 2x attempts for uniqueness
             attempts = 0
-            
+
             while level_questions < questions_per_level and attempts < max_attempts:
                 attempts += 1
                 
@@ -216,23 +276,25 @@ class SoloQuizGeneratorLocal:
                         )
                     elif level == 'relational':
                         question = self._generate_relational_question(
-                            primary_lesson, section_ids, content_summary
+                            primary_lesson, section_ids, content_summary, lo_offset
                         )
                     elif level == 'extended_abstract':
                         # For extended abstract, use both lessons if available
                         secondary_lesson = lessons_data[1] if len(lessons_data) > 1 else None
                         question = self._generate_extended_abstract_question(
-                            primary_lesson, content_summary, secondary_lesson
+                            primary_lesson, content_summary, secondary_lesson, lo_offset
                         )
                     else:
                         question = None
                     
-                    if question and self._is_question_unique(question.get('question_text', '')):
+                    if question and self._is_question_unique(question):
                         question['solo_level'] = level
                         generated_questions.append(question)
-                        self._register_question(question.get('question_text', ''))
+                        self._register_question(question)
                         level_questions += 1
+                        total_generated += 1
                         print(f"[SOLO-Local] ✓ Generated {level} question {level_questions}/{questions_per_level}")
+                        _emit(f"Generated {level} question {level_questions}/{questions_per_level}")
                     elif question:
                         print(f"[SOLO-Local] ✗ Question rejected (not unique), retrying...")
                     
@@ -317,7 +379,7 @@ Write a 3-4 paragraph summary focusing on:
 Be concise but comprehensive."""
         
         print("[SOLO-Local] Generating content summary for higher-order questions...")
-        summary = self._call_ollama(prompt, timeout=120)
+        summary = self._call_ollama(prompt, timeout=120, json_mode=False)
         return summary or ""
     
     def _generate_unistructural_question(
@@ -339,76 +401,50 @@ Be concise but comprehensive."""
         if section_ids:
             sections = [s for s in sections if s.get('id') in section_ids]
         
-        # Collect all learning objects
+        # Collect all learning objects with their parent section content for grounding
         learning_objects = []
         for section in sections:
+            section_content = section.get('content', '') or ''
             for lo in section.get('learning_objects', []):
                 learning_objects.append({
+                    'id': lo.get('id'),
+                    'section_id': section.get('id'),
                     'title': lo.get('title', ''),
                     'description': lo.get('description', ''),
-                    'type': lo.get('type', 'concept'),
-                    'keywords': lo.get('keywords', []),
-                    'key_points': lo.get('key_points', [])
+                    'type': lo.get('object_type', lo.get('type', 'concept')),
+                    'keywords': lo.get('keywords', []) or [],
+                    'key_points': lo.get('key_points', []) or [],
+                    'section_content': section_content,
                 })
-        
+
         if not learning_objects:
             return None
-        
+
         # Pick a learning object based on offset for diversity
         lo_index = lo_offset % len(learning_objects)
         lo = learning_objects[lo_index]
-        
-        # Build rich content from the learning object
-        lo_content = f"""Title: {lo['title']}
-Type: {lo['type']}
-Description: {lo['description']}
-Keywords: {', '.join(lo.get('keywords', []))}
-Key Points: {'; '.join(lo.get('key_points', [])[:3])}"""
-        
-        # Comprehensive prompt from quiz_generator.py
-        prompt = f"""Create a UNISTRUCTURAL level question about '{lesson_title}'.
 
-LEARNING OBJECT:
-{lo_content}
+        from core.prompt_lib import build_question_prompt
 
-UNISTRUCTURAL LEVEL DEFINITION:
-At this stage, the learner gets to know just a single relevant aspect of a task or subject; the student gets a basic understanding of a concept or task. Therefore, a student is able to make easy and apparent connections, but he or she does not have any idea how significant that information be or not. In addition, the students' response indicates a concrete understanding of the task, but it focuses on only one relevant aspect.
+        # LO metadata for the CONTENT block.
+        keywords = ", ".join(lo.get("keywords", []))
+        key_points = "; ".join(lo.get("key_points", [])[:3])
+        content_block = (
+            f"LEARNING OBJECT TITLE: {lo['title']}\n"
+            f"TYPE: {lo['type']}\n"
+            f"DESCRIPTION: {lo['description']}\n"
+            f"KEYWORDS: {keywords}\n"
+            f"KEY POINTS: {key_points}"
+        )
+        source_excerpt = (lo.get("section_content") or "")[:1500]
 
-TASK: Create a question that tests knowledge of ONE specific fact/concept. Student should identify or name a single element directly stated in the content.
-
-QUESTION VARIETY - IMPORTANT:
-**DO NOT** start with "Which of the following" - this is overused and boring!
-Use varied question formats such as:
-- "What is the primary purpose of [X]?"
-- "[X] is defined as..."
-- "The term [X] refers to..."
-- "In the context of [topic], what does [X] mean?"
-- "What characterizes [X]?"
-- "How is [X] typically described?"
-- "The main function of [X] is..."
-- Direct definition questions: "[X] can be best described as..."
-
-CRITICAL INSTRUCTIONS FOR DISTRACTORS:
-- **DO NOT** create obviously wrong options that can be eliminated by common sense
-- **DO** create plausible but INCORRECT options that:
-  * Are related to the topic but refer to WRONG specifics
-  * Sound similar to correct answer but are incorrect variants
-  * Common misconceptions that students might hold
-  * Related but different concepts from the content
-- Example BAD distractor: "The moon is made of cheese" 
-- Example GOOD distractor: "Neptune" (instead of "Uranus") - students who didn't read carefully pick this
-- Make students actually think about the specific detail, not guess
-
-Requirements:
-- Focus on ONE isolated aspect only
-- No connections to other concepts required
-- ALL TEXT IN ENGLISH
-- Question < 250 chars
-- 4 MC options (A-D), one correct
-- 3 distractors must be PLAUSIBLE and require reading comprehension to eliminate
-- Explanation < 250 chars
-
-Return ONLY JSON: {{"question": "...", "options": ["A) ...", "B) ...", "C) ...", "D) ..."], "correct_answer": "A) ...", "explanation": "..."}}"""
+        prompt = build_question_prompt(
+            level="unistructural",
+            lesson_title=lesson_title,
+            content_block=content_block,
+            source_text=source_excerpt,
+            language=getattr(self, "language", "en"),
+        )
         
         response = self._call_ollama(prompt, timeout=300)
         if not response:
@@ -428,10 +464,13 @@ Return ONLY JSON: {{"question": "...", "options": ["A) ...", "B) ...", "C) ...",
                     question_data.get('correct_answer', '')
                 ),
                 'explanation': question_data.get('explanation', ''),
-                'bloom_level': 'remember'
+                'source_line': question_data.get('source_line', ''),
+                'bloom_level': 'remember',
+                'learning_object_id': lo.get('id'),
+                'section_id': lo.get('section_id'),
             }
         return None
-    
+
     def _generate_multistructural_question(
         self,
         lesson: Dict[str, Any],
@@ -467,60 +506,25 @@ Return ONLY JSON: {{"question": "...", "options": ["A) ...", "B) ...", "C) ...",
             if lo.get('key_points'):
                 for point in lo.get('key_points', [])[:2]:
                     los_content.append(f"  • {point}")
-        
-        content = "\n".join(los_content)
-        
-        # Add ontology context if available
-        ontology_context = self._build_ontology_context(section.get('learning_objects', []))
-        ontology_section = f"\n\n{ontology_context}" if ontology_context else ""
-        
-        # Comprehensive prompt from quiz_generator.py
-        prompt = f"""Create a MULTISTRUCTURAL level question about '{lesson_title}'.
 
-SECTION: {section_title}
+        from core.prompt_lib import build_question_prompt
 
-CONTENT:
-{content}{ontology_section}
+        content_block = (
+            f"SECTION TITLE: {section_title}\n"
+            "LEARNING OBJECTS IN THIS SECTION:\n" + "\n".join(los_content)
+        )
+        source_excerpt = (section.get("content") or "")[:2000]
+        ontology_context = self._build_ontology_context(section.get("learning_objects", []))
+        ontology_anchor_block = f"\n\n{ontology_context}" if ontology_context else ""
 
-MULTISTRUCTURAL LEVEL DEFINITION:
-At this stage, students gain an understanding of numerous relevant independent aspects. Despite understanding the relationship between different aspects, its relationship to the whole remains unclear. Suppose the teacher is teaching about several topics and ideas, the students can make varied connections, but they fail to understand the significance of the whole. The students' responses are based on relevant aspects, but their responses are handled independently.
-
-TASK: Create a question that tests knowledge of MULTIPLE separate facts/features. Student should list or identify several independent elements WITHOUT explaining how they connect.
-
-QUESTION VARIETY - IMPORTANT:
-**DO NOT** start with "Which of the following" - this is overused and boring!
-Use varied question formats such as:
-- "What are the key components of [X]?"
-- "Name the main elements involved in [X]."
-- "[Topic] consists of several parts. These include..."
-- "The main aspects of [X] are..."
-- "Identify the core features of [X]."
-- "What elements make up [X]?"
-- "List the primary characteristics of [X]."
-- "The building blocks of [X] include..."
-
-CRITICAL INSTRUCTIONS FOR DISTRACTORS:
-- **DO NOT** create obviously wrong options that can be eliminated by common sense
-- **DO** create plausible but INCORRECT combinations that:
-  * Mix some correct items with 1-2 WRONG items
-  * Include correct items in wrong contexts
-  * Reorder/rearrange items incorrectly
-  * Include related but not-mentioned aspects from content
-  * Common student misconceptions about the topic
-- Example BAD distractor: "Bananas, dinosaurs, computers" (obviously unrelated)
-- Example GOOD distractor: "DNA, RNA, proteins" (related to biology, but wrong combination for this specific question)
-- Make students verify EACH item, not just recognize keywords
-
-Requirements:
-- Multiple items or aspects, but handled independently
-- Don't require showing relationships between items
-- ALL TEXT IN ENGLISH
-- Question < 250 chars
-- 4 MC options (A-D), one correct
-- 3 distractors must combine PLAUSIBLE elements that seem correct at first glance
-- Explanation < 250 chars
-
-Return ONLY JSON: {{"question": "...", "options": ["A) ...", "B) ...", "C) ...", "D) ..."], "correct_answer": "A) ...", "explanation": "..."}}"""
+        prompt = build_question_prompt(
+            level="multistructural",
+            lesson_title=lesson_title,
+            content_block=content_block,
+            source_text=source_excerpt,
+            language=getattr(self, "language", "en"),
+            ontology_anchor_block=ontology_anchor_block,
+        )
         
         response = self._call_ollama(prompt, timeout=300)
         if not response:
@@ -540,15 +544,44 @@ Return ONLY JSON: {{"question": "...", "options": ["A) ...", "B) ...", "C) ...",
                     question_data.get('correct_answer', '')
                 ),
                 'explanation': question_data.get('explanation', ''),
-                'bloom_level': 'understand'
+                'source_line': question_data.get('source_line', ''),
+                'bloom_level': 'understand',
+                'section_id': section.get('id'),
             }
         return None
-    
+
+    def _pick_relationship(self, sections: List[Dict[str, Any]], offset: int) -> Optional[Dict[str, Any]]:
+        """Pick a single ConceptRelationship that involves the given sections' LOs."""
+        if not self.ontology_relationships:
+            return None
+        lo_titles = {
+            lo.get('title')
+            for section in sections
+            for lo in section.get('learning_objects', [])
+        }
+        candidates = [
+            r for r in self.ontology_relationships
+            if r.get('source_title') in lo_titles or r.get('target_title') in lo_titles
+        ]
+        if not candidates:
+            candidates = self.ontology_relationships
+        return candidates[offset % len(candidates)] if candidates else None
+
+    def _find_lo_by_title(self, lessons: List[Dict[str, Any]], title: str) -> Optional[Dict[str, Any]]:
+        """Locate an LO (and remember its section) by its title across the given lessons."""
+        for lesson in lessons:
+            for section in lesson.get('sections', []):
+                for lo in section.get('learning_objects', []):
+                    if lo.get('title') == title:
+                        return {'lo': lo, 'section': section, 'lesson': lesson}
+        return None
+
     def _generate_relational_question(
         self,
         lesson: Dict[str, Any],
         section_ids: List[int] = None,
-        content_summary: str = ""
+        content_summary: str = "",
+        lo_offset: int = 0
     ) -> Dict[str, Any]:
         """
         Generate RELATIONAL question from SECTIONS + LEARNING OBJECTS
@@ -566,79 +599,91 @@ Return ONLY JSON: {{"question": "...", "options": ["A) ...", "B) ...", "C) ...",
         if not sections:
             return None
         
-        # Build comprehensive content with relationships visible
-        content_parts = []
+        # Pick ONE specific relationship to ground this question on.
+        rel = self._pick_relationship(sections, lo_offset)
+        rel_block = ""
+        anchor_section_id = sections[0].get('id') if sections else None
+        anchor_lo_id = None
+        rel_tags = None
+
+        if rel:
+            src_title = rel.get('source_title', '')
+            tgt_title = rel.get('target_title', '')
+            rel_type = rel.get('relationship_type', 'related_to')
+            rel_desc = rel.get('description', '') or ''
+            src_info = self._find_lo_by_title([lesson], src_title)
+            tgt_info = self._find_lo_by_title([lesson], tgt_title)
+            anchor_lo_id = (src_info or {}).get('lo', {}).get('id')
+            anchor_section_id = (src_info or {}).get('section', {}).get('id') or anchor_section_id
+
+            def _lo_summary(info: Optional[Dict[str, Any]], fallback_title: str) -> str:
+                if not info:
+                    return fallback_title
+                lo = info['lo']
+                src_excerpt = (info.get('section', {}).get('content') or '')[:600]
+                lines = [
+                    f"TITLE: {lo.get('title', '')}",
+                    f"DESCRIPTION: {lo.get('description', '')[:300]}",
+                ]
+                if lo.get('key_points'):
+                    lines.append("KEY POINTS: " + "; ".join(lo['key_points'][:3]))
+                if src_excerpt:
+                    lines.append(f"SOURCE EXCERPT:\n{src_excerpt}")
+                return "\n".join(lines)
+
+            rel_block = f"""
+
+ONTOLOGY ANCHOR — the question MUST test THIS exact relationship:
+  {src_title} --[{rel_type}]--> {tgt_title}
+  Relationship description: {rel_desc}
+
+SOURCE CONCEPT:
+{_lo_summary(src_info, src_title)}
+
+TARGET CONCEPT:
+{_lo_summary(tgt_info, tgt_title)}
+"""
+            rel_tags = {
+                'ontology_anchor': {
+                    'source': src_title,
+                    'target': tgt_title,
+                    'type': rel_type,
+                    'description': rel_desc[:200],
+                }
+            }
+
+        from core.prompt_lib import build_question_prompt
+
+        # Build a compact content block: titles + descriptions across involved sections.
+        content_lines: List[str] = []
+        source_excerpts: List[str] = []
         for section in sections[:4]:
-            section_title = section.get('title', '')
-            content_parts.append(f"### {section_title}")
-            for lo in section.get('learning_objects', [])[:5]:
-                content_parts.append(f"- {lo.get('title', '')}: {lo.get('description', '')[:200]}")
-                # Include key points for more context
-                for point in lo.get('key_points', [])[:2]:
-                    content_parts.append(f"  • {point}")
-        
-        combined_content = "\n".join(content_parts)[:3000]
-        
-        # Add ontology relationships for structure understanding
-        ontology_context = self._build_ontology_context([
-            lo for section in sections for lo in section.get('learning_objects', [])
-        ])
-        ontology_section = f"\n\n{ontology_context}" if ontology_context else ""
-        
-        # Add summary section for higher-order understanding
-        summary_section = ""
-        if content_summary:
-            summary_section = f"\n\nCONTENT SUMMARY (key themes and relationships):\n{content_summary[:1000]}\n"
-        
-        # Comprehensive prompt from quiz_generator.py
-        prompt = f"""Create a RELATIONAL level question about '{lesson_title}'.
+            content_lines.append(f"### {section.get('title', '')}")
+            for lo in section.get("learning_objects", [])[:5]:
+                content_lines.append(f"- {lo.get('title', '')}: {lo.get('description', '')[:200]}")
+                for point in lo.get("key_points", [])[:2]:
+                    content_lines.append(f"  • {point}")
+            if section.get("content") and not rel_block:
+                source_excerpts.append(f"### {section.get('title','')}\n{section.get('content','')[:800]}")
+        content_block = "\n".join(content_lines)[:2500]
+        source_text = "\n\n".join(source_excerpts)[:2500] if source_excerpts else ""
 
-CONTENT:
-{combined_content}{ontology_section}{summary_section}
+        extra_task = (
+            "Your question MUST test the specific ontology anchor below — the named "
+            "relationship between the two named concepts. Do not invent a different relationship."
+            if rel_block else
+            "Choose a real cause/effect, structural, or dependency relationship between concepts in the CONTENT."
+        )
 
-RELATIONAL LEVEL DEFINITION:
-This stage relates to aspects of knowledge combining to form a structure. By this stage, the student is able to understand the importance of different parts in relation to the whole. They are able to connect concepts and ideas, so it provides a coherent knowledge of the whole thing. Moreover, the students' response indicates an understanding of the task by combining all the parts, and they can demonstrate how each part contributes to the whole.
-
-TASK: Create a question that tests understanding of HOW parts CONNECT and work TOGETHER. Use both the detailed content, domain ontology AND the summary to identify key relationships. Student should explain relationships, patterns, or cause-effect between elements. Shows deep integrated understanding.
-
-QUESTION VARIETY - IMPORTANT:
-**DO NOT** start with "Which of the following" - this is overused and boring!
-Use varied question formats such as:
-- "How does [X] relate to [Y]?"
-- "What is the relationship between [X] and [Y]?"
-- "Why does [X] affect [Y] in this way?"
-- "Explain how [X] contributes to [Y]."
-- "The connection between [X] and [Y] can be described as..."
-- "How do [X] and [Y] work together to achieve [Z]?"
-- "What role does [X] play in the context of [Y]?"
-- "In what way does [X] influence [Y]?"
-- "The interaction between [X] and [Y] results in..."
-
-CRITICAL INSTRUCTIONS FOR DISTRACTORS:
-- **DO NOT** create obviously wrong options that can be eliminated without thinking
-- **DO** create CHALLENGING distractors that:
-  * Seem logical if you only understand PART of the relationship
-  * Require understanding the FULL integrated picture to reject
-  * Include partially correct connections (correct concepts, wrong relationship)
-  * Reverse causes and effects (plausible but backwards)
-  * Connect concepts that ARE related but in wrong ways
-  * Address a DIFFERENT relationship that also exists in the content
-- Example BAD distractor: "Because trees don't exist" (obviously wrong)
-- Example GOOD distractor: "Because temperature increases while gas pressure also increases" (confuses correlation with the actual causal mechanism)
-- Distractors should reflect REAL misconceptions about how things relate
-
-Requirements:
-- Ask about relationships, connections, or cause-effect WITHIN the content
-- Use the summary to understand the broader context and key themes
-- Require understanding of how parts fit together into a coherent whole
-- Student must show how different elements relate to each other
-- ALL TEXT IN ENGLISH
-- Question < 250 chars
-- 4 MC options (A-D), one correct
-- 3 distractors must be CHALLENGING and reflect real misconceptions
-- Explanation < 250 chars
-
-Return ONLY JSON: {{"question": "...", "options": ["A) ...", "B) ...", "C) ...", "D) ..."], "correct_answer": "A) ...", "explanation": "..."}}"""
+        prompt = build_question_prompt(
+            level="relational",
+            lesson_title=lesson_title,
+            content_block=content_block,
+            source_text=source_text,
+            language=getattr(self, "language", "en"),
+            ontology_anchor_block=rel_block,
+            extra_task_line=extra_task,
+        )
         
         response = self._call_ollama(prompt, timeout=300)
         if not response:
@@ -658,15 +703,20 @@ Return ONLY JSON: {{"question": "...", "options": ["A) ...", "B) ...", "C) ...",
                     question_data.get('correct_answer', '')
                 ),
                 'explanation': question_data.get('explanation', ''),
-                'bloom_level': 'analyze'
+                'source_line': question_data.get('source_line', ''),
+                'bloom_level': 'analyze',
+                'section_id': anchor_section_id,
+                'learning_object_id': anchor_lo_id,
+                'tags': rel_tags,
             }
         return None
-    
+
     def _generate_extended_abstract_question(
         self,
         lesson: Dict[str, Any],
         content_summary: str = "",
-        secondary_lesson: Dict[str, Any] = None
+        secondary_lesson: Dict[str, Any] = None,
+        lo_offset: int = 0
     ) -> Dict[str, Any]:
         """
         Generate EXTENDED ABSTRACT question requiring synthesis and cross-lesson application
@@ -678,124 +728,169 @@ Return ONLY JSON: {{"question": "...", "options": ["A) ...", "B) ...", "C) ...",
         
         lesson_title = lesson.get('title', 'Lesson')
         
-        # Get key concepts from primary lesson
+        # Get key concepts + source excerpts from primary lesson
         concepts_primary = []
+        primary_excerpts = []
         for section in lesson.get('sections', []):
-            section_title = section.get('title', '')
             for lo in section.get('learning_objects', [])[:4]:
                 concepts_primary.append(f"- {lo.get('title', '')}: {lo.get('description', '')[:150]}")
-        
+            if section.get('content'):
+                primary_excerpts.append(section.get('content', '')[:600])
+
         concepts_text = "\n".join(concepts_primary[:15])
-        
+        primary_source = "\n\n".join(primary_excerpts)[:2000]
+
         # Get concepts from secondary lesson if provided
         concepts_secondary_text = ""
         secondary_title = ""
+        secondary_source = ""
         if secondary_lesson:
             secondary_title = secondary_lesson.get('title', 'Lesson 2')
             concepts_secondary = []
+            secondary_excerpts = []
             for section in secondary_lesson.get('sections', []):
                 for lo in section.get('learning_objects', [])[:4]:
                     concepts_secondary.append(f"- {lo.get('title', '')}: {lo.get('description', '')[:150]}")
+                if section.get('content'):
+                    secondary_excerpts.append(section.get('content', '')[:600])
             secondary_concepts = "\n".join(concepts_secondary[:15])
             concepts_secondary_text = f"\n\nSECONDARY TOPIC ({secondary_title}) CONCEPTS:\n{secondary_concepts}"
+            secondary_source = "\n\n".join(secondary_excerpts)[:2000]
         
-        # Add summary section for higher-order understanding
-        summary_section = ""
-        if content_summary:
-            summary_section = f"\n\nCONTENT SUMMARY (key themes and relationships):\n{content_summary[:1000]}\n"
-        
-        # Comprehensive prompt with EXPLICIT INSTRUCTIONS for combining 2 lessons
-        if secondary_lesson:
-            combine_instruction = f"""CRITICAL - COMBINE CONCEPTS FROM EXACTLY THESE 2 TOPICS:
-You MUST create a question that connects and synthesizes concepts from BOTH '{lesson_title}' AND '{secondary_title}'.
-The question should show how these two topics relate to each other, influence each other, or can be applied together.
-
-**STRICT GROUNDING RULE**: Use ONLY concepts, terms, and ideas that appear in the provided materials above.
-DO NOT introduce external concepts, theories, or examples that are not mentioned in the lesson content.
-The synthesis must be between concepts FROM THESE TWO LESSONS ONLY.
-
-Example: If lesson 1 covers "Unit Testing" and lesson 2 covers "Angular Components", ask how unit testing principles apply to Angular component testing - combining BOTH topics using concepts FROM the materials."""
-        else:
-            combine_instruction = """Create a question that applies the principles from this lesson to a practical scenario.
-**STRICT GROUNDING RULE**: Use ONLY concepts and terms that appear in the provided content.
-DO NOT introduce external concepts not mentioned in the lesson."""
-        
-        prompt = f"""Create an EXTENDED ABSTRACT level question{' combining 2 lessons' if secondary_lesson else ''}.
-
-PRIMARY TOPIC ({lesson_title}) CONCEPTS:
-{concepts_text}{concepts_secondary_text}{summary_section}
-
-{combine_instruction}
-
-EXTENDED ABSTRACT LEVEL DEFINITION:
-By this level, students are able to make connections within the provided task, and they also create connections beyond that. They develop the ability to transfer and generalise the concepts and principles from one subject area into a particular domain. Therefore, the students' response indicates that they can conceptualise beyond the level of what has been taught. They are able to propose new concepts and ideas depending on their understanding of the task or subject taught.
-
-TASK: Create a question that requires:
-- Understanding core principles from {'both topics' if secondary_lesson else 'the lesson'}
-- {'Synthesizing concepts from BOTH lessons to solve a problem or explain a scenario' if secondary_lesson else 'Applying lesson principles to a new but related scenario'}
-- Student must demonstrate deep understanding by combining/applying knowledge
-
-**IMPORTANT - STAY GROUNDED IN THE MATERIALS**:
-- All concepts in the question and answers MUST come from the provided lesson content
-- DO NOT introduce new theories, frameworks, or concepts not in the materials
-- The "new context" means a NEW APPLICATION of the SAME concepts, not introducing NEW concepts
-- If combining 2 lessons, the question must use specific concepts from BOTH lessons
-
-QUESTION VARIETY - IMPORTANT:
-**DO NOT** start with "Which of the following" - this is overused and boring!
-Use varied question formats such as:
-- "How can the principles of [X from lesson 1] be applied to improve [Y from lesson 2]?"
-- "A developer needs to [scenario]. Using concepts from [both topics], the best approach would be..."
-- "When combining [concept A] with [concept B], what outcome should be expected?"
-- "Given a situation where [scenario using both topics], how should one proceed?"
-- "The integration of [X] and [Y] enables..."
-- "To achieve [goal], how would [concept from lesson 1] work together with [concept from lesson 2]?"
-
-CRITICAL INSTRUCTIONS FOR DISTRACTORS:
-- **DO NOT** create obviously wrong options
-- **DO** create TRICKY distractors that:
-  * Look correct if you misunderstand which principle applies
-  * Correctly apply a concept from ONE lesson but ignore the other
-  * {'Apply concepts from only one of the two lessons' if secondary_lesson else 'Partially apply the principle'}
-  * Follow logically but reach wrong conclusion
-  * Represent common misconceptions about how the concepts interact
-- Distractors should be SOPHISTICATED errors that test deep understanding
-- ALL distractors must use concepts FROM THE PROVIDED MATERIALS
-
-Requirements:
-- {'Question MUST require knowledge of BOTH lessons to answer correctly' if secondary_lesson else 'Question must apply lesson concepts to a practical scenario'}
-- All concepts in question and answers must come from the provided materials
-- Requires student to synthesize and apply knowledge (not just recall)
-- ALL TEXT IN ENGLISH
-- Question < 300 chars
-- 4 MC options (A-D), one correct
-- 3 distractors must be CHALLENGING but grounded in the lesson materials
-- Explanation < 250 chars, {'showing how concepts from both lessons combine' if secondary_lesson else 'explaining the application'}
-
-Return ONLY JSON: {{"question": "...", "options": ["A) ...", "B) ...", "C) ...", "D) ..."], "correct_answer": "A) ...", "explanation": "..."}}"""
-        
-        response = self._call_ollama(prompt, timeout=300)
-        if not response:
-            return None
-        
-        question_data = self._parse_question_response(response)
-        if question_data:
-            # Shuffle options to randomize correct answer position
-            question_data = self._shuffle_options(question_data)
-            return {
-                'question_text': question_data.get('question', ''),
-                'question_type': 'multiple_choice',
-                'options': question_data.get('options', []),
-                'correct_answer': question_data.get('correct_answer', ''),
-                'correct_option_index': self._find_correct_index(
-                    question_data.get('options', []),
-                    question_data.get('correct_answer', '')
-                ),
-                'explanation': question_data.get('explanation', ''),
-                'bloom_level': 'create'
+        # Pick a relationship to anchor the synthesis on. Prefer one that spans both lessons.
+        all_lessons = [lesson] + ([secondary_lesson] if secondary_lesson else [])
+        primary_titles = {
+            lo.get('title')
+            for s in lesson.get('sections', [])
+            for lo in s.get('learning_objects', [])
+        }
+        secondary_titles = {
+            lo.get('title')
+            for s in (secondary_lesson.get('sections', []) if secondary_lesson else [])
+            for lo in s.get('learning_objects', [])
+        }
+        cross_rels = [
+            r for r in (self.ontology_relationships or [])
+            if (r.get('source_title') in primary_titles and r.get('target_title') in secondary_titles)
+            or (r.get('source_title') in secondary_titles and r.get('target_title') in primary_titles)
+        ]
+        within_rels = [
+            r for r in (self.ontology_relationships or [])
+            if r.get('source_title') in primary_titles and r.get('target_title') in primary_titles
+        ]
+        rel_pool = cross_rels or within_rels
+        ea_rel = rel_pool[lo_offset % len(rel_pool)] if rel_pool else None
+        ea_rel_tags = None
+        ea_anchor_section_id = None
+        ea_anchor_lo_id = None
+        ea_rel_block = ""
+        if ea_rel:
+            src_info = self._find_lo_by_title(all_lessons, ea_rel.get('source_title', ''))
+            tgt_info = self._find_lo_by_title(all_lessons, ea_rel.get('target_title', ''))
+            ea_anchor_lo_id = (src_info or {}).get('lo', {}).get('id')
+            ea_anchor_section_id = (src_info or {}).get('section', {}).get('id')
+            ea_rel_block = (
+                "\n\nONTOLOGY ANCHOR — the synthesis MUST be built around this relationship:\n"
+                f"  {ea_rel.get('source_title','')} --[{ea_rel.get('relationship_type','related_to')}]--> {ea_rel.get('target_title','')}\n"
+                f"  Description: {ea_rel.get('description','') or '(none)'}\n"
+            )
+            ea_rel_tags = {
+                'ontology_anchor': {
+                    'source': ea_rel.get('source_title', ''),
+                    'target': ea_rel.get('target_title', ''),
+                    'type': ea_rel.get('relationship_type', 'related_to'),
+                    'description': (ea_rel.get('description', '') or '')[:200],
+                    'spans_lessons': bool(cross_rels),
+                }
             }
-        return None
-    
+
+        from core.prompt_lib import (
+            build_extended_abstract_pass1_prompt,
+            build_extended_abstract_pass2_prompt,
+            DISTRACTOR_STRATEGIES,
+        )
+
+        language = getattr(self, "language", "en")
+
+        # --- PASS 1: produce question + correct answer + source_line ---
+        pass1_prompt = build_extended_abstract_pass1_prompt(
+            lesson_title=lesson_title,
+            secondary_title=secondary_title or None,
+            primary_content=concepts_text,
+            secondary_content=concepts_secondary_text.lstrip(),
+            primary_source=primary_source,
+            secondary_source=secondary_source,
+            ontology_anchor_block=ea_rel_block,
+            language=language,
+        )
+        pass1_response = self._call_ollama(pass1_prompt, timeout=300)
+        if not pass1_response:
+            return None
+        pass1_data = self._parse_question_response(pass1_response)
+        if not pass1_data or not pass1_data.get("question") or not pass1_data.get("correct_answer"):
+            return None
+
+        question_text = pass1_data["question"]
+        correct_answer = pass1_data["correct_answer"]
+        explanation = pass1_data.get("explanation", "")
+        source_line = pass1_data.get("source_line", "")
+
+        # --- PASS 2: predictive prompting for three typed distractors ---
+        combined_source = "\n\n".join(filter(None, [primary_source, secondary_source]))[:3000]
+        pass2_prompt = build_extended_abstract_pass2_prompt(
+            question=question_text,
+            correct_answer=correct_answer,
+            explanation=explanation,
+            source_text=combined_source,
+            language=language,
+        )
+        pass2_response = self._call_ollama(pass2_prompt, timeout=300)
+        distractors: List[str] = []
+        distractor_strategies: List[str] = []
+        if pass2_response:
+            pass2_data = self._parse_question_response(pass2_response)
+            if isinstance(pass2_data, dict) and isinstance(pass2_data.get("distractors"), list):
+                for d in pass2_data["distractors"][:3]:
+                    if isinstance(d, dict) and d.get("text"):
+                        distractors.append(d["text"])
+                        distractor_strategies.append(d.get("strategy", ""))
+
+        # If pass 2 failed to give three usable distractors, abort this attempt
+        # rather than ship a degenerate question — the outer retry loop will try
+        # again with the next ontology anchor.
+        if len(distractors) < 3:
+            print(f"[SOLO-Local] Extended-abstract pass 2 returned {len(distractors)} distractors, skipping")
+            return None
+
+        # Strip any leading letter from the correct answer (the model sometimes
+        # echoes "A) ..." back), then assemble the 4 options and shuffle.
+        correct_text = re.sub(r"^[A-Da-d]\)\s*", "", correct_answer).strip()
+        option_texts = [correct_text] + distractors[:3]
+        random.shuffle(option_texts)
+        letters = ["A", "B", "C", "D"]
+        new_options = [f"{letters[i]}) {t}" for i, t in enumerate(option_texts)]
+        new_correct_index = option_texts.index(correct_text)
+        new_correct_answer = new_options[new_correct_index]
+
+        # Merge in the typed-distractor metadata so we can later evaluate which
+        # distractor strategies the model actually used.
+        final_tags = dict(ea_rel_tags or {})
+        final_tags["distractor_strategies"] = distractor_strategies
+
+        return {
+            "question_text": question_text,
+            "question_type": "multiple_choice",
+            "options": new_options,
+            "correct_answer": new_correct_answer,
+            "correct_option_index": new_correct_index,
+            "explanation": explanation,
+            "source_line": source_line,
+            "bloom_level": "create",
+            "section_id": ea_anchor_section_id,
+            "learning_object_id": ea_anchor_lo_id,
+            "tags": final_tags,
+        }
+
     def _parse_question_response(self, response: str) -> Optional[Dict[str, Any]]:
         """Parse API response to extract question data"""
         try:

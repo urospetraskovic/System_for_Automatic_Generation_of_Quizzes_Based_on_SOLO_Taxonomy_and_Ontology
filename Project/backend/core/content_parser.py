@@ -56,35 +56,46 @@ class ContentParser:
             print(f"[ContentParser] Connection test failed: {e}")
             return False
     
-    def _call_ollama(self, prompt: str, timeout: int = 300) -> Optional[str]:
+    def _call_ollama(self, prompt: str, timeout: int = 300, use_cache: bool = True) -> Optional[str]:
         """
-        Call Ollama API with the 14B model
-        
-        Args:
-            prompt: The prompt to send to the model
-            timeout: Timeout in seconds (default: 300 for quality)
-        
-        Returns:
-            Generated text or None on error
+        Call Ollama with SQLite-backed response caching.
+
+        Parsing is deterministic-friendly (same PDF, same prompt -> same
+        output is fine), so caching is on by default. Pass use_cache=False
+        to force a fresh extraction.
         """
+        from core import llm_cache
+
+        temperature = 0.7
+        # ContentParser never uses Ollama's JSON-format mode (it sometimes
+        # wants arrays, sometimes objects, sometimes prose).
+        json_mode = False
+        if use_cache:
+            cached = llm_cache.get(self.ollama_model, prompt, temperature, json_mode)
+            if cached is not None:
+                print(f"[ContentParser] Cache HIT ({len(cached)} chars)")
+                return cached
+
         try:
             url = f"{self.ollama_base_url}/api/generate"
             payload = {
                 "model": self.ollama_model,
                 "prompt": prompt,
                 "stream": False,
-                "temperature": 0.7,
+                "temperature": temperature,
             }
-            
+
             print(f"[ContentParser] Calling Ollama ({len(prompt)} chars prompt)...")
             response = requests.post(url, json=payload, timeout=timeout)
-            
+
             if response.status_code == 200:
                 data = response.json()
                 result = data.get("response", "")
                 print(f"[ContentParser] Ollama returned {len(result)} chars")
                 if len(result) < 50:
                     print(f"[ContentParser] WARNING: Very short response: {result}")
+                if result and use_cache:
+                    llm_cache.put(self.ollama_model, prompt, temperature, json_mode, result)
                 return result
             else:
                 print(f"[ContentParser] Ollama error: {response.status_code}")
@@ -98,85 +109,169 @@ class ContentParser:
             print(f"[ContentParser] Ollama error: {e}")
             return None
     
+    def _extract_pages(self, pdf_reader) -> Dict[str, Any]:
+        """Build full_text + per-page offset/char-count metadata from a PdfReader."""
+        text_parts = []
+        pages_meta = []
+        offset = 0
+
+        for page_num, page in enumerate(pdf_reader.pages, start=1):
+            page_text = page.extract_text() or ""
+            marker = f"\n--- Page {page_num} ---\n"
+            text_parts.append(marker)
+            offset += len(marker)
+            page_start = offset
+            text_parts.append(page_text)
+            offset += len(page_text)
+            pages_meta.append({
+                "page": page_num,
+                "char_count": len(page_text.strip()),
+                "start_offset": page_start,
+                "end_offset": offset,
+            })
+
+        full_text = "".join(text_parts)
+        return {
+            "success": True,
+            "content": full_text,
+            "full_text": full_text,
+            "pages": len(pdf_reader.pages),
+            "pages_meta": pages_meta,
+        }
+
     def extract_pdf_text(self, filepath: str) -> Dict[str, Any]:
-        """
-        Extract text from PDF file
-        
-        Args:
-            filepath: Path to PDF file
-            
-        Returns:
-            Dictionary with 'content' and metadata
-        """
+        """Extract text + per-page metadata from a PDF file path."""
         try:
             with open(filepath, 'rb') as file:
-                pdf_reader = PdfReader(file)
-                text_content = ""
-                
-                for page_num, page in enumerate(pdf_reader.pages):
-                    text = page.extract_text()
-                    text_content += f"\n--- Page {page_num + 1} ---\n{text}"
-            
-            return {
-                "success": True,
-                "content": text_content,
-                "full_text": text_content,  # For app.py compatibility
-                "pages": len(pdf_reader.pages),
-                "filepath": filepath
-            }
-            
+                result = self._extract_pages(PdfReader(file))
+            result["filepath"] = filepath
+            return result
         except Exception as e:
             print(f"[ContentParser] PDF extraction error: {e}")
-            return {
-                "success": False,
-                "error": str(e),
-                "filepath": filepath
-            }
-    
+            return {"success": False, "error": str(e), "filepath": filepath}
+
     def extract_pdf_text_from_stream(self, stream) -> Dict[str, Any]:
-        """
-        Extract text from PDF file stream (without saving to disk)
-        
-        Args:
-            stream: File stream object
-            
-        Returns:
-            Dictionary with 'content' and metadata
-        """
+        """Extract text + per-page metadata from a PDF stream."""
         try:
-            pdf_reader = PdfReader(stream)
-            text_content = ""
-            
-            for page_num, page in enumerate(pdf_reader.pages):
-                text = page.extract_text()
-                text_content += f"\n--- Page {page_num + 1} ---\n{text}"
-            
-            return {
-                "success": True,
-                "content": text_content,
-                "full_text": text_content,
-                "pages": len(pdf_reader.pages),
-                "filepath": None
-            }
-            
+            result = self._extract_pages(PdfReader(stream))
+            result["filepath"] = None
+            return result
         except Exception as e:
             print(f"[ContentParser] PDF extraction error: {e}")
-            return {
-                "success": False,
-                "error": str(e),
-                "filepath": None
-            }
+            return {"success": False, "error": str(e), "filepath": None}
     
-    def parse_lesson_structure(self, content: str, lesson_title: str) -> List[Dict[str, Any]]:
+    @staticmethod
+    def _offset_to_page(offset: int, pages_meta: List[Dict[str, Any]]) -> Optional[int]:
+        """Map a character offset in raw_content to its page number."""
+        if not pages_meta:
+            return None
+        for meta in pages_meta:
+            if meta["start_offset"] <= offset < meta["end_offset"]:
+                return meta["page"]
+        return pages_meta[-1]["page"]
+
+    def _locate_section_in_content(
+        self,
+        content: str,
+        section: Dict[str, Any],
+        pages_meta: Optional[List[Dict[str, Any]]],
+    ) -> Dict[str, Any]:
+        """
+        Find where a section lives in the raw content by searching for its
+        title + key topics. Returns start_page, end_page, and a content snippet.
+        """
+        title = section.get("title", "") or ""
+        topics = section.get("key_topics", []) or []
+        search_terms = [t for t in [title, *topics] if t and len(t) >= 3]
+
+        offsets: List[int] = []
+        content_lower = content.lower()
+        for term in search_terms:
+            term_lower = term.lower()
+            start = 0
+            while True:
+                pos = content_lower.find(term_lower, start)
+                if pos == -1:
+                    break
+                offsets.append(pos)
+                start = pos + len(term_lower)
+                # Avoid pathological cases for very common words.
+                if len(offsets) > 200:
+                    break
+
+        if not offsets:
+            return {"start_page": None, "end_page": None, "content_snippet": ""}
+
+        start_offset = min(offsets)
+        end_offset = max(offsets)
+        snippet_end = min(end_offset + 600, len(content))
+        snippet = content[start_offset:snippet_end][:3000]
+
+        return {
+            "start_page": self._offset_to_page(start_offset, pages_meta) if pages_meta else None,
+            "end_page": self._offset_to_page(end_offset, pages_meta) if pages_meta else None,
+            "content_snippet": snippet,
+        }
+
+    def _assign_lo_pages(
+        self,
+        learning_objects: List[Dict[str, Any]],
+        content: str,
+        pages_meta: Optional[List[Dict[str, Any]]],
+        section: Dict[str, Any],
+    ) -> None:
+        """Annotate each learning object with the pages where its title/keywords appear."""
+        if not pages_meta or not learning_objects:
+            for lo in learning_objects:
+                lo['source_pages'] = []
+            return
+
+        content_lower = content.lower()
+        for lo in learning_objects:
+            terms = [lo.get('title', '')] + list(lo.get('keywords') or [])
+            pages_seen = set()
+            for term in terms:
+                if not term or len(term) < 3:
+                    continue
+                term_lower = term.lower()
+                start = 0
+                hits = 0
+                while hits < 50:
+                    pos = content_lower.find(term_lower, start)
+                    if pos == -1:
+                        break
+                    page = self._offset_to_page(pos, pages_meta)
+                    if page:
+                        pages_seen.add(page)
+                    start = pos + len(term_lower)
+                    hits += 1
+
+            # Constrain to the section's page range when available.
+            sp, ep = section.get('start_page'), section.get('end_page')
+            if sp and ep:
+                pages_seen = {p for p in pages_seen if sp <= p <= ep}
+                if not pages_seen:
+                    pages_seen = {sp}
+            lo['source_pages'] = sorted(pages_seen)
+
+    def parse_lesson_structure(
+        self,
+        content: str,
+        lesson_title: str,
+        pages_meta: Optional[List[Dict[str, Any]]] = None,
+    ) -> List[Dict[str, Any]]:
         """
         Parse lesson content into sections with learning objects.
-        
+
         OPTIMIZED FOR MEMORY: Single-pass analysis to reduce RAM usage.
-        
+
         Args:
             content: Full lesson content
             lesson_title: Title of the lesson
-            
+            pages_meta: Optional per-page offset metadata (from PDF extraction).
+                If provided, each section is annotated with start_page/end_page
+                and a content snippet from the actual source text.
+
         Returns:
             List of section dictionaries with learning objects
         """
@@ -222,19 +317,31 @@ class ContentParser:
         for section in merged_sections:
             section_title = section.get('title', f"Section {section.get('section_number', 1)}")
             key_topics = section.get('key_topics', [])
-            
-            # Get content relevant to this section
-            section_content = self._extract_section_content(content, " ".join(key_topics), section_title)
-            
+
+            # Locate section in source text -> pages + real content snippet
+            location = self._locate_section_in_content(content, section, pages_meta)
+            section['start_page'] = location['start_page']
+            section['end_page'] = location['end_page']
+            section_content = location['content_snippet'] or self._extract_section_content(
+                content, " ".join(key_topics), section_title
+            )
+            section['content'] = section_content
+
             # Extract learning objects (reduced from 5-12 to 3-6)
             learning_objects = self._extract_learning_objects(
                 section_content,
                 section_title,
                 lesson_title
             )
-            
+
+            # Annotate each LO with its source page(s) inside the section's page range.
+            self._assign_lo_pages(learning_objects, content, pages_meta, section)
+
             section['learning_objects'] = learning_objects
-            print(f"[ContentParser] Section '{section_title}': {len(learning_objects)} learning objects")
+            print(
+                f"[ContentParser] Section '{section_title}': {len(learning_objects)} learning objects"
+                + (f" (pages {section['start_page']}-{section['end_page']})" if section.get('start_page') else "")
+            )
         
         print(f"\n[ContentParser] === PARSING COMPLETE ===")
         print(f"[ContentParser] Total sections: {len(merged_sections)}")
@@ -281,9 +388,16 @@ class ContentParser:
     
     def _extract_sections_from_chunk(self, chunk: str, lesson_title: str, chunk_num: int, total_chunks: int) -> List[Dict]:
         """Extract sections from a single chunk with ENHANCED multi-level analysis"""
-        
-        # LEVEL 1: Identify major sections
-        prompt_l1 = f"""You are an expert educational content analyst. Analyze this PART of a lesson and identify ALL distinct topics and sections.
+
+        # Detect language once per chunk so titles match the source.
+        from core.lang_detect import detect_language, language_name
+        chunk_lang = detect_language(chunk)
+        lang_clause = (
+            f"Write all titles and key_topics in {language_name(chunk_lang)}, matching the source content."
+        )
+
+        # LEVEL 1: identify the distinct topic areas covered by this chunk.
+        prompt_l1 = f"""You are an expert educational content analyst. Your job is to identify the distinct sections that appear in one PART of a lesson.
 
 LESSON: {lesson_title}
 PART {chunk_num} OF {total_chunks}
@@ -291,22 +405,21 @@ PART {chunk_num} OF {total_chunks}
 CONTENT:
 {chunk}
 
-CRITICAL INSTRUCTIONS:
-1. Identify EVERY distinct topic, subtopic, and theme in this content
-2. Be thorough and granular - identify 5-12 sections
-3. Each section represents a specific concept, topic, or theme area
-4. Look for: definitions, processes, components, techniques, concepts, relationships, examples
-5. **ALL TITLES MUST BE IN ENGLISH** - translate from any other language
-6. Include implicit topics, not just explicitly stated section headers
-7. Look for patterns: "Introduction to X", "Types of Y", "Process of Z", "Characteristics of W"
-
-OUTPUT FORMAT (JSON array):
+WORKED EXAMPLE (study STRUCTURE, do not copy topic):
 [
-  {{"title": "Specific Topic Name (IN ENGLISH)", "key_topics": ["keyword1", "keyword2", "keyword3"]}},
-  {{"title": "Another Topic (IN ENGLISH)", "key_topics": ["keywordA", "keywordB"]}}
+  {{"title": "Definition of a Process", "key_topics": ["process", "instance", "execution"]}},
+  {{"title": "Process States and Transitions", "key_topics": ["ready", "running", "blocked", "state diagram"]}}
 ]
 
-Return ONLY the JSON array with 5-12 sections. Find ALL distinct sections. REMEMBER: ALL TITLES IN ENGLISH."""
+INSTRUCTIONS:
+  - Identify between 5 and 12 distinct sections in this chunk.
+  - A section = a concept, definition, procedure, component, technique, or relationship.
+  - Prefer specific section titles over generic ones (e.g. "Process Control Block" not "More Info").
+  - {lang_clause}
+  - key_topics should be 2-5 short search terms a reader could find in the chunk.
+
+OUTPUT (strict JSON array, no other text):
+[{{"title": "...", "key_topics": ["...", "..."]}}, ...]"""
         
         print(f"[ContentParser] [SECTION EXTRACTION] Analyzing chunk {chunk_num}/{total_chunks}...")
         response_l1 = self._call_ollama(prompt_l1, timeout=150)
@@ -448,34 +561,31 @@ Return ONLY JSON:
         return merged
     
     def _extract_comprehensive_sections(self, content: str, lesson_title: str) -> List[Dict]:
-        """Fallback: Extract sections with comprehensive prompt"""
-        
-        prompt = f"""You are an expert educational content analyst. Extract ALL main topics and sections from this content.
+        """Fallback: extract sections from a full snippet when chunked extraction produced too few."""
+
+        from core.lang_detect import detect_language, language_name
+        lang_name = language_name(detect_language(content))
+
+        prompt = f"""You are an expert educational content analyst. Extract the distinct sections (5-15) covered by this lesson snippet.
 
 LESSON: {lesson_title}
 
 CONTENT:
 {content[:6000]}
 
-FIND AND LIST all distinct topics and sections. Include:
-1. Major topic areas
-2. Important subtopics
-3. Key concepts and definitions
-4. Processes and procedures
-5. Components and elements
-
-CRITICAL: **ALL SECTION TITLES MUST BE IN ENGLISH**
-- Translate from Serbian, Croatian, or any other language
-- Use clear English titles for all sections
-- Examples: "Definition of Processes" NOT "Pojam Procesa", "Process Elements" NOT "Elementi Procesa"
-
-JSON array format:
+WORKED EXAMPLE (study the STRUCTURE; do not copy this topic):
 [
-  {{"title": "Specific Topic Name (IN ENGLISH)", "key_topics": ["keyword1", "keyword2", "keyword3"]}},
-  {{"title": "Another Topic (IN ENGLISH)", "key_topics": ["keywordA", "keywordB"]}}
+  {{"title": "Definition of a Process", "key_topics": ["process", "instance", "execution"]}},
+  {{"title": "Process States and Transitions", "key_topics": ["ready", "running", "blocked"]}}
 ]
 
-Return ONLY the JSON array with 5-15 natural sections (only include if meaningful). ALL TITLES IN ENGLISH."""
+INSTRUCTIONS:
+  - Identify 5-15 sections. Only include sections the content actually covers — do not invent.
+  - Each section = a concept, definition, procedure, component, technique, or relationship.
+  - Write titles and key_topics in {lang_name}, matching the source content.
+
+OUTPUT (strict JSON array, no other text):
+[{{"title": "...", "key_topics": ["..."]}}, ...]"""
         
         response = self._call_ollama(prompt, timeout=120)
         
@@ -545,9 +655,13 @@ Return ONLY the JSON array with 5-15 natural sections (only include if meaningfu
         """
         content_preview = section_content[:3000].strip()  # Increased from 2000
         
-        # PASS 1: Primary extraction with comprehensive prompt
+        # PASS 1: identify the core learning objects in this section.
+        from core.lang_detect import detect_language, language_name
+        section_lang = detect_language(content_preview)
+        lang_name = language_name(section_lang)
+
         print(f"[ContentParser] [PASS 1] Extracting core learning objects from: {section_title}")
-        prompt_pass1 = f"""You are an expert educational content analyst. Extract ALL key learning objects from this section.
+        prompt_pass1 = f"""You are an expert educational content analyst. Your job is to extract the distinct learning objects from one section of a lesson.
 
 LESSON: {lesson_title}
 SECTION: {section_title}
@@ -555,25 +669,27 @@ SECTION: {section_title}
 CONTENT:
 {content_preview}
 
----
+WORKED EXAMPLE (study the STRUCTURE; do not copy this topic):
+[
+  {{"title": "Process Control Block (PCB)",
+    "type": "concept",
+    "description": "A data structure maintained by the OS for every active process. Stores process state, program counter, register values, memory limits, and scheduling info so the OS can suspend and resume the process correctly.",
+    "key_points": ["holds the program counter", "stores CPU register contents", "tracks process state"],
+    "keywords": ["PCB", "process control block", "context", "scheduling"]}}
+]
 
-EXTRACTION GUIDELINES:
-1. Identify EVERY distinct concept, term, process, or principle mentioned
-2. Extract only UNIQUE, VALUABLE objects - NO forced or duplicate concepts
-3. Include: definitions, key concepts, processes, principles, examples, components
-4. Look for implicit concepts, not just explicitly stated ones
-5. Quality over quantity - better 4 excellent objects than 10 mediocre ones
-6. ALL OUTPUT MUST BE IN ENGLISH (translate if needed)
+INSTRUCTIONS:
+  - Identify every distinct, valuable concept actually present in the content. Do not invent.
+  - Quality over quantity — prefer 4 excellent objects over 10 forced ones.
+  - Allowed values for `type`: concept, definition, process, principle, component, example, technique, structure.
+  - title: 3-8 words.
+  - description: 2-4 sentences.
+  - key_points: 2-4 specific facts or characteristics drawn from the content.
+  - keywords: 3-6 short terms a reader could search for in the source.
+  - Write every field in {lang_name}, matching the source content (do not translate).
 
-For each object, provide:
-- title: Clear name (3-8 words, IN ENGLISH)
-- type: One of [concept, definition, process, principle, component, example, technique, structure]
-- description: 2-4 sentences, comprehensive explanation
-- key_points: 2-4 important facts or characteristics
-- keywords: 3-6 related search terms (IN ENGLISH)
-
-Return ONLY a valid JSON array with ALL distinct important objects (natural number, not forced):
-[{{"title": "...", "type": "...", "description": "...", "key_points": [...], "keywords": [...]}}]"""
+OUTPUT (strict JSON array, no other text):
+[{{"title": "...", "type": "...", "description": "...", "key_points": ["..."], "keywords": ["..."]}}]"""
         
         response_pass1 = self._call_ollama(prompt_pass1, timeout=180)
         objects_pass1 = self._extract_json_from_response(response_pass1) if response_pass1 else []
@@ -893,134 +1009,67 @@ JSON ONLY:
         
         print(f"[ContentParser] Valid unique relationships: {len(unique_rels)}")
         
-        if len(unique_rels) < 5:
-            print("[ContentParser] Few relationships found, adding smart fallback...")
+        # Only fall back when the LLM produced literally nothing. Topping up
+        # an already-good extraction with inferred edges (especially a fake
+        # "prerequisite" chain in document order) pollutes the ontology and
+        # then pollutes the questions generated from it.
+        if not unique_rels:
+            print("[ContentParser] LLM produced no relationships, applying conservative fallback...")
             fallback = self._generate_smart_fallback_relationships(all_lo_titles, learning_objects)
             unique_rels.extend(fallback)
-        
+
         return unique_rels
     
     def _generate_smart_fallback_relationships(self, all_lo_titles: List[str], learning_objects: List[Dict]) -> List[Dict]:
         """
-        Generate intelligent fallback relationships using content analysis.
-        Used when AI extraction yields few results.
+        Defensible fallback relationships when LLM extraction yields nothing.
+
+        We deliberately do NOT chain LOs as `prerequisite` in document order —
+        that fabricates pedagogical structure that often isn't there. We keep
+        only relationships that have a real basis in the parsed data:
+          1. Type hierarchies: LOs of the same type are siblings under a head LO.
+          2. Keyword co-occurrence: LOs sharing >=1 keyword are `relates_to`.
+        Each inferred edge is marked `[inferred]` in its description so consumers
+        can tell them apart from LLM-extracted edges.
         """
-        relationships = []
-        
+        relationships: List[Dict[str, Any]] = []
+
         # Strategy 1: Type-based hierarchies
-        type_groups = {}
+        type_groups: Dict[str, List[str]] = {}
         for lo in learning_objects:
             obj_type = lo.get('type', lo.get('object_type', 'concept')).lower()
-            if obj_type not in type_groups:
-                type_groups[obj_type] = []
-            type_groups[obj_type].append(lo['title'])
-        
-        # Create type hierarchies
-        for obj_type, titles in type_groups.items():
+            type_groups.setdefault(obj_type, []).append(lo['title'])
+
+        for _, titles in type_groups.items():
             if len(titles) > 1:
-                # First is general, others are specific
                 general = titles[0]
                 for specific in titles[1:]:
-                    relationships.append({
-                        "source": specific,
-                        "target": general,
-                        "type": "is_type_of",
-                        "description": f"{specific} is a type of {general}"
-                    })
-        
-        # Strategy 2: Sequential prerequisites (learning order)
-        for i in range(len(all_lo_titles) - 1):
-            source = all_lo_titles[i]
-            target = all_lo_titles[i + 1]
-            if source and target and source != target:
-                relationships.append({
-                    "source": source,
-                    "target": target,
-                    "type": "prerequisite",
-                    "description": f"{source} should be learned before {target}"
-                })
-        
-        # Strategy 3: Keyword-based relationships
+                    if specific and general and specific != general:
+                        relationships.append({
+                            "source": specific,
+                            "target": general,
+                            "type": "is_type_of",
+                            "description": f"[inferred] {specific} shares a type with {general}",
+                        })
+
+        # Strategy 2: Keyword co-occurrence
         for i, lo1 in enumerate(learning_objects):
-            keywords1 = set(lo1.get('keywords', []))
+            keywords1 = set(lo1.get('keywords', []) or [])
             if not keywords1:
                 continue
             for j in range(i + 1, min(i + 4, len(learning_objects))):
                 lo2 = learning_objects[j]
-                keywords2 = set(lo2.get('keywords', []))
-                # If they share keywords, they're related
-                if keywords1 & keywords2:
-                    title1 = lo1['title']
-                    title2 = lo2['title']
-                    if title1 != title2:
-                        relationships.append({
-                            "source": title1,
-                            "target": title2,
-                            "type": "relates_to",
-                            "description": f"Both relate to: {', '.join(list(keywords1 & keywords2)[:3])}"
-                        })
-        
-        print(f"[ContentParser] Generated {len(relationships)} smart fallback relationships")
-        return relationships
-    
-    def _generate_fallback_relationships(self, all_lo_titles: List[str], learning_objects: List[Dict]) -> List[Dict]:
-        """
-        Generate basic relationships when AI extraction fails.
-        Based on learning object types and ordering.
-        """
-        relationships = []
-        
-        # Strategy 1: Create prerequisites based on ordering
-        for i in range(len(all_lo_titles) - 1):
-            source = all_lo_titles[i]
-            target = all_lo_titles[i + 1]
-            if source and target and source != target:
-                relationships.append({
-                    "source": source,
-                    "target": target,
-                    "type": "prerequisite",
-                    "description": f"{source} is typically learned before {target}"
-                })
-        
-        # Strategy 2: Group by type and create hierarchies
-        type_groups = {}
-        for lo in learning_objects:
-            obj_type = lo.get('type', lo.get('object_type', 'concept')).lower()
-            if obj_type not in type_groups:
-                type_groups[obj_type] = []
-            type_groups[obj_type].append(lo.get('title', ''))
-        
-        # For each type group with multiple items, create part_of relationships
-        for obj_type, titles in type_groups.items():
-            if len(titles) > 1:
-                # The first one is the parent/general concept
-                parent = titles[0]
-                for child in titles[1:]:
-                    if parent and child and parent != child:
-                        relationships.append({
-                            "source": child,
-                            "target": parent,
-                            "type": "part_of",
-                            "description": f"{child} is part of or related to {parent}"
-                        })
-        
-        # Strategy 3: Create related_to for adjacent concepts
-        for i in range(len(all_lo_titles)):
-            for j in range(i + 1, min(i + 3, len(all_lo_titles))):
-                source = all_lo_titles[i]
-                target = all_lo_titles[j]
-                if source and target and source != target:
-                    # Check if this relationship doesn't already exist
-                    exists = any(r['source'] == source and r['target'] == target for r in relationships)
-                    if not exists:
-                        relationships.append({
-                            "source": source,
-                            "target": target,
-                            "type": "related_to",
-                            "description": f"{source} is related to {target}"
-                        })
-        
-        print(f"[ContentParser] Generated {len(relationships)} fallback relationships")
+                keywords2 = set(lo2.get('keywords', []) or [])
+                shared = keywords1 & keywords2
+                if shared and lo1.get('title') and lo2.get('title') and lo1['title'] != lo2['title']:
+                    relationships.append({
+                        "source": lo1['title'],
+                        "target": lo2['title'],
+                        "type": "relates_to",
+                        "description": f"[inferred] shared keywords: {', '.join(list(shared)[:3])}",
+                    })
+
+        print(f"[ContentParser] Generated {len(relationships)} conservative fallback relationships (no fabricated prerequisites)")
         return relationships
     
     def _validate_relationships(self, relationships: List[Dict], all_lo_titles: List[str]) -> List[Dict]:

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { sparqlApi } from '../api';
 import '../styles/SPARQLQueryTool.css';
 
 function SPARQLQueryTool() {
@@ -15,8 +16,7 @@ function SPARQLQueryTool() {
   useEffect(() => {
     const fetchExamples = async () => {
       try {
-        const response = await fetch('http://localhost:5000/api/sparql/examples');
-        const data = await response.json();
+        const { data } = await sparqlApi.getExamples();
         setExamples(data);
       } catch (error) {
         console.error('Failed to load examples:', error);
@@ -39,26 +39,15 @@ function SPARQLQueryTool() {
 
     setLoading(true);
     try {
-      const response = await fetch('http://localhost:5000/api/sparql', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ query })
-      });
-      
-      const data = await response.json();
-      
-      if (!response.ok) {
-        setResults({ error: data.error });
-      } else {
-        setResults(data);
-        setCurrentPage(1); // Reset to first page on new results
-        // Save to history
-        const newHistory = [query, ...queryHistory.filter(q => q !== query)].slice(0, 10);
-        setQueryHistory(newHistory);
-        localStorage.setItem('sparql_history', JSON.stringify(newHistory));
-      }
+      const { data } = await sparqlApi.execute(query);
+      setResults(data);
+      setCurrentPage(1);
+      const newHistory = [query, ...queryHistory.filter(q => q !== query)].slice(0, 10);
+      setQueryHistory(newHistory);
+      localStorage.setItem('sparql_history', JSON.stringify(newHistory));
     } catch (error) {
-      setResults({ error: `Connection error: ${error.message}` });
+      const errMsg = error.response?.data?.error || error.message || 'Connection error';
+      setResults({ error: errMsg });
     }
     setLoading(false);
   };

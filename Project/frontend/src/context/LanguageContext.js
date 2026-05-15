@@ -1,4 +1,5 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
+import { translationApi } from '../api';
 
 const LanguageContext = createContext();
 
@@ -13,8 +14,7 @@ export const LanguageProvider = ({ children }) => {
 
   const fetchLanguages = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/translate/languages');
-      const data = await response.json();
+      const { data } = await translationApi.getLanguages();
       if (data.success) {
         setLanguages(data.languages);
         setSelectedLanguage('sr'); // Default to Serbian

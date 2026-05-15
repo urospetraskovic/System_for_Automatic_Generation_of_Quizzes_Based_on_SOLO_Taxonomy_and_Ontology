@@ -67,9 +67,11 @@ class Lesson(Base):
     raw_content = Column(Text, nullable=True)
     summary = Column(Text, nullable=True)
     order_index = Column(Integer, default=0)
+    # Per-page metadata: [{"page": 1, "char_count": 1234, "start_offset": 0, "end_offset": 1250}, ...]
+    pages_meta = Column(JSON, nullable=True)
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
-    
+
     # Relationships
     course = relationship("Course", back_populates="lessons")
     sections = relationship("Section", back_populates="lesson", cascade="all, delete-orphan")
@@ -89,6 +91,7 @@ class Lesson(Base):
         }
         if include_content:
             result['raw_content'] = self.raw_content
+            result['pages_meta'] = self.pages_meta
         return result
 
 
@@ -144,15 +147,17 @@ class LearningObject(Base):
     key_points = Column(JSON, nullable=True)
     object_type = Column(String(50), nullable=True)
     keywords = Column(JSON, nullable=True)
+    # Pages in the source PDF where this LO's title/keywords appear (e.g. [3, 4]).
+    source_pages = Column(JSON, nullable=True)
     order_index = Column(Integer, default=0)
     is_ai_generated = Column(Integer, default=1)
     human_modified = Column(Integer, default=0)
     created_at = Column(DateTime, default=datetime.utcnow)
     updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
-    
+
     # Relationships
     section = relationship("Section", back_populates="learning_objects")
-    
+
     def to_dict(self):
         return {
             'id': self.id,
@@ -163,6 +168,7 @@ class LearningObject(Base):
             'key_points': self.key_points,
             'object_type': self.object_type,
             'keywords': self.keywords,
+            'source_pages': self.source_pages or [],
             'order_index': self.order_index,
             'is_ai_generated': bool(getattr(self, 'is_ai_generated', 1)),
             'human_modified': bool(getattr(self, 'human_modified', 0)),
@@ -219,6 +225,9 @@ class Question(Base):
     correct_option_index = Column(Integer, nullable=True)
     
     explanation = Column(Text, nullable=True)
+    # Verbatim quote from the source text that justifies the correct answer
+    # (captured from the LLM to detect hallucinations and enable "show source" UX).
+    source_line = Column(Text, nullable=True)
     difficulty = Column(Float, nullable=True)
     bloom_level = Column(String(50), nullable=True)
     tags = Column(JSON, nullable=True)
@@ -258,6 +267,7 @@ class Question(Base):
             'correct_answer': self.correct_answer,
             'correct_option_index': self.correct_option_index,
             'explanation': self.explanation,
+            'source_line': self.source_line,
             'difficulty': self.difficulty,
             'bloom_level': self.bloom_level,
             'tags': self.tags,

@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import { quizApi } from '../api';
+import { quizApi, translationApi } from '../api';
 
 // Language flags helper
 const getLanguageFlag = (code) => {
@@ -173,18 +173,11 @@ function QuizSolver({ courseId, onBack, onSuccess, onError }) {
   // Retranslate a single question
   const handleRetranslate = async (questionId) => {
     if (selectedLanguage === 'original') return;
-    
+
     setRetranslating(questionId);
     try {
-      const response = await fetch(`http://localhost:5000/api/translate/question/${questionId}/retranslate`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ target_language: selectedLanguage })
-      });
-      const data = await response.json();
-      
+      const { data } = await translationApi.retranslateQuestion(questionId, selectedLanguage);
       if (data.success) {
-        // Reload the quiz to get updated translations
         const quizResponse = await quizApi.getById(selectedQuiz.id);
         setQuizData(quizResponse.data.quiz);
         onSuccess('Translation updated!');
@@ -192,7 +185,7 @@ function QuizSolver({ courseId, onBack, onSuccess, onError }) {
         onError(data.error || 'Retranslation failed');
       }
     } catch (error) {
-      onError('Failed to retranslate question');
+      onError(error.response?.data?.error || 'Failed to retranslate question');
     } finally {
       setRetranslating(null);
     }

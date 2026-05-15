@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { lessonApi, sectionApi, learningObjectApi } from '../api';
+import { lessonApi, sectionApi, learningObjectApi, ontologyApi } from '../api';
 import TranslationViewer from './TranslationViewer';
+import CoveragePanel from './CoveragePanel';
 
 function ContentViewer({ lesson, onBack, onSuccess, onError, onLessonUpdate }) {
   const [sections, setSections] = useState([]);
@@ -143,18 +144,15 @@ function ContentViewer({ lesson, onBack, onSuccess, onError, onLessonUpdate }) {
 
   const handleDownloadOWL = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/lessons/${lesson.id}/ontology/export/owl`);
-      const blob = await response.blob();
-      
-      // Extract filename from Content-Disposition header if available
-      const contentDisposition = response.headers.get('Content-Disposition');
+      const response = await ontologyApi.downloadLessonOwl(lesson.id);
+
+      const contentDisposition = response.headers['content-disposition'];
       let filename = `ontology_${lesson.title.replace(/[^a-zA-Z0-9]/g, '_')}.owl`;
-      
       if (contentDisposition && contentDisposition.includes('filename=')) {
         filename = contentDisposition.split('filename=')[1].replace(/"/g, '');
       }
-      
-      const url = window.URL.createObjectURL(blob);
+
+      const url = window.URL.createObjectURL(response.data);
       const a = document.createElement('a');
       a.href = url;
       a.download = filename;
@@ -171,13 +169,9 @@ function ContentViewer({ lesson, onBack, onSuccess, onError, onLessonUpdate }) {
     if (!window.confirm('Are you sure you want to delete this relationship?')) {
       return;
     }
-    
+
     try {
-      await fetch(`http://localhost:5000/api/relationships/${relId}`, {
-        method: 'DELETE'
-      });
-      
-      // Remove from ontology
+      await ontologyApi.deleteRelationship(relId);
       setOntology(ontology.filter(r => r.id !== relId));
       onSuccess('Relationship deleted successfully');
     } catch (err) {
@@ -280,6 +274,11 @@ function ContentViewer({ lesson, onBack, onSuccess, onError, onLessonUpdate }) {
             <h4>Summary</h4>
             <p>{lesson.summary}</p>
           </div>
+        )}
+
+        {/* PDF Coverage Panel */}
+        {sections.length > 0 && (
+          <CoveragePanel lessonId={lesson.id} refreshKey={sections.length} />
         )}
 
         {/* Domain Ontology Section */}

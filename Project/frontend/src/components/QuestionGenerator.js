@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { questionApi } from '../api';
+import React, { useState, useEffect, useRef } from 'react';
+import { questionApi, jobsApi } from '../api';
 
 function QuestionGenerator({ course, onQuestionsGenerated, onSuccess, onError }) {
   const [lessons, setLessons] = useState([]);
@@ -12,7 +12,12 @@ function QuestionGenerator({ course, onQuestionsGenerated, onSuccess, onError })
   });
   const [questionsPerLevel, setQuestionsPerLevel] = useState(3);
   const [generating, setGenerating] = useState(false);
-  const [progress, setProgress] = useState(null);
+  const [progress, setProgress] = useState(null); // { message, current, total }
+  const pollRef = useRef(null);
+
+  useEffect(() => () => {
+    if (pollRef.current) clearInterval(pollRef.current);
+  }, []);
 
   useEffect(() => {
     if (course?.lessons) {
@@ -74,29 +79,47 @@ function QuestionGenerator({ course, onQuestionsGenerated, onSuccess, onError })
 
     try {
       setGenerating(true);
-      setProgress('Generating questions...');
+      setProgress({ message: 'Queuing job...', current: 0, total: 0 });
 
-      const response = await questionApi.generate({
+      const startResp = await questionApi.generateAsync({
         lesson_ids: selectedLessons,
         solo_levels: activeLevels,
         questions_per_level: questionsPerLevel,
         save_to_db: true
       });
+      const jobId = startResp.data.job_id;
 
-      const { questions, count, solo_distribution } = response.data;
-      
-      setProgress(null);
-      onQuestionsGenerated(questions);
-      
-      // Show distribution summary
-      const summary = Object.entries(solo_distribution)
-        .filter(([_, count]) => count > 0)
-        .map(([level, count]) => `${level}: ${count}`)
-        .join(', ');
-      onSuccess(`Generated ${count} questions! (${summary})`);
-
+      // Poll the job until terminal state.
+      await new Promise((resolve, reject) => {
+        pollRef.current = setInterval(async () => {
+          try {
+            const { data: job } = await jobsApi.get(jobId);
+            if (job.progress) setProgress(job.progress);
+            if (job.status === 'succeeded') {
+              clearInterval(pollRef.current);
+              pollRef.current = null;
+              const { questions, count, solo_distribution } = job.result || {};
+              onQuestionsGenerated(questions || []);
+              const summary = Object.entries(solo_distribution || {})
+                .filter(([_, c]) => c > 0)
+                .map(([level, c]) => `${level}: ${c}`)
+                .join(', ');
+              onSuccess(`Generated ${count || 0} questions! (${summary})`);
+              resolve();
+            } else if (job.status === 'failed') {
+              clearInterval(pollRef.current);
+              pollRef.current = null;
+              reject(new Error(job.error || 'Job failed'));
+            }
+          } catch (e) {
+            clearInterval(pollRef.current);
+            pollRef.current = null;
+            reject(e);
+          }
+        }, 1500);
+      });
     } catch (err) {
-      onError(err.response?.data?.error || 'Failed to generate questions');
+      onError(err.response?.data?.error || err.message || 'Failed to generate questions');
     } finally {
       setGenerating(false);
       setProgress(null);
@@ -209,8 +232,28 @@ function QuestionGenerator({ course, onQuestionsGenerated, onSuccess, onError })
         {/* Generate Button */}
         <div className="generator-actions">
           {progress && (
-            <div className="progress-message">
-              <span className="spinner"></span> {progress}
+            <div className="progress-message" style={{ width: '100%' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: 6 }}>
+                <span className="spinner"></span>
+                <span>{progress.message || 'Working...'}</span>
+                {progress.total > 0 && (
+                  <span style={{ color: 'var(--neutral-500)', fontSize: '0.9rem' }}>
+                    ({progress.current || 0}/{progress.total})
+                  </span>
+                )}
+              </div>
+              {progress.total > 0 && (
+                <div style={{ background: 'var(--neutral-200)', height: 8, borderRadius: 4, overflow: 'hidden' }}>
+                  <div
+                    style={{
+                      width: `${Math.min(100, ((progress.current || 0) / progress.total) * 100)}%`,
+                      height: '100%',
+                      background: 'var(--primary-600, #2563eb)',
+                      transition: 'width 0.4s ease',
+                    }}
+                  />
+                </div>
+              )}
             </div>
           )}
           <button

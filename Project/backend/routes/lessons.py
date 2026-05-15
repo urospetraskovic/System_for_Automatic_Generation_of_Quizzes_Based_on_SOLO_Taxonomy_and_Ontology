@@ -8,7 +8,7 @@ from werkzeug.utils import secure_filename
 
 from repository import db
 from core import content_parser
-from services import LessonService
+from services import LessonService, CoverageService
 
 lessons_bp = Blueprint('lessons', __name__, url_prefix='/api')
 
@@ -53,6 +53,7 @@ def upload_lesson(course_id):
         try:
             pdf_data = content_parser.extract_pdf_text_from_stream(file.stream)
             raw_content = pdf_data['full_text']
+            pages_meta = pdf_data.get('pages_meta')
         except Exception as e:
             return jsonify({'error': f'Failed to extract PDF text: {str(e)}'}), 500
 
@@ -63,6 +64,9 @@ def upload_lesson(course_id):
             file_path=None,
             raw_content=raw_content
         )
+
+        if pages_meta:
+            db.update_lesson_pages_meta(lesson['id'], pages_meta)
 
         return jsonify({
             'lesson': lesson,
@@ -124,9 +128,12 @@ def parse_lesson(lesson_id):
             }), 200
 
         print(f"[API] Parsing lesson: {lesson['title']}")
+        full_lesson = db.get_lesson(lesson_id, include_content=True)
+        pages_meta = full_lesson.get('pages_meta') if full_lesson else None
         parsed_sections = content_parser.parse_lesson_structure(
             lesson['raw_content'],
-            lesson['title']
+            lesson['title'],
+            pages_meta=pages_meta,
         )
 
         db.bulk_create_sections_and_learning_objects(lesson_id, parsed_sections)
@@ -144,6 +151,20 @@ def parse_lesson(lesson_id):
 
     except Exception as e:
         print(f"[API] Parse error: {str(e)}")
+        traceback.print_exc()
+        return jsonify({'error': str(e)}), 500
+
+
+@lessons_bp.route('/lessons/<int:lesson_id>/coverage', methods=['GET'])
+def get_lesson_coverage(lesson_id):
+    """Report how much of the lesson's PDF is covered by generated questions."""
+    try:
+        result = CoverageService.compute(lesson_id)
+        if result is None:
+            return jsonify({'error': 'Lesson not found'}), 404
+        return jsonify(result), 200
+    except Exception as e:
+        print(f'[ERROR] get_lesson_coverage: {str(e)}')
         traceback.print_exc()
         return jsonify({'error': str(e)}), 500
 

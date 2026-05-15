@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import { chatApi } from '../api';
 import '../styles/ChatBot.css';
 
 // Simple markdown parser for chat messages
@@ -45,8 +46,13 @@ const parseMarkdown = (text) => {
     return '<ul>' + match.replace(/<uli>/g, '<li>').replace(/<\/uli>/g, '</li>') + '</ul>';
   });
   
-  // Links
-  html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+  // Links — only http(s)/relative hrefs allowed (block javascript: and data: URLs).
+  html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, (_, label, href) => {
+    const safe = /^(https?:\/\/|\/)/i.test(href.trim());
+    return safe
+      ? `<a href="${href}" target="_blank" rel="noopener noreferrer">${label}</a>`
+      : label;
+  });
   
   // Line breaks (double newline = paragraph, single = br)
   html = html.replace(/\n\n/g, '</p><p>');
@@ -103,27 +109,16 @@ function ChatBot({ courseId, lessonId, isOpen, onClose }) {
     setIsLoading(true);
 
     try {
-      const response = await fetch('http://localhost:5000/api/chat', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          message: inputValue,
-          course_id: courseId,
-          lesson_id: lessonId,
-          conversation_history: messages.map(msg => ({
-            role: msg.role,
-            content: msg.content
-          }))
-        })
-      });
-
-      if (!response.ok) {
-        throw new Error('Failed to get response from chatbot');
-      }
-
-      const data = await response.json();
+      const conversationHistory = messages.map((msg) => ({
+        role: msg.role,
+        content: msg.content,
+      }));
+      const { data } = await chatApi.sendMessage(
+        inputValue,
+        courseId,
+        lessonId,
+        conversationHistory
+      );
 
       const assistantMessage = {
         id: Date.now() + 1,

@@ -1,0 +1,361 @@
+"""
+Prompt-construction library for SOLO-taxonomy question generation.
+
+Follows the PS4 strategy from Scaria et al. 2024 (arxiv 2408.04394) which
+outperformed both simpler and more elaborate variants:
+  - Concise SOLO-level definition (~1-2 sentences)
+  - ONE expert-crafted worked example for the target level
+  - Chain-of-thought scaffolding the model uses internally
+  - Strict output schema
+  - Source-line citation requirement (anti-hallucination)
+  - Typed distractor strategies per level (Bitew et al. 2023 finding:
+    concrete distractor templates outperform abstract advice)
+
+Worked examples use a *different* domain (photosynthesis) on purpose so
+the model learns the STRUCTURE rather than copying domain content.
+"""
+
+from typing import Dict, List, Optional
+
+from .lang_detect import LangCode, language_name
+
+
+# --------------------------------------------------------------------------
+# SOLO level definitions — kept short. PS5 (verbose) lost to PS4 in the paper.
+# --------------------------------------------------------------------------
+
+SOLO_DEFINITIONS: Dict[str, str] = {
+    "unistructural": (
+        "The student identifies ONE relevant fact, term, or concept stated in "
+        "the material. No connections to other concepts are required."
+    ),
+    "multistructural": (
+        "The student lists or identifies SEVERAL independent facts, components, "
+        "or features. Items are treated separately, not as an integrated whole."
+    ),
+    "relational": (
+        "The student explains HOW concepts CONNECT — cause/effect, dependency, "
+        "or structural relationship between parts that together form a coherent whole."
+    ),
+    "extended_abstract": (
+        "The student APPLIES principles from the material to a NEW situation, "
+        "synthesizes across concepts, or generalizes to a related domain. "
+        "Goes beyond what is stated, while staying grounded in the source material."
+    ),
+}
+
+
+# --------------------------------------------------------------------------
+# Typed distractor strategies. Listed as a short table the model can follow.
+# Three concrete misconception types per SOLO level.
+# --------------------------------------------------------------------------
+
+DISTRACTOR_STRATEGIES: Dict[str, List[str]] = {
+    "unistructural": [
+        "VARIANT_OF_CORRECT: same category as the correct answer but the wrong specific (e.g. 'Neptune' when 'Uranus' is correct).",
+        "NEAR_SYNONYM: a closely related term that means something different in this domain.",
+        "COMMON_MISCONCEPTION: a plausible answer based on a frequent student error or oversimplification.",
+    ],
+    "multistructural": [
+        "LIST_WITH_ONE_WRONG_ITEM: mostly correct items but one belongs to a different topic.",
+        "LIST_MISSING_ONE_ITEM: includes a subset of the correct items but omits at least one key element.",
+        "RELATED_BUT_OUT_OF_SCOPE: items that are relevant to the broader domain but not the specific concept asked about.",
+    ],
+    "relational": [
+        "REVERSED_CAUSE_EFFECT: swaps which concept causes which (or which depends on which).",
+        "CORRELATION_AS_CAUSATION: states two things co-occur but misidentifies the actual mechanism.",
+        "DIFFERENT_REAL_RELATIONSHIP: names a real relationship that EXISTS in the content but is not the one the question asks about.",
+    ],
+    "extended_abstract": [
+        "APPLIES_WRONG_PRINCIPLE: applies a different principle from the material that does not fit this new situation.",
+        "RIGHT_PRINCIPLE_WRONG_DOMAIN: applies the correct principle but to the wrong part of the new scenario.",
+        "OVER_GENERALIZATION: extends the principle beyond what the source material supports.",
+    ],
+}
+
+
+# --------------------------------------------------------------------------
+# Worked examples — ONE per level, in a domain unrelated to the user's
+# typical content (photosynthesis) so the model copies STRUCTURE, not topic.
+# --------------------------------------------------------------------------
+
+WORKED_EXAMPLES: Dict[str, Dict[str, object]] = {
+    "unistructural": {
+        "question": "In photosynthesis, which type of light wavelength do plants primarily absorb to drive the light-dependent reactions?",
+        "options": [
+            "A) Red and blue wavelengths",
+            "B) Green and yellow wavelengths",
+            "C) Ultraviolet radiation only",
+            "D) All visible wavelengths equally",
+        ],
+        "correct_answer": "A) Red and blue wavelengths",
+        "explanation": "Chlorophyll absorbs red (~680 nm) and blue (~440 nm) light most strongly; green is largely reflected, which is why plants appear green.",
+        "source_line": "Chlorophyll molecules absorb light most efficiently in the red and blue regions of the visible spectrum.",
+    },
+    "multistructural": {
+        "question": "Which three products are generated by the light-dependent reactions of photosynthesis?",
+        "options": [
+            "A) ATP, NADPH, and oxygen",
+            "B) ATP, glucose, and carbon dioxide",
+            "C) NADH, FADH2, and ATP",
+            "D) ATP and oxygen only",
+        ],
+        "correct_answer": "A) ATP, NADPH, and oxygen",
+        "explanation": "The light-dependent reactions split water (releasing O2), produce ATP via the electron transport chain, and reduce NADP+ to NADPH.",
+        "source_line": "The light-dependent reactions produce ATP, NADPH, and release oxygen as a by-product of water splitting.",
+    },
+    "relational": {
+        "question": "Why does increasing light intensity beyond the saturation point fail to further increase the rate of photosynthesis?",
+        "options": [
+            "A) Because the carbon-fixation enzymes become the rate-limiting step",
+            "B) Because chlorophyll molecules are physically damaged by excess light",
+            "C) Because more light correlates with higher temperatures that slow reactions",
+            "D) Because excess oxygen production triggers feedback inhibition",
+        ],
+        "correct_answer": "A) Because the carbon-fixation enzymes become the rate-limiting step",
+        "explanation": "Past saturation, the light-independent (Calvin cycle) enzymes — chiefly RuBisCO — cannot process CO2 fast enough to use the extra ATP/NADPH being produced.",
+        "source_line": "Beyond saturation, photosynthesis is limited by the rate at which carbon-fixation enzymes can use the products of the light reactions.",
+    },
+    "extended_abstract": {
+        "question": "How would the principles of photosynthesis inform the design of an artificial-leaf device for capturing atmospheric CO2?",
+        "options": [
+            "A) Replicate the light-harvesting and water-splitting steps to use solar energy to convert CO2 into a fuel",
+            "B) Cultivate plant cells in a bioreactor and harvest their natural output",
+            "C) Focus only on light absorption and ignore the carbon-fixation chemistry",
+            "D) Mimic every plant structure, including roots and stems, in the device",
+        ],
+        "correct_answer": "A) Replicate the light-harvesting and water-splitting steps to use solar energy to convert CO2 into a fuel",
+        "explanation": "An artificial leaf adopts the core principles — solar light harvesting, water splitting for reducing power, and CO2 reduction — while engineering them in non-biological materials.",
+        "source_line": "Photosynthesis couples light harvesting with water splitting and the reduction of CO2 to produce energy-rich molecules.",
+    },
+}
+
+
+# --------------------------------------------------------------------------
+# Language-aware boilerplate.
+# --------------------------------------------------------------------------
+
+def _output_language_clause(lang: LangCode) -> str:
+    name = language_name(lang)
+    if lang == "sr":
+        return (
+            f"OUTPUT LANGUAGE: {name}. Write the question, options, explanation, "
+            "and source_line in Serbian, matching the language of the SOURCE TEXT. "
+            "Keep technical terminology consistent with the source material."
+        )
+    return (
+        f"OUTPUT LANGUAGE: {name}. Write the question, options, explanation, "
+        "and source_line in English."
+    )
+
+
+def _format_worked_example(level: str) -> str:
+    ex = WORKED_EXAMPLES[level]
+    return (
+        "WORKED EXAMPLE (study the STRUCTURE; do NOT copy the topic):\n"
+        '{\n'
+        f'  "question": {ex["question"]!r},\n'
+        f'  "options": {ex["options"]!r},\n'
+        f'  "correct_answer": {ex["correct_answer"]!r},\n'
+        f'  "explanation": {ex["explanation"]!r},\n'
+        f'  "source_line": {ex["source_line"]!r}\n'
+        '}'
+    )
+
+
+def _format_distractor_table(level: str) -> str:
+    strategies = DISTRACTOR_STRATEGIES[level]
+    lines = ["DISTRACTOR STRATEGIES — each distractor MUST follow one of:"]
+    for s in strategies:
+        lines.append(f"  - {s}")
+    return "\n".join(lines)
+
+
+OUTPUT_SCHEMA = (
+    'OUTPUT (strict JSON, no other text):\n'
+    '{"question": "...",\n'
+    ' "options": ["A) ...", "B) ...", "C) ...", "D) ..."],\n'
+    ' "correct_answer": "B) ...",\n'
+    ' "explanation": "<= 250 chars",\n'
+    ' "source_line": "verbatim quote from SOURCE TEXT that justifies the correct answer"}'
+)
+
+ROLE_PRIMER = (
+    "You are an expert educational assessment designer trained in the SOLO "
+    "taxonomy of learning outcomes. You write clear, fair, single-answer "
+    "multiple-choice questions grounded in the provided source material."
+)
+
+COT_SCAFFOLD = (
+    "THINK STEP BY STEP INTERNALLY (do not include this reasoning in your output):\n"
+    "  1. Identify the single fact or relationship this question will test.\n"
+    "  2. Locate the exact line in SOURCE TEXT that justifies the correct answer.\n"
+    "  3. Draft the question stem. Avoid starting with 'Which of the following'.\n"
+    "  4. Write the correct option using terminology from SOURCE TEXT.\n"
+    "  5. Build 3 distractors, each following one of the DISTRACTOR STRATEGIES.\n"
+    "  6. Verify: exactly one option is correct; all four options are similar in length and style;\n"
+    "     each distractor is plausible but eliminable by a careful reader."
+)
+
+
+def build_question_prompt(
+    *,
+    level: str,
+    lesson_title: str,
+    content_block: str,
+    source_text: str,
+    language: LangCode,
+    ontology_anchor_block: str = "",
+    extra_task_line: str = "",
+) -> str:
+    """
+    Build a PS4-style prompt for a single SOLO-level question.
+
+    `content_block` should be the LO/section metadata (titles, descriptions,
+    key points) and `source_text` is the verbatim excerpt that the model is
+    expected to cite.
+    """
+    definition = SOLO_DEFINITIONS[level]
+    worked = _format_worked_example(level)
+    distractor_table = _format_distractor_table(level)
+    lang_clause = _output_language_clause(language)
+    extra = f"\n{extra_task_line}" if extra_task_line else ""
+
+    return f"""{ROLE_PRIMER}
+
+TASK: Generate ONE {level.upper()} question about "{lesson_title}".
+
+{level.upper()} LEVEL — what to test:
+{definition}{extra}
+
+CONTENT (use ONLY what appears in CONTENT or SOURCE TEXT below):
+{content_block}
+
+SOURCE TEXT (verbatim from the lesson — your `source_line` must be a quote from here):
+{source_text or "(no source excerpt available — generate from CONTENT only)"}{ontology_anchor_block}
+
+{distractor_table}
+
+{worked}
+
+{COT_SCAFFOLD}
+
+{lang_clause}
+
+{OUTPUT_SCHEMA}"""
+
+
+def build_extended_abstract_pass1_prompt(
+    *,
+    lesson_title: str,
+    secondary_title: Optional[str],
+    primary_content: str,
+    secondary_content: str,
+    primary_source: str,
+    secondary_source: str,
+    ontology_anchor_block: str,
+    language: LangCode,
+) -> str:
+    """
+    Pass 1 of the two-pass extended-abstract strategy: produce only the
+    question stem, correct answer, explanation, and source_line. Distractors
+    are generated separately in pass 2 conditioned on this output, following
+    the predictive-prompting pattern from Bitew et al. (2023).
+    """
+    definition = SOLO_DEFINITIONS["extended_abstract"]
+    lang_clause = _output_language_clause(language)
+
+    has_two = bool(secondary_title)
+    combine_clause = (
+        f"The question MUST synthesize concepts from BOTH '{lesson_title}' AND "
+        f"'{secondary_title}'. Use only concepts that appear in the provided materials."
+        if has_two else
+        "Apply the lesson's principles to a NEW but related scenario, using only "
+        "concepts that appear in the materials."
+    )
+
+    secondary_block = (
+        f"\n\nSECONDARY LESSON ({secondary_title}) CONCEPTS:\n{secondary_content}"
+        f"\n\nSECONDARY SOURCE TEXT:\n{secondary_source}"
+        if has_two else ""
+    )
+
+    return f"""{ROLE_PRIMER}
+
+TASK: PASS 1 of 2 — draft an EXTENDED ABSTRACT question. In this pass you produce ONLY the question stem, correct answer, explanation, and source_line. Distractors will be created in a separate pass.
+
+EXTENDED ABSTRACT LEVEL — what to test:
+{definition}
+
+{combine_clause}
+
+PRIMARY LESSON ({lesson_title}) CONCEPTS:
+{primary_content}
+
+PRIMARY SOURCE TEXT:
+{primary_source or "(no source excerpt available)"}{secondary_block}{ontology_anchor_block}
+
+THINK STEP BY STEP INTERNALLY (do not include this reasoning):
+  1. Pick one principle that meaningfully transfers to a new context.
+  2. Sketch a NEW scenario grounded in the materials, not invented from scratch.
+  3. Write the question stem. Avoid starting with 'Which of the following'.
+  4. Write the correct answer using terminology from the materials.
+  5. Verify the answer is uniquely defensible given the source content.
+
+{lang_clause}
+
+OUTPUT (strict JSON, no other text):
+{{"question": "...",
+ "correct_answer": "...",
+ "explanation": "<= 250 chars",
+ "source_line": "verbatim quote from one of the SOURCE TEXT blocks that justifies the correct answer"}}"""
+
+
+def build_extended_abstract_pass2_prompt(
+    *,
+    question: str,
+    correct_answer: str,
+    explanation: str,
+    source_text: str,
+    language: LangCode,
+) -> str:
+    """
+    Pass 2: given the question + correct answer, generate three typed
+    distractors. Predictive prompting — the model is now anchored on a known
+    question and can focus exclusively on misconception generation.
+    """
+    distractor_table = _format_distractor_table("extended_abstract")
+    lang_clause = _output_language_clause(language)
+
+    return f"""{ROLE_PRIMER}
+
+TASK: PASS 2 of 2 — given an extended-abstract question and its correct answer, write THREE distractors using the strategies below.
+
+QUESTION:
+{question}
+
+CORRECT ANSWER:
+{correct_answer}
+
+WHY IT IS CORRECT:
+{explanation}
+
+SOURCE CONTEXT (use to ground distractors; do not invent external concepts):
+{source_text or "(no source excerpt)"}
+
+{distractor_table}
+
+REQUIREMENTS:
+  - Exactly THREE distractors, one per strategy above.
+  - Each distractor must be plausible to a partially-correct student but uniquely incorrect.
+  - Length and register similar to the correct answer (within ~30%).
+  - Do NOT use language that gives away which option is correct (no "always", "never" outliers).
+
+{lang_clause}
+
+OUTPUT (strict JSON, no other text):
+{{"distractors": [
+  {{"text": "...", "strategy": "APPLIES_WRONG_PRINCIPLE"}},
+  {{"text": "...", "strategy": "RIGHT_PRINCIPLE_WRONG_DOMAIN"}},
+  {{"text": "...", "strategy": "OVER_GENERALIZATION"}}
+]}}"""

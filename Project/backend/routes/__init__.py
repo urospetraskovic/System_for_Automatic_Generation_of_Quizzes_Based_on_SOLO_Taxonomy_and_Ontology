@@ -14,6 +14,8 @@ from .questions import questions_bp
 from .quizzes import quizzes_bp
 from .translations import translations_bp
 from .chat import chat_bp
+from .admin import admin_bp
+from .jobs import jobs_bp
 from .errors import register_error_handlers
 
 
@@ -29,6 +31,8 @@ ALL_BLUEPRINTS = [
     quizzes_bp,
     translations_bp,
     chat_bp,
+    admin_bp,
+    jobs_bp,
 ]
 
 

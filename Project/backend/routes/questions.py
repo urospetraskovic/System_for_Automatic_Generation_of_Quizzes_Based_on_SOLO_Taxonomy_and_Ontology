@@ -3,10 +3,12 @@
 import traceback
 
 from flask import Blueprint, request, jsonify
+from pydantic import ValidationError
 
 from repository import db
 from models import Question
 from services import QuestionService
+from schemas import GenerateQuestionsRequest
 
 questions_bp = Blueprint('questions', __name__, url_prefix='/api')
 
@@ -15,16 +17,17 @@ questions_bp = Blueprint('questions', __name__, url_prefix='/api')
 def generate_questions():
     """Generate questions from lessons based on SOLO taxonomy levels."""
     try:
-        data = request.get_json()
-        if not data:
-            return jsonify({'error': 'No data provided'}), 400
+        try:
+            req = GenerateQuestionsRequest.model_validate(request.get_json(silent=True) or {})
+        except ValidationError as ve:
+            return jsonify({'error': 'Invalid request body', 'details': ve.errors()}), 422
 
         result = QuestionService.generate_questions(
-            lesson_ids=data.get('lesson_ids', []),
-            solo_levels=data.get('solo_levels', ['unistructural', 'multistructural', 'relational']),
-            questions_per_level=data.get('questions_per_level', 3),
-            section_ids=data.get('section_ids'),
-            save_to_db=data.get('save_to_db', True),
+            lesson_ids=req.lesson_ids,
+            solo_levels=req.solo_levels,
+            questions_per_level=req.questions_per_level,
+            section_ids=req.section_ids,
+            save_to_db=req.save_to_db,
         )
 
         status = result.pop('status', 200)

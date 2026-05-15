@@ -39,17 +39,27 @@ function QuizBuilder({ questions, course, onSuccess, onError }) {
   };
 
   const handleAutoSelect = (config) => {
-    // Auto-select questions based on SOLO distribution
+    // Auto-select questions based on SOLO distribution.
+    // Fisher-Yates shuffle — `sort(() => Math.random() - 0.5)` is biased.
+    const shuffle = (arr) => {
+      const a = [...arr];
+      for (let i = a.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [a[i], a[j]] = [a[j], a[i]];
+      }
+      return a;
+    };
+
     const selected = [];
     const levels = ['unistructural', 'multistructural', 'relational', 'extended_abstract'];
-    
+
     levels.forEach(level => {
       const levelQuestions = questions.filter(q => q.solo_level === level);
       const count = config[level] || 0;
-      const shuffled = [...levelQuestions].sort(() => Math.random() - 0.5);
+      const shuffled = shuffle(levelQuestions);
       selected.push(...shuffled.slice(0, count).map(q => q.id));
     });
-    
+
     setSelectedQuestionIds(selected);
   };
 
@@ -95,7 +105,24 @@ function QuizBuilder({ questions, course, onSuccess, onError }) {
   const handleExportQuiz = async (quizId) => {
     try {
       const response = await quizApi.getById(quizId);
-      onSuccess(`Quiz exported: ${response.data.quiz?.title}`);
+      const quiz = response.data.quiz;
+      if (!quiz) {
+        onError('Quiz not found');
+        return;
+      }
+
+      const blob = new Blob([JSON.stringify(quiz, null, 2)], { type: 'application/json' });
+      const url = window.URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      const safeTitle = (quiz.title || `quiz_${quizId}`).replace(/[^a-zA-Z0-9_-]/g, '_');
+      a.href = url;
+      a.download = `${safeTitle}.json`;
+      document.body.appendChild(a);
+      a.click();
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+
+      onSuccess(`Quiz exported: ${quiz.title}`);
     } catch (err) {
       onError('Failed to export quiz');
     }

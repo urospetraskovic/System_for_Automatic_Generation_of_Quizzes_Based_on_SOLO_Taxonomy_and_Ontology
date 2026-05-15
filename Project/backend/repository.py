@@ -4,20 +4,39 @@ All CRUD operations for the SOLO Quiz Generator database
 """
 
 from datetime import datetime
+from sqlalchemy import text
 from sqlalchemy.orm import joinedload
 from models import (
     Base, engine, Session,
-    Course, Lesson, Section, LearningObject, 
-    ConceptRelationship, Question, Quiz, QuizQuestion, 
+    Course, Lesson, Section, LearningObject,
+    ConceptRelationship, Question, Quiz, QuizQuestion,
     QuestionTranslation, LessonTranslation, SectionTranslation,
     LearningObjectTranslation, OntologyTranslation
 )
+
+
+def _add_missing_columns():
+    """Idempotently add nullable columns introduced after the initial schema."""
+    expected = {
+        'lessons': [('pages_meta', 'JSON')],
+        'learning_objects': [('source_pages', 'JSON')],
+        'questions': [('source_line', 'TEXT')],
+    }
+    with engine.connect() as conn:
+        for table, columns in expected.items():
+            existing = {row[1] for row in conn.execute(text(f"PRAGMA table_info({table})")).fetchall()}
+            for col_name, col_type in columns:
+                if col_name not in existing:
+                    conn.execute(text(f"ALTER TABLE {table} ADD COLUMN {col_name} {col_type}"))
+                    print(f"[DATABASE] Added column {table}.{col_name}")
+        conn.commit()
 
 
 def init_database():
     """Initialize the database, creating all tables"""
     from models.models import DB_PATH
     Base.metadata.create_all(engine)
+    _add_missing_columns()
     print(f"[DATABASE] Initialized at {DB_PATH}")
 
 
@@ -137,6 +156,18 @@ class DatabaseManager:
         finally:
             session.close()
     
+    def update_lesson_pages_meta(self, lesson_id, pages_meta):
+        session = self.get_session()
+        try:
+            lesson = session.query(Lesson).filter(Lesson.id == lesson_id).first()
+            if not lesson:
+                return False
+            lesson.pages_meta = pages_meta
+            session.commit()
+            return True
+        finally:
+            session.close()
+
     def delete_lesson(self, lesson_id):
         session = self.get_session()
         try:
@@ -539,8 +570,9 @@ class DatabaseManager:
                         content=lo_data.get('content'),
                         description=lo_data.get('description'),
                         key_points=lo_data.get('key_points'),
-                        object_type=lo_data.get('object_type'),
+                        object_type=lo_data.get('object_type', lo_data.get('type')),
                         keywords=lo_data.get('keywords'),
+                        source_pages=lo_data.get('source_pages'),
                         order_index=lo_idx
                     )
                     session.add(lo)
@@ -571,6 +603,7 @@ class DatabaseManager:
                     correct_answer=q_data.get('correct_answer'),
                     correct_option_index=q_data.get('correct_option_index'),
                     explanation=q_data.get('explanation'),
+                    source_line=q_data.get('source_line'),
                     difficulty=q_data.get('difficulty'),
                     bloom_level=q_data.get('bloom_level'),
                     tags=q_data.get('tags')

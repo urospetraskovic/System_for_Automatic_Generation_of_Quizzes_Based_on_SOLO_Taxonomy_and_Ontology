@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useLanguage } from '../context/LanguageContext';
+import { translationApi } from '../api';
 
 const TranslationViewer = ({ isOpen, onClose, entityId, entityType, originalText }) => {
   const { languages, selectedLanguage } = useLanguage();
@@ -66,32 +67,19 @@ const TranslationViewer = ({ isOpen, onClose, entityId, entityType, originalText
     setLoading(true);
     setError(null);
     try {
-      let url = '';
-      
-      if (entityType === 'question') {
-        url = `http://localhost:5000/api/questions/${entityId}`;
-      } else if (entityType === 'lesson') {
-        url = `http://localhost:5000/api/lessons/${entityId}`;
-      } else if (entityType === 'section') {
-        url = `http://localhost:5000/api/sections/${entityId}`;
-      } else if (entityType === 'learning-object') {
-        url = `http://localhost:5000/api/learning-objects/${entityId}`;
-      }
+      const { data } = await translationApi.getEntity(entityType, entityId);
 
-      const response = await fetch(url);
-      const data = await response.json();
-      
-      if (entityType === 'question' && data.question) {
-        const trans = data.question.translations?.find(t => t.language_code === selectedLanguage);
-        setTranslation(trans);
-      } else if (entityType === 'lesson' && data.lesson) {
-        const trans = data.lesson.translations?.find(t => t.language_code === selectedLanguage);
-        setTranslation(trans);
-      } else if (entityType === 'section' && data.section) {
-        const trans = data.section.translations?.find(t => t.language_code === selectedLanguage);
-        setTranslation(trans);
-      } else if (entityType === 'learning-object' && data.learning_object) {
-        const trans = data.learning_object.translations?.find(t => t.language_code === selectedLanguage);
+      // Backend returns the entity under a key matching its type
+      // (question, lesson, section, learning_object).
+      const entityKeyByType = {
+        question: 'question',
+        lesson: 'lesson',
+        section: 'section',
+        'learning-object': 'learning_object',
+      };
+      const entity = data[entityKeyByType[entityType]];
+      if (entity) {
+        const trans = entity.translations?.find((t) => t.language_code === selectedLanguage);
         setTranslation(trans);
       } else {
         setError('No translation found');

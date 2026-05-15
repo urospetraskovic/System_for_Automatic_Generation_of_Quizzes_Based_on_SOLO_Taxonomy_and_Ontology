@@ -6,11 +6,7 @@ from flask import Blueprint, request, jsonify, make_response
 
 from repository import db
 from core import content_parser
-from services import (
-    generate_owl_from_relationships,
-    generate_turtle_from_relationships,
-    ontology_manager,
-)
+from services import ontology_manager
 
 ontology_bp = Blueprint('ontology', __name__, url_prefix='/api')
 
@@ -154,8 +150,7 @@ def export_ontology_owl(lesson_id):
         if not lesson:
             return jsonify({'error': 'Lesson not found'}), 404
 
-        relationships = db.get_relationships_for_lesson(lesson_id)
-        owl_content = generate_owl_from_relationships(lesson, relationships)
+        owl_content = ontology_manager.export_lesson_ontology(lesson_id, fmt='xml')
         file_name = _ontology_filename(lesson, lesson_id, 'owl')
 
         response = make_response(owl_content)
@@ -174,8 +169,7 @@ def export_ontology_turtle(lesson_id):
         if not lesson:
             return jsonify({'error': 'Lesson not found'}), 404
 
-        relationships = db.get_relationships_for_lesson(lesson_id)
-        turtle_content = generate_turtle_from_relationships(lesson, relationships)
+        turtle_content = ontology_manager.export_lesson_ontology(lesson_id, fmt='turtle')
         file_name = _ontology_filename(lesson, lesson_id, 'ttl')
 
         response = make_response(turtle_content)
@@ -205,7 +199,7 @@ def export_full_ontology():
         course_id = request.args.get('course_id', type=int)
         format_type = request.args.get('format', 'owl')
 
-        owl_content = ontology_manager.export_full_ontology(course_id=course_id)
+        owl_content = ontology_manager.export_full_ontology(course_id=course_id, fmt='xml')
 
         if format_type == 'download':
             response = make_response(owl_content)
@@ -227,7 +221,7 @@ def export_full_ontology():
 def export_course_ontology(course_id):
     """Export ontology for a specific course."""
     try:
-        owl_content = ontology_manager.export_full_ontology(course_id=course_id)
+        owl_content = ontology_manager.export_full_ontology(course_id=course_id, fmt='xml')
 
         response = make_response(owl_content)
         response.headers['Content-Type'] = 'application/rdf+xml'
@@ -241,7 +235,7 @@ def export_course_ontology(course_id):
 def export_lesson_knowledge_ontology(lesson_id):
     """Export the complete (seed + lesson individuals) ontology for a single lesson."""
     try:
-        owl_content = ontology_manager.export_lesson_ontology(lesson_id=lesson_id)
+        owl_content = ontology_manager.export_lesson_ontology(lesson_id=lesson_id, fmt='xml')
 
         response = make_response(owl_content)
         response.headers['Content-Type'] = 'application/rdf+xml'

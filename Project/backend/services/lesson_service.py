@@ -36,7 +36,8 @@ class LessonService:
             print(f"[SERVICE] Parsing lesson: {lesson['title']}")
             parsed_sections = content_parser.parse_lesson_structure(
                 lesson['raw_content'],
-                lesson['title']
+                lesson['title'],
+                pages_meta=lesson.get('pages_meta'),
             )
             
             # Save to database

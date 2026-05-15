@@ -6,7 +6,7 @@
 
 import axios from 'axios';
 
-const API_URL = 'http://localhost:5000/api';
+const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000/api';
 
 const apiClient = axios.create({
   baseURL: API_URL,
@@ -39,6 +39,7 @@ export const lessonApi = {
   getOntology: (lessonId) => apiClient.get(`/lessons/${lessonId}/ontology`),
   clearOntology: (lessonId) => apiClient.post(`/lessons/${lessonId}/ontology/clear`),
   generateOntology: (lessonId) => apiClient.post(`/lessons/${lessonId}/ontology/generate`),
+  getCoverage: (lessonId) => apiClient.get(`/lessons/${lessonId}/coverage`),
 };
 
 // ==================== SECTION ENDPOINTS ====================
@@ -71,7 +72,16 @@ export const questionApi = {
   getById: (questionId) => apiClient.get(`/questions/${questionId}`),
   create: (questionData) => apiClient.post('/questions', questionData),
   generate: (generationParams) => apiClient.post('/generate-questions', generationParams),
+  // Async variant — returns { job_id, status }. Poll with jobsApi.get(jobId).
+  generateAsync: (generationParams) => apiClient.post('/jobs/generate-questions', generationParams),
   delete: (questionId) => apiClient.delete(`/questions/${questionId}`),
+};
+
+// ==================== JOBS ENDPOINTS ====================
+
+export const jobsApi = {
+  get: (jobId) => apiClient.get(`/jobs/${jobId}`),
+  list: () => apiClient.get('/jobs'),
 };
 
 // ==================== QUIZ ENDPOINTS ====================
@@ -109,6 +119,21 @@ export const ontologyApi = {
     responseType: 'blob'
   }),
   save: (courseId = null) => apiClient.post('/ontology/save', { course_id: courseId }),
+  // Lesson-scoped (relationships table) exports — returns a Blob the caller can download.
+  downloadLessonOwl: (lessonId) => apiClient.get(`/lessons/${lessonId}/ontology/export/owl`, {
+    responseType: 'blob',
+  }),
+  downloadLessonTurtle: (lessonId) => apiClient.get(`/lessons/${lessonId}/ontology/export/turtle`, {
+    responseType: 'blob',
+  }),
+  deleteRelationship: (relId) => apiClient.delete(`/relationships/${relId}`),
+};
+
+// ==================== SPARQL ENDPOINTS ====================
+
+export const sparqlApi = {
+  getExamples: () => apiClient.get('/sparql/examples'),
+  execute: (query) => apiClient.post('/sparql', { query }),
 };
 
 // ==================== CHATBOT ENDPOINTS ====================
@@ -132,10 +157,39 @@ export const chatApi = {
 // ==================== TRANSLATION ENDPOINTS ====================
 
 export const translationApi = {
+  getLanguages: () => apiClient.get('/translate/languages'),
   getQuizzes: () => apiClient.get('/quizzes'),
   translateQuiz: (quizId, targetLanguage) => apiClient.post(`/translate/quiz/${quizId}`, {
     target_language: targetLanguage
   }),
+  getQuizStatus: (quizId) => apiClient.get(`/translate/quiz/${quizId}/status`),
+  fixQuizTranslations: (quizId, targetLanguage = null) =>
+    apiClient.post(`/translate/quiz/${quizId}/fix`, { target_language: targetLanguage }),
+  retranslateQuestion: (questionId, targetLanguage) =>
+    apiClient.post(`/translate/question/${questionId}/retranslate`, {
+      target_language: targetLanguage,
+    }),
+  // Translation viewer needs to fetch the full entity (with embedded translations).
+  getEntity: (entityType, entityId) => {
+    const pathByType = {
+      question: `/questions/${entityId}`,
+      lesson: `/lessons/${entityId}`,
+      section: `/sections/${entityId}`,
+      'learning-object': `/learning-objects/${entityId}`,
+    };
+    const path = pathByType[entityType];
+    if (!path) {
+      return Promise.reject(new Error(`Unknown entity type: ${entityType}`));
+    }
+    return apiClient.get(path);
+  },
+};
+
+// ==================== ADMIN ENDPOINTS ====================
+
+export const adminApi = {
+  cacheStats: () => apiClient.get('/admin/llm-cache/stats'),
+  clearCache: () => apiClient.delete('/admin/llm-cache'),
 };
 
 // ==================== ERROR HANDLING ====================

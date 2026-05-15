@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { translationApi } from '../api';
 import './TranslationManager.css';
 
 const TranslationManager = () => {
@@ -20,8 +21,7 @@ const TranslationManager = () => {
 
   const fetchLanguages = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/translate/languages');
-      const data = await response.json();
+      const { data } = await translationApi.getLanguages();
       if (data.success) {
         setLanguages(data.languages);
       }
@@ -32,8 +32,7 @@ const TranslationManager = () => {
 
   const fetchQuizzes = async () => {
     try {
-      const response = await fetch('http://localhost:5000/api/quizzes');
-      const data = await response.json();
+      const { data } = await translationApi.getQuizzes();
       if (data.quizzes) {
         setQuizzes(data.quizzes);
       }
@@ -91,14 +90,7 @@ const TranslationManager = () => {
       });
 
       try {
-        const response = await fetch(`http://localhost:5000/api/translate/quiz/${quizId}`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ target_language: targetLanguage })
-        });
-
-        const data = await response.json();
-        
+        const { data } = await translationApi.translateQuiz(quizId, targetLanguage);
         results.push({
           quizId,
           quizTitle: quiz?.title || `Quiz ${quizId}`,
@@ -107,13 +99,12 @@ const TranslationManager = () => {
           totalQuestions: data.total_questions || 0,
           error: data.error
         });
-
       } catch (error) {
         results.push({
           quizId,
           quizTitle: quiz?.title || `Quiz ${quizId}`,
           success: false,
-          error: error.message
+          error: error.response?.data?.error || error.message,
         });
       }
     }
@@ -138,11 +129,9 @@ const TranslationManager = () => {
   const viewTranslationStatus = async (quizId, e) => {
     e.stopPropagation();
     setLoadingStatus(true);
-    
+
     try {
-      const response = await fetch(`http://localhost:5000/api/translate/quiz/${quizId}/status`);
-      const data = await response.json();
-      
+      const { data } = await translationApi.getQuizStatus(quizId);
       if (data.success) {
         setStatusModal(data);
       } else {
@@ -161,20 +150,12 @@ const TranslationManager = () => {
 
   const fixBadTranslations = async (quizId, langCode = null) => {
     try {
-      const response = await fetch(`http://localhost:5000/api/translate/quiz/${quizId}/fix`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ target_language: langCode })
-      });
-      const data = await response.json();
-      
+      const { data } = await translationApi.fixQuizTranslations(quizId, langCode);
       if (data.success) {
         showMessage(`Fixed! Deleted ${data.deleted_count} bad translations. Re-translate to fix.`);
-        // Refresh the status
-        const statusResponse = await fetch(`http://localhost:5000/api/translate/quiz/${quizId}/status`);
-        const statusData = await statusResponse.json();
-        if (statusData.success) {
-          setStatusModal(statusData);
+        const statusResp = await translationApi.getQuizStatus(quizId);
+        if (statusResp.data.success) {
+          setStatusModal(statusResp.data);
         }
         fetchQuizzes();
       } else {

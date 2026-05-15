@@ -45,6 +45,8 @@ import re
 from datetime import datetime
 from typing import Optional, List, Dict, Any
 
+from rdflib import Graph
+
 # Database imports
 from repository import db
 from models import (
@@ -225,17 +227,35 @@ class OntologyManager:
         return mappings.get(bloom_level.lower().strip(), None)
     
     # ==================== EXPORT METHODS ====================
-    
-    def export_full_ontology(self, course_id: Optional[int] = None) -> str:
+
+    @staticmethod
+    def _to_rdf_xml(turtle_content: str) -> str:
+        """
+        Convert a Turtle document to RDF/XML using rdflib.
+
+        Falls back to returning the raw Turtle if parsing fails, so callers
+        always get some serialisation rather than a 500.
+        """
+        try:
+            from rdflib import Graph
+            g = Graph()
+            g.parse(data=turtle_content, format='turtle')
+            return g.serialize(format='pretty-xml')
+        except Exception as e:
+            print(f"[OntologyManager] RDF/XML conversion failed, returning Turtle: {e}")
+            return turtle_content
+
+    def export_full_ontology(self, course_id: Optional[int] = None, fmt: str = 'turtle') -> str:
         """
         Export complete ontology with seed + all knowledge from database.
         
         Args:
             course_id: If provided, only export content from this course.
                       If None, export everything.
-        
+            fmt: 'turtle' (default) or 'xml' for RDF/XML.
+
         Returns:
-            Complete OWL/XML ontology string
+            Serialised ontology string in the requested format.
         """
         session = db.get_session()
         try:
@@ -377,7 +397,7 @@ class OntologyManager:
             } for quiz in all_quizzes]
             
             # Generate OWL with dictionaries (no session dependency)
-            return self._generate_knowledge_base_owl(
+            turtle = self._generate_knowledge_base_owl(
                 courses=courses_dict,
                 lessons=lessons_dict,
                 sections=sections_dict,
@@ -386,12 +406,13 @@ class OntologyManager:
                 questions=questions_dict,
                 quizzes=quizzes_dict
             )
-            
+            return self._to_rdf_xml(turtle) if fmt == 'xml' else turtle
+
         finally:
             session.close()
-    
-    def export_lesson_ontology(self, lesson_id: int) -> str:
-        """Export ontology for a specific lesson only"""
+
+    def export_lesson_ontology(self, lesson_id: int, fmt: str = 'turtle') -> str:
+        """Export ontology for a specific lesson only. fmt: 'turtle' or 'xml'."""
         session = db.get_session()
         try:
             lesson = session.query(Lesson).filter_by(id=lesson_id).first()
@@ -487,7 +508,7 @@ class OntologyManager:
                 'tags': q.tags,
             } for q in questions]
             
-            return self._generate_knowledge_base_owl(
+            turtle = self._generate_knowledge_base_owl(
                 courses=[course_dict] if course_dict else [],
                 lessons=[lesson_dict],
                 sections=sections_dict,
@@ -496,15 +517,28 @@ class OntologyManager:
                 questions=questions_dict,
                 quizzes=[]
             )
-            
+            return self._to_rdf_xml(turtle) if fmt == 'xml' else turtle
+
         finally:
             session.close()
     
     def _safe_str(self, value: Any, default: str = '') -> str:
-        """Safely convert value to string, escaping quotes for Turtle format"""
+        """Escape a value for safe embedding inside a Turtle "..." literal.
+
+        Handles backslash, quote, newline, carriage return, and tab — the
+        characters that would otherwise produce malformed Turtle that
+        rdflib refuses to parse.
+        """
         if value is None:
             return default
-        return str(value).replace('"', '\\"')
+        return (
+            str(value)
+            .replace('\\', '\\\\')
+            .replace('"', '\\"')
+            .replace('\n', '\\n')
+            .replace('\r', '\\r')
+            .replace('\t', '\\t')
+        )
     
     def _generate_knowledge_base_owl(
         self,

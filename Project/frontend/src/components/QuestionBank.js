@@ -42,10 +42,11 @@ function QuestionBank({ questions, courseId, onRefresh, onSuccess, onError }) {
       question_text: question.question_text,
       explanation: question.explanation,
       difficulty: question.difficulty,
+      bloom_level: question.bloom_level || '',
       options: question.options || [],
       correct_option_index: question.correct_option_index,
       correct_answer: question.correct_answer,
-      tags: question.tags ? question.tags.join(', ') : ''
+      tags: Array.isArray(question.tags) ? question.tags.join(', ') : ''
     });
     setShowEditModal(true);
   };
@@ -62,6 +63,7 @@ function QuestionBank({ questions, courseId, onRefresh, onSuccess, onError }) {
         question_text: editFormData.question_text,
         explanation: editFormData.explanation,
         difficulty: editFormData.difficulty,
+        bloom_level: editFormData.bloom_level,
         tags: tagsArray,
         mark_human_modified: true
       };
@@ -315,11 +317,52 @@ function QuestionBank({ questions, courseId, onRefresh, onSuccess, onError }) {
                         </div>
                       )}
 
-                      {question.tags && question.tags.length > 0 && (
+                      {question.source_line && (
+                        <div
+                          className="source-line"
+                          style={{
+                            marginTop: 8,
+                            padding: '8px 12px',
+                            borderLeft: '3px solid var(--primary-300, #93c5fd)',
+                            background: 'var(--neutral-50, #f9fafb)',
+                            fontSize: '0.85rem',
+                            color: 'var(--neutral-700, #374151)',
+                            fontStyle: 'italic',
+                          }}
+                          title="Verbatim quote from the source text that justifies the correct answer."
+                        >
+                          <strong style={{ fontStyle: 'normal' }}>Source:</strong> "{question.source_line}"
+                        </div>
+                      )}
+
+                      {Array.isArray(question.tags) && question.tags.length > 0 && (
                         <div className="tags">
                           {question.tags.map((tag, i) => (
                             <span key={i} className="tag">{tag}</span>
                           ))}
+                        </div>
+                      )}
+
+                      {question.tags && !Array.isArray(question.tags) && question.tags.ontology_anchor && (
+                        <div
+                          className="ontology-anchor"
+                          style={{
+                            marginTop: 8,
+                            padding: '6px 10px',
+                            background: 'var(--primary-50, #eff6ff)',
+                            border: '1px solid var(--primary-200, #bfdbfe)',
+                            borderRadius: 6,
+                            fontSize: '0.8rem',
+                            color: 'var(--primary-800, #1e40af)',
+                          }}
+                          title="The ontology relationship this question was generated from."
+                        >
+                          <strong>Ontology anchor:</strong>{' '}
+                          {question.tags.ontology_anchor.source} →{' '}
+                          <code style={{ background: 'rgba(0,0,0,0.05)', padding: '0 4px', borderRadius: 3 }}>
+                            {question.tags.ontology_anchor.type}
+                          </code>{' '}
+                          → {question.tags.ontology_anchor.target}
                         </div>
                       )}
                     </div>
@@ -469,6 +512,22 @@ function QuestionBank({ questions, courseId, onRefresh, onSuccess, onError }) {
                       onChange={(e) => setEditFormData({...editFormData, difficulty: parseFloat(e.target.value)})}
                     />
                   </div>
+
+                  <div className="form-group">
+                    <label>Bloom's Level</label>
+                    <select
+                      value={editFormData.bloom_level || ''}
+                      onChange={(e) => setEditFormData({...editFormData, bloom_level: e.target.value})}
+                    >
+                      <option value="">Select level...</option>
+                      <option value="remember">Remember</option>
+                      <option value="understand">Understand</option>
+                      <option value="apply">Apply</option>
+                      <option value="analyze">Analyze</option>
+                      <option value="evaluate">Evaluate</option>
+                      <option value="create">Create</option>
+                    </select>
+                  </div>
                 </div>
 
                 <div className="form-group">
@@ -531,107 +590,6 @@ function QuestionBank({ questions, courseId, onRefresh, onSuccess, onError }) {
         </div>
       </div>
 
-      {/* Edit Question Modal */}
-      {showEditModal && editingQuestion && (
-        <div className="modal-overlay" onClick={() => setShowEditModal(false)}>
-          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-            <div className="modal-header">
-              <h3>Edit Question</h3>
-              <button 
-                className="btn-close" 
-                onClick={() => setShowEditModal(false)}
-              >
-                ✕
-              </button>
-            </div>
-            <div className="modal-body">
-              {/* AI Status Info */}
-              <div className={`status-info ${editingQuestion.human_modified ? 'human-modified' : editingQuestion.is_ai_generated ? 'ai-generated' : 'human-created'}`}>
-                <strong>Status:</strong> {editingQuestion.human_modified ? 'Human Modified' : editingQuestion.is_ai_generated ? 'AI Generated' : 'Human Created'}
-                {editingQuestion.is_ai_generated && !editingQuestion.human_modified && (
-                  <p style={{ fontSize: '0.85rem', marginTop: '5px', fontStyle: 'italic' }}>
-                    This question was AI-generated. Editing it will mark it as human-modified.
-                  </p>
-                )}
-              </div>
-
-              <div className="form-group">
-                <label>Question Text</label>
-                <textarea
-                  value={editFormData.question_text || ''}
-                  onChange={(e) => setEditFormData({...editFormData, question_text: e.target.value})}
-                  rows="4"
-                />
-              </div>
-
-              <div className="form-group">
-                <label>Explanation</label>
-                <textarea
-                  value={editFormData.explanation || ''}
-                  onChange={(e) => setEditFormData({...editFormData, explanation: e.target.value})}
-                  rows="3"
-                  placeholder="Explain why the correct answer is right..."
-                />
-              </div>
-
-              <div className="form-row">
-                <div className="form-group">
-                  <label>Difficulty (0-1)</label>
-                  <input
-                    type="number"
-                    min="0"
-                    max="1"
-                    step="0.1"
-                    value={editFormData.difficulty || 0.5}
-                    onChange={(e) => setEditFormData({...editFormData, difficulty: e.target.value})}
-                  />
-                </div>
-
-                <div className="form-group">
-                  <label>Bloom's Level</label>
-                  <select
-                    value={editFormData.bloom_level || ''}
-                    onChange={(e) => setEditFormData({...editFormData, bloom_level: e.target.value})}
-                  >
-                    <option value="">Select level...</option>
-                    <option value="remember">Remember</option>
-                    <option value="understand">Understand</option>
-                    <option value="apply">Apply</option>
-                    <option value="analyze">Analyze</option>
-                    <option value="evaluate">Evaluate</option>
-                    <option value="create">Create</option>
-                  </select>
-                </div>
-              </div>
-
-              <div className="form-group">
-                <label>Tags (comma-separated)</label>
-                <input
-                  type="text"
-                  value={editFormData.tags || ''}
-                  onChange={(e) => setEditFormData({...editFormData, tags: e.target.value})}
-                  placeholder="tag1, tag2, tag3"
-                />
-              </div>
-            </div>
-            <div className="modal-footer">
-              <button 
-                className="btn-secondary" 
-                onClick={() => setShowEditModal(false)}
-              >
-                Cancel
-              </button>
-              <button 
-                className="btn-primary" 
-                onClick={handleUpdateQuestion}
-              >
-                Save Changes
-              </button>
-            </div>
-          </div>
-        </div>
-      )}
-      
       {/* Translation Viewer Modal */}
       <TranslationViewer
         isOpen={showTranslationViewer}
