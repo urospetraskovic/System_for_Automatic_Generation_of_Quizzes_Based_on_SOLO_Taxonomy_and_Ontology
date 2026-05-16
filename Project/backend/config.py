@@ -11,7 +11,6 @@ load_dotenv(os.path.join(BACKEND_DIR, '.env'))
 
 UPLOAD_FOLDER = os.path.join(BACKEND_DIR, 'uploads')
 LESSON_FOLDER = os.path.join(BACKEND_DIR, 'lessons')
-DOWNLOAD_FOLDER = os.path.join(BACKEND_DIR, '..', 'downloaded_quizzes')
 
 ALLOWED_EXTENSIONS = {'pdf'}
 MAX_FILE_SIZE = 30 * 1024 * 1024  # 30 MB
@@ -28,8 +27,8 @@ OLLAMA_MODEL = os.getenv('OLLAMA_MODEL', 'qwen2.5:14b-instruct-q4_K_M')
 
 
 def ensure_folders():
-    """Create upload/lesson/download folders if they don't already exist."""
-    for folder in (UPLOAD_FOLDER, LESSON_FOLDER, DOWNLOAD_FOLDER):
+    """Create upload/lesson folders if they don't already exist."""
+    for folder in (UPLOAD_FOLDER, LESSON_FOLDER):
         os.makedirs(folder, exist_ok=True)
 
 
@@ -37,5 +36,4 @@ def apply_to(app):
     """Apply config values to a Flask app instance."""
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
     app.config['LESSON_FOLDER'] = LESSON_FOLDER
-    app.config['DOWNLOAD_FOLDER'] = DOWNLOAD_FOLDER
     app.config['MAX_CONTENT_LENGTH'] = MAX_FILE_SIZE

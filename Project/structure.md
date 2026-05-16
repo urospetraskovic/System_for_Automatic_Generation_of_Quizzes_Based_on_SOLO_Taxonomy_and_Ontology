@@ -51,7 +51,6 @@ Project/
 ├── backend/                # Flask API + servisi + LLM pipeline
 ├── frontend/               # React SPA
 ├── raw_materials/          # Test PDF/TXT lekcije
-├── downloaded_quizzes/     # Eksportovani JSON kvizovi
 ├── Paper/                  # Akademski rad o projektu
 ├── ollama.ps1              # PowerShell pokretač za Ollama
 ├── start.sh / start.bat    # Pokretači
@@ -71,8 +70,8 @@ Project/
   - `register_routes(app)` registruje sve blueprintove.
   - Pokreće se sa `python app.py` (debug, `localhost:5000`).
 
-- **`config.py`** — folder konstante (`UPLOAD_FOLDER`, `LESSON_FOLDER`,
-  `DOWNLOAD_FOLDER`), `ALLOWED_EXTENSIONS`, `MAX_FILE_SIZE` (30 MB),
+- **`config.py`** — folder konstante (`UPLOAD_FOLDER`, `LESSON_FOLDER`),
+  `ALLOWED_EXTENSIONS`, `MAX_FILE_SIZE` (30 MB),
   `OLLAMA_BASE_URL` / `OLLAMA_MODEL`, i helperi `ensure_folders()` / `apply_to(app)`.
 
 - **`schemas.py`** — Pydantic v2 request schemes (`GenerateQuestionsRequest`)
@@ -168,8 +167,7 @@ Poslovna logika i AI integracije.
 | `quiz_service.py`          | Pomoćne operacije nad kvizovima                                                      |
 | `coverage_service.py`      | `CoverageService.compute()` — metrike PDF pokrivenosti; rekonstruiše `pages_meta` iz `--- Page N ---` markera za starije lekcije |
 | `jobs.py`                  | ThreadPoolExecutor + in-memory job store; `submit(kind, runner)` / `get(job_id)` / `list_recent()`; runner-i primaju `report_progress` callback |
-| `ontology_service.py`      | `generate_owl_from_relationships()`, `generate_turtle_from_relationships()`         |
-| `ontology_manager.py`      | `OntologyManager` — spaja seed TBox (`ontology/`) sa DB ABox-om u kompletan KB       |
+| `ontology_manager.py`      | `OntologyManager` — spaja seed TBox (`ontology/`) sa DB ABox-om u kompletan KB. Jedinstveni izvor za eksport: `export_lesson_ontology(lesson_id, fmt)` i `export_full_ontology(course_id, fmt)` gde je `fmt='turtle'` (default) ili `'xml'` (RDF/XML preko rdflib). Stara verzija sa string-templated OWL-om (`ontology_service.py`) je obrisana — sve rute idu kroz `ontology_manager`. |
 | `sparql_service.py`        | Učitava ontologiju i izvršava SPARQL upite (rdflib)                                  |
 | `chatbot_service.py`       | `ChatbotService` — pozivi prema Ollama, kontekstualni odgovori, fallback offline mod |
 | `translation_service.py`   | Prevodi sve resurse, `SUPPORTED_LANGUAGES` mapa, batch prevod                        |
@@ -240,7 +238,34 @@ Statički resursi za RDF/OWL:
 - `lessons/` — opciono trajno skladište PDF-ova ako se koristi `file_path`.
 - `quiz_database.db` — SQLite baza.
 - `requirements.txt` — pinovane verzije Flask 2.3, SQLAlchemy 2.0.36,
-  rdflib 7.0, PyPDF2 3.0.1, **pydantic>=2.0**.
+  rdflib 7.0, PyPDF2 3.0.1, **pydantic>=2.0**, **pytest>=7.0** (dev).
+
+### 4.9 Tests (`backend/tests/`)
+
+Pytest suite za delove koji su "load-bearing" — sve što sigurnije održati
+testovima nego komentarima.
+
+- **`conftest.py`** — dodaje `backend/` na `sys.path` i mockuje
+  `requests.get` da import-time Ollama probe ne padaju u mrežu (i ne čekaju
+  5s timeout).
+- **`test_prompt_lib.py`** — 17 testova: SOLO definicija u prompt-u,
+  worked example za pravi nivo (i ne curi iz drugog), sve typed distractor
+  strategije, klauzula o jeziku (Serbian), ontology anchor + extra task,
+  EA pass-1 sa i bez sekundarne lekcije, EA pass-2 echo + distractor schema.
+- **`test_lang_detect.py`** — Cyrillic, Latin diacritics, English,
+  Serbian stop-words na kratkom inputu, language_name mapping.
+- **`test_quiz_generator_dedup.py`** — ključni invariant: ista LO + isti
+  normalizovan tačan odgovor → duplikat, čak i kad je tekst drugačiji.
+- **`test_content_parser_json.py`** — `_extract_json_from_response`:
+  čist JSON, JSON u prozi, neispravan i nepotpun input.
+
+Pokretanje:
+```bash
+cd backend
+.\venv\Scripts\python.exe -m pytest tests/
+```
+
+Tests ne zahtevaju Ollama, DB, niti mrežu.
 
 ---
 
@@ -261,11 +286,19 @@ CRA aplikacija (React 18 + axios). Pokretanje: `npm start` (port 3000).
 
 - **`src/api.js`** — jedna axios instanca + grupisani objekti
   (`courseApi`, `lessonApi`, `sectionApi`, `learningObjectApi`, `questionApi`,
-  `quizApi`, `healthApi`, `ontologyApi`, `chatApi`, `translationApi`,
-  **`jobsApi`** za async generisanje, **`adminApi`** za LLM cache).
-  Bazni URL: `http://localhost:5000/api`.
+  `quizApi`, `healthApi`, `ontologyApi`, `sparqlApi`, `chatApi`,
+  `translationApi`, **`jobsApi`** za async generisanje, **`adminApi`** za
+  LLM cache). Bazni URL se čita iz `process.env.REACT_APP_API_URL` (fallback
+  `http://localhost:5000/api`).
   - `lessonApi.getCoverage(lessonId)` — coverage endpoint.
   - `questionApi.generateAsync(...)` — async varijanta koja vraća `{job_id}`.
+  - `ontologyApi.downloadLessonOwl/downloadLessonTurtle` — blob download.
+  - `ontologyApi.deleteRelationship(relId)` — brisanje ivice grafa.
+  - `sparqlApi.execute/getExamples` — SPARQL upiti i primeri.
+  - `translationApi.retranslateQuestion/getQuizStatus/fixQuizTranslations/getEntity`.
+
+  Svi komponenti ide kroz `api.js`; nema više sirovih `fetch()` poziva
+  rasutih po komponenti.
 
 ### 5.3 Custom hook (`src/hooks/`)
 
@@ -342,7 +375,10 @@ CSS je deljen kroz `App.css` + per-komponentni fajlovi.
 7. **Kviz** → `POST /api/quizzes` + `add-questions` → `Quiz` + `QuizQuestion`.
 8. **Prevodi** → `POST /api/translate/...` → `TranslationService` (Ollama) →
    tabela odgovarajućeg `*Translation` modela.
-9. **Eksport** → OWL/Turtle za ontologiju, JSON za kviz (`downloaded_quizzes/`).
+9. **Eksport** → ontologija u OWL (RDF/XML) ili Turtle preko
+   `OntologyManager.export_lesson_ontology(lesson_id, fmt='xml'|'turtle')`
+   (rdflib serijalizacija). Kvizovi se ne eksportuju — žive u SQLite bazi i
+   rešavaju se direktno iz UI-ja.
 10. **Chatbot** → `POST /api/chat` → kontekst (course + lesson + sections
     prefix) prosleđuje se `chatbot_service`.
 11. **LLM cache** je transparentan: svaki `_call_ollama` u `quiz_generator` i

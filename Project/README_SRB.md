@@ -58,7 +58,7 @@ Projekat pomaže nastavnicima da automatski kreiraju pitanja za procenu znanja n
 ### Upravljanje kvizovima
 - Kreiranje kvizova iz banke pitanja
 - Filtriranje pitanja po temi, SOLO nivou ili lekciji
-- Eksport u JSON
+- Kvizovi se čuvaju u SQLite bazi
 - Interaktivni interfejs za rešavanje
 - Podrška za prevod na više jezika
 
@@ -187,8 +187,9 @@ Project/
 │   │   ├── quiz_service.py       # Operacije nad kvizovima
 │   │   ├── coverage_service.py   # Metrike PDF pokrivenosti
 │   │   ├── jobs.py               # ThreadPoolExecutor + in-memory job store
-│   │   ├── ontology_service.py   # OWL/Turtle eksport
-│   │   ├── ontology_manager.py   # Spaja seed TBox sa DB ABox-om
+│   │   ├── ontology_manager.py   # Seed TBox + DB ABox; izvozi i KB i
+│   │   │                         #   lesson-scoped ontologiju u Turtle i
+│   │   │                         #   RDF/XML formatu (preko rdflib-a)
 │   │   ├── sparql_service.py     # SPARQL izvršavanje
 │   │   ├── chatbot_service.py    # Kontekstualni chatbot
 │   │   └── translation_service.py # Prevodi
@@ -198,6 +199,8 @@ Project/
 │   │   ├── translations.py, chat.py, sparql.py, errors.py,
 │   │   ├── jobs.py             # Async job endpoint-i
 │   │   └── admin.py            # LLM cache admin
+│   ├── tests/                  # pytest suite — promptovi, dedup,
+│   │                           #   detekcija jezika, JSON ekstrakcija
 │   ├── uploads/                # Privremeni PDF-ovi (uglavnom prazno;
 │   │                           #   PDF se obrađuje iz stream-a)
 │   └── quiz_database.db        # SQLite baza
@@ -218,7 +221,6 @@ Project/
 │   │       └── layout/   # Sidebar, TopBar (LLM cache widget), AlertMessages, ...
 │   └── public/index.html
 ├── raw_materials/              # Primeri lekcija
-├── downloaded_quizzes/         # Eksportovani JSON kvizovi
 ├── ollama.ps1                  # Ollama startup skripta
 ├── start.sh, start.bat         # Pokretači
 └── START_GUIDE.md              # Vodič za brzo pokretanje
@@ -340,6 +342,21 @@ SELECT ?subject ?predicate ?object WHERE {
 2. Kliknuti "Export to OWL"
 3. Otvoriti preuzeti `.owl` fajl u Protégé-u
 4. Vizualizovati sa OntoGraf ili OWLViz dodacima
+
+## Testiranje
+
+Pytest suite se nalazi u `backend/tests/`. Pokriva ključne delove — konstrukciju prompt-a (PS4 struktura, radni primeri, distractor strategije, klauzula o jeziku), ugovor o deduplikaciji pitanja (isti ankor + isti tačan odgovor je duplikat čak i sa drugačijim tekstom), srpsko-engleski heuristika i ekstrakcija JSON-a iz LLM odgovora.
+
+Testovi ne zahtevaju Ollamu, popunjenu bazu, niti mrežu (`conftest.py` mockuje Ollama probe).
+
+```bash
+cd backend
+.\venv\Scripts\python.exe -m pytest tests/
+```
+
+## Konfiguracija
+
+Frontend čita API base URL iz `REACT_APP_API_URL` env varijable; ako nije postavljen, koristi `http://localhost:5000/api`. Postaviti u `frontend/.env` ako se UI usmerava na drugi backend.
 
 ## Doprinos
 

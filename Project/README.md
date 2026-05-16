@@ -58,7 +58,7 @@ This project helps educators automatically create assessment questions at differ
 ### Quiz Management
 - Build quizzes from the question bank
 - Filter questions by topic, SOLO level, or lesson
-- Export quizzes to JSON format
+- Quizzes are persisted in the SQLite database
 - Interactive quiz-solving interface
 - Multi-language translation support
 
@@ -189,8 +189,9 @@ Project/
 │   │   ├── quiz_service.py       # Quiz operations
 │   │   ├── coverage_service.py   # PDF coverage metrics
 │   │   ├── jobs.py               # ThreadPoolExecutor + in-memory job store
-│   │   ├── ontology_service.py   # OWL/Turtle export
-│   │   ├── ontology_manager.py   # Seed TBox + DB ABox merger
+│   │   ├── ontology_manager.py   # Seed TBox + DB ABox merger; serves both
+│   │   │                         #   knowledge-base and lesson-scoped exports
+│   │   │                         #   in Turtle and RDF/XML (via rdflib)
 │   │   ├── sparql_service.py     # SPARQL execution
 │   │   ├── chatbot_service.py    # Context-aware chatbot
 │   │   └── translation_service.py # Multi-language translation
@@ -200,6 +201,8 @@ Project/
 │   │   ├── translations.py, chat.py, sparql.py, errors.py,
 │   │   ├── jobs.py             # Async job endpoints
 │   │   └── admin.py            # LLM cache admin
+│   ├── tests/                  # pytest suite — prompt builders, dedup,
+│   │                           #   language detection, JSON extraction
 │   ├── uploads/                # Temporary PDF uploads (mostly empty;
 │   │                           #   PDFs are processed from stream)
 │   └── quiz_database.db        # SQLite database
@@ -220,7 +223,6 @@ Project/
 │   │       └── layout/   # Sidebar, TopBar (LLM cache widget), AlertMessages, ...
 │   └── public/index.html
 ├── raw_materials/              # Sample lesson files
-├── downloaded_quizzes/         # Exported quiz JSON
 ├── ollama.ps1                  # Ollama startup script
 ├── start.sh, start.bat         # Convenience launchers
 └── START_GUIDE.md              # Quick-start guide
@@ -342,6 +344,21 @@ SELECT ?subject ?predicate ?object WHERE {
 2. Click "Export to OWL"
 3. Open the downloaded `.owl` file in Protégé
 4. Visualize with OntoGraf or OWLViz plugins
+
+## Testing
+
+A pytest suite lives in `backend/tests/`. It covers the load-bearing pieces — prompt construction (PS4 structure, worked examples, distractor strategies, language clause), the question-dedup contract (same anchor + same correct answer is a duplicate even with different wording), the Serbian/English heuristic, and the JSON extraction from LLM responses.
+
+Tests do not require Ollama, a populated database, or a network connection (a `conftest.py` stubs out the Ollama probe).
+
+```bash
+cd backend
+.\venv\Scripts\python.exe -m pytest tests/
+```
+
+## Configuration
+
+The frontend reads its API base URL from `REACT_APP_API_URL`; if unset, it falls back to `http://localhost:5000/api`. Set it in `frontend/.env` to point the UI at a different backend.
 
 ## Contributing
 

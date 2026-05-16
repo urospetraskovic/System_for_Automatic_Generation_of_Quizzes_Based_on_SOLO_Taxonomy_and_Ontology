@@ -102,32 +102,6 @@ function QuizBuilder({ questions, course, onSuccess, onError }) {
     }
   };
 
-  const handleExportQuiz = async (quizId) => {
-    try {
-      const response = await quizApi.getById(quizId);
-      const quiz = response.data.quiz;
-      if (!quiz) {
-        onError('Quiz not found');
-        return;
-      }
-
-      const blob = new Blob([JSON.stringify(quiz, null, 2)], { type: 'application/json' });
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      const safeTitle = (quiz.title || `quiz_${quizId}`).replace(/[^a-zA-Z0-9_-]/g, '_');
-      a.href = url;
-      a.download = `${safeTitle}.json`;
-      document.body.appendChild(a);
-      a.click();
-      window.URL.revokeObjectURL(url);
-      document.body.removeChild(a);
-
-      onSuccess(`Quiz exported: ${quiz.title}`);
-    } catch (err) {
-      onError('Failed to export quiz');
-    }
-  };
-
   const selectedQuestions = questions.filter(q => selectedQuestionIds.includes(q.id));
   const soloDistribution = {
     unistructural: selectedQuestions.filter(q => q.solo_level === 'unistructural').length,
@@ -329,12 +303,6 @@ function QuizBuilder({ questions, course, onSuccess, onError }) {
             <h4>Quiz Created!</h4>
             <p><strong>{createdQuiz.title}</strong></p>
             <p>{createdQuiz.question_count} questions</p>
-            <button 
-              className="btn-secondary"
-              onClick={() => handleExportQuiz(createdQuiz.id)}
-            >
-              Export to JSON
-            </button>
           </div>
         )}
       </div>

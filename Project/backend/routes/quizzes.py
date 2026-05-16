@@ -1,12 +1,8 @@
-"""Quiz CRUD and export routes."""
+"""Quiz CRUD routes."""
 
-import os
-import json
 import traceback
-from datetime import datetime
 
-from flask import Blueprint, request, jsonify, current_app
-from werkzeug.utils import secure_filename
+from flask import Blueprint, request, jsonify
 from sqlalchemy import func
 
 from repository import db
@@ -140,24 +136,3 @@ def get_all_quizzes():
         return jsonify({'error': str(e)}), 500
 
 
-@quizzes_bp.route('/quizzes/<int:quiz_id>/export', methods=['GET'])
-def export_quiz(quiz_id):
-    """Export quiz to JSON file."""
-    try:
-        quiz = db.get_quiz(quiz_id, include_questions=True)
-        if not quiz:
-            return jsonify({'error': 'Quiz not found'}), 404
-
-        timestamp = datetime.now().strftime('%Y%m%d_%H%M%S')
-        filename = secure_filename(f"quiz_{quiz['title']}_{timestamp}.json")
-
-        filepath = os.path.join(current_app.config['DOWNLOAD_FOLDER'], filename)
-        with open(filepath, 'w', encoding='utf-8') as f:
-            json.dump(quiz, f, indent=2)
-
-        return jsonify({
-            'message': 'Quiz exported successfully',
-            'filename': filename
-        }), 200
-    except Exception as e:
-        return jsonify({'error': str(e)}), 500

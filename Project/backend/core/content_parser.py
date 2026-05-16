@@ -25,13 +25,86 @@ class ContentParser:
     Parses PDF lessons to extract structured content using local Ollama models:
     - Sections (major topic divisions)
     - Learning Objects (specific concepts, definitions, procedures)
-    
+
     MAXIMUM QUALITY APPROACH:
     - Splits content into smaller chunks
     - Does multiple passes over content
     - Extracts MORE sections (6-15 instead of 2-5)
     - No concern for time - quality is the priority
     """
+
+    # Strict LO type vocabulary. The prompt asks for these values, but the
+    # LLM regularly returns out-of-set or cross-language types ("Concept",
+    # "Mechanism", "Proces stanja", "Definicija"). Anything outside the set
+    # is mapped via the alias table or falls through to "concept".
+    _ALLOWED_LO_TYPES = {
+        'concept', 'definition', 'process', 'principle',
+        'component', 'example', 'technique', 'structure',
+    }
+    _LO_TYPE_ALIASES = {
+        # English variants / lowercase typos
+        'concepit': 'concept',
+        'procedure': 'process',
+        'mechanism': 'process',
+        'fact': 'concept',
+        'algorithm': 'process',
+        'theory': 'principle',
+        'law': 'principle',
+        'rule': 'principle',
+        'method': 'technique',
+        # Serbian variants
+        'definicija': 'definition',
+        'princip': 'principle',
+        'procedura': 'process',
+        'tehnika': 'technique',
+        'struktura': 'structure',
+        'komponenta': 'component',
+        'primer': 'example',
+        'pojam': 'concept',
+        # Frequently-seen freeform answers from the model
+        'management information': 'concept',
+        'processor register': 'component',
+        'proces stanja': 'concept',
+    }
+
+    @classmethod
+    def _normalize_lo_type(cls, raw: Any) -> str:
+        """Coerce an LLM-supplied LO type into the allowed vocabulary."""
+        if not raw or not isinstance(raw, str):
+            return 'concept'
+        t = raw.strip().lower()
+        if t in cls._ALLOWED_LO_TYPES:
+            return t
+        return cls._LO_TYPE_ALIASES.get(t, 'concept')
+
+    @staticmethod
+    def _lo_is_grounded(lo: Dict[str, Any], section_content: str) -> bool:
+        """
+        Check that an LO is actually rooted in the section text.
+
+        Returns True if either:
+          - the LO's title (>= 4 chars) appears verbatim in the section
+            content (case-insensitive), or
+          - at least one of its keywords (>= 4 chars) appears verbatim.
+
+        This is the anti-hallucination check: if a model invents an LO
+        like "Mutex (Mutual Exclusion)" for a lesson that doesn't mention
+        mutexes, neither the title nor any keyword will appear in the
+        section content, and the LO gets dropped.
+        """
+        if not section_content:
+            return False
+        text = section_content.lower()
+        title = (lo.get('title') or '').strip().lower()
+        if len(title) >= 4 and title in text:
+            return True
+        for kw in lo.get('keywords') or []:
+            if not isinstance(kw, str):
+                continue
+            kw_clean = kw.strip().lower()
+            if len(kw_clean) >= 4 and kw_clean in text:
+                return True
+        return False
     
     def __init__(self):
         """Initialize the content parser with Ollama configuration"""
@@ -170,40 +243,87 @@ class ContentParser:
                 return meta["page"]
         return pages_meta[-1]["page"]
 
+    # Density-clustering parameter: matches more than CLUSTER_GAP characters
+    # apart are treated as belonging to separate clusters. ~3000 chars is
+    # roughly 1-2 pages of dense text, which is a reasonable "is this still
+    # the same section?" threshold.
+    _CLUSTER_GAP = 3000
+
+    @staticmethod
+    def _offset_in_excluded(offset: int, excluded_ranges: Optional[List[tuple]]) -> bool:
+        """True if `offset` falls inside any (start, end) range."""
+        if not excluded_ranges:
+            return False
+        for start, end in excluded_ranges:
+            if start <= offset < end:
+                return True
+        return False
+
     def _locate_section_in_content(
         self,
         content: str,
         section: Dict[str, Any],
         pages_meta: Optional[List[Dict[str, Any]]],
+        excluded_ranges: Optional[List[tuple]] = None,
     ) -> Dict[str, Any]:
         """
-        Find where a section lives in the raw content by searching for its
-        title + key topics. Returns start_page, end_page, and a content snippet.
+        Find where a section lives in the source text by clustering hits
+        of its title and key_topics.
+
+        Why clustering, not min/max: a key_topic like "process" appears all
+        over a lesson, so `min(offsets) -> max(offsets)` would span almost
+        the entire document. Instead, we group hits that are within
+        `_CLUSTER_GAP` characters of each other and pick the cluster with
+        the highest total weight — title hits count for more than key_topic
+        hits, so an explicit title match anchors the section even when
+        keywords are scattered.
+
+        `excluded_ranges` lets the caller blacklist offset ranges (e.g.
+        recurring TOC slide pages) so their title bullets don't pollute
+        the locator with false "section is here" signals.
+
+        Returns start_page, end_page (or None if no hits), and a content
+        snippet drawn from the chosen cluster.
         """
-        title = section.get("title", "") or ""
-        topics = section.get("key_topics", []) or []
-        search_terms = [t for t in [title, *topics] if t and len(t) >= 3]
+        title = (section.get("title") or "").strip()
+        topics = [t for t in (section.get("key_topics") or []) if t and len(t) >= 3]
 
-        offsets: List[int] = []
         content_lower = content.lower()
-        for term in search_terms:
-            term_lower = term.lower()
-            start = 0
-            while True:
-                pos = content_lower.find(term_lower, start)
-                if pos == -1:
-                    break
-                offsets.append(pos)
-                start = pos + len(term_lower)
-                # Avoid pathological cases for very common words.
-                if len(offsets) > 200:
-                    break
+        matches: List[Dict[str, Any]] = []  # {offset, weight, length}
 
-        if not offsets:
+        if len(title) >= 3:
+            for off in self._find_all(content_lower, title.lower()):
+                if self._offset_in_excluded(off, excluded_ranges):
+                    continue
+                matches.append({"offset": off, "weight": 3.0, "length": len(title)})
+
+        for topic in topics:
+            for off in self._find_all(content_lower, topic.lower(), max_hits=100):
+                if self._offset_in_excluded(off, excluded_ranges):
+                    continue
+                matches.append({"offset": off, "weight": 1.0, "length": len(topic)})
+
+        if not matches:
             return {"start_page": None, "end_page": None, "content_snippet": ""}
 
-        start_offset = min(offsets)
-        end_offset = max(offsets)
+        matches.sort(key=lambda m: m["offset"])
+        clusters: List[List[Dict[str, Any]]] = [[matches[0]]]
+        for m in matches[1:]:
+            if m["offset"] - clusters[-1][-1]["offset"] > self._CLUSTER_GAP:
+                clusters.append([m])
+            else:
+                clusters[-1].append(m)
+
+        # Score each cluster by total weight; tie-break on earliest position
+        # (so when two clusters are equally strong, we pick the first one,
+        # which is usually where the section is actually defined).
+        best = max(
+            clusters,
+            key=lambda c: (sum(m["weight"] for m in c), -c[0]["offset"]),
+        )
+
+        start_offset = best[0]["offset"]
+        end_offset = best[-1]["offset"] + best[-1]["length"]
         snippet_end = min(end_offset + 600, len(content))
         snippet = content[start_offset:snippet_end][:3000]
 
@@ -213,46 +333,94 @@ class ContentParser:
             "content_snippet": snippet,
         }
 
+    # Max pages we'll attach to one LO. An LO that genuinely lives on more
+    # than ~5 pages is probably mis-scoped (should be split, or it's just
+    # a vocabulary word the model picked up). Capping prevents the "this LO
+    # is tagged with 23 pages" pathology.
+    _LO_MAX_PAGES = 5
+
     def _assign_lo_pages(
         self,
         learning_objects: List[Dict[str, Any]],
         content: str,
         pages_meta: Optional[List[Dict[str, Any]]],
         section: Dict[str, Any],
+        excluded_ranges: Optional[List[tuple]] = None,
     ) -> None:
-        """Annotate each learning object with the pages where its title/keywords appear."""
+        """
+        Annotate each LO with the pages it's actually defined/discussed on.
+
+        Two-tier strategy:
+          1. If the LO's title appears verbatim on some pages within the
+             parent section, those are the pages — a title match is the
+             strongest signal that "this is where the concept is introduced".
+          2. Otherwise fall back to keywords, but require at least 2 keyword
+             hits on the same page to count it (drops drive-by single-word
+             mentions). If even that fails, take the top-hit pages by count.
+
+        All results are constrained to the parent section's page range and
+        capped at `_LO_MAX_PAGES` pages. `excluded_ranges` (typically TOC
+        slide offsets) are skipped so an LO doesn't get tagged with a
+        TOC-bullet page where its title appears only as a bullet.
+        """
         if not pages_meta or not learning_objects:
             for lo in learning_objects:
                 lo['source_pages'] = []
             return
 
         content_lower = content.lower()
-        for lo in learning_objects:
-            terms = [lo.get('title', '')] + list(lo.get('keywords') or [])
-            pages_seen = set()
-            for term in terms:
-                if not term or len(term) < 3:
-                    continue
-                term_lower = term.lower()
-                start = 0
-                hits = 0
-                while hits < 50:
-                    pos = content_lower.find(term_lower, start)
-                    if pos == -1:
-                        break
-                    page = self._offset_to_page(pos, pages_meta)
-                    if page:
-                        pages_seen.add(page)
-                    start = pos + len(term_lower)
-                    hits += 1
+        sp = section.get('start_page')
+        ep = section.get('end_page')
 
-            # Constrain to the section's page range when available.
-            sp, ep = section.get('start_page'), section.get('end_page')
-            if sp and ep:
-                pages_seen = {p for p in pages_seen if sp <= p <= ep}
-                if not pages_seen:
-                    pages_seen = {sp}
-            lo['source_pages'] = sorted(pages_seen)
+        def in_range(page: int) -> bool:
+            if sp is None or ep is None:
+                return True
+            return sp <= page <= ep
+
+        for lo in learning_objects:
+            title = (lo.get('title') or '').strip().lower()
+            keywords = [
+                kw.strip().lower()
+                for kw in (lo.get('keywords') or [])
+                if isinstance(kw, str) and len(kw.strip()) >= 4
+            ]
+
+            # Tier 1: pages where the title appears verbatim.
+            title_pages: List[int] = []
+            if len(title) >= 3:
+                for off in self._find_all(content_lower, title):
+                    if self._offset_in_excluded(off, excluded_ranges):
+                        continue
+                    page = self._offset_to_page(off, pages_meta)
+                    if page is not None and in_range(page) and page not in title_pages:
+                        title_pages.append(page)
+
+            if title_pages:
+                lo['source_pages'] = sorted(title_pages)[: self._LO_MAX_PAGES]
+                continue
+
+            # Tier 2: keyword scoring.
+            page_scores: Dict[int, int] = {}
+            for kw in keywords:
+                for off in self._find_all(content_lower, kw, max_hits=30):
+                    if self._offset_in_excluded(off, excluded_ranges):
+                        continue
+                    page = self._offset_to_page(off, pages_meta)
+                    if page is not None and in_range(page):
+                        page_scores[page] = page_scores.get(page, 0) + 1
+
+            if not page_scores:
+                lo['source_pages'] = [sp] if sp else []
+                continue
+
+            # Prefer pages where ≥ 2 different keyword hits land.
+            strong = sorted([p for p, c in page_scores.items() if c >= 2])
+            if strong:
+                lo['source_pages'] = strong[: self._LO_MAX_PAGES]
+            else:
+                # No page has 2+ hits — fall back to top-N pages by count.
+                top = sorted(page_scores.items(), key=lambda x: -x[1])[: self._LO_MAX_PAGES]
+                lo['source_pages'] = sorted(p for p, _ in top)
 
     def parse_lesson_structure(
         self,
@@ -263,50 +431,61 @@ class ContentParser:
         """
         Parse lesson content into sections with learning objects.
 
-        OPTIMIZED FOR MEMORY: Single-pass analysis to reduce RAM usage.
+        Pipeline:
+          1. Plan a section outline with ONE LLM call that sees the whole
+             lesson (or a per-page-sampled view for very long PDFs). The
+             planner is told to scale the section count to the actual content
+             and avoid duplicates. This replaces the old chunk-and-dedup
+             approach, which always landed at the 15-section cap.
+          2. If the planner fails or returns <2 sections, fall back to the
+             chunked extraction (kept as a safety net).
+          3. For each planned section, locate it in the source text, extract
+             learning objects, and annotate pages.
 
         Args:
-            content: Full lesson content
-            lesson_title: Title of the lesson
-            pages_meta: Optional per-page offset metadata (from PDF extraction).
-                If provided, each section is annotated with start_page/end_page
-                and a content snippet from the actual source text.
+            content: Full lesson content.
+            lesson_title: Title of the lesson.
+            pages_meta: Optional per-page offset metadata. When provided,
+                each section is annotated with start_page/end_page and a
+                content snippet drawn from the actual source text.
 
         Returns:
-            List of section dictionaries with learning objects
+            List of section dictionaries with learning objects.
         """
-        print(f"\n[ContentParser] === MEMORY-OPTIMIZED PARSING ===")
+        print(f"\n[ContentParser] === LESSON PARSING ===")
         print(f"[ContentParser] Content length: {len(content)} characters")
-        
-        # Split content into smaller chunks (reduced from 3000 to 2000 chars per chunk)
-        chunks = self._split_content_into_chunks(content, chunk_size=2000, overlap=200)
-        print(f"[ContentParser] Split into {len(chunks)} chunks (smaller chunks for memory efficiency)")
-        
-        all_sections = []
-        
-        # Single pass: Analyze each chunk for sections
-        for i, chunk in enumerate(chunks):
-            print(f"\n[ContentParser] --- Analyzing chunk {i+1}/{len(chunks)} ---")
-            chunk_sections = self._extract_sections_from_chunk(chunk, lesson_title, i+1, len(chunks))
-            if chunk_sections:
-                all_sections.extend(chunk_sections)
-                print(f"[ContentParser] Chunk {i+1}: Found {len(chunk_sections)} sections")
-        
-        # Merge and deduplicate sections
-        print(f"\n[ContentParser] Merging {len(all_sections)} sections...")
-        merged_sections = self._merge_similar_sections(all_sections)
-        print(f"[ContentParser] After merge: {len(merged_sections)} unique sections")
-        
-        # Limit sections to reasonable amount (allow natural number, max 15 to prevent excessive sections)
-        if len(merged_sections) > 15:
-            print(f"[ContentParser] Limiting to 15 sections (was {len(merged_sections)}) - too many redundant sections")
-            merged_sections = merged_sections[:15]
-        
-        # If too few sections, extract from full content once
+
+        # Detect outline + TOC pages once, share with planner AND locator.
+        # TOC pages are excluded from the locator's search range so that
+        # recurring TOC bullets don't make sections span the whole document.
+        outline_items = self._detect_outline(content, pages_meta) if pages_meta else None
+        excluded_ranges: List[tuple] = []
+        if outline_items and pages_meta:
+            toc_pages = self._find_toc_pages(content, pages_meta, outline_items)
+            excluded_ranges = [(p['start_offset'], p['end_offset']) for p in toc_pages]
+            if toc_pages:
+                page_nums = [p['page'] for p in toc_pages]
+                print(f"[ContentParser] Excluding {len(toc_pages)} TOC page(s) from locator: {page_nums}")
+
+        # ----- Phase 1: plan-first outline (one LLM call, sees whole lesson) -----
+        merged_sections = self._plan_lesson_outline(
+            content, lesson_title, pages_meta, outline_items=outline_items
+        ) or []
+        if merged_sections:
+            print(f"[ContentParser] Planner returned {len(merged_sections)} sections")
+
+        # ----- Fallback A: chunked extraction (legacy path, safety net) -----
         if len(merged_sections) < 2:
-            print(f"[ContentParser] Too few sections, extracting from full content...")
+            print(f"[ContentParser] Planner produced {len(merged_sections)} sections — falling back to chunked extraction")
+            merged_sections = self._chunked_section_extraction(content, lesson_title)
+
+        # ----- Fallback B: last-resort single-call extraction from a snippet -----
+        if len(merged_sections) < 2:
+            print(f"[ContentParser] Chunked fallback also empty — last-resort comprehensive extraction")
             merged_sections = self._extract_comprehensive_sections(content[:5000], lesson_title)
-        
+
+        print(f"[ContentParser] Final section count: {len(merged_sections)}")
+
         # Assign section numbers
         for i, section in enumerate(merged_sections):
             section['section_number'] = i + 1
@@ -319,7 +498,9 @@ class ContentParser:
             key_topics = section.get('key_topics', [])
 
             # Locate section in source text -> pages + real content snippet
-            location = self._locate_section_in_content(content, section, pages_meta)
+            location = self._locate_section_in_content(
+                content, section, pages_meta, excluded_ranges=excluded_ranges
+            )
             section['start_page'] = location['start_page']
             section['end_page'] = location['end_page']
             section_content = location['content_snippet'] or self._extract_section_content(
@@ -335,7 +516,10 @@ class ContentParser:
             )
 
             # Annotate each LO with its source page(s) inside the section's page range.
-            self._assign_lo_pages(learning_objects, content, pages_meta, section)
+            self._assign_lo_pages(
+                learning_objects, content, pages_meta, section,
+                excluded_ranges=excluded_ranges,
+            )
 
             section['learning_objects'] = learning_objects
             print(
@@ -350,6 +534,326 @@ class ContentParser:
         
         return merged_sections
     
+    # =====================================================================
+    # Planner-first outline (primary path)
+    # =====================================================================
+
+    @staticmethod
+    def _find_all(haystack: str, needle: str, max_hits: int = 200) -> List[int]:
+        """Return up to `max_hits` start offsets of `needle` in `haystack` (case-sensitive)."""
+        if not needle:
+            return []
+        out: List[int] = []
+        start = 0
+        while True:
+            pos = haystack.find(needle, start)
+            if pos == -1 or len(out) >= max_hits:
+                break
+            out.append(pos)
+            start = pos + len(needle)
+        return out
+
+    @staticmethod
+    def _detect_outline(
+        content: str,
+        pages_meta: Optional[List[Dict[str, Any]]],
+    ) -> Optional[List[str]]:
+        """
+        Detect a table-of-contents / outline page in the lesson, regardless
+        of the language or what the page is labelled (Sadržaj, Contents,
+        Programme, Curriculum, Headings, "What we'll cover", or no label
+        at all).
+
+        The strongest structural signal is that a TOC's items REAPPEAR as
+        headings later in the document. This function doesn't keyword-match
+        on labels — it scores candidate pages on:
+
+          - short page (a TOC slide is usually 30–800 chars)
+          - several short lines (each item ≤ 80 chars), at least 3
+          - majority of those items appear verbatim in the text after this
+            page (i.e. they predict later headings)
+
+        Only the first ~8 pages are considered (TOC slides are near the
+        start in practice; slide decks sometimes repeat them but the first
+        one is enough to extract the outline).
+
+        Returns the list of item strings, or None if no convincing TOC is
+        found.
+        """
+        if not pages_meta or len(pages_meta) < 3:
+            return None
+
+        content_lower = content.lower()
+        best: Optional[Dict[str, Any]] = None
+
+        for meta in pages_meta[: min(8, len(pages_meta))]:
+            char_count = meta.get('char_count', 0)
+            if char_count < 30 or char_count > 800:
+                continue
+
+            text = content[meta['start_offset']:meta['end_offset']].strip()
+            lines = [ln.strip() for ln in text.splitlines() if ln.strip()]
+            if len(lines) < 4:  # need a label + at least 3 items
+                continue
+
+            # Treat the first line as a probable section label; the rest as
+            # candidate items. Even if the first line is itself an item,
+            # we'll still detect the structure as long as the remaining
+            # lines look like a list.
+            items = lines[1:]
+            if not all(len(item) <= 80 for item in items):
+                continue
+
+            # Verification: how many items reappear later in the document?
+            after = content_lower[meta['end_offset']:]
+            hits = sum(1 for item in items if item.lower() in after)
+            ratio = hits / len(items) if items else 0.0
+
+            # Need at least 3 items to reappear AND a majority hit rate.
+            if hits < 3 or ratio < 0.6:
+                continue
+
+            score = (ratio, hits)  # tuple comparison: prefer ratio then count
+            if best is None or score > (best['ratio'], best['hits']):
+                best = {
+                    'page': meta['page'],
+                    'items': items,
+                    'ratio': ratio,
+                    'hits': hits,
+                }
+
+        if best is None:
+            return None
+
+        print(
+            f"[ContentParser] Detected outline on page {best['page']}: "
+            f"{len(best['items'])} items, {best['ratio']*100:.0f}% reappear later"
+        )
+        return best['items']
+
+    @staticmethod
+    def _find_toc_pages(
+        content: str,
+        pages_meta: List[Dict[str, Any]],
+        outline_items: List[str],
+    ) -> List[Dict[str, Any]]:
+        """
+        Find ALL pages that look like table-of-contents slides.
+
+        Slide decks often repeat the TOC throughout the deck as a "where
+        we are" indicator. Once `_detect_outline` has identified the
+        outline items, we sweep every page and flag any page where most of
+        those items appear together. These pages' offset ranges should be
+        excluded from the section locator — otherwise the locator picks up
+        TOC bullets as if they were content mentions, and a section like
+        "Stanja procesa" ends up spanning the whole document because its
+        title hits every recurring TOC slide.
+        """
+        if not outline_items or not pages_meta:
+            return []
+        items_lower = [it.lower() for it in outline_items if it]
+        if not items_lower:
+            return []
+        threshold = max(2, int(len(items_lower) * 0.6))
+        content_lower = content.lower()
+        toc_pages = []
+        for meta in pages_meta:
+            page_text = content_lower[meta['start_offset']:meta['end_offset']]
+            hits = sum(1 for item in items_lower if item in page_text)
+            if hits >= threshold:
+                toc_pages.append(meta)
+        return toc_pages
+
+    @staticmethod
+    def _build_outline_sample(
+        content: str,
+        pages_meta: Optional[List[Dict[str, Any]]],
+        max_chars: int = 14000,
+    ) -> str:
+        """
+        Build a compact, structure-preserving sample of the lesson for the
+        planner LLM call.
+
+        Strategy:
+          - If the whole content fits within `max_chars`, return it verbatim.
+          - Otherwise sample by page: full text of the first and last pages,
+            plus the first ~300 chars of every page in between (headings
+            usually appear at the top of a page). This gives the model a
+            "table of contents" view without blowing the context window.
+          - If pages_meta is unavailable, fall back to a head-and-tail slice.
+        """
+        if len(content) <= max_chars:
+            return content
+
+        if not pages_meta or len(pages_meta) < 2:
+            head = content[: int(max_chars * 0.7)]
+            tail = content[-int(max_chars * 0.3) :]
+            return f"{head}\n\n[... omitted middle ...]\n\n{tail}"
+
+        parts: List[str] = []
+        first, last = pages_meta[0], pages_meta[-1]
+        parts.append(f"=== PAGE {first['page']} (first page, full) ===")
+        parts.append(content[first['start_offset']:first['end_offset']])
+
+        for meta in pages_meta[1:-1]:
+            excerpt = content[meta['start_offset']:meta['end_offset']].strip()
+            if not excerpt:
+                continue
+            parts.append(f"=== PAGE {meta['page']} (top excerpt) ===")
+            parts.append(excerpt[:300])
+
+        parts.append(f"=== PAGE {last['page']} (last page, full) ===")
+        parts.append(content[last['start_offset']:last['end_offset']])
+
+        sample = "\n".join(parts)
+        if len(sample) > max_chars:
+            sample = sample[:max_chars] + "\n[... truncated ...]"
+        return sample
+
+    def _plan_lesson_outline(
+        self,
+        content: str,
+        lesson_title: str,
+        pages_meta: Optional[List[Dict[str, Any]]] = None,
+        outline_items: Optional[List[str]] = None,
+    ) -> Optional[List[Dict[str, Any]]]:
+        """
+        Plan the lesson's section structure in ONE LLM call.
+
+        The model is given the whole lesson (or a per-page sampled view for
+        very long PDFs) plus a guideline that the section count should scale
+        with content size — ~1 section per 1800 chars, with a soft floor of
+        3 and soft ceiling of 35. The model is told to trust the content over
+        the guideline. Duplicate proposals are filtered out afterward by
+        normalised title, as a defensive belt-and-suspenders.
+
+        Returns None on LLM failure or if the response can't be parsed; the
+        caller falls back to the chunked extraction.
+        """
+        from core.lang_detect import detect_language, language_name
+
+        sample = self._build_outline_sample(content, pages_meta)
+        char_count = len(content)
+        page_count = len(pages_meta) if pages_meta else 0
+
+        lang = detect_language(sample)
+        lang_name = language_name(lang)
+        lang_clause = (
+            f"Write all titles and key_topics in {lang_name}, matching the source content."
+        )
+
+        # Pick the section-count guideline based on content shape:
+        #
+        #   - Slide decks: short pages (~150-500 chars each). Each slide is
+        #     usually one topical unit, so target ~1 section per 2 pages.
+        #   - Prose / textbook content: dense pages. Target ~1 section per
+        #     1800 chars (a paragraph or two of substantive content).
+        #
+        # Without `pages_meta` we can't tell, so we default to the prose
+        # heuristic. Slide-deck content otherwise gets badly under-sectioned
+        # (a 32-page slide lesson would only get ~5 sections from the prose
+        # heuristic; ~16 sections from the slide heuristic).
+        if page_count and char_count / max(1, page_count) < 600:
+            rough_target = max(5, min(40, page_count // 2))
+        else:
+            rough_target = max(3, min(35, char_count // 1800))
+        page_clause = f" across {page_count} pages" if page_count else ""
+
+        # Detect a table-of-contents page (language-agnostic). If found,
+        # offer it to the planner as a hypothesis it can use OR override.
+        # Caller may pass `outline_items` in to avoid re-detecting.
+        if outline_items is None:
+            outline_items = self._detect_outline(content, pages_meta)
+        outline_block = ""
+        if outline_items:
+            bullets = "\n".join(f"  - {item}" for item in outline_items)
+            outline_block = f"""
+
+DETECTED OUTLINE — a page early in this lesson appears to list its top-level structure (its items reappear as headings later in the text). Use it as the chapter-level skeleton and expand each item into its sub-sections, UNLESS the items don't actually fit the content — in that case ignore this and structure the lesson from the content directly.
+
+The detected items are:
+{bullets}"""
+
+        prompt = f"""You are an expert educational content analyst. Your job is to plan the structure of one lesson by listing every distinct topical section it covers.
+
+LESSON: {lesson_title}
+TOTAL LENGTH: {char_count} characters{page_clause}
+
+CONTENT (full lesson, or a structured per-page sample if very long):
+{sample}{outline_block}
+
+WHAT COUNTS AS A SECTION:
+A section is one coherent unit — a concept, definition, procedure, component, technique, principle, or worked example. It is something a student would learn as a unit and could be asked about.
+
+INSTRUCTIONS:
+  - Be EXHAUSTIVE but not redundant. If two candidate sections describe the same concept, merge them into one entry with combined key_topics. Never propose duplicates.
+  - Calibrate the count to the actual content. A short 2-page lesson might have 3-4 sections; a 30-page chapter might have 20-30. As a rough starting estimate this lesson holds about {rough_target} sections — but trust the content over the guideline.
+  - Titles must be specific and content-anchored ("Process Control Block", "Round-Robin Scheduling"), not generic ("Background", "More Information").
+  - key_topics: 2-5 short search terms a reader could find in the source (used downstream to locate the section in the text).
+  - {lang_clause}
+
+OUTPUT (strict JSON array, no other text):
+[{{"title": "...", "key_topics": ["...", "..."]}}, ...]"""
+
+        response = self._call_ollama(prompt, timeout=300)
+        if not response:
+            return None
+
+        sections = self._extract_json_from_response(response)
+        if not isinstance(sections, list):
+            return None
+
+        # Defensive dedup by normalised title — the planner is told not to
+        # produce duplicates, but the LLM occasionally ignores instructions.
+        seen: set = set()
+        cleaned: List[Dict[str, Any]] = []
+        for s in sections:
+            if not isinstance(s, dict):
+                continue
+            title = (s.get("title") or "").strip()
+            if not title:
+                continue
+            norm = title.lower()
+            if norm in seen:
+                continue
+            seen.add(norm)
+            key_topics = s.get("key_topics") or []
+            if not isinstance(key_topics, list):
+                key_topics = []
+            cleaned.append({
+                "title": title,
+                "key_topics": [t for t in key_topics if isinstance(t, str)][:8],
+            })
+
+        return cleaned if cleaned else None
+
+    def _chunked_section_extraction(
+        self,
+        content: str,
+        lesson_title: str,
+    ) -> List[Dict[str, Any]]:
+        """
+        Legacy chunk-based section extraction, kept as a fallback for when
+        the planner returns nothing usable. No hard section cap — the merge
+        step handles overcounts.
+        """
+        chunks = self._split_content_into_chunks(content, chunk_size=2000, overlap=200)
+        print(f"[ContentParser] [fallback] Split into {len(chunks)} chunks")
+
+        all_sections: List[Dict[str, Any]] = []
+        for i, chunk in enumerate(chunks):
+            chunk_sections = self._extract_sections_from_chunk(chunk, lesson_title, i + 1, len(chunks))
+            if chunk_sections:
+                all_sections.extend(chunk_sections)
+
+        merged = self._merge_similar_sections(all_sections)
+        print(f"[ContentParser] [fallback] {len(merged)} sections after merge")
+        return merged
+
+    # =====================================================================
+    # Chunk-based helpers (used by the fallback path)
+    # =====================================================================
+
     def _split_content_into_chunks(self, content: str, chunk_size: int = 3000, overlap: int = 400) -> List[str]:
         """
         Split content into overlapping chunks for analysis.
@@ -745,20 +1249,23 @@ Return ONLY a JSON array with enhanced details:
         
         if len(objects_pass1) > 2:
             # Ask AI to identify any missing concepts
-            prompt_pass3 = f"""Review the extracted concepts for "{section_title}" and identify ANY important concepts we missed.
+            prompt_pass3 = f"""Look ONLY at the content below for "{section_title}" and find concepts that the EXTRACTED list missed.
 
 EXTRACTED: {", ".join([obj.get('title', '') for obj in objects_pass1[:8]])}
 
-ORIGINAL CONTENT:
+ORIGINAL CONTENT (the only source of truth — do not draw on outside knowledge):
 {content_preview[:2500]}
 
 ---
 
-Are there important concepts, definitions, or principles NOT in the extracted list? 
-List any MISSING key concepts that should be included.
+STRICT RULES:
+  - Only propose concepts that appear in the ORIGINAL CONTENT above. Do NOT invent.
+  - Every proposed title or keyword you give MUST appear verbatim in the content.
+  - If the extracted list already covers the content, return an empty array.
+  - Match the language of the source content (Serbian source -> Serbian; English source -> English). Do not translate.
 
-Return ONLY a JSON object with missing concepts (or empty array if complete):
-{{"missing_concepts": [{{\"title\": \"...\", \"description\": \"...\", \"type\": \"...\"}}]}}"""
+Return ONLY a JSON object:
+{{"missing_concepts": [{{\"title\": \"...\", \"description\": \"...\", \"type\": \"...\", \"keywords\": [\"...\", \"...\"]}}]}}"""
             
             response_pass3 = self._call_ollama(prompt_pass3, timeout=150)
             missing = self._extract_json_from_response(response_pass3) if response_pass3 else {}
@@ -771,27 +1278,34 @@ Return ONLY a JSON object with missing concepts (or empty array if complete):
                             'type': missing_obj.get('type', 'concept'),
                             'description': missing_obj.get('description', '')[:600],
                             'key_points': [],
-                            'keywords': []
+                            'keywords': missing_obj.get('keywords', []) or [],
                         })
             
             print(f"[ContentParser] [PASS 3] Added {len(missing.get('missing_concepts', []))} missing concepts")
         
-        # Validate and clean all objects
+        # Validate, dedup, AND drop hallucinations (LOs whose title and
+        # keywords are nowhere in the section content).
         validated_objects = []
         seen_titles = set()
-        
+        dropped_ungrounded = 0
+
         for obj in objects_pass1:
             if not obj.get('title'):
                 continue
-            
+
             title_lower = obj.get('title', '').lower()
             if title_lower in seen_titles:
                 continue
             seen_titles.add(title_lower)
-            
+
+            if not self._lo_is_grounded(obj, section_content):
+                dropped_ungrounded += 1
+                print(f"[ContentParser] Dropping ungrounded LO: '{obj.get('title')}'")
+                continue
+
             validated = {
                 'title': obj.get('title', 'Unknown')[:150],
-                'type': obj.get('type', 'concept'),
+                'type': self._normalize_lo_type(obj.get('type')),
                 'description': obj.get('description', '')[:600],
                 'key_points': obj.get('key_points', []) if isinstance(obj.get('key_points'), list) else [],
                 'keywords': obj.get('keywords', [])[:6] if isinstance(obj.get('keywords'), list) else [],
@@ -800,6 +1314,9 @@ Return ONLY a JSON object with missing concepts (or empty array if complete):
                 'learning_outcomes': obj.get('learning_outcomes', []) if isinstance(obj.get('learning_outcomes'), list) else [],
             }
             validated_objects.append(validated)
+
+        if dropped_ungrounded:
+            print(f"[ContentParser] Dropped {dropped_ungrounded} ungrounded LO(s) (likely hallucinations)")
         
         # Limit to 12 max (but keep all that were found)
         if len(validated_objects) > 12:
