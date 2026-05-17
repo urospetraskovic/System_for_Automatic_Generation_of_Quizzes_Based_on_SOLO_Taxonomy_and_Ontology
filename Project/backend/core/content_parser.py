@@ -77,6 +77,26 @@ class ContentParser:
             return t
         return cls._LO_TYPE_ALIASES.get(t, 'concept')
 
+    # LO title shape limits (Fix K). LO titles should be concept-style noun
+    # phrases, not sentence-shaped descriptions. The grounding check passes
+    # for verbatim bullet-line LO titles, but those titles are unwieldy
+    # ("Dodela resursa procesima i zaštita dodeljenih resursa..."). Reject
+    # them so the model is pushed to noun-phrase labels.
+    _LO_TITLE_MAX_CHARS = 80
+    _LO_TITLE_MAX_WORDS = 10
+
+    @classmethod
+    def _lo_title_is_well_shaped(cls, title: str) -> bool:
+        """Return False if title is sentence-shaped (too long or too many words)."""
+        if not title:
+            return False
+        title = title.strip()
+        if len(title) > cls._LO_TITLE_MAX_CHARS:
+            return False
+        if len(title.split()) > cls._LO_TITLE_MAX_WORDS:
+            return False
+        return True
+
     @staticmethod
     def _lo_is_grounded(lo: Dict[str, Any], section_content: str) -> bool:
         """
@@ -322,6 +342,7 @@ class ContentParser:
         # cluster of generic key_topic hits (e.g. "proces" on many earlier
         # pages) even though the real section is exactly where its title
         # appears. Tie-breakers: total cluster weight, then earliest offset.
+        trim_to_title = False
         if title_matches_anywhere:
             title_clusters = [c for c in clusters if any(m["is_title"] for m in c)]
             if title_clusters:
@@ -333,13 +354,25 @@ class ContentParser:
                         -c[0]["offset"],
                     ),
                 )
+                trim_to_title = True
             else:
                 best = max(clusters, key=lambda c: (sum(m["weight"] for m in c), -c[0]["offset"]))
         else:
             best = max(clusters, key=lambda c: (sum(m["weight"] for m in c), -c[0]["offset"]))
 
-        start_offset = best[0]["offset"]
-        end_offset = best[-1]["offset"] + best[-1]["length"]
+        # Fix J: when a title-bearing cluster wins, trim the section's
+        # boundaries to just the title hits inside that cluster. Keyword
+        # hits that extended the range beyond the title hits are drive-by
+        # mentions, not section content — including them would balloon the
+        # range across many pages (the "section spans 5-65" pathology).
+        if trim_to_title:
+            title_only = [m for m in best if m["is_title"]]
+            start_offset = title_only[0]["offset"]
+            end_offset = title_only[-1]["offset"] + title_only[-1]["length"]
+        else:
+            start_offset = best[0]["offset"]
+            end_offset = best[-1]["offset"] + best[-1]["length"]
+
         snippet_end = min(end_offset + 600, len(content))
         snippet = content[start_offset:snippet_end][:3000]
 
@@ -547,6 +580,73 @@ class ContentParser:
                     existing_titles_lower.append(item_lower)
                     print(f"[ContentParser] Injected missing outline chapter: '{item}' (pages {loc['start_page']}-{loc['end_page']})")
 
+        # ----- Fix L: inject sections for runs of uncovered pages -----
+        # Now that section page ranges are tight (after Fix J trimming),
+        # any consecutive pages with no section coverage probably represent
+        # slides the planner missed (e.g. Pipes pp 57-60 in the OS lesson).
+        # Inject each run as a section using the first slide's heading as
+        # the title.
+        if pages_meta:
+            covered: set = set()
+            for s in merged_sections:
+                sp, ep = s.get('start_page'), s.get('end_page')
+                if sp and ep:
+                    for p in range(sp, ep + 1):
+                        covered.add(p)
+
+            toc_set = {p['page'] for p in toc_pages_meta}
+            all_page_nums = {m['page'] for m in pages_meta}
+            uncovered_pages = sorted(all_page_nums - covered - toc_set)
+
+            page_text_by_num = {
+                m['page']: content[m['start_offset']:m['end_offset']]
+                for m in pages_meta
+            }
+            page_chars_by_num = {m['page']: m.get('char_count', 0) for m in pages_meta}
+
+            # Only consider pages with substantive content (skip near-empty
+            # slides like "izvor: youtube.com" filler).
+            substantive_uncovered = [
+                p for p in uncovered_pages if page_chars_by_num.get(p, 0) >= 30
+            ]
+
+            existing_titles_lower = {s.get('title', '').lower() for s in merged_sections}
+            injected_count = 0
+
+            for run_start, run_end in self._consecutive_runs(substantive_uncovered):
+                # Try the first page's heading; fall through to subsequent
+                # pages if the first one isn't heading-shaped.
+                heading: Optional[str] = None
+                for p in range(run_start, run_end + 1):
+                    candidate = self._extract_slide_heading(page_text_by_num.get(p, ''))
+                    if candidate:
+                        heading = candidate
+                        break
+                if not heading:
+                    continue
+                # Skip if this title is already a section (case-insensitive).
+                if heading.lower() in existing_titles_lower:
+                    continue
+                # Build a content snippet from the run for LO extraction.
+                snippet_parts = []
+                for p in range(run_start, run_end + 1):
+                    snippet_parts.append(page_text_by_num.get(p, ''))
+                snippet = "\n".join(snippet_parts)[:3000]
+
+                merged_sections.append({
+                    'title': heading,
+                    'key_topics': [],
+                    'start_page': run_start,
+                    'end_page': run_end,
+                    'content': snippet,
+                })
+                existing_titles_lower.add(heading.lower())
+                injected_count += 1
+                print(f"[ContentParser] Injected missing-slide section: '{heading}' (pages {run_start}-{run_end})")
+
+            if injected_count:
+                print(f"[ContentParser] Total slide-run injections: {injected_count}")
+
         # Sort by start_page so injected chapters land in document order.
         merged_sections.sort(key=lambda s: (s.get('start_page') or 0, s.get('end_page') or 0))
 
@@ -686,6 +786,43 @@ class ContentParser:
             f"{len(best['items'])} items, {best['ratio']*100:.0f}% reappear later"
         )
         return best['items']
+
+    @staticmethod
+    def _extract_slide_heading(page_text: str) -> Optional[str]:
+        """
+        First non-empty line of a slide IF it looks like a heading.
+
+        Slide titles are typically short, no terminal period, ≤ 10 words.
+        Used by Fix L to pull a heading from an uncovered page so we can
+        inject a section for it.
+        """
+        if not page_text:
+            return None
+        for line in page_text.splitlines():
+            line = line.strip()
+            if not line:
+                continue
+            # Look only at the first non-empty line.
+            if 3 <= len(line) <= 80 and len(line.split()) <= 10 and not line.endswith('.'):
+                return line
+            return None
+        return None
+
+    @staticmethod
+    def _consecutive_runs(pages: List[int]) -> List[tuple]:
+        """Group a sorted list of page numbers into (start, end) consecutive runs."""
+        if not pages:
+            return []
+        runs = []
+        run_start = prev = pages[0]
+        for p in pages[1:]:
+            if p == prev + 1:
+                prev = p
+            else:
+                runs.append((run_start, prev))
+                run_start = prev = p
+        runs.append((run_start, prev))
+        return runs
 
     @staticmethod
     def _find_toc_pages(
@@ -1534,23 +1671,31 @@ Return ONLY a JSON object:
             print(f"[ContentParser] [PASS 3] Added {len(missing.get('missing_concepts', []))} missing concepts")
         
         # Validate, dedup, AND drop hallucinations (LOs whose title and
-        # keywords are nowhere in the section content).
+        # keywords are nowhere in the section content) and sentence-shaped
+        # titles (Fix K).
         validated_objects = []
         seen_titles = set()
         dropped_ungrounded = 0
+        dropped_unshaped = 0
 
         for obj in objects_pass1:
             if not obj.get('title'):
                 continue
 
-            title_lower = obj.get('title', '').lower()
+            title = obj.get('title', '')
+            title_lower = title.lower()
             if title_lower in seen_titles:
                 continue
             seen_titles.add(title_lower)
 
+            if not self._lo_title_is_well_shaped(title):
+                dropped_unshaped += 1
+                print(f"[ContentParser] Dropping sentence-shaped LO: '{title[:60]}...'")
+                continue
+
             if not self._lo_is_grounded(obj, section_content):
                 dropped_ungrounded += 1
-                print(f"[ContentParser] Dropping ungrounded LO: '{obj.get('title')}'")
+                print(f"[ContentParser] Dropping ungrounded LO: '{title}'")
                 continue
 
             validated = {
@@ -1567,6 +1712,8 @@ Return ONLY a JSON object:
 
         if dropped_ungrounded:
             print(f"[ContentParser] Dropped {dropped_ungrounded} ungrounded LO(s) (likely hallucinations)")
+        if dropped_unshaped:
+            print(f"[ContentParser] Dropped {dropped_unshaped} sentence-shaped LO(s)")
         
         # Limit to 12 max (but keep all that were found)
         if len(validated_objects) > 12:
