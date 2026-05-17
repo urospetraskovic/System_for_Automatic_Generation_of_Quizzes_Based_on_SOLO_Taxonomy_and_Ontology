@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { lessonApi, ontologyApi } from '../api';
 import { useLanguage } from '../context/LanguageContext';
 import TranslationViewer from './TranslationViewer';
@@ -11,6 +11,26 @@ function LessonManager({ course, onSelectLesson, onLessonsChange, onSuccess, onE
   const [showTranslationViewer, setShowTranslationViewer] = useState(false);
   const [viewingTranslationId, setViewingTranslationId] = useState(null);
   const fileInputRef = useRef(null);
+
+  // Local copy of lessons. Initialised from props, kept in sync when the
+  // parent refetches, and refreshable directly from the server so we don't
+  // depend on a parent-state round-trip after parse/upload/delete (which
+  // was leaving the card showing "0 Sections" after a successful parse).
+  const [lessons, setLessons] = useState(course.lessons || []);
+
+  useEffect(() => {
+    setLessons(course.lessons || []);
+  }, [course.lessons]);
+
+  const refreshLessons = useCallback(async () => {
+    if (!course?.id) return;
+    try {
+      const res = await lessonApi.getForCourse(course.id);
+      setLessons(res.data.lessons || []);
+    } catch {
+      // Fall back to whatever the parent had.
+    }
+  }, [course?.id]);
 
   const handleExportCourseOntology = async () => {
     try {
@@ -59,10 +79,11 @@ function LessonManager({ course, onSelectLesson, onLessonsChange, onSuccess, onE
     try {
       setUploading(true);
       setUploadProgress('Uploading PDF...');
-      
+
       await lessonApi.create(course.id, formData);
 
       onSuccess('Lesson uploaded! Click "Parse" to extract sections.');
+      await refreshLessons();
       onLessonsChange();
       fileInputRef.current.value = '';
     } catch (err) {
@@ -75,13 +96,14 @@ function LessonManager({ course, onSelectLesson, onLessonsChange, onSuccess, onE
 
   const handleParseLesson = async (lessonId, e) => {
     e.stopPropagation();
-    
+
     try {
       setUploadProgress(`Parsing lesson... This may take a minute.`);
       const response = await lessonApi.parse(lessonId);
-      
+
       const { section_count, learning_object_count } = response.data;
       onSuccess(`Parsed ${section_count} sections with ${learning_object_count} learning objects!`);
+      await refreshLessons();
       onLessonsChange();
     } catch (err) {
       onError(err.response?.data?.error || 'Failed to parse lesson');
@@ -97,13 +119,12 @@ function LessonManager({ course, onSelectLesson, onLessonsChange, onSuccess, onE
     try {
       await lessonApi.delete(lessonId);
       onSuccess('Lesson deleted');
+      await refreshLessons();
       onLessonsChange();
     } catch (err) {
       onError('Failed to delete lesson');
     }
   };
-
-  const lessons = course.lessons || [];
 
   return (
     <div className="lesson-manager">

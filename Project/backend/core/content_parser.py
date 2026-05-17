@@ -289,19 +289,21 @@ class ContentParser:
         topics = [t for t in (section.get("key_topics") or []) if t and len(t) >= 3]
 
         content_lower = content.lower()
-        matches: List[Dict[str, Any]] = []  # {offset, weight, length}
+        matches: List[Dict[str, Any]] = []  # {offset, weight, length, is_title}
 
+        title_matches_anywhere = False
         if len(title) >= 3:
             for off in self._find_all(content_lower, title.lower()):
                 if self._offset_in_excluded(off, excluded_ranges):
                     continue
-                matches.append({"offset": off, "weight": 3.0, "length": len(title)})
+                matches.append({"offset": off, "weight": 3.0, "length": len(title), "is_title": True})
+                title_matches_anywhere = True
 
         for topic in topics:
             for off in self._find_all(content_lower, topic.lower(), max_hits=100):
                 if self._offset_in_excluded(off, excluded_ranges):
                     continue
-                matches.append({"offset": off, "weight": 1.0, "length": len(topic)})
+                matches.append({"offset": off, "weight": 1.0, "length": len(topic), "is_title": False})
 
         if not matches:
             return {"start_page": None, "end_page": None, "content_snippet": ""}
@@ -314,13 +316,27 @@ class ContentParser:
             else:
                 clusters[-1].append(m)
 
-        # Score each cluster by total weight; tie-break on earliest position
-        # (so when two clusters are equally strong, we pick the first one,
-        # which is usually where the section is actually defined).
-        best = max(
-            clusters,
-            key=lambda c: (sum(m["weight"] for m in c), -c[0]["offset"]),
-        )
+        # Fix G: when the title appears verbatim somewhere (outside excluded
+        # ranges), prefer the cluster that contains the most title hits.
+        # Without this, a section like "Komutiranje procesa" can lose to a
+        # cluster of generic key_topic hits (e.g. "proces" on many earlier
+        # pages) even though the real section is exactly where its title
+        # appears. Tie-breakers: total cluster weight, then earliest offset.
+        if title_matches_anywhere:
+            title_clusters = [c for c in clusters if any(m["is_title"] for m in c)]
+            if title_clusters:
+                best = max(
+                    title_clusters,
+                    key=lambda c: (
+                        sum(1 for m in c if m["is_title"]),
+                        sum(m["weight"] for m in c),
+                        -c[0]["offset"],
+                    ),
+                )
+            else:
+                best = max(clusters, key=lambda c: (sum(m["weight"] for m in c), -c[0]["offset"]))
+        else:
+            best = max(clusters, key=lambda c: (sum(m["weight"] for m in c), -c[0]["offset"]))
 
         start_offset = best[0]["offset"]
         end_offset = best[-1]["offset"] + best[-1]["length"]
@@ -459,17 +475,19 @@ class ContentParser:
         # TOC pages are excluded from the locator's search range so that
         # recurring TOC bullets don't make sections span the whole document.
         outline_items = self._detect_outline(content, pages_meta) if pages_meta else None
+        toc_pages_meta: List[Dict[str, Any]] = []
         excluded_ranges: List[tuple] = []
         if outline_items and pages_meta:
-            toc_pages = self._find_toc_pages(content, pages_meta, outline_items)
-            excluded_ranges = [(p['start_offset'], p['end_offset']) for p in toc_pages]
-            if toc_pages:
-                page_nums = [p['page'] for p in toc_pages]
-                print(f"[ContentParser] Excluding {len(toc_pages)} TOC page(s) from locator: {page_nums}")
+            toc_pages_meta = self._find_toc_pages(content, pages_meta, outline_items)
+            excluded_ranges = [(p['start_offset'], p['end_offset']) for p in toc_pages_meta]
+            if toc_pages_meta:
+                page_nums = [p['page'] for p in toc_pages_meta]
+                print(f"[ContentParser] Excluding {len(toc_pages_meta)} TOC page(s) from locator: {page_nums}")
 
-        # ----- Phase 1: plan-first outline (one LLM call, sees whole lesson) -----
+        # ----- Phase 1: plan-first outline (single- or two-stage) -----
         merged_sections = self._plan_lesson_outline(
-            content, lesson_title, pages_meta, outline_items=outline_items
+            content, lesson_title, pages_meta,
+            outline_items=outline_items, toc_pages=toc_pages_meta,
         ) or []
         if merged_sections:
             print(f"[ContentParser] Planner returned {len(merged_sections)} sections")
@@ -486,36 +504,74 @@ class ContentParser:
 
         print(f"[ContentParser] Final section count: {len(merged_sections)}")
 
-        # Assign section numbers
-        for i, section in enumerate(merged_sections):
-            section['section_number'] = i + 1
-            section['id'] = i + 1
-        
-        # Extract learning objects for each section
-        print(f"\n[ContentParser] Extracting learning objects for {len(merged_sections)} sections...")
+        # ----- Phase 2a: locate every section in the source text -----
+        # We locate FIRST (no LLM cost), then drop phantoms and inject
+        # missing outline chapters, THEN do the expensive per-section LO
+        # extraction. This avoids wasting LLM time on sections we'll drop.
         for section in merged_sections:
-            section_title = section.get('title', f"Section {section.get('section_number', 1)}")
-            key_topics = section.get('key_topics', [])
-
-            # Locate section in source text -> pages + real content snippet
             location = self._locate_section_in_content(
                 content, section, pages_meta, excluded_ranges=excluded_ranges
             )
             section['start_page'] = location['start_page']
             section['end_page'] = location['end_page']
-            section_content = location['content_snippet'] or self._extract_section_content(
+            section['content'] = location['content_snippet']
+
+        # ----- Fix H: drop phantom sections (no page anchor) -----
+        with_pages = [s for s in merged_sections if s.get('start_page') is not None]
+        if pages_meta and len(with_pages) < len(merged_sections):
+            dropped = [s.get('title') for s in merged_sections if s.get('start_page') is None]
+            print(f"[ContentParser] Dropping {len(dropped)} phantom section(s) with no page anchor: {dropped}")
+            merged_sections = with_pages
+
+        # ----- Fix H: inject missing outline chapters -----
+        # If the detected outline lists a chapter that no surviving section
+        # represents (by title substring) AND the chapter title can be
+        # located in the source, inject it as a section. Belt-and-suspenders
+        # for the two-stage planner missing a chapter.
+        if outline_items and pages_meta:
+            existing_titles_lower = [s.get('title', '').lower() for s in merged_sections]
+            for item in outline_items:
+                item_lower = item.lower()
+                covered = any(item_lower in et or (et and et in item_lower) for et in existing_titles_lower)
+                if covered:
+                    continue
+                synthetic = {'title': item, 'key_topics': []}
+                loc = self._locate_section_in_content(
+                    content, synthetic, pages_meta, excluded_ranges=excluded_ranges
+                )
+                if loc['start_page'] is not None:
+                    synthetic['start_page'] = loc['start_page']
+                    synthetic['end_page'] = loc['end_page']
+                    synthetic['content'] = loc['content_snippet']
+                    merged_sections.append(synthetic)
+                    existing_titles_lower.append(item_lower)
+                    print(f"[ContentParser] Injected missing outline chapter: '{item}' (pages {loc['start_page']}-{loc['end_page']})")
+
+        # Sort by start_page so injected chapters land in document order.
+        merged_sections.sort(key=lambda s: (s.get('start_page') or 0, s.get('end_page') or 0))
+
+        # Assign section numbers
+        for i, section in enumerate(merged_sections):
+            section['section_number'] = i + 1
+            section['id'] = i + 1
+
+        # ----- Phase 2b: extract learning objects for each section -----
+        print(f"\n[ContentParser] Extracting learning objects for {len(merged_sections)} sections...")
+        for section in merged_sections:
+            section_title = section.get('title', f"Section {section.get('section_number', 1)}")
+            key_topics = section.get('key_topics', [])
+
+            section_content = section.get('content') or self._extract_section_content(
                 content, " ".join(key_topics), section_title
             )
             section['content'] = section_content
 
-            # Extract learning objects (reduced from 5-12 to 3-6)
             learning_objects = self._extract_learning_objects(
                 section_content,
                 section_title,
                 lesson_title
             )
 
-            # Annotate each LO with its source page(s) inside the section's page range.
             self._assign_lo_pages(
                 learning_objects, content, pages_meta, section,
                 excluded_ranges=excluded_ranges,
@@ -526,12 +582,12 @@ class ContentParser:
                 f"[ContentParser] Section '{section_title}': {len(learning_objects)} learning objects"
                 + (f" (pages {section['start_page']}-{section['end_page']})" if section.get('start_page') else "")
             )
-        
+
         print(f"\n[ContentParser] === PARSING COMPLETE ===")
         print(f"[ContentParser] Total sections: {len(merged_sections)}")
         total_los = sum(len(s.get('learning_objects', [])) for s in merged_sections)
         print(f"[ContentParser] Total learning objects: {total_los}")
-        
+
         return merged_sections
     
     # =====================================================================
@@ -710,12 +766,193 @@ class ContentParser:
             sample = sample[:max_chars] + "\n[... truncated ...]"
         return sample
 
+    # =====================================================================
+    # Two-stage chapter expansion (Fix I)
+    # =====================================================================
+
+    @staticmethod
+    def _compute_chapter_ranges(
+        outline_items: List[str],
+        toc_page_nums: List[int],
+        total_pages: int,
+    ) -> List[tuple]:
+        """
+        Derive (chapter_title, start_page, end_page) for each detected
+        chapter by using TOC pages as boundaries.
+
+        Slide decks following the "TOC then chapter" pattern (which is what
+        `_find_toc_pages` is designed to detect) put each chapter's content
+        between consecutive TOCs. So chapter i runs from (toc_i + 1) to
+        (toc_{i+1} - 1), and the last chapter runs to the final page.
+        """
+        if not outline_items or not toc_page_nums or total_pages <= 0:
+            return []
+        ranges: List[tuple] = []
+        toc_sorted = sorted(toc_page_nums)
+        for i, chapter_title in enumerate(outline_items):
+            if i < len(toc_sorted):
+                start_page = toc_sorted[i] + 1
+            else:
+                start_page = (ranges[-1][2] + 1) if ranges else 1
+            if i + 1 < len(toc_sorted):
+                end_page = toc_sorted[i + 1] - 1
+            else:
+                end_page = total_pages
+            if start_page > end_page or start_page > total_pages:
+                continue
+            ranges.append((chapter_title, start_page, end_page))
+        return ranges
+
+    @staticmethod
+    def _content_for_page_range(
+        content: str,
+        pages_meta: List[Dict[str, Any]],
+        start_page: int,
+        end_page: int,
+        excluded_page_nums: Optional[set] = None,
+    ) -> str:
+        """Concatenate raw text for pages [start_page..end_page], skipping excluded pages."""
+        if not pages_meta:
+            return ""
+        excluded = excluded_page_nums or set()
+        parts = []
+        for meta in pages_meta:
+            page = meta['page']
+            if start_page <= page <= end_page and page not in excluded:
+                parts.append(content[meta['start_offset']:meta['end_offset']])
+        return "\n".join(parts)
+
+    def _extract_chapter_subsections(
+        self,
+        chapter_title: str,
+        chapter_content: str,
+        lesson_title: str,
+    ) -> Optional[List[Dict[str, Any]]]:
+        """
+        Stage 2 of the two-stage planner: given ONE chapter's content,
+        ask the LLM to identify its slide-level sub-sections.
+
+        Returns a list of section dicts ({"title": ..., "key_topics": [...]})
+        or None on failure / empty response.
+        """
+        from core.lang_detect import detect_language, language_name
+
+        lang = detect_language(chapter_content)
+        lang_clause = f"Write titles and key_topics in {language_name(lang)}, matching the source content."
+
+        prompt = f"""You are an expert educational content analyst. The CHAPTER content below is one part of the lesson "{lesson_title}". Break this chapter into its distinct topical sub-sections — the slide-level topics a student would learn as separate units.
+
+CHAPTER: {chapter_title}
+
+CHAPTER CONTENT:
+{chapter_content[:8000]}
+
+INSTRUCTIONS:
+  - Identify EVERY distinct sub-section the chapter content covers. A long chapter usually has 4-10 sub-sections; a short one has 2-4. Trust the content over any rough guideline.
+  - A sub-section = one slide-level topic: a concept, definition, procedure, comparison, principle, or worked example.
+  - Be EXHAUSTIVE — capture every distinct slide topic. But do NOT propose duplicates: if two candidate titles describe the same idea, merge them into one entry.
+  - Titles must be specific and content-anchored (use the exact slide heading where possible, e.g. "Atributi procesa", "Komutiranje procesa"). Do NOT invent generic titles like "Overview" or "More info".
+  - Only propose sub-sections that actually appear in this chapter content. Do NOT borrow concepts from other chapters of the lesson.
+  - {lang_clause}
+
+OUTPUT (strict JSON array, no other text):
+[{{"title": "...", "key_topics": ["...", "..."]}}, ...]"""
+
+        response = self._call_ollama(prompt, timeout=300)
+        if not response:
+            return None
+
+        raw = self._extract_json_from_response(response)
+        if not isinstance(raw, list):
+            return None
+
+        seen = set()
+        out: List[Dict[str, Any]] = []
+        for s in raw:
+            if not isinstance(s, dict):
+                continue
+            title = (s.get("title") or "").strip()
+            if not title:
+                continue
+            norm = title.lower()
+            if norm in seen:
+                continue
+            seen.add(norm)
+            key_topics = s.get("key_topics") or []
+            if not isinstance(key_topics, list):
+                key_topics = []
+            out.append({
+                "title": title,
+                "key_topics": [t for t in key_topics if isinstance(t, str)][:8],
+            })
+        return out or None
+
+    def _expand_chapters_into_sections(
+        self,
+        content: str,
+        lesson_title: str,
+        outline_items: List[str],
+        pages_meta: List[Dict[str, Any]],
+        toc_pages: List[Dict[str, Any]],
+    ) -> Optional[List[Dict[str, Any]]]:
+        """
+        Two-stage planner orchestration. For each detected chapter, fetch
+        its page range and ask the LLM to expand it into sub-sections.
+
+        Falls back to None if chapter boundaries can't be derived (caller
+        then uses the single-stage planner).
+        """
+        if not outline_items or not pages_meta or not toc_pages:
+            return None
+
+        toc_page_nums = sorted(p['page'] for p in toc_pages)
+        total_pages = pages_meta[-1]['page']
+        ranges = self._compute_chapter_ranges(outline_items, toc_page_nums, total_pages)
+        if not ranges:
+            return None
+
+        print(f"[ContentParser] Two-stage planner: expanding {len(ranges)} chapter(s)")
+        excluded_set = set(toc_page_nums)
+        all_sections: List[Dict[str, Any]] = []
+
+        for chapter_title, start, end in ranges:
+            chapter_content = self._content_for_page_range(
+                content, pages_meta, start, end, excluded_set
+            )
+            if len(chapter_content.strip()) < 150:
+                # Tiny chapter (e.g. 1-2 sparse slides) — fold into a single section.
+                print(f"[ContentParser]   '{chapter_title}' (pp {start}-{end}, {len(chapter_content)} chars): tiny — keep as one section")
+                all_sections.append({"title": chapter_title, "key_topics": []})
+                continue
+
+            subs = self._extract_chapter_subsections(chapter_title, chapter_content, lesson_title)
+            if subs:
+                print(f"[ContentParser]   '{chapter_title}' (pp {start}-{end}): {len(subs)} sub-sections")
+                all_sections.extend(subs)
+            else:
+                print(f"[ContentParser]   '{chapter_title}' (pp {start}-{end}): expansion failed — keep as one section")
+                all_sections.append({"title": chapter_title, "key_topics": []})
+
+        # Final dedup across chapters (a sub-section title shared between
+        # two chapters would be unusual but possible).
+        seen = set()
+        deduped: List[Dict[str, Any]] = []
+        for s in all_sections:
+            norm = s["title"].lower()
+            if norm in seen:
+                continue
+            seen.add(norm)
+            deduped.append(s)
+
+        return deduped or None
+
     def _plan_lesson_outline(
         self,
         content: str,
         lesson_title: str,
         pages_meta: Optional[List[Dict[str, Any]]] = None,
         outline_items: Optional[List[str]] = None,
+        toc_pages: Optional[List[Dict[str, Any]]] = None,
     ) -> Optional[List[Dict[str, Any]]]:
         """
         Plan the lesson's section structure in ONE LLM call.
@@ -764,6 +1001,19 @@ class ContentParser:
         # Caller may pass `outline_items` in to avoid re-detecting.
         if outline_items is None:
             outline_items = self._detect_outline(content, pages_meta)
+
+        # Fix I: when we have a real outline AND TOC pages to mark chapter
+        # boundaries, run the two-stage planner. It produces noticeably
+        # better per-chapter coverage than a single big call.
+        if outline_items and len(outline_items) >= 3 and toc_pages and pages_meta:
+            print(f"[ContentParser] Using two-stage planner ({len(outline_items)} chapters)")
+            two_stage = self._expand_chapters_into_sections(
+                content, lesson_title, outline_items, pages_meta, toc_pages
+            )
+            if two_stage and len(two_stage) >= len(outline_items):
+                return two_stage
+            print(f"[ContentParser] Two-stage produced {len(two_stage) if two_stage else 0} sections — falling back to single-stage")
+
         outline_block = ""
         if outline_items:
             bullets = "\n".join(f"  - {item}" for item in outline_items)
