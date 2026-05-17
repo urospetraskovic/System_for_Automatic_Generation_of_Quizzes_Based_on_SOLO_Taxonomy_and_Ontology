@@ -311,13 +311,23 @@ class ContentParser:
         content_lower = content.lower()
         matches: List[Dict[str, Any]] = []  # {offset, weight, length, is_title}
 
+        # Fix M: try the exact title, then a sequence of cheap fuzzy
+        # variants. Stops at the first variant that produces a match —
+        # we never mix matches from different variants.
         title_matches_anywhere = False
         if len(title) >= 3:
-            for off in self._find_all(content_lower, title.lower()):
-                if self._offset_in_excluded(off, excluded_ranges):
-                    continue
-                matches.append({"offset": off, "weight": 3.0, "length": len(title), "is_title": True})
-                title_matches_anywhere = True
+            for variant in self._title_variants(title):
+                variant_matches = []
+                for off in self._find_all(content_lower, variant):
+                    if self._offset_in_excluded(off, excluded_ranges):
+                        continue
+                    variant_matches.append(
+                        {"offset": off, "weight": 3.0, "length": len(variant), "is_title": True}
+                    )
+                if variant_matches:
+                    matches.extend(variant_matches)
+                    title_matches_anywhere = True
+                    break
 
         for topic in topics:
             for off in self._find_all(content_lower, topic.lower(), max_hits=100):
@@ -326,7 +336,12 @@ class ContentParser:
                 matches.append({"offset": off, "weight": 1.0, "length": len(topic), "is_title": False})
 
         if not matches:
-            return {"start_page": None, "end_page": None, "content_snippet": ""}
+            return {
+                "start_page": None,
+                "end_page": None,
+                "content_snippet": "",
+                "matched_via_title": False,
+            }
 
         matches.sort(key=lambda m: m["offset"])
         clusters: List[List[Dict[str, Any]]] = [[matches[0]]]
@@ -380,6 +395,12 @@ class ContentParser:
             "start_page": self._offset_to_page(start_offset, pages_meta) if pages_meta else None,
             "end_page": self._offset_to_page(end_offset, pages_meta) if pages_meta else None,
             "content_snippet": snippet,
+            # Fix R: tells the caller whether the title was actually found
+            # verbatim (so the trimmed range is reliable) or whether the
+            # locator fell back to keyword clustering (range may be wide
+            # and the section is probably a paraphrase that doesn't really
+            # exist in the source).
+            "matched_via_title": trim_to_title,
         }
 
     # Max pages we'll attach to one LO. An LO that genuinely lives on more
@@ -548,6 +569,7 @@ class ContentParser:
             section['start_page'] = location['start_page']
             section['end_page'] = location['end_page']
             section['content'] = location['content_snippet']
+            section['_matched_via_title'] = location.get('matched_via_title', False)
 
         # ----- Fix H: drop phantom sections (no page anchor) -----
         with_pages = [s for s in merged_sections if s.get('start_page') is not None]
@@ -555,6 +577,31 @@ class ContentParser:
             dropped = [s.get('title') for s in merged_sections if s.get('start_page') is None]
             print(f"[ContentParser] Dropping {len(dropped)} phantom section(s) with no page anchor: {dropped}")
             merged_sections = with_pages
+
+        # ----- Fix R: drop wide-range sections that did NOT match by title -----
+        # These are paraphrased planner titles whose keyword fallback ballooned
+        # across the document. Dropping them frees those pages for Fix L's
+        # slide-heading injection, which produces cleaner, verbatim-titled
+        # sections from each page's actual heading.
+        if pages_meta:
+            WIDE_RANGE_PAGE_THRESHOLD = 8  # span > threshold => drop
+            survived = []
+            dropped_wide = []
+            for s in merged_sections:
+                sp, ep = s.get('start_page'), s.get('end_page')
+                if sp is None or ep is None:
+                    survived.append(s)
+                    continue
+                page_span = ep - sp + 1
+                if not s.get('_matched_via_title') and page_span > WIDE_RANGE_PAGE_THRESHOLD:
+                    dropped_wide.append(f"'{s.get('title')}' (pp {sp}-{ep})")
+                    continue
+                survived.append(s)
+            if dropped_wide:
+                print(f"[ContentParser] Fix R: dropped {len(dropped_wide)} wide-range non-title-matched section(s):")
+                for d in dropped_wide:
+                    print(f"  - {d}")
+            merged_sections = survived
 
         # ----- Fix H: inject missing outline chapters -----
         # If the detected outline lists a chapter that no surviving section
@@ -672,6 +719,25 @@ class ContentParser:
                 lesson_title
             )
 
+            # Fix O: if the section ended up empty (all LOs dropped as
+            # ungrounded/sentence-shaped/dedup), retry with the full page
+            # content for narrow-range sections. The cluster snippet can
+            # be too narrow to give the LLM enough material.
+            if not learning_objects and pages_meta and section.get('start_page') and section.get('end_page'):
+                page_span = section['end_page'] - section['start_page'] + 1
+                if 1 <= page_span <= 3:
+                    toc_page_nums = {p['page'] for p in toc_pages_meta}
+                    full_page_content = self._content_for_page_range(
+                        content, pages_meta,
+                        section['start_page'], section['end_page'],
+                        excluded_page_nums=toc_page_nums,
+                    )
+                    if full_page_content and len(full_page_content) > 50 and full_page_content != section_content:
+                        print(f"[ContentParser] Section '{section_title}' was empty — retrying LO extraction with full page content")
+                        learning_objects = self._extract_learning_objects(
+                            full_page_content, section_title, lesson_title
+                        )
+
             self._assign_lo_pages(
                 learning_objects, content, pages_meta, section,
                 excluded_ranges=excluded_ranges,
@@ -683,6 +749,16 @@ class ContentParser:
                 + (f" (pages {section['start_page']}-{section['end_page']})" if section.get('start_page') else "")
             )
 
+        # ----- Fix N: dedup sections that overlap in pages AND LO content -----
+        before_dedup = len(merged_sections)
+        merged_sections = self._dedup_sections_by_lo_overlap(merged_sections)
+        if len(merged_sections) < before_dedup:
+            # Renumber after dedup
+            for i, section in enumerate(merged_sections):
+                section['section_number'] = i + 1
+                section['id'] = i + 1
+            print(f"[ContentParser] After LO-overlap dedup: {len(merged_sections)} sections (was {before_dedup})")
+
         print(f"\n[ContentParser] === PARSING COMPLETE ===")
         print(f"[ContentParser] Total sections: {len(merged_sections)}")
         total_los = sum(len(s.get('learning_objects', [])) for s in merged_sections)
@@ -693,6 +769,43 @@ class ContentParser:
     # =====================================================================
     # Planner-first outline (primary path)
     # =====================================================================
+
+    @staticmethod
+    def _title_variants(title: str) -> List[str]:
+        """
+        Generate fuzzy variants of a section title for substring search.
+
+        Why: the planner sometimes outputs a title that doesn't appear
+        literally in the source (extra trailing punctuation, NBSP vs space,
+        different Unicode normalization). The exact-match locator then
+        falls back to keyword-only clustering, which sprawls across the
+        whole document. Trying a few cheap variants rescues those cases.
+
+        Returns variants in order, most specific first. Caller uses the
+        first variant that produces matches.
+        """
+        import unicodedata
+        if not title:
+            return []
+        base = title.strip()
+        if len(base) < 3:
+            return []
+
+        seen = set()
+        out: List[str] = []
+        for v in [
+            base.lower(),
+            base.rstrip('.,;:!?').lower(),
+            unicodedata.normalize('NFKC', base).lower(),
+            unicodedata.normalize('NFKC', base.rstrip('.,;:!?')).lower(),
+            # Whitespace normalisation (e.g. NBSP -> regular space)
+            ' '.join(base.split()).lower(),
+        ]:
+            v = v.strip()
+            if v and len(v) >= 3 and v not in seen:
+                seen.add(v)
+                out.append(v)
+        return out
 
     @staticmethod
     def _find_all(haystack: str, needle: str, max_hits: int = 200) -> List[int]:
@@ -788,13 +901,87 @@ class ContentParser:
         return best['items']
 
     @staticmethod
+    def _dedup_sections_by_lo_overlap(
+        sections: List[Dict[str, Any]],
+        page_overlap_threshold: float = 0.5,
+        lo_overlap_threshold: float = 0.6,
+    ) -> List[Dict[str, Any]]:
+        """
+        Drop sections that overlap heavily in both pages AND LO content
+        with another section. The winner absorbs the loser's unique LOs.
+
+        Heuristic:
+          - page_overlap_ratio ≥ 0.5 (cover the same physical pages)
+          - lo_titles overlap_ratio ≥ 0.6 (cover the same concepts)
+        Keep the section with more LOs (tiebreaker: shorter title — usually
+        the more specific/cleaner one).
+        """
+        if len(sections) < 2:
+            return sections
+
+        def lo_titles(section: Dict[str, Any]) -> set:
+            return {
+                (lo.get('title') or '').strip().lower()
+                for lo in section.get('learning_objects', [])
+                if lo.get('title')
+            }
+
+        def page_overlap(a: Dict[str, Any], b: Dict[str, Any]) -> float:
+            asp, aep = a.get('start_page'), a.get('end_page')
+            bsp, bep = b.get('start_page'), b.get('end_page')
+            if not all([asp, aep, bsp, bep]):
+                return 0.0
+            ap = set(range(asp, aep + 1))
+            bp = set(range(bsp, bep + 1))
+            if not ap or not bp:
+                return 0.0
+            return len(ap & bp) / min(len(ap), len(bp))
+
+        to_drop: set = set()
+        for i in range(len(sections)):
+            if i in to_drop:
+                continue
+            for j in range(i + 1, len(sections)):
+                if j in to_drop:
+                    continue
+                if page_overlap(sections[i], sections[j]) < page_overlap_threshold:
+                    continue
+                li, lj = lo_titles(sections[i]), lo_titles(sections[j])
+                if not li or not lj:
+                    continue
+                overlap = len(li & lj) / min(len(li), len(lj))
+                if overlap < lo_overlap_threshold:
+                    continue
+
+                # Pick winner: more LOs, tiebreak on shorter title.
+                ni, nj = len(sections[i].get('learning_objects', [])), len(sections[j].get('learning_objects', []))
+                ti, tj = len(sections[i].get('title', '')), len(sections[j].get('title', ''))
+                drop_i = (nj > ni) or (nj == ni and tj < ti)
+
+                loser, winner = (sections[i], sections[j]) if drop_i else (sections[j], sections[i])
+                winner_titles = lo_titles(winner)
+                for lo in loser.get('learning_objects', []):
+                    t = (lo.get('title') or '').strip().lower()
+                    if t and t not in winner_titles:
+                        winner.setdefault('learning_objects', []).append(lo)
+                        winner_titles.add(t)
+
+                print(f"[ContentParser] Dedup: dropping '{loser.get('title')}' (overlaps with '{winner.get('title')}')")
+                to_drop.add(i if drop_i else j)
+                if drop_i:
+                    break  # `sections[i]` is gone; outer i moves on
+
+        return [s for idx, s in enumerate(sections) if idx not in to_drop]
+
+    @staticmethod
     def _extract_slide_heading(page_text: str) -> Optional[str]:
         """
         First non-empty line of a slide IF it looks like a heading.
 
-        Slide titles are typically short, no terminal period, ≤ 10 words.
-        Used by Fix L to pull a heading from an uncovered page so we can
-        inject a section for it.
+        Slide titles are typically short, no terminal period, ≤ 10 words,
+        and START WITH AN UPPERCASE LETTER (or non-letter character like a
+        digit or punctuation). Lowercase-starting lines like
+        "izvor : www.youtube.com" are body content / citations, not headings.
         """
         if not page_text:
             return None
@@ -803,10 +990,54 @@ class ContentParser:
             if not line:
                 continue
             # Look only at the first non-empty line.
-            if 3 <= len(line) <= 80 and len(line.split()) <= 10 and not line.endswith('.'):
-                return line
-            return None
+            if not (3 <= len(line) <= 80 and len(line.split()) <= 10 and not line.endswith('.')):
+                return None
+            # Reject lowercase-starting alphabetic lines.
+            if line[0].isalpha() and line[0].islower():
+                return None
+            return line
         return None
+
+    @classmethod
+    def _extract_slide_headings(
+        cls,
+        content: str,
+        pages_meta: List[Dict[str, Any]],
+        toc_pages: Optional[List[Dict[str, Any]]] = None,
+        start_page: Optional[int] = None,
+        end_page: Optional[int] = None,
+    ) -> List[Dict[str, Any]]:
+        """
+        Scan every non-TOC page and pull the slide heading (first short
+        line). Group consecutive pages with the SAME heading into one run.
+
+        Used by Fix S as the candidate-titles list for the planner: the
+        LLM is told to prefer these verbatim headings over paraphrases,
+        which keeps locator matches reliable downstream.
+
+        Returns a list of {'heading': str, 'start_page': int, 'end_page': int}.
+        """
+        if not pages_meta:
+            return []
+        toc_set = {p['page'] for p in (toc_pages or [])}
+        runs: List[Dict[str, Any]] = []
+        for meta in pages_meta:
+            page = meta['page']
+            if page in toc_set:
+                continue
+            if start_page is not None and page < start_page:
+                continue
+            if end_page is not None and page > end_page:
+                continue
+            page_text = content[meta['start_offset']:meta['end_offset']]
+            heading = cls._extract_slide_heading(page_text)
+            if heading is None:
+                continue
+            if runs and runs[-1]['heading'] == heading and runs[-1]['end_page'] == page - 1:
+                runs[-1]['end_page'] = page
+            else:
+                runs.append({'heading': heading, 'start_page': page, 'end_page': page})
+        return runs
 
     @staticmethod
     def _consecutive_runs(pages: List[int]) -> List[tuple]:
@@ -964,31 +1195,49 @@ class ContentParser:
         chapter_title: str,
         chapter_content: str,
         lesson_title: str,
+        candidate_headings: Optional[List[Dict[str, Any]]] = None,
     ) -> Optional[List[Dict[str, Any]]]:
         """
         Stage 2 of the two-stage planner: given ONE chapter's content,
         ask the LLM to identify its slide-level sub-sections.
 
-        Returns a list of section dicts ({"title": ..., "key_topics": [...]})
-        or None on failure / empty response.
+        `candidate_headings` (optional) lists verbatim slide headings within
+        the chapter — the LLM is told to prefer these over paraphrases.
+
+        Returns a list of section dicts or None on failure.
         """
         from core.lang_detect import detect_language, language_name
 
         lang = detect_language(chapter_content)
         lang_clause = f"Write titles and key_topics in {language_name(lang)}, matching the source content."
 
+        headings_block = ""
+        if candidate_headings:
+            heading_lines = []
+            for h in candidate_headings:
+                if h['start_page'] == h['end_page']:
+                    heading_lines.append(f"  - p{h['start_page']}: {h['heading']}")
+                else:
+                    heading_lines.append(f"  - pp{h['start_page']}-{h['end_page']}: {h['heading']}")
+            bullets = "\n".join(heading_lines)
+            headings_block = f"""
+
+CANDIDATE SLIDE HEADINGS WITHIN THIS CHAPTER (verbatim first lines of each slide). PREFER these as sub-section titles — they exist literally in the source and the downstream locator can anchor them precisely.
+
+{bullets}"""
+
         prompt = f"""You are an expert educational content analyst. The CHAPTER content below is one part of the lesson "{lesson_title}". Break this chapter into its distinct topical sub-sections — the slide-level topics a student would learn as separate units.
 
 CHAPTER: {chapter_title}
 
 CHAPTER CONTENT:
-{chapter_content[:8000]}
+{chapter_content[:8000]}{headings_block}
 
 INSTRUCTIONS:
   - Identify EVERY distinct sub-section the chapter content covers. A long chapter usually has 4-10 sub-sections; a short one has 2-4. Trust the content over any rough guideline.
   - A sub-section = one slide-level topic: a concept, definition, procedure, comparison, principle, or worked example.
   - Be EXHAUSTIVE — capture every distinct slide topic. But do NOT propose duplicates: if two candidate titles describe the same idea, merge them into one entry.
-  - Titles must be specific and content-anchored (use the exact slide heading where possible, e.g. "Atributi procesa", "Komutiranje procesa"). Do NOT invent generic titles like "Overview" or "More info".
+  - **Use the CANDIDATE SLIDE HEADINGS verbatim as sub-section titles whenever possible.** Do NOT paraphrase or invent titles. Only deviate when no candidate heading covers a real slide topic.
   - Only propose sub-sections that actually appear in this chapter content. Do NOT borrow concepts from other chapters of the lesson.
   - {lang_clause}
 
@@ -1062,7 +1311,13 @@ OUTPUT (strict JSON array, no other text):
                 all_sections.append({"title": chapter_title, "key_topics": []})
                 continue
 
-            subs = self._extract_chapter_subsections(chapter_title, chapter_content, lesson_title)
+            chapter_headings = self._extract_slide_headings(
+                content, pages_meta, toc_pages, start_page=start, end_page=end
+            )
+            subs = self._extract_chapter_subsections(
+                chapter_title, chapter_content, lesson_title,
+                candidate_headings=chapter_headings,
+            )
             if subs:
                 print(f"[ContentParser]   '{chapter_title}' (pp {start}-{end}): {len(subs)} sub-sections")
                 all_sections.extend(subs)
@@ -1161,13 +1416,34 @@ DETECTED OUTLINE — a page early in this lesson appears to list its top-level s
 The detected items are:
 {bullets}"""
 
+        # Fix S: pre-extract slide headings from every non-TOC page and give
+        # them to the planner as the preferred title vocabulary. Without
+        # this, the planner invents paraphrased umbrella titles which the
+        # locator can't anchor verbatim, causing wide-range fallback.
+        slide_headings_block = ""
+        if pages_meta:
+            headings = self._extract_slide_headings(content, pages_meta, toc_pages)
+            if headings:
+                heading_lines = []
+                for h in headings[:60]:  # cap so the prompt stays reasonable
+                    if h['start_page'] == h['end_page']:
+                        heading_lines.append(f"  - p{h['start_page']}: {h['heading']}")
+                    else:
+                        heading_lines.append(f"  - pp{h['start_page']}-{h['end_page']}: {h['heading']}")
+                bullets = "\n".join(heading_lines)
+                slide_headings_block = f"""
+
+CANDIDATE SLIDE HEADINGS — these are the verbatim first lines of every non-TOC page (the actual slide titles). PREFER these as your section titles, since they exist literally in the source and the downstream locator can anchor them precisely. Do NOT paraphrase or invent umbrella titles when a verbatim slide heading covers the same content.
+
+{bullets}"""
+
         prompt = f"""You are an expert educational content analyst. Your job is to plan the structure of one lesson by listing every distinct topical section it covers.
 
 LESSON: {lesson_title}
 TOTAL LENGTH: {char_count} characters{page_clause}
 
 CONTENT (full lesson, or a structured per-page sample if very long):
-{sample}{outline_block}
+{sample}{outline_block}{slide_headings_block}
 
 WHAT COUNTS AS A SECTION:
 A section is one coherent unit — a concept, definition, procedure, component, technique, principle, or worked example. It is something a student would learn as a unit and could be asked about.
@@ -1175,7 +1451,7 @@ A section is one coherent unit — a concept, definition, procedure, component, 
 INSTRUCTIONS:
   - Be EXHAUSTIVE but not redundant. If two candidate sections describe the same concept, merge them into one entry with combined key_topics. Never propose duplicates.
   - Calibrate the count to the actual content. A short 2-page lesson might have 3-4 sections; a 30-page chapter might have 20-30. As a rough starting estimate this lesson holds about {rough_target} sections — but trust the content over the guideline.
-  - Titles must be specific and content-anchored ("Process Control Block", "Round-Robin Scheduling"), not generic ("Background", "More Information").
+  - **Use the CANDIDATE SLIDE HEADINGS verbatim as section titles whenever they cover the same content.** Do NOT paraphrase, combine, or invent umbrella titles — the downstream locator works by finding section titles literally in the source, so an invented title will fail to anchor. Only deviate from the candidate list if a slide truly has no real heading.
   - key_topics: 2-5 short search terms a reader could find in the source (used downstream to locate the section in the text).
   - {lang_clause}
 
