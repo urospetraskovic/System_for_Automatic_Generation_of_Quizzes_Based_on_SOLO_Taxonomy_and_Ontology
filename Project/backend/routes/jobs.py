@@ -56,6 +56,73 @@ def start_generate_questions():
         return jsonify({"error": str(e)}), 500
 
 
+@jobs_bp.route("/generate-questions-for-course", methods=["POST"])
+def start_generate_for_course():
+    """
+    Auto-quota mode: generate questions for every lesson in a course at
+    every SOLO level, sized to aim for ~85-90% slide coverage.
+    """
+    try:
+        data = request.get_json(silent=True) or {}
+        course_id = data.get('course_id')
+        if not isinstance(course_id, int) or course_id < 1:
+            return jsonify({"error": "course_id (positive int) is required"}), 400
+        save_to_db = data.get('save_to_db', True)
+
+        def runner(report):
+            report(message="Planning course quotas...", current=0, total=0)
+            result = QuestionService.generate_for_course(
+                course_id=course_id,
+                save_to_db=save_to_db,
+                progress_cb=report,
+            )
+            status = result.pop("status", 200)
+            if status >= 400 or result.get("error"):
+                raise RuntimeError(result.get("error") or f"Course generation failed (status {status})")
+            return result
+
+        job_id = submit("generate-for-course", runner)
+        return jsonify({"job_id": job_id, "status": "pending"}), 202
+
+    except Exception as e:
+        traceback.print_exc()
+        return jsonify({"error": str(e)}), 500
+
+
+@jobs_bp.route("/generate-questions-for-uncovered", methods=["POST"])
+def start_generate_for_uncovered():
+    """
+    Coverage-targeted mode: for each lesson, find substantive pages that
+    have no question and generate one unistructural question per LO on
+    those pages. Run this AFTER an initial generation pass to fill gaps.
+    """
+    try:
+        data = request.get_json(silent=True) or {}
+        course_id = data.get('course_id')
+        if not isinstance(course_id, int) or course_id < 1:
+            return jsonify({"error": "course_id (positive int) is required"}), 400
+        save_to_db = data.get('save_to_db', True)
+
+        def runner(report):
+            report(message="Computing coverage gaps...", current=0, total=0)
+            result = QuestionService.generate_for_uncovered(
+                course_id=course_id,
+                save_to_db=save_to_db,
+                progress_cb=report,
+            )
+            status = result.pop("status", 200)
+            if status >= 400 or result.get("error"):
+                raise RuntimeError(result.get("error") or f"Uncovered-fill failed (status {status})")
+            return result
+
+        job_id = submit("generate-for-uncovered", runner)
+        return jsonify({"job_id": job_id, "status": "pending"}), 202
+
+    except Exception as e:
+        traceback.print_exc()
+        return jsonify({"error": str(e)}), 500
+
+
 @jobs_bp.route("/<job_id>", methods=["GET"])
 def get_job_status(job_id: str):
     job = get_job(job_id)

@@ -57,6 +57,44 @@ function QuestionGenerator({ course, onQuestionsGenerated, onSuccess, onError })
     });
   };
 
+  // Shared poll-until-done helper used by all three generation modes.
+  const pollJob = (jobId) =>
+    new Promise((resolve, reject) => {
+      pollRef.current = setInterval(async () => {
+        try {
+          const { data: job } = await jobsApi.get(jobId);
+          if (job.progress) setProgress(job.progress);
+          if (job.status === 'succeeded') {
+            clearInterval(pollRef.current);
+            pollRef.current = null;
+            resolve(job.result || {});
+          } else if (job.status === 'failed') {
+            clearInterval(pollRef.current);
+            pollRef.current = null;
+            reject(new Error(job.error || 'Job failed'));
+          }
+        } catch (e) {
+          clearInterval(pollRef.current);
+          pollRef.current = null;
+          reject(e);
+        }
+      }, 1500);
+    });
+
+  const reportResult = (result, label = 'Generated') => {
+    const { questions, count, solo_distribution } = result || {};
+    onQuestionsGenerated(questions || []);
+    const summary = Object.entries(solo_distribution || {})
+      .filter(([, c]) => c > 0)
+      .map(([level, c]) => `${level}: ${c}`)
+      .join(', ');
+    onSuccess(
+      summary
+        ? `${label} ${count || 0} questions! (${summary})`
+        : `${label} ${count || 0} questions!`
+    );
+  };
+
   const handleGenerate = async () => {
     if (selectedLessons.length === 0) {
       onError('Please select at least one lesson');
@@ -64,7 +102,7 @@ function QuestionGenerator({ course, onQuestionsGenerated, onSuccess, onError })
     }
 
     const activeLevels = Object.entries(soloLevels)
-      .filter(([_, active]) => active)
+      .filter(([, active]) => active)
       .map(([level]) => level);
 
     if (activeLevels.length === 0) {
@@ -85,41 +123,63 @@ function QuestionGenerator({ course, onQuestionsGenerated, onSuccess, onError })
         lesson_ids: selectedLessons,
         solo_levels: activeLevels,
         questions_per_level: questionsPerLevel,
-        save_to_db: true
+        save_to_db: true,
       });
-      const jobId = startResp.data.job_id;
-
-      // Poll the job until terminal state.
-      await new Promise((resolve, reject) => {
-        pollRef.current = setInterval(async () => {
-          try {
-            const { data: job } = await jobsApi.get(jobId);
-            if (job.progress) setProgress(job.progress);
-            if (job.status === 'succeeded') {
-              clearInterval(pollRef.current);
-              pollRef.current = null;
-              const { questions, count, solo_distribution } = job.result || {};
-              onQuestionsGenerated(questions || []);
-              const summary = Object.entries(solo_distribution || {})
-                .filter(([_, c]) => c > 0)
-                .map(([level, c]) => `${level}: ${c}`)
-                .join(', ');
-              onSuccess(`Generated ${count || 0} questions! (${summary})`);
-              resolve();
-            } else if (job.status === 'failed') {
-              clearInterval(pollRef.current);
-              pollRef.current = null;
-              reject(new Error(job.error || 'Job failed'));
-            }
-          } catch (e) {
-            clearInterval(pollRef.current);
-            pollRef.current = null;
-            reject(e);
-          }
-        }, 1500);
-      });
+      const result = await pollJob(startResp.data.job_id);
+      reportResult(result, 'Generated');
     } catch (err) {
       onError(err.response?.data?.error || err.message || 'Failed to generate questions');
+    } finally {
+      setGenerating(false);
+      setProgress(null);
+    }
+  };
+
+  const handleGenerateForCourse = async () => {
+    if (!course?.id) {
+      onError('No course selected');
+      return;
+    }
+    if (!window.confirm(
+      `Generate questions for the WHOLE course "${course.name}"?\n\n` +
+      `This will auto-size per-level quotas across every lesson to aim for ~85-90% slide coverage. ` +
+      `It can take a while on big courses.`
+    )) return;
+
+    try {
+      setGenerating(true);
+      setProgress({ message: 'Planning course quotas...', current: 0, total: 0 });
+      const startResp = await questionApi.generateForCourseAsync(course.id);
+      const result = await pollJob(startResp.data.job_id);
+      reportResult(result, `Course-wide generation: created`);
+    } catch (err) {
+      onError(err.response?.data?.error || err.message || 'Failed to generate for course');
+    } finally {
+      setGenerating(false);
+      setProgress(null);
+    }
+  };
+
+  const handleGenerateForUncovered = async () => {
+    if (!course?.id) {
+      onError('No course selected');
+      return;
+    }
+    if (!window.confirm(
+      `Target uncovered pages in "${course.name}"?\n\n` +
+      `For each lesson, this finds substantive pages with no existing questions ` +
+      `and generates one unistructural question per LO on those pages. ` +
+      `Run this AFTER an initial generation to fill gaps.`
+    )) return;
+
+    try {
+      setGenerating(true);
+      setProgress({ message: 'Computing coverage gaps...', current: 0, total: 0 });
+      const startResp = await questionApi.generateForUncoveredAsync(course.id);
+      const result = await pollJob(startResp.data.job_id);
+      reportResult(result, `Coverage fill: created`);
+    } catch (err) {
+      onError(err.response?.data?.error || err.message || 'Failed to target uncovered pages');
     } finally {
       setGenerating(false);
       setProgress(null);
@@ -263,6 +323,36 @@ function QuestionGenerator({ course, onQuestionsGenerated, onSuccess, onError })
           >
             {generating ? 'Generating...' : 'Generate Questions'}
           </button>
+        </div>
+
+        {/* Auto-quota and coverage-fill buttons. These operate on the WHOLE
+            course (course prop) regardless of the manual selection above. */}
+        <div className="generator-section" style={{ borderTop: '1px solid var(--neutral-200, #e5e7eb)', paddingTop: '20px', marginTop: '20px' }}>
+          <h3>Automated Course Coverage</h3>
+          <p className="subtitle" style={{ marginTop: 0, marginBottom: '12px' }}>
+            These options ignore the manual selection above and operate on every lesson in <strong>{course?.name || 'this course'}</strong>.
+          </p>
+          <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap' }}>
+            <button
+              className="btn-secondary btn-large"
+              onClick={handleGenerateForCourse}
+              disabled={generating || !course?.id}
+              title="Auto-size per-level quotas across every lesson to aim for ~85-90% slide coverage."
+            >
+              Generate for Whole Course
+            </button>
+            <button
+              className="btn-secondary btn-large"
+              onClick={handleGenerateForUncovered}
+              disabled={generating || !course?.id}
+              title="Find substantive pages with no questions and generate one question per LO on those pages. Run after the initial pass."
+            >
+              Target Uncovered Pages
+            </button>
+          </div>
+          <p className="hint" style={{ marginTop: '8px', fontSize: '0.85rem', color: 'var(--neutral-500, #6b7280)' }}>
+            Typical flow: <em>Generate for Whole Course</em> first, then check the Coverage panel and run <em>Target Uncovered Pages</em> to fill gaps.
+          </p>
         </div>
       </div>
     </div>

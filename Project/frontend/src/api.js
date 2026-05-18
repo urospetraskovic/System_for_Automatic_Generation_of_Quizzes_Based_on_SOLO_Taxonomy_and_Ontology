@@ -74,6 +74,14 @@ export const questionApi = {
   generate: (generationParams) => apiClient.post('/generate-questions', generationParams),
   // Async variant — returns { job_id, status }. Poll with jobsApi.get(jobId).
   generateAsync: (generationParams) => apiClient.post('/jobs/generate-questions', generationParams),
+  // Auto-quota mode: generate questions for every lesson in a course at all
+  // SOLO levels, aiming for ~85-90% slide coverage.
+  generateForCourseAsync: (courseId) =>
+    apiClient.post('/jobs/generate-questions-for-course', { course_id: courseId }),
+  // Coverage-targeted mode: fill gaps by generating questions for LOs that
+  // sit on uncovered substantive pages.
+  generateForUncoveredAsync: (courseId) =>
+    apiClient.post('/jobs/generate-questions-for-uncovered', { course_id: courseId }),
   delete: (questionId) => apiClient.delete(`/questions/${questionId}`),
 };
 
