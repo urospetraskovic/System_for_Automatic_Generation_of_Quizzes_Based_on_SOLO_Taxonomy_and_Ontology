@@ -93,7 +93,8 @@ def generate_ontology(lesson_id):
         ontology_rels = content_parser.extract_ontology_relationships(
             lesson['raw_content'],
             all_los,
-            lesson['title']
+            lesson['title'],
+            sections=all_sections,
         )
 
         print(f"[API] AI returned {len(ontology_rels)} potential relationships")

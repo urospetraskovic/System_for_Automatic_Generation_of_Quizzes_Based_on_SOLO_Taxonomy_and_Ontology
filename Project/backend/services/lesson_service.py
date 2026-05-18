@@ -56,7 +56,8 @@ class LessonService:
             ontology_rels = content_parser.extract_ontology_relationships(
                 lesson['raw_content'],
                 all_los,
-                lesson['title']
+                lesson['title'],
+                sections=all_sections,
             )
             
             db_rels = []

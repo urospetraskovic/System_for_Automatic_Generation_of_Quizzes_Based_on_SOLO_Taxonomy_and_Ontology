@@ -2029,182 +2029,469 @@ Extract 5-8 distinct concepts. Return ONLY JSON array."""
                      'keywords': o.get('keywords', [])} for o in objects if o.get('title')][:8]
         return []
     
-    def extract_ontology_relationships(self, content: str, learning_objects: List[Dict], lesson_title: str) -> List[Dict]:
+    # =====================================================================
+    # Ontology-extraction helpers (V/W/X/Y/Z support)
+    # =====================================================================
+
+    # Hierarchical relationship types where direction matters: source is the
+    # part/subtype/example, target is the whole/category/general concept.
+    _HIERARCHICAL_TYPES = {'part_of', 'is_type_of', 'is_example_of', 'specialization_of'}
+
+    # BB: "soft" relationship types whose evidence requirement is waived
+    # when source and target sit in the same or adjacent section. The
+    # section structure provides the grounding instead of a verbatim quote.
+    _SOFT_REL_TYPES = {'relates_to', 'prerequisite', 'defines'}
+
+    # CC: target batch size when partitioning LOs for per-batch extraction.
+    # Smaller batches keep each LLM call snappy and dodge the 1200s timeout
+    # wall we saw on full-corpus prompts.
+    _ONTOLOGY_BATCH_SIZE = 30
+
+    # AA: longer LLM timeout for ontology extraction. With CC's smaller
+    # batches we shouldn't hit it, but the buffer is cheap insurance.
+    _ONTOLOGY_LLM_TIMEOUT_S = 1800
+
+    @staticmethod
+    def _section_batches(
+        los: List[Dict[str, Any]],
+        sections: Optional[List[Dict[str, Any]]],
+        target_size: int = 30,
+    ) -> List[tuple]:
         """
-        Extract meaningful relationships between learning objects.
-        Focus on quality educational connections WITH PROPER TAXONOMIC HIERARCHY.
-        
-        IMPROVED: Better fallback if AI extraction fails or times out.
+        Partition LOs into batches respecting section boundaries.
+
+        Each yielded batch is (lo_subset, section_subset). Sections are kept
+        contiguous within a batch, and the last section of one batch overlaps
+        as the first of the next so cross-batch relationships at the seam are
+        still caught.
+
+        Falls back to a single all-LOs batch when no sections are provided
+        or when no LO has a section_id.
+        """
+        if not sections:
+            return [(los, [])]
+
+        sections_sorted = sorted(sections, key=lambda s: s.get('order_index', 0))
+        los_by_section: Dict[Any, List[Dict[str, Any]]] = {}
+        for lo in los:
+            sid = lo.get('section_id')
+            if sid is not None:
+                los_by_section.setdefault(sid, []).append(lo)
+
+        if not los_by_section:
+            return [(los, [])]
+
+        batches: List[tuple] = []
+        current_los: List[Dict[str, Any]] = []
+        current_sections: List[Dict[str, Any]] = []
+
+        for section in sections_sorted:
+            section_los = los_by_section.get(section.get('id'), [])
+            if not section_los:
+                continue
+            if current_los and len(current_los) + len(section_los) > target_size:
+                batches.append((current_los, current_sections))
+                # Overlap: carry the last section forward into the next batch.
+                last = current_sections[-1]
+                last_los = los_by_section.get(last.get('id'), [])
+                current_sections = [last]
+                current_los = list(last_los)
+            current_sections.append(section)
+            current_los.extend(section_los)
+
+        if current_los:
+            batches.append((current_los, current_sections))
+
+        # LOs that have no section_id at all get their own final batch.
+        orphans = [lo for lo in los if lo.get('section_id') is None]
+        if orphans:
+            batches.append((orphans, []))
+
+        return batches
+
+    @staticmethod
+    def _build_title_to_section_order(
+        learning_objects: List[Dict[str, Any]],
+        sections: Optional[List[Dict[str, Any]]],
+    ) -> Dict[str, int]:
+        """
+        Map each LO title to the document-order index of its parent section.
+
+        Used by BB to decide whether two LOs are in the same or adjacent
+        sections (so their relationship can skip the strict evidence check).
+        """
+        if not sections:
+            return {}
+        section_order = {s.get('id'): s.get('order_index', i) for i, s in enumerate(sections)}
+        result: Dict[str, int] = {}
+        for lo in learning_objects:
+            title = (lo.get('title') or '').strip().lower()
+            sid = lo.get('section_id')
+            if title and sid is not None and sid in section_order:
+                result[title] = section_order[sid]
+        return result
+
+    @staticmethod
+    def _dedupe_los_for_ontology(los: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        """
+        Drop LOs whose title token-set is a near-duplicate of an already-kept
+        LO. Uses Jaccard similarity on lowercased word tokens (length >= 3).
+
+        This prevents duplicate-LO pollution like
+        "Deljenje i razmena informacija" vs "Deljenje informacija između
+        procesa" — same concept, two LOs, two parallel sets of relationships.
+        """
+        if len(los) < 2:
+            return los
+
+        def tokens(title: str) -> set:
+            return {t.lower() for t in (title or '').split() if len(t) >= 3}
+
+        kept: List[Dict[str, Any]] = []
+        for lo in los:
+            tk = tokens(lo.get('title', ''))
+            if not tk:
+                continue
+            is_dupe = False
+            for existing in kept:
+                ek = tokens(existing.get('title', ''))
+                if not ek:
+                    continue
+                jaccard = len(tk & ek) / len(tk | ek)
+                if jaccard >= 0.6:
+                    is_dupe = True
+                    break
+            if not is_dupe:
+                kept.append(lo)
+        return kept
+
+    @staticmethod
+    def _build_section_structure_block(
+        learning_objects: List[Dict[str, Any]],
+        sections: Optional[List[Dict[str, Any]]],
+    ) -> str:
+        """
+        Format an at-a-glance summary of the lesson's section structure
+        (which LOs live in which sections, in document order) for use as
+        prior context in the ontology prompts.
+
+        Returns "" when sections aren't available or LOs have no section_id.
+        """
+        if not sections:
+            return ""
+
+        section_id_to_title = {s.get('id'): s.get('title', '') for s in sections}
+        section_id_to_order = {s.get('id'): s.get('order_index', i) for i, s in enumerate(sections)}
+
+        los_by_section: Dict[Any, List[str]] = {}
+        for lo in learning_objects:
+            sid = lo.get('section_id')
+            if sid is None:
+                continue
+            los_by_section.setdefault(sid, []).append(lo.get('title', ''))
+
+        if not los_by_section:
+            return ""
+
+        sorted_sids = sorted(section_id_to_title.keys(), key=lambda s: section_id_to_order.get(s, 9999))
+        lines = []
+        for sid in sorted_sids:
+            title = section_id_to_title.get(sid, '')
+            lo_titles = [t for t in los_by_section.get(sid, []) if t]
+            if not lo_titles:
+                continue
+            shown = ', '.join(lo_titles[:10])
+            extra = f" (+{len(lo_titles) - 10} more)" if len(lo_titles) > 10 else ""
+            lines.append(f"  Section '{title}': {shown}{extra}")
+
+        if not lines:
+            return ""
+
+        return (
+            "\n\nSECTION STRUCTURE (the lesson's actual sections in document order — "
+            "use this to ground your relationships; prefer connections within or between "
+            "adjacent sections, and follow document order for prerequisites):\n"
+            + "\n".join(lines)
+        )
+
+    @staticmethod
+    def _validate_relationship_evidence(rel: Dict[str, Any], content_lower: str) -> bool:
+        """
+        Check that the relationship's `evidence` quote appears verbatim
+        (case-insensitive) in the lesson source content.
+
+        Drops:
+          - empty / missing evidence
+          - evidence shorter than 15 chars (too vague)
+          - evidence not found in source (hallucinated)
+        """
+        evidence = (rel.get('evidence') or '').strip()
+        if not evidence or len(evidence) < 15:
+            return False
+        return evidence.lower() in content_lower
+
+    @classmethod
+    def _check_part_of_direction(cls, rel: Dict[str, Any]) -> tuple:
+        """
+        For hierarchical relationship types, sanity-check direction using
+        a title-substring heuristic.
+
+        - If target's title is a substring of source's (e.g. "Atributi procesa"
+          is in "Atributi procesa - Stanje"), direction is correct.
+        - If source's title is a substring of target's (e.g. source =
+          "Atributi procesa", target = "Atributi procesa - Stanje"), the
+          direction is REVERSED and we swap source/target.
+        - If neither title contains the other, we can't tell from titles
+          alone and we keep the relationship as-is.
+
+        Non-hierarchical relationships pass through unchanged.
+
+        Returns (rel_or_None, was_reversed). rel_or_None can be None if the
+        check decides the relationship is malformed (currently we never
+        drop on direction alone).
+        """
+        rel_type = rel.get('type', '')
+        if rel_type not in cls._HIERARCHICAL_TYPES:
+            return rel, False
+
+        source = (rel.get('source') or '').strip()
+        target = (rel.get('target') or '').strip()
+        if not source or not target or source == target:
+            return rel, False
+
+        s_low, t_low = source.lower(), target.lower()
+        if t_low in s_low and t_low != s_low:
+            # Source contains target's title — source is more specific. Direction OK.
+            return rel, False
+        if s_low in t_low and s_low != t_low:
+            # Target contains source's title — source is more general. Swap.
+            new_rel = dict(rel)
+            new_rel['source'] = target
+            new_rel['target'] = source
+            return new_rel, True
+        # Titles don't overlap by substring — no signal, keep as-is.
+        return rel, False
+
+    def extract_ontology_relationships(
+        self,
+        content: str,
+        learning_objects: List[Dict],
+        lesson_title: str,
+        sections: Optional[List[Dict]] = None,
+    ) -> List[Dict]:
+        """
+        Extract pedagogical relationships between learning objects.
+
+        Pipeline (improvements V/W/X/Y/Z over the older 5-pass version):
+          - W: dedup near-duplicate LOs first so they don't generate
+               duplicate / circular edges.
+          - X: pass the section structure to the LLM so relationships are
+               grounded in the lesson's actual organisation.
+          - Y: every relationship must carry an `evidence` quote that
+               appears verbatim in the source text; unverifiable edges are
+               dropped.
+          - V: the old "meta-relationship" pass (which hallucinated English
+               narrative on Serbian content) is removed.
+          - Z: hierarchical relationships (part_of / is_type_of / is_example_of)
+               get a substring-based direction check.
+
+        Returns a list of relationship dicts ready for DB insertion.
         """
         if not learning_objects:
             print("[ContentParser] No learning objects to relate")
             return []
-        
-        # Build descriptions for ALL learning objects
-        lo_descriptions = []
-        all_lo_titles = []
-        
-        for lo in learning_objects:
-            title = lo.get("title", lo.get("name", ""))
-            desc = lo.get("description", "")[:80]
-            type_str = lo.get("type", lo.get("object_type", "concept"))
-            lo_descriptions.append(f"- {title} ({type_str}): {desc}")
-            all_lo_titles.append(title)
-        
-        lo_context = "\n".join(lo_descriptions[:50])
-        
-        print("[ContentParser] === MULTI-PASS RELATIONSHIP EXTRACTION (High Quality Mode) ===")
-        print(f"[ContentParser] Analyzing {len(all_lo_titles)} learning objects across 5 specialized passes...")
-        
-        all_relationships = []
-        
-        # ============= PASS 1: HIERARCHICAL TAXONOMY =============
-        print("[ContentParser] [PASS 1] Extracting hierarchical relationships...")
-        prompt_p1 = f"""SPECIALIST TASK: Find HIERARCHICAL and TAXONOMIC relationships ONLY.
 
-LEARNING OBJECTS ({len(all_lo_titles)}):
-{lo_context}
+        # ----- W: dedup near-duplicate LOs -----
+        before_count = len(learning_objects)
+        learning_objects = self._dedupe_los_for_ontology(learning_objects)
+        if len(learning_objects) < before_count:
+            print(f"[ContentParser] W: deduped {before_count - len(learning_objects)} near-duplicate LO(s) before extraction")
 
-Find relationships where one concept is TYPE, PART, or CATEGORY of another:
-- part_of: A is component/part of B
-- is_type_of: A is a type/kind of B  
-- is_example_of: A exemplifies B
-- specialization_of: A is more specific than B
+        all_lo_titles = [(lo.get("title") or lo.get("name") or "") for lo in learning_objects]
 
-For EACH pair with hierarchy, output: source, target, type, description
-Be EXHAUSTIVE. Find ALL hierarchical links.
+        # Map LO title -> document-order index of its section. Used by BB.
+        title_to_section_order = self._build_title_to_section_order(learning_objects, sections)
 
-JSON ONLY:
-[{{"source": "...", "target": "...", "type": "part_of", "description": "..."}}]"""
-        
-        r1 = self._call_ollama(prompt_p1, timeout=1200)
-        rels1 = self._extract_json_from_response(r1) if r1 else []
-        if isinstance(rels1, list):
-            all_relationships.extend(rels1)
-            print(f"[ContentParser] [PASS 1] ✓ Found {len(rels1)} hierarchical relationships")
-        
-        # ============= PASS 2: PREREQUISITES & ENABLING =============
-        print("[ContentParser] [PASS 2] Extracting prerequisite relationships...")
-        prompt_p2 = f"""SPECIALIST TASK: Find PREREQUISITE, ENABLING, and BUILDING relationships.
+        # ----- CC: section-aware batching -----
+        batches = self._section_batches(learning_objects, sections, target_size=self._ONTOLOGY_BATCH_SIZE)
+        print(f"[ContentParser] === ONTOLOGY EXTRACTION (4 passes × {len(batches)} batch(es), AA/BB/CC enabled) ===")
+        print(f"[ContentParser] {len(all_lo_titles)} LO(s) across {len(batches)} batch(es) of ~{self._ONTOLOGY_BATCH_SIZE}")
 
-LEARNING OBJECTS:
-{lo_context}
+        # Common output schema with evidence requirement (Y).
+        output_schema = (
+            'JSON ONLY — each entry MUST include an `evidence` field containing '
+            'a verbatim sentence or fragment (>= 15 chars) FROM THE LESSON SOURCE TEXT '
+            'that supports the relationship. Relationships without verifiable evidence '
+            'will be dropped.\n'
+            '[{"source": "...", "target": "...", "type": "...", "description": "...", "evidence": "verbatim from source"}]'
+        )
 
-Find dependencies showing learning order:
-- prerequisite: A must be learned before B
-- builds_upon: B extends/elaborates A
-- enables: A makes B possible or easier
-- foundation_for: A is foundational for B
+        all_relationships: List[Dict[str, Any]] = []
 
-Think: What knowledge comes first? What builds on what? What enables what?
+        # Run all 4 passes per batch. AA: 1800s timeout per call.
+        for batch_idx, (batch_los, batch_sections) in enumerate(batches, start=1):
+            batch_titles = [lo.get('title', '') for lo in batch_los]
+            lo_descriptions = []
+            for lo in batch_los:
+                title = lo.get("title") or lo.get("name") or ""
+                desc = (lo.get("description") or "")[:80]
+                type_str = lo.get("type") or lo.get("object_type") or "concept"
+                lo_descriptions.append(f"- {title} ({type_str}): {desc}")
+            lo_context = "\n".join(lo_descriptions)
+            section_block = self._build_section_structure_block(batch_los, batch_sections)
 
-JSON ONLY:
-[{{"source": "...", "target": "...", "type": "prerequisite", "description": "..."}}]"""
-        
-        r2 = self._call_ollama(prompt_p2, timeout=1200)
-        rels2 = self._extract_json_from_response(r2) if r2 else []
-        if isinstance(rels2, list):
-            all_relationships.extend(rels2)
-            print(f"[ContentParser] [PASS 2] ✓ Found {len(rels2)} prerequisite relationships")
-        
-        # ============= PASS 3: SEMANTIC RELATIONSHIPS =============
-        print("[ContentParser] [PASS 3] Extracting semantic relationships...")
-        prompt_p3 = f"""SPECIALIST TASK: Find SEMANTIC and FUNCTIONAL relationships.
+            print(f"\n[ContentParser] --- Batch {batch_idx}/{len(batches)}: {len(batch_los)} LOs ---")
+
+            # ===== Pass 1: HIERARCHICAL =====
+            prompt_p1 = f"""SPECIALIST TASK: Find HIERARCHICAL relationships only.
+
+LEARNING OBJECTS ({len(batch_titles)}):
+{lo_context}{section_block}
+
+Allowed types:
+  - part_of: source is a COMPONENT/PART of target (target is the WHOLE).
+  - is_type_of: source is a SUBTYPE of target (target is the CATEGORY).
+  - is_example_of: source is an EXAMPLE of target (target is the general concept).
+
+CRITICAL DIRECTION RULES:
+  - For part_of: target must be the bigger/containing concept. Example:
+      "Programski brojač" part_of "Atributi procesa"  (counter IS one attribute)
+  - For is_type_of: target must be the parent category.
+  - If you cannot find verbatim evidence in the source for the relationship, DO NOT emit it.
+
+{output_schema}"""
+            r1 = self._call_ollama(prompt_p1, timeout=self._ONTOLOGY_LLM_TIMEOUT_S)
+            rels1 = self._extract_json_from_response(r1) if r1 else []
+            if isinstance(rels1, list):
+                all_relationships.extend(rels1)
+                print(f"[ContentParser]   Pass 1 (hierarchical): {len(rels1)}")
+
+            # ===== Pass 2: PREREQUISITES =====
+            prompt_p2 = f"""SPECIALIST TASK: Find PREREQUISITE and BUILDING-UPON relationships.
 
 LEARNING OBJECTS:
-{lo_context}
+{lo_context}{section_block}
 
-Find connections:
-- relates_to: Concepts that naturally go together
-- contrasts_with: Opposite or different approaches
-- implements: How a concept is used/applied
-- uses: What a concept depends on
-- defines: Relationship to terminology
-- is_mechanism_of: How it works in broader context
+Allowed types:
+  - prerequisite: source must be understood BEFORE target.
+  - builds_upon: target extends/elaborates source (source comes first).
+  - enables: source makes target possible.
+  - foundation_for: source is foundational for target.
 
-Be creative finding semantic links between all concepts.
+Use the section structure to anchor learning order — concepts in earlier
+sections typically come before concepts in later sections.
 
-JSON ONLY:
-[{{"source": "...", "target": "...", "type": "relates_to", "description": "..."}}]"""
-        
-        r3 = self._call_ollama(prompt_p3, timeout=1200)
-        rels3 = self._extract_json_from_response(r3) if r3 else []
-        if isinstance(rels3, list):
-            all_relationships.extend(rels3)
-            print(f"[ContentParser] [PASS 3] ✓ Found {len(rels3)} semantic relationships")
-        
-        # ============= PASS 4: CROSS-SECTION INTEGRATION =============
-        print("[ContentParser] [PASS 4] Extracting cross-section relationships...")
-        prompt_p4 = f"""SPECIALIST TASK: Find relationships ACROSS topics (integration points).
+{output_schema}"""
+            r2 = self._call_ollama(prompt_p2, timeout=self._ONTOLOGY_LLM_TIMEOUT_S)
+            rels2 = self._extract_json_from_response(r2) if r2 else []
+            if isinstance(rels2, list):
+                all_relationships.extend(rels2)
+                print(f"[ContentParser]   Pass 2 (prerequisite): {len(rels2)}")
+
+            # ===== Pass 3: SEMANTIC =====
+            prompt_p3 = f"""SPECIALIST TASK: Find SEMANTIC relationships that aren't hierarchical or prerequisite.
 
 LEARNING OBJECTS:
-{lo_context}
+{lo_context}{section_block}
 
-Find connections between distant concepts:
-- How general concepts apply in specific domains
-- Concepts appearing in multiple contexts  
-- Integration points spanning topics
-- Applied uses of theoretical concepts
+Allowed types:
+  - relates_to: concepts that go together but aren't strict hierarchy or prerequisite.
+  - contrasts_with: opposite or alternative approaches.
+  - implements: source implements/realises target.
+  - uses: source uses target as a tool/input.
+  - defines: source provides the definition of target.
 
-Look for creative semantic bridges.
+Be precise. Avoid duplicating relationships already implied by hierarchy or prerequisite.
 
-JSON ONLY:
-[{{"source": "...", "target": "...", "type": "relates_to", "description": "..."}}]"""
-        
-        r4 = self._call_ollama(prompt_p4, timeout=1200)
-        rels4 = self._extract_json_from_response(r4) if r4 else []
-        if isinstance(rels4, list):
-            all_relationships.extend(rels4)
-            print(f"[ContentParser] [PASS 4] ✓ Found {len(rels4)} cross-section relationships")
-        
-        # ============= PASS 5: META-RELATIONSHIPS =============
-        print("[ContentParser] [PASS 5] Extracting meta-relationships...")
-        rel_sample = []
-        for rel in all_relationships[:20]:
-            rel_sample.append(f"{rel.get('source', '')} --[{rel.get('type', '')}]--> {rel.get('target', '')}")
-        sample_str = "\n".join(rel_sample) if rel_sample else "No relationships yet"
-        
-        prompt_p5 = f"""SPECIALIST TASK: Find META-RELATIONSHIPS (relationships between relationships).
+{output_schema}"""
+            r3 = self._call_ollama(prompt_p3, timeout=self._ONTOLOGY_LLM_TIMEOUT_S)
+            rels3 = self._extract_json_from_response(r3) if r3 else []
+            if isinstance(rels3, list):
+                all_relationships.extend(rels3)
+                print(f"[ContentParser]   Pass 3 (semantic): {len(rels3)}")
 
-Sample relationships found:
-{sample_str}
+            # ===== Pass 4: CROSS-SECTION =====
+            prompt_p4 = f"""SPECIALIST TASK: Find INTEGRATION relationships between concepts that live in DIFFERENT sections of the lesson.
 
-Find patterns like:
-- If A "prerequisite" B AND B "enables" C → create: prerequisite "leads_into" enables
-- Concept HUBS (connect many others)
-- Relationship chains and dependencies
-- Conceptual bridges
+LEARNING OBJECTS:
+{lo_context}{section_block}
 
-JSON ONLY:
-[{{"source": "...", "target": "...", "type": "meta_relationship", "description": "..."}}]"""
-        
-        r5 = self._call_ollama(prompt_p5, timeout=1200)
-        rels5 = self._extract_json_from_response(r5) if r5 else []
-        if isinstance(rels5, list):
-            all_relationships.extend(rels5)
-            print(f"[ContentParser] [PASS 5] ✓ Found {len(rels5)} meta-relationships")
-        
-        print(f"[ContentParser] Total raw relationships: {len(all_relationships)}")
-        
+Use the section structure block above. Propose `relates_to` edges for
+concepts from different sections that the source text genuinely connects.
+Only propose relationships supported by verbatim evidence — speculative
+"bridges" are not allowed.
+
+{output_schema}"""
+            r4 = self._call_ollama(prompt_p4, timeout=self._ONTOLOGY_LLM_TIMEOUT_S)
+            rels4 = self._extract_json_from_response(r4) if r4 else []
+            if isinstance(rels4, list):
+                all_relationships.extend(rels4)
+                print(f"[ContentParser]   Pass 4 (cross-section): {len(rels4)}")
+
+        # V: the old Pass 5 (meta-relationships) is removed.
+
+        print(f"\n[ContentParser] Total raw relationships across batches: {len(all_relationships)}")
+
+        # Step 1: validate source/target are in the LO set
         valid_relationships = self._validate_relationships(all_relationships, all_lo_titles)
-        
-        # Deduplicate
+        print(f"[ContentParser] After title-set validation: {len(valid_relationships)}")
+
+        # Step 2 (Y, with BB exemption): drop relationships whose evidence
+        # isn't in the source — UNLESS source and target are in the same or
+        # adjacent sections AND the relationship type is a soft type
+        # (relates_to/prerequisite/defines), in which case the section
+        # structure provides the grounding instead.
+        content_lower = content.lower()
+        grounded = []
+        dropped_unground = 0
+        bb_exempt = 0
+        for rel in valid_relationships:
+            if self._validate_relationship_evidence(rel, content_lower):
+                grounded.append(rel)
+                continue
+            # BB exemption check
+            rel_type = (rel.get('type') or '').lower()
+            if rel_type in self._SOFT_REL_TYPES:
+                src_t = (rel.get('source') or '').strip().lower()
+                tgt_t = (rel.get('target') or '').strip().lower()
+                src_sec = title_to_section_order.get(src_t)
+                tgt_sec = title_to_section_order.get(tgt_t)
+                if src_sec is not None and tgt_sec is not None and abs(src_sec - tgt_sec) <= 1:
+                    grounded.append(rel)
+                    bb_exempt += 1
+                    continue
+            dropped_unground += 1
+        if dropped_unground:
+            print(f"[ContentParser] Y: dropped {dropped_unground} relationship(s) with no verifiable evidence quote")
+        if bb_exempt:
+            print(f"[ContentParser] BB: allowed {bb_exempt} soft-type relationship(s) via section-adjacency exemption")
+
+        # Step 3 (Z): direction check for hierarchical types
+        checked = []
+        reversed_count = 0
+        for rel in grounded:
+            new_rel, was_reversed = self._check_part_of_direction(rel)
+            if new_rel is None:
+                continue
+            if was_reversed:
+                reversed_count += 1
+            checked.append(new_rel)
+        if reversed_count:
+            print(f"[ContentParser] Z: reversed direction on {reversed_count} hierarchical relationship(s)")
+
+        # Step 4: dedup on (source, target, type)
         seen = set()
         unique_rels = []
-        for rel in valid_relationships:
+        for rel in checked:
             key = (rel.get('source'), rel.get('target'), rel.get('type'))
             if key not in seen:
                 seen.add(key)
                 unique_rels.append(rel)
-        
-        print(f"[ContentParser] Valid unique relationships: {len(unique_rels)}")
-        
-        # Only fall back when the LLM produced literally nothing. Topping up
-        # an already-good extraction with inferred edges (especially a fake
-        # "prerequisite" chain in document order) pollutes the ontology and
-        # then pollutes the questions generated from it.
+        print(f"[ContentParser] Final unique relationships: {len(unique_rels)}")
+
+        # Conservative fallback only when zero relationships survived.
         if not unique_rels:
-            print("[ContentParser] LLM produced no relationships, applying conservative fallback...")
+            print("[ContentParser] LLM produced no usable relationships, applying conservative fallback...")
             fallback = self._generate_smart_fallback_relationships(all_lo_titles, learning_objects)
             unique_rels.extend(fallback)
 
