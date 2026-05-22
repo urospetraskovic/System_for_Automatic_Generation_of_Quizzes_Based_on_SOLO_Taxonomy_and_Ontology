@@ -86,6 +86,7 @@ SOLO Taxonomy.* Academic Press.
 ---
 
 ### 2.2. PS4 prompting strategy (Scaria et al., 2024)
+Scaria, N., Dharani Chenna, S. and Subramani, D., 2024, July. Automated educational question generation at different bloom’s skill levels using large language models: Strategies and evaluation. In International conference on artificial intelligence in education (pp. 165-179). Cham: Springer Nature Switzerland.
 
 **What it is.** A specific prompt template for educational MCQ generation that
 combines:
@@ -186,10 +187,7 @@ can spot-check it later, and the prompt explicitly demands it.
 - [`backend/models/models.py`](backend/models/models.py),
   `Question.source_line` column.
 
-**Reference.** The mechanism is folk knowledge in the RAG literature; the
-canonical citation for *Retrieval-Augmented Generation* is Lewis et al.
-(2020), arXiv:2005.11401. The specific "demand a verbatim quote" pattern
-appears in many follow-up papers on attribution.
+**Reference.** Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks" (Lewis et al., 2020). It was published in Advances in Neural Information Processing Systems (NeurIPS) in 2020,
 
 ---
 

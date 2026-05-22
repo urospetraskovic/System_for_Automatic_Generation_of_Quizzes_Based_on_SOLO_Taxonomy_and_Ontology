@@ -144,3 +144,104 @@ def test_self_consistency_audit_does_not_duplicate_candidate():
         assert 'candidate' not in entry
         assert 'score' in entry
         assert 'lint_score' in entry
+
+
+# -----------------------------------------------------------------------------
+# Ambiguity integration (Option D — Downing 2005) — 5-point penalty.
+# -----------------------------------------------------------------------------
+
+import json
+
+
+def _ambig_caller(verdict):
+    """Stub llm_caller that always returns the given ambiguity verdict.
+
+    `verdict` is a dict like {'ambiguous': True, 'interpretations': [..], ...}
+    """
+    return lambda prompt: json.dumps(verdict)
+
+
+def test_ambiguity_penalty_off_by_default():
+    """Without check_ambiguity=True, score is unchanged and no ambiguity_report."""
+    s = score_candidate(_clean_q(), use_embeddings=False)
+    assert 'ambiguity_report' not in s
+
+
+def test_ambiguity_flag_subtracts_five_points():
+    base_score = score_candidate(_clean_q(), use_embeddings=False)['score']
+    flagged = score_candidate(
+        _clean_q(),
+        use_embeddings=False,
+        check_ambiguity=True,
+        ambiguity_caller=_ambig_caller({
+            'ambiguous': True,
+            'interpretations': ['reading 1', 'reading 2'],
+            'ambiguity_type': 'lexical',
+            'reasoning': 'unclear key term',
+        }),
+    )
+    assert flagged['score'] == max(0, base_score - 5)
+    assert flagged['ambiguity_report']['ambiguous'] is True
+
+
+def test_non_ambiguous_candidate_keeps_score():
+    base_score = score_candidate(_clean_q(), use_embeddings=False)['score']
+    clean = score_candidate(
+        _clean_q(),
+        use_embeddings=False,
+        check_ambiguity=True,
+        ambiguity_caller=_ambig_caller({
+            'ambiguous': False,
+            'interpretations': [],
+            'ambiguity_type': 'none',
+            'reasoning': 'clear',
+        }),
+    )
+    assert clean['score'] == base_score
+    assert clean['ambiguity_report']['ambiguous'] is False
+
+
+def test_pick_best_prefers_non_ambiguous():
+    """With two equally-clean lint candidates, the non-ambiguous one wins."""
+    # Build an ambiguity caller that returns different verdicts per question id.
+    def caller(prompt):
+        # Heuristic: candidate id 1 is ambiguous, id 2 is not. We sniff the
+        # question text in the prompt — the helper happens to use the same
+        # stem for both, so we differentiate via call order instead.
+        caller.calls = getattr(caller, 'calls', 0) + 1
+        if caller.calls == 1:
+            return json.dumps({
+                'ambiguous': True,
+                'interpretations': ['r1', 'r2'],
+                'ambiguity_type': 'referential',
+                'reasoning': 'x',
+            })
+        return json.dumps({
+            'ambiguous': False,
+            'interpretations': [],
+            'ambiguity_type': 'none',
+            'reasoning': 'clear',
+        })
+
+    best, scored = pick_best_question(
+        [_clean_q(1), _clean_q(2)],
+        use_embeddings=False,
+        check_ambiguity=True,
+        ambiguity_caller=caller,
+    )
+    assert best['id'] == 2
+    assert scored[0]['score'] < scored[1]['score']
+
+
+def test_ambiguity_unavailable_does_not_penalise():
+    """If the LLM judge fails to parse, no penalty is applied (graceful)."""
+    base_score = score_candidate(_clean_q(), use_embeddings=False)['score']
+    s = score_candidate(
+        _clean_q(),
+        use_embeddings=False,
+        check_ambiguity=True,
+        ambiguity_caller=lambda p: 'unparseable garbage',
+    )
+    assert s['score'] == base_score
+    # available=False → no penalty
+    assert s['ambiguity_report']['available'] is False
