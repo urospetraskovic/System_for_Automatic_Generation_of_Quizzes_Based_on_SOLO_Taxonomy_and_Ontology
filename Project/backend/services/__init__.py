@@ -18,7 +18,28 @@ from .self_consistency import (
     generate_with_self_consistency,
 )
 from .cove import verify_question, verify_questions
-from .solvability import assess_solvability, solvability_report
+from .solvability import (
+    assess_solvability, solvability_report,
+    assess_stem_only_solvability, stem_only_solvability_report,
+)
+from .ioc import rate_question as ioc_rate_question, ioc_report
+from .readability import (
+    compute_readability,
+    assess_question_readability,
+    readability_report,
+)
+from .ambiguity import assess_ambiguity, ambiguity_report
+from .misconception_mining import (
+    mine_misconceptions,
+    mine_lesson_misconceptions,
+)
+from .cloze_distractor import (
+    suggest_cloze_distractors,
+    gather_sibling_concepts,
+    format_pool_for_prompt,
+)
+from .grammar_homogeneity import check_homogeneity, homogeneity_report
+from .face_validity import assess_face_validity, face_validity_report
 
 __all__ = [
     'LessonService',

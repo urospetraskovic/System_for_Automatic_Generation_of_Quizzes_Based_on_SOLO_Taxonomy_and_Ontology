@@ -15,7 +15,8 @@ between research and code is verifiable rather than aspirational.
 3. [Distractor techniques (what fills the three wrong options)](#3-distractor-techniques)
 4. [A-priori quality and validity layer](#4-a-priori-quality-and-validity-layer)
 5. [Composite techniques (how the layers stack on top of each other)](#5-composite-techniques)
-6. [References (alphabetical, with DOIs / arXiv IDs)](#6-references)
+6. [Extended validity layer (A–H)](#6-extended-validity-layer-ah)
+7. [References (alphabetical, with DOIs / arXiv IDs)](#7-references)
 
 ---
 

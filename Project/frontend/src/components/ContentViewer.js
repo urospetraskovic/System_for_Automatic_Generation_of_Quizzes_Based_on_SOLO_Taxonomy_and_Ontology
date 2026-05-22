@@ -5,6 +5,7 @@ import CoveragePanel from './CoveragePanel';
 import MCQLintPanel from './MCQLintPanel';
 import SoloJudgePanel from './SoloJudgePanel';
 import AdvancedQualityPanel from './AdvancedQualityPanel';
+import ExtendedValidityPanel from './ExtendedValidityPanel';
 
 function ContentViewer({ lesson, onBack, onSuccess, onError, onLessonUpdate }) {
   const [sections, setSections] = useState([]);
@@ -297,6 +298,12 @@ function ContentViewer({ lesson, onBack, onSuccess, onError, onLessonUpdate }) {
         {/* Advanced validity: CoVe + Solvability */}
         {sections.length > 0 && (
           <AdvancedQualityPanel lessonId={lesson.id} />
+        )}
+
+        {/* Extended validity layer: A-H (IOC, stem-only, readability, ambiguity,
+            misconception mining, grammar homogeneity, face validity) */}
+        {sections.length > 0 && (
+          <ExtendedValidityPanel lessonId={lesson.id} />
         )}
 
         {/* Domain Ontology Section */}

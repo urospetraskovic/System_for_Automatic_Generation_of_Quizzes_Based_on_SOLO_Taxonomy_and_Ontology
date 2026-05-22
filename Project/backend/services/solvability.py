@@ -227,6 +227,185 @@ def _difficulty_label(p: Optional[float]) -> Optional[str]:
     return 'too_hard_or_misframed'
 
 
+# --------------------------------------------------------------------------
+# Stem-Only Solvability — Haladyna H4 ("place the central idea in the stem")
+# --------------------------------------------------------------------------
+#
+# Haladyna, Downing & Rodriguez (2002), rule 4:
+#   "The stem should be meaningful by itself and present a definite problem.
+#    A test-taker should be able to answer the question without reading the
+#    options."
+#
+# This check measures whether the stem is self-contained: we show the LLM
+# ONLY the stem (no options), ask for a free-text answer, and compare it to
+# the actual correct answer via embedding cosine similarity. High similarity
+# → the stem alone carries the central idea (H4 satisfied). Low similarity
+# → the options carry too much of the question's meaning.
+
+STEM_ONLY_TEMPERATURE = 0.3
+
+
+def build_stem_only_prompt(question_text: str) -> str:
+    return f"""You will see a question with NO multiple-choice options. Answer it briefly using only the question text. If you cannot answer from the question alone, write "UNABLE TO ANSWER".
+
+QUESTION:
+{question_text}
+
+OUTPUT — strict JSON, no other text:
+{{"answer": "<short free-text answer or 'UNABLE TO ANSWER'>"}}"""
+
+
+def _parse_free_answer(raw: str) -> Optional[str]:
+    if not raw:
+        return None
+    m = re.search(r'\{[\s\S]*\}', raw)
+    if not m:
+        return None
+    try:
+        data = json.loads(m.group(0))
+    except json.JSONDecodeError:
+        return None
+    ans = (data.get('answer') or '').strip()
+    if not ans or ans.upper() == 'UNABLE TO ANSWER':
+        return None
+    return ans
+
+
+def _call_stem_only_llm(prompt: str, *, use_cache: bool = True, timeout: int = 60) -> Optional[str]:
+    if use_cache:
+        cached = llm_cache.get(SOLVER_MODEL, prompt, STEM_ONLY_TEMPERATURE, json_mode=True)
+        if cached is not None:
+            return cached
+    try:
+        resp = requests.post(
+            f"{OLLAMA_BASE_URL}/api/generate",
+            json={
+                "model": SOLVER_MODEL,
+                "prompt": prompt,
+                "stream": False,
+                "temperature": STEM_ONLY_TEMPERATURE,
+                "format": "json",
+            },
+            timeout=timeout,
+        )
+        if resp.status_code != 200:
+            return None
+        result = resp.json().get("response", "")
+        if result and use_cache:
+            llm_cache.put(SOLVER_MODEL, prompt, STEM_ONLY_TEMPERATURE, True, result)
+        return result
+    except Exception:
+        return None
+
+
+# Cosine thresholds for the verdict label. Calibrated for the default
+# Ollama nomic-embed-text embeddings (same as mcq_lint plausibility).
+_H4_PASS_THRESHOLD = 0.55  # ≥ this → stem-self-contained
+_H4_PARTIAL_THRESHOLD = 0.35  # ≥ this but below pass → partial
+
+
+def assess_stem_only_solvability(
+    question: Dict[str, Any],
+    *,
+    llm_caller=None,
+    embedder=None,
+    cosine=None,
+) -> Dict[str, Any]:
+    """Show LLM only the stem; cosine-compare its answer to the real key."""
+    call = llm_caller or _call_stem_only_llm
+    if embedder is None or cosine is None:
+        from .embedding_service import embed_text, cosine_similarity
+        embedder = embedder or embed_text
+        cosine = cosine or cosine_similarity
+
+    stem = question.get('question_text') or ''
+    correct = question.get('correct_answer') or ''
+    if not stem or not correct:
+        return {
+            'question_id': question.get('id'),
+            'available': False,
+            'reason': 'Missing stem or correct answer.',
+        }
+
+    raw = call(build_stem_only_prompt(stem))
+    free_answer = _parse_free_answer(raw or '')
+    if free_answer is None:
+        return {
+            'question_id': question.get('id'),
+            'available': True,
+            'free_answer': None,
+            'similarity': None,
+            'verdict': 'unable',
+            'h4_passes': False,
+            'reasoning': 'LLM could not answer the stem alone — options likely carry critical context.',
+        }
+
+    v1 = embedder(free_answer)
+    v2 = embedder(correct)
+    if v1 is None or v2 is None:
+        return {
+            'question_id': question.get('id'),
+            'available': False,
+            'reason': 'Embedding model unavailable; cannot compare answers.',
+        }
+    sim = cosine(v1, v2)
+    if sim is None:
+        return {
+            'question_id': question.get('id'),
+            'available': False,
+            'reason': 'Cosine similarity computation failed.',
+        }
+
+    if sim >= _H4_PASS_THRESHOLD:
+        verdict = 'passes'
+    elif sim >= _H4_PARTIAL_THRESHOLD:
+        verdict = 'partial'
+    else:
+        verdict = 'fails'
+
+    return {
+        'question_id': question.get('id'),
+        'available': True,
+        'free_answer': free_answer,
+        'similarity': round(sim, 3),
+        'verdict': verdict,
+        'h4_passes': verdict == 'passes',
+    }
+
+
+def stem_only_solvability_report(
+    questions: List[Dict[str, Any]],
+    *,
+    llm_caller=None,
+    embedder=None,
+    cosine=None,
+) -> Dict[str, Any]:
+    """Batch stem-only solvability report (H4 conformance across a lesson)."""
+    reports = [
+        assess_stem_only_solvability(q, llm_caller=llm_caller, embedder=embedder, cosine=cosine)
+        for q in questions
+    ]
+    available = [r for r in reports if r.get('available')]
+    n = len(available)
+    distribution = {'passes': 0, 'partial': 0, 'fails': 0, 'unable': 0}
+    for r in available:
+        v = r.get('verdict')
+        if v in distribution:
+            distribution[v] += 1
+    pass_rate = (distribution['passes'] / n * 100) if n else None
+    sims = [r['similarity'] for r in available if r.get('similarity') is not None]
+    mean_sim = (sum(sims) / len(sims)) if sims else None
+
+    return {
+        'total_questions': len(reports),
+        'evaluated_questions': n,
+        'h4_pass_rate': round(pass_rate, 1) if pass_rate is not None else None,
+        'mean_similarity': round(mean_sim, 3) if mean_sim is not None else None,
+        'verdict_distribution': distribution,
+        'reports': reports,
+    }
+
+
 def solvability_report(
     questions: List[Dict[str, Any]],
     *,

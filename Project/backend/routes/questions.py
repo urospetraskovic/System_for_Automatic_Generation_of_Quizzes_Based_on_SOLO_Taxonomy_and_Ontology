@@ -13,6 +13,13 @@ from services import (
     classify_question, judge_questions,
     verify_question, verify_questions,
     assess_solvability, solvability_report,
+    assess_stem_only_solvability, stem_only_solvability_report,
+    ioc_rate_question, ioc_report,
+    assess_question_readability, readability_report,
+    assess_ambiguity, ambiguity_report,
+    mine_lesson_misconceptions,
+    check_homogeneity, homogeneity_report,
+    assess_face_validity, face_validity_report,
 )
 from schemas import GenerateQuestionsRequest
 
@@ -259,6 +266,171 @@ def solvability_lesson(lesson_id):
         questions = db.get_questions_by_lesson(lesson_id)
         n_trials = int(request.args.get('n_trials', 5))
         return jsonify(solvability_report(questions, n_trials=n_trials)), 200
+    except Exception as e:
+        traceback.print_exc()
+        return jsonify({'error': str(e)}), 500
+
+
+# --------------------------------------------------------------------------
+# Extended validity layer (A–H from the best-practices document)
+# --------------------------------------------------------------------------
+
+@questions_bp.route('/lessons/<int:lesson_id>/stem-only-solvability', methods=['GET'])
+def stem_only_solvability_lesson(lesson_id):
+    """Haladyna H4: stem must be answerable without options."""
+    try:
+        questions = db.get_questions_by_lesson(lesson_id)
+        return jsonify(stem_only_solvability_report(questions)), 200
+    except Exception as e:
+        traceback.print_exc()
+        return jsonify({'error': str(e)}), 500
+
+
+@questions_bp.route('/questions/<int:question_id>/ioc', methods=['GET'])
+def ioc_single(question_id):
+    """Item-Objective Congruence rating for one question (Rovinelli & Hambleton 1977)."""
+    try:
+        session = db.get_session()
+        try:
+            q = session.query(Question).filter(Question.id == question_id).first()
+            if not q:
+                return jsonify({'error': 'Question not found'}), 404
+            return jsonify(ioc_rate_question(q.to_dict())), 200
+        finally:
+            session.close()
+    except Exception as e:
+        traceback.print_exc()
+        return jsonify({'error': str(e)}), 500
+
+
+@questions_bp.route('/lessons/<int:lesson_id>/ioc', methods=['GET'])
+def ioc_lesson(lesson_id):
+    """Lesson-wide IOC index + per-question ratings."""
+    try:
+        questions = db.get_questions_by_lesson(lesson_id)
+        return jsonify(ioc_report(questions)), 200
+    except Exception as e:
+        traceback.print_exc()
+        return jsonify({'error': str(e)}), 500
+
+
+@questions_bp.route('/questions/<int:question_id>/readability', methods=['GET'])
+def readability_single(question_id):
+    """Flesch / Flesch-Kincaid metrics + fit to SOLO level."""
+    try:
+        session = db.get_session()
+        try:
+            q = session.query(Question).filter(Question.id == question_id).first()
+            if not q:
+                return jsonify({'error': 'Question not found'}), 404
+            return jsonify(assess_question_readability(q.to_dict())), 200
+        finally:
+            session.close()
+    except Exception as e:
+        traceback.print_exc()
+        return jsonify({'error': str(e)}), 500
+
+
+@questions_bp.route('/lessons/<int:lesson_id>/readability', methods=['GET'])
+def readability_lesson(lesson_id):
+    """Batch readability report across a lesson's questions."""
+    try:
+        questions = db.get_questions_by_lesson(lesson_id)
+        return jsonify(readability_report(questions)), 200
+    except Exception as e:
+        traceback.print_exc()
+        return jsonify({'error': str(e)}), 500
+
+
+@questions_bp.route('/questions/<int:question_id>/ambiguity', methods=['GET'])
+def ambiguity_single(question_id):
+    """Linguistic-ambiguity check for one question."""
+    try:
+        session = db.get_session()
+        try:
+            q = session.query(Question).filter(Question.id == question_id).first()
+            if not q:
+                return jsonify({'error': 'Question not found'}), 404
+            return jsonify(assess_ambiguity(q.to_dict())), 200
+        finally:
+            session.close()
+    except Exception as e:
+        traceback.print_exc()
+        return jsonify({'error': str(e)}), 500
+
+
+@questions_bp.route('/lessons/<int:lesson_id>/ambiguity', methods=['GET'])
+def ambiguity_lesson(lesson_id):
+    """Lesson-wide ambiguity rate + per-question reports."""
+    try:
+        questions = db.get_questions_by_lesson(lesson_id)
+        return jsonify(ambiguity_report(questions)), 200
+    except Exception as e:
+        traceback.print_exc()
+        return jsonify({'error': str(e)}), 500
+
+
+@questions_bp.route('/lessons/<int:lesson_id>/misconception-mining', methods=['GET'])
+def misconception_mining_lesson(lesson_id):
+    """Sadler 1998: extract real misconceptions from a lesson's source PDF."""
+    try:
+        return jsonify(mine_lesson_misconceptions(lesson_id)), 200
+    except Exception as e:
+        traceback.print_exc()
+        return jsonify({'error': str(e)}), 500
+
+
+@questions_bp.route('/questions/<int:question_id>/grammar-homogeneity', methods=['GET'])
+def grammar_homogeneity_single(question_id):
+    """Haladyna O7: are the four options grammatically parallel?"""
+    try:
+        session = db.get_session()
+        try:
+            q = session.query(Question).filter(Question.id == question_id).first()
+            if not q:
+                return jsonify({'error': 'Question not found'}), 404
+            return jsonify(check_homogeneity(q.to_dict())), 200
+        finally:
+            session.close()
+    except Exception as e:
+        traceback.print_exc()
+        return jsonify({'error': str(e)}), 500
+
+
+@questions_bp.route('/lessons/<int:lesson_id>/grammar-homogeneity', methods=['GET'])
+def grammar_homogeneity_lesson(lesson_id):
+    """Lesson-wide grammatical homogeneity check across all options."""
+    try:
+        questions = db.get_questions_by_lesson(lesson_id)
+        return jsonify(homogeneity_report(questions)), 200
+    except Exception as e:
+        traceback.print_exc()
+        return jsonify({'error': str(e)}), 500
+
+
+@questions_bp.route('/questions/<int:question_id>/face-validity', methods=['GET'])
+def face_validity_single(question_id):
+    """Considine 2005 distractor face-validity rubric."""
+    try:
+        session = db.get_session()
+        try:
+            q = session.query(Question).filter(Question.id == question_id).first()
+            if not q:
+                return jsonify({'error': 'Question not found'}), 404
+            return jsonify(assess_face_validity(q.to_dict())), 200
+        finally:
+            session.close()
+    except Exception as e:
+        traceback.print_exc()
+        return jsonify({'error': str(e)}), 500
+
+
+@questions_bp.route('/lessons/<int:lesson_id>/face-validity', methods=['GET'])
+def face_validity_lesson(lesson_id):
+    """Lesson-wide face-validity score + per-criterion means."""
+    try:
+        questions = db.get_questions_by_lesson(lesson_id)
+        return jsonify(face_validity_report(questions)), 200
     except Exception as e:
         traceback.print_exc()
         return jsonify({'error': str(e)}), 500

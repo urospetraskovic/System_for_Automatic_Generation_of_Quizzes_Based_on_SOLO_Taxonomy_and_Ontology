@@ -94,6 +94,14 @@ export const questionApi = {
   coveLesson: (lessonId) => apiClient.get(`/lessons/${lessonId}/cove`),
   solvability: (questionId, nTrials = 5) => apiClient.get(`/questions/${questionId}/solvability?n_trials=${nTrials}`),
   solvabilityLesson: (lessonId, nTrials = 5) => apiClient.get(`/lessons/${lessonId}/solvability?n_trials=${nTrials}`),
+  // Extended validity layer (A-H).
+  stemOnlySolvabilityLesson: (lessonId) => apiClient.get(`/lessons/${lessonId}/stem-only-solvability`),
+  iocLesson: (lessonId) => apiClient.get(`/lessons/${lessonId}/ioc`),
+  readabilityLesson: (lessonId) => apiClient.get(`/lessons/${lessonId}/readability`),
+  ambiguityLesson: (lessonId) => apiClient.get(`/lessons/${lessonId}/ambiguity`),
+  misconceptionMining: (lessonId) => apiClient.get(`/lessons/${lessonId}/misconception-mining`),
+  grammarHomogeneityLesson: (lessonId) => apiClient.get(`/lessons/${lessonId}/grammar-homogeneity`),
+  faceValidityLesson: (lessonId) => apiClient.get(`/lessons/${lessonId}/face-validity`),
 };
 
 // ==================== JOBS ENDPOINTS ====================
