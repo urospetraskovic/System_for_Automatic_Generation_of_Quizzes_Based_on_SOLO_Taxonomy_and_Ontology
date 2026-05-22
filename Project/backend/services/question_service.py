@@ -237,6 +237,146 @@ class QuestionService:
         }
 
     # ------------------------------------------------------------------
+    # Auto-quota generation limited to a user-selected subset of lessons
+    # ------------------------------------------------------------------
+
+    @staticmethod
+    def generate_for_lessons(lesson_ids, save_to_db=True, progress_cb=None):
+        """
+        Auto-quota generation across an explicit list of lesson IDs.
+
+        Same quota-sizing and EA-pairing strategy as `generate_for_course`,
+        but the caller chooses the lessons. Useful when the user wants the
+        "smart" sizing (so they don't have to set `questions_per_level`
+        themselves) but only for one or two lessons at a time.
+
+        Behaviour matches `generate_for_course` per lesson:
+          * U/M/R quotas come from `_quotas_for_lesson` (LO and section counts).
+          * EA is generated for *consecutive pairs* of provided lesson_ids,
+            in the order they were passed. With one lesson selected, EA is
+            skipped (matching the schema validation in the manual mode).
+        """
+        if not lesson_ids:
+            return {'error': 'lesson_ids is required', 'status': 400}
+
+        # De-duplicate while preserving order.
+        seen = set()
+        ordered_ids = []
+        for lid in lesson_ids:
+            try:
+                lid_int = int(lid)
+            except (TypeError, ValueError):
+                continue
+            if lid_int not in seen:
+                seen.add(lid_int)
+                ordered_ids.append(lid_int)
+        if not ordered_ids:
+            return {'error': 'No valid lesson_ids provided', 'status': 400}
+
+        # Build plans for the requested lessons only, skipping unparsed ones.
+        plans = []
+        for lid in ordered_ids:
+            full = db.get_lesson_with_sections(lid)
+            if not full:
+                continue
+            sections = full.get('sections') or []
+            if not sections:
+                continue
+            n_sections = len(sections)
+            n_los = sum(len(s.get('learning_objects') or []) for s in sections)
+            if n_los == 0:
+                continue
+            quotas = _quotas_for_lesson(n_los, n_sections)
+            plans.append({
+                'lesson_id': lid,
+                'lesson_title': full.get('title') or f'Lesson {lid}',
+                'n_sections': n_sections,
+                'n_los': n_los,
+                'quotas': quotas,
+            })
+
+        if not plans:
+            return {
+                'error': 'None of the provided lessons have been parsed yet',
+                'status': 400,
+            }
+
+        ea_per_pair = 5 if len(plans) >= 2 else 0
+        total_target = sum(
+            sum(p['quotas'].values()) for p in plans
+        ) + ea_per_pair * max(0, len(plans) - 1)
+
+        def _emit(msg, current=None, total=None):
+            if progress_cb:
+                try:
+                    progress_cb(message=msg, current=current, total=total)
+                except Exception:
+                    pass
+
+        all_questions = []
+        solo_distribution = {
+            'unistructural': 0, 'multistructural': 0,
+            'relational': 0, 'extended_abstract': 0,
+        }
+        running_done = 0
+
+        for i, plan in enumerate(plans):
+            _emit(
+                f"Lesson {i+1}/{len(plans)}: {plan['lesson_title']} "
+                f"({plan['n_sections']} sections, {plan['n_los']} LOs)",
+                running_done, total_target,
+            )
+
+            for level in ('unistructural', 'multistructural', 'relational'):
+                count = plan['quotas'][level]
+                if count <= 0:
+                    continue
+                _emit(
+                    f"{plan['lesson_title']}: {count} × {level}",
+                    running_done, total_target,
+                )
+                result = QuestionService.generate_questions(
+                    lesson_ids=[plan['lesson_id']],
+                    solo_levels=[level],
+                    questions_per_level=count,
+                    save_to_db=save_to_db,
+                )
+                if isinstance(result, dict) and result.get('error'):
+                    print(f"[SERVICE] Skipping {plan['lesson_title']}/{level}: {result['error']}")
+                    continue
+                got = result.get('questions') or []
+                all_questions.extend(got)
+                solo_distribution[level] += len(got)
+                running_done += count
+
+            # EA across consecutive pairs of the selected lessons.
+            if ea_per_pair and i + 1 < len(plans):
+                pair_ids = [plan['lesson_id'], plans[i + 1]['lesson_id']]
+                _emit(
+                    f"Cross-lesson EA: {plan['lesson_title']} + {plans[i+1]['lesson_title']}",
+                    running_done, total_target,
+                )
+                result = QuestionService.generate_questions(
+                    lesson_ids=pair_ids,
+                    solo_levels=['extended_abstract'],
+                    questions_per_level=ea_per_pair,
+                    save_to_db=save_to_db,
+                )
+                if isinstance(result, dict) and not result.get('error'):
+                    got = result.get('questions') or []
+                    all_questions.extend(got)
+                    solo_distribution['extended_abstract'] += len(got)
+                running_done += ea_per_pair
+
+        return {
+            'questions': all_questions,
+            'count': len(all_questions),
+            'solo_distribution': solo_distribution,
+            'lessons_processed': len(plans),
+            'status': 200,
+        }
+
+    # ------------------------------------------------------------------
     # Coverage-targeted (fill the gaps) generation
     # ------------------------------------------------------------------
 

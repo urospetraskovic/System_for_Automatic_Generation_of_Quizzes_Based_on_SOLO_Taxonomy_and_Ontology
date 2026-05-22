@@ -150,3 +150,59 @@ def test_extended_abstract_pass2_carries_question_and_answer():
     assert "PASS 2 of 2" in prompt
     # And pass 2's output schema must request distractors.
     assert '"distractors"' in prompt
+
+
+# -----------------------------------------------------------------------------
+# Haladyna item-writing rules — must be explicit in every generation prompt.
+# Rule codes mirror services.mcq_lint so prevention (prompt) and detection
+# (lint) share a vocabulary. If a code below disappears from the prompt,
+# the LLM will regress on that lint check.
+# -----------------------------------------------------------------------------
+
+@pytest.mark.parametrize("level", SOLO_LEVELS)
+def test_question_prompt_carries_stem_and_option_rules(level):
+    prompt = build_question_prompt(
+        level=level,
+        lesson_title="Test Lesson",
+        content_block="X: a thing.",
+        source_text="X is a thing.",
+        language="en",
+    )
+    # Stem rules — H14, H16, H17.
+    assert "STEM RULES" in prompt
+    for code in ("H14", "H16", "H17"):
+        assert code in prompt
+    # Option rules — H19, H22, H24, H27, H25, H21.
+    assert "OPTION RULES" in prompt
+    for code in ("H19", "H22", "H24", "H27", "H25", "H21"):
+        assert code in prompt
+
+
+def test_extended_abstract_pass1_carries_stem_rules_only():
+    """Pass 1 produces only the stem + correct answer — no distractor rules yet."""
+    prompt = build_extended_abstract_pass1_prompt(
+        lesson_title="Operating Systems",
+        secondary_title=None,
+        primary_content="processes; scheduling",
+        secondary_content="",
+        primary_source="Processes are scheduled by the OS.",
+        secondary_source="",
+        ontology_anchor_block="",
+        language="en",
+    )
+    assert "STEM RULES" in prompt
+    assert "OPTION RULES" not in prompt
+
+
+def test_extended_abstract_pass2_carries_option_rules():
+    """Pass 2 writes distractors — option rules must be present."""
+    prompt = build_extended_abstract_pass2_prompt(
+        question="How would X principle apply to Y?",
+        correct_answer="By doing Z.",
+        explanation="Because Z follows from X.",
+        source_text="X is defined as...",
+        language="en",
+    )
+    assert "OPTION RULES" in prompt
+    for code in ("H19", "H22", "H24", "H27", "H25"):
+        assert code in prompt

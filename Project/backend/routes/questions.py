@@ -7,7 +7,13 @@ from pydantic import ValidationError
 
 from repository import db
 from models import Question
-from services import QuestionService
+from services import (
+    QuestionService,
+    lint_question, lint_questions,
+    classify_question, judge_questions,
+    verify_question, verify_questions,
+    assess_solvability, solvability_report,
+)
 from schemas import GenerateQuestionsRequest
 
 questions_bp = Blueprint('questions', __name__, url_prefix='/api')
@@ -141,4 +147,118 @@ def delete_question(question_id):
             return jsonify({'message': 'Question deleted'}), 200
         return jsonify({'error': 'Question not found'}), 404
     except Exception as e:
+        return jsonify({'error': str(e)}), 500
+
+
+@questions_bp.route('/questions/<int:question_id>/lint', methods=['GET'])
+def lint_single_question(question_id):
+    """Run Haladyna-rule MCQ quality checks against a single question."""
+    try:
+        session = db.get_session()
+        try:
+            q = session.query(Question).filter(Question.id == question_id).first()
+            if not q:
+                return jsonify({'error': 'Question not found'}), 404
+            return jsonify(lint_question(q.to_dict())), 200
+        finally:
+            session.close()
+    except Exception as e:
+        traceback.print_exc()
+        return jsonify({'error': str(e)}), 500
+
+
+@questions_bp.route('/lessons/<int:lesson_id>/lint', methods=['GET'])
+def lint_lesson_questions(lesson_id):
+    """Run lint over all questions for a lesson; returns aggregate + per-item reports."""
+    try:
+        questions = db.get_questions_by_lesson(lesson_id)
+        return jsonify(lint_questions(questions)), 200
+    except Exception as e:
+        traceback.print_exc()
+        return jsonify({'error': str(e)}), 500
+
+
+@questions_bp.route('/questions/<int:question_id>/solo-judge', methods=['GET'])
+def solo_judge_single(question_id):
+    """Classify one question's SOLO level via a second LLM (independent of the generator)."""
+    try:
+        session = db.get_session()
+        try:
+            q = session.query(Question).filter(Question.id == question_id).first()
+            if not q:
+                return jsonify({'error': 'Question not found'}), 404
+            return jsonify(classify_question(q.to_dict())), 200
+        finally:
+            session.close()
+    except Exception as e:
+        traceback.print_exc()
+        return jsonify({'error': str(e)}), 500
+
+
+@questions_bp.route('/lessons/<int:lesson_id>/solo-judge', methods=['GET'])
+def solo_judge_lesson(lesson_id):
+    """Run SOLO LLM-judge over a lesson; returns agreement, Cohen's kappa, confusion matrix."""
+    try:
+        questions = db.get_questions_by_lesson(lesson_id)
+        return jsonify(judge_questions(questions)), 200
+    except Exception as e:
+        traceback.print_exc()
+        return jsonify({'error': str(e)}), 500
+
+
+@questions_bp.route('/questions/<int:question_id>/cove', methods=['GET'])
+def cove_single(question_id):
+    """Chain-of-Verification (Dhuliawala 2023) for one question's correctness."""
+    try:
+        session = db.get_session()
+        try:
+            q = session.query(Question).filter(Question.id == question_id).first()
+            if not q:
+                return jsonify({'error': 'Question not found'}), 404
+            return jsonify(verify_question(q.to_dict())), 200
+        finally:
+            session.close()
+    except Exception as e:
+        traceback.print_exc()
+        return jsonify({'error': str(e)}), 500
+
+
+@questions_bp.route('/lessons/<int:lesson_id>/cove', methods=['GET'])
+def cove_lesson(lesson_id):
+    """Chain-of-Verification across a lesson's questions; flags ones needing review."""
+    try:
+        questions = db.get_questions_by_lesson(lesson_id)
+        return jsonify(verify_questions(questions)), 200
+    except Exception as e:
+        traceback.print_exc()
+        return jsonify({'error': str(e)}), 500
+
+
+@questions_bp.route('/questions/<int:question_id>/solvability', methods=['GET'])
+def solvability_single(question_id):
+    """LLM-blind solver as a-priori item difficulty calibration."""
+    try:
+        session = db.get_session()
+        try:
+            q = session.query(Question).filter(Question.id == question_id).first()
+            if not q:
+                return jsonify({'error': 'Question not found'}), 404
+            n_trials = int(request.args.get('n_trials', 5))
+            return jsonify(assess_solvability(q.to_dict(), n_trials=n_trials)), 200
+        finally:
+            session.close()
+    except Exception as e:
+        traceback.print_exc()
+        return jsonify({'error': str(e)}), 500
+
+
+@questions_bp.route('/lessons/<int:lesson_id>/solvability', methods=['GET'])
+def solvability_lesson(lesson_id):
+    """LLM-blind solver across a lesson's questions; gives synthetic p-values."""
+    try:
+        questions = db.get_questions_by_lesson(lesson_id)
+        n_trials = int(request.args.get('n_trials', 5))
+        return jsonify(solvability_report(questions, n_trials=n_trials)), 200
+    except Exception as e:
+        traceback.print_exc()
         return jsonify({'error': str(e)}), 500

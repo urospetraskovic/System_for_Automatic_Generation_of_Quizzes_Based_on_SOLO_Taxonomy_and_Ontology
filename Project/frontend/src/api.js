@@ -82,7 +82,18 @@ export const questionApi = {
   // sit on uncovered substantive pages.
   generateForUncoveredAsync: (courseId) =>
     apiClient.post('/jobs/generate-questions-for-uncovered', { course_id: courseId }),
+  // Auto-quota mode restricted to a user-selected list of lesson IDs.
+  generateForLessonsAsync: (lessonIds) =>
+    apiClient.post('/jobs/generate-questions-for-lessons', { lesson_ids: lessonIds }),
   delete: (questionId) => apiClient.delete(`/questions/${questionId}`),
+  lint: (questionId) => apiClient.get(`/questions/${questionId}/lint`),
+  lintLesson: (lessonId) => apiClient.get(`/lessons/${lessonId}/lint`),
+  soloJudge: (questionId) => apiClient.get(`/questions/${questionId}/solo-judge`),
+  soloJudgeLesson: (lessonId) => apiClient.get(`/lessons/${lessonId}/solo-judge`),
+  cove: (questionId) => apiClient.get(`/questions/${questionId}/cove`),
+  coveLesson: (lessonId) => apiClient.get(`/lessons/${lessonId}/cove`),
+  solvability: (questionId, nTrials = 5) => apiClient.get(`/questions/${questionId}/solvability?n_trials=${nTrials}`),
+  solvabilityLesson: (lessonId, nTrials = 5) => apiClient.get(`/lessons/${lessonId}/solvability?n_trials=${nTrials}`),
 };
 
 // ==================== JOBS ENDPOINTS ====================

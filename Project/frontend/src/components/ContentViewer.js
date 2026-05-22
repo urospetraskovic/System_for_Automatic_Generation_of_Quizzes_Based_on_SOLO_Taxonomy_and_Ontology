@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import { lessonApi, sectionApi, learningObjectApi, ontologyApi } from '../api';
 import TranslationViewer from './TranslationViewer';
 import CoveragePanel from './CoveragePanel';
+import MCQLintPanel from './MCQLintPanel';
+import SoloJudgePanel from './SoloJudgePanel';
+import AdvancedQualityPanel from './AdvancedQualityPanel';
 
 function ContentViewer({ lesson, onBack, onSuccess, onError, onLessonUpdate }) {
   const [sections, setSections] = useState([]);
@@ -279,6 +282,21 @@ function ContentViewer({ lesson, onBack, onSuccess, onError, onLessonUpdate }) {
         {/* PDF Coverage Panel */}
         {sections.length > 0 && (
           <CoveragePanel lessonId={lesson.id} refreshKey={sections.length} />
+        )}
+
+        {/* MCQ Quality (Haladyna lint) Panel */}
+        {sections.length > 0 && (
+          <MCQLintPanel lessonId={lesson.id} refreshKey={sections.length} />
+        )}
+
+        {/* SOLO LLM-judge Panel */}
+        {sections.length > 0 && (
+          <SoloJudgePanel lessonId={lesson.id} />
+        )}
+
+        {/* Advanced validity: CoVe + Solvability */}
+        {sections.length > 0 && (
+          <AdvancedQualityPanel lessonId={lesson.id} />
         )}
 
         {/* Domain Ontology Section */}

@@ -193,8 +193,41 @@ COT_SCAFFOLD = (
     "  3. Draft the question stem. Avoid starting with 'Which of the following'.\n"
     "  4. Write the correct option using terminology from SOURCE TEXT.\n"
     "  5. Build 3 distractors, each following one of the DISTRACTOR STRATEGIES.\n"
-    "  6. Verify: exactly one option is correct; all four options are similar in length and style;\n"
-    "     each distractor is plausible but eliminable by a careful reader."
+    "  6. Verify the STEM RULES and OPTION RULES below before emitting JSON."
+)
+
+
+# Explicit Haladyna, Downing & Rodriguez (2002) item-writing rules. These
+# duplicate the COT_SCAFFOLD verify-step in plain language because LLMs respect
+# rules better when they are stated as numbered constraints than when buried
+# in a checklist. Rule codes match services.mcq_lint so the prevention layer
+# and the detection layer use the same vocabulary.
+STEM_RULES = (
+    "STEM RULES (item-writing best practice — follow strictly):\n"
+    "  S1 (H14) End the stem with a question mark, OR start with a clear imperative "
+    "(Define, Describe, Explain, Determine, Calculate…). No statement-style stems.\n"
+    "  S2 (H16) Keep the stem under ~250 characters. No window dressing, no "
+    "back-story, no double questions.\n"
+    "  S3 (H17) Avoid negation in the stem (NOT, EXCEPT, NIJE, OSIM). If unavoidable, "
+    "emphasize it by surrounding the negation in **double asterisks**.\n"
+    "  S4 Place the central idea in the stem, not in the choices — the stem must be "
+    "answerable without reading the options."
+)
+
+OPTION_RULES = (
+    "OPTION RULES (item-writing best practice — follow strictly):\n"
+    "  O1 (H19) Exactly ONE option is correct.\n"
+    "  O2 (H22) No two options may be paraphrases of one another. Distractors must be "
+    "lexically distinct.\n"
+    "  O3 (H24) Keep option lengths roughly equal — the longest option may be at most "
+    "twice the length of the shortest.\n"
+    "  O4 (H27) The CORRECT option must NOT be the longest one. If your draft has the "
+    "correct answer as longest, shorten it or lengthen a distractor.\n"
+    "  O5 (H25) Never use 'all of the above' / 'none of the above' / 'svi navedeni' / "
+    "'nijedan od navedenih'. Each option must stand on its own.\n"
+    "  O6 (H21) If options are numeric, list them in ascending or descending order.\n"
+    "  O7 Match grammatical structure across options — same part of speech, same "
+    "register, same tense."
 )
 
 
@@ -233,6 +266,10 @@ CONTENT (use ONLY what appears in CONTENT or SOURCE TEXT below):
 
 SOURCE TEXT (verbatim from the lesson — your `source_line` must be a quote from here):
 {source_text or "(no source excerpt available — generate from CONTENT only)"}{ontology_anchor_block}
+
+{STEM_RULES}
+
+{OPTION_RULES}
 
 {distractor_table}
 
@@ -295,12 +332,15 @@ PRIMARY LESSON ({lesson_title}) CONCEPTS:
 PRIMARY SOURCE TEXT:
 {primary_source or "(no source excerpt available)"}{secondary_block}{ontology_anchor_block}
 
+{STEM_RULES}
+
 THINK STEP BY STEP INTERNALLY (do not include this reasoning):
   1. Pick one principle that meaningfully transfers to a new context.
   2. Sketch a NEW scenario grounded in the materials, not invented from scratch.
   3. Write the question stem. Avoid starting with 'Which of the following'.
   4. Write the correct answer using terminology from the materials.
   5. Verify the answer is uniquely defensible given the source content.
+  6. Verify the STEM RULES above before emitting JSON.
 
 {lang_clause}
 
@@ -344,6 +384,8 @@ SOURCE CONTEXT (use to ground distractors; do not invent external concepts):
 {source_text or "(no source excerpt)"}
 
 {distractor_table}
+
+{OPTION_RULES}
 
 REQUIREMENTS:
   - Exactly THREE distractors, one per strategy above.

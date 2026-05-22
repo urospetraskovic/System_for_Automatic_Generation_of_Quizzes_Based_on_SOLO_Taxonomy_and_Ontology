@@ -89,6 +89,44 @@ def start_generate_for_course():
         return jsonify({"error": str(e)}), 500
 
 
+@jobs_bp.route("/generate-questions-for-lessons", methods=["POST"])
+def start_generate_for_lessons():
+    """
+    Auto-quota mode restricted to a user-selected subset of lessons.
+
+    Body: {"lesson_ids": [1, 2, ...], "save_to_db": true}
+
+    Same smart sizing as `/generate-questions-for-course` but only across
+    the provided lessons. EA is generated for consecutive pairs of the
+    provided lesson_ids when there are 2+.
+    """
+    try:
+        data = request.get_json(silent=True) or {}
+        lesson_ids = data.get('lesson_ids')
+        if not isinstance(lesson_ids, list) or not lesson_ids:
+            return jsonify({"error": "lesson_ids (non-empty list) is required"}), 400
+        save_to_db = data.get('save_to_db', True)
+
+        def runner(report):
+            report(message="Planning per-lesson quotas...", current=0, total=0)
+            result = QuestionService.generate_for_lessons(
+                lesson_ids=lesson_ids,
+                save_to_db=save_to_db,
+                progress_cb=report,
+            )
+            status = result.pop("status", 200)
+            if status >= 400 or result.get("error"):
+                raise RuntimeError(result.get("error") or f"Lesson generation failed (status {status})")
+            return result
+
+        job_id = submit("generate-for-lessons", runner)
+        return jsonify({"job_id": job_id, "status": "pending"}), 202
+
+    except Exception as e:
+        traceback.print_exc()
+        return jsonify({"error": str(e)}), 500
+
+
 @jobs_bp.route("/generate-questions-for-uncovered", methods=["POST"])
 def start_generate_for_uncovered():
     """

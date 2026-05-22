@@ -135,6 +135,31 @@ function QuestionGenerator({ course, onQuestionsGenerated, onSuccess, onError })
     }
   };
 
+  const handleGenerateForSelectedLessons = async () => {
+    if (selectedLessons.length === 0) {
+      onError('Please select at least one lesson');
+      return;
+    }
+    if (!window.confirm(
+      `Generate FULL question set for ${selectedLessons.length} selected lesson(s)?\n\n` +
+      `This auto-sizes the U/M/R quotas per lesson (you don't pick the count). ` +
+      `Extended Abstract is produced for consecutive pairs when 2+ lessons are selected.`
+    )) return;
+
+    try {
+      setGenerating(true);
+      setProgress({ message: 'Planning per-lesson quotas...', current: 0, total: 0 });
+      const startResp = await questionApi.generateForLessonsAsync(selectedLessons);
+      const result = await pollJob(startResp.data.job_id);
+      reportResult(result, 'Full per-lesson generation: created');
+    } catch (err) {
+      onError(err.response?.data?.error || err.message || 'Failed to generate for selected lessons');
+    } finally {
+      setGenerating(false);
+      setProgress(null);
+    }
+  };
+
   const handleGenerateForCourse = async () => {
     if (!course?.id) {
       onError('No course selected');
@@ -316,13 +341,24 @@ function QuestionGenerator({ course, onQuestionsGenerated, onSuccess, onError })
               )}
             </div>
           )}
-          <button
-            className="btn-primary btn-large"
-            onClick={handleGenerate}
-            disabled={generating || selectedLessons.length === 0}
-          >
-            {generating ? 'Generating...' : 'Generate Questions'}
-          </button>
+          <div style={{ display: 'flex', gap: '10px', flexWrap: 'wrap', width: '100%' }}>
+            <button
+              className="btn-primary btn-large"
+              onClick={handleGenerate}
+              disabled={generating || selectedLessons.length === 0}
+              title="Generate exactly the count you set above, for the SOLO levels you ticked."
+            >
+              {generating ? 'Generating...' : 'Generate Questions'}
+            </button>
+            <button
+              className="btn-secondary btn-large"
+              onClick={handleGenerateForSelectedLessons}
+              disabled={generating || selectedLessons.length === 0}
+              title="Auto-size U/M/R quotas per selected lesson and generate the full set. EA is added for consecutive pairs when 2+ lessons are selected."
+            >
+              Generate Full Questions for Selected Lessons
+            </button>
+          </div>
         </div>
 
         {/* Auto-quota and coverage-fill buttons. These operate on the WHOLE

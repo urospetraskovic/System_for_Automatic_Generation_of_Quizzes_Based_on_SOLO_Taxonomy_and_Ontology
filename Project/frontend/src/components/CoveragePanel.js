@@ -82,7 +82,18 @@ function CoveragePanel({ lessonId, refreshKey }) {
               borderRadius: '10px',
               fontSize: '0.8rem',
             }}>
-              {data.weighted_coverage_pct}% of content covered
+              {data.weighted_coverage_pct}% pages
+            </span>
+          )}
+          {data?.concept_coverage?.available && (
+            <span className="badge" style={{
+              background: '#dbeafe',
+              color: '#1e3a8a',
+              padding: '2px 8px',
+              borderRadius: '10px',
+              fontSize: '0.8rem',
+            }}>
+              {data.concept_coverage.weighted_concept_coverage_pct}% concepts
             </span>
           )}
         </div>
@@ -107,6 +118,17 @@ function CoveragePanel({ lessonId, refreshKey }) {
                   Page metadata was reconstructed from text markers. Re-upload + re-parse this PDF for fully precise per-page counts.
                 </div>
               )}
+
+              {data.concept_coverage?.available && (
+                <ConceptCoverageSection data={data.concept_coverage} />
+              )}
+
+              {data.concept_coverage && !data.concept_coverage.available && (
+                <div style={{ marginBottom: '16px', padding: '8px 12px', background: 'var(--neutral-100)', borderRadius: '6px', fontSize: '0.85rem', color: 'var(--neutral-600)' }}>
+                  Concept coverage unavailable: {data.concept_coverage.reason}
+                </div>
+              )}
+
               <div style={{
                 display: 'grid',
                 gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
@@ -147,6 +169,90 @@ function CoveragePanel({ lessonId, refreshKey }) {
               )}
             </>
           )}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function ConceptCoverageSection({ data }) {
+  const [showAll, setShowAll] = useState(false);
+  const uncovered = data.top_uncovered_concepts || [];
+  const visibleUncovered = showAll ? uncovered : uncovered.slice(0, 8);
+
+  return (
+    <div style={{
+      marginBottom: '16px',
+      background: 'white',
+      padding: '16px',
+      borderRadius: '8px',
+      border: '1px solid var(--neutral-200)',
+      borderLeft: '4px solid #2563eb',
+    }}>
+      <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'space-between', marginBottom: '12px' }}>
+        <div>
+          <div style={{ fontWeight: 700, color: 'var(--neutral-800)' }}>Concept coverage</div>
+          <div style={{ fontSize: '0.8rem', color: 'var(--neutral-500)' }}>
+            Semantic coverage over the lesson's ontology (LO titles + keywords)
+          </div>
+        </div>
+      </div>
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+        gap: '12px',
+      }}>
+        <Stat
+          label="Concepts covered"
+          value={`${data.concepts_covered} / ${data.total_concepts}`}
+          sub={`${data.concept_coverage_pct}%`}
+        />
+        <Stat
+          label="Weighted by centrality"
+          value={`${data.weighted_concept_coverage_pct}%`}
+          sub="hubs count for more"
+        />
+      </div>
+
+      {uncovered.length > 0 && (
+        <div style={{ marginTop: '14px' }}>
+          <div style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--neutral-700)', marginBottom: '6px' }}>
+            Top uncovered concepts ({uncovered.length})
+          </div>
+          <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+            {visibleUncovered.map((c) => (
+              <span
+                key={c.normalized}
+                title={`weight ${c.weight}`}
+                style={{
+                  fontSize: '0.8rem',
+                  padding: '3px 8px',
+                  background: '#fef2f2',
+                  color: '#991b1b',
+                  border: '1px solid #fecaca',
+                  borderRadius: '12px',
+                }}
+              >
+                {c.concept}
+              </span>
+            ))}
+            {uncovered.length > 8 && (
+              <button
+                onClick={() => setShowAll(!showAll)}
+                style={{
+                  fontSize: '0.8rem',
+                  padding: '3px 8px',
+                  background: 'transparent',
+                  border: '1px solid var(--neutral-300)',
+                  borderRadius: '12px',
+                  cursor: 'pointer',
+                  color: 'var(--neutral-600)',
+                }}
+              >
+                {showAll ? 'show fewer' : `+${uncovered.length - 8} more`}
+              </button>
+            )}
+          </div>
         </div>
       )}
     </div>
