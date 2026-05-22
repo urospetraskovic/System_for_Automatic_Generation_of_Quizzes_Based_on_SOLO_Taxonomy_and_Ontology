@@ -177,7 +177,14 @@ Poslovna logika i AI integracije. Sve glavne funkcije izložene su kroz
 | `solo_judge.py` | **SOLO LLM-judge.** `classify_question` — drugi LLM klasifikuje pitanje. `judge_questions` — batch + **Cohen κ** + confusion matrix |
 | `self_consistency.py` | **Wang 2022 best-of-N.** `score_candidate`, `pick_best_question`, `generate_with_self_consistency(generator_fn, n=3)` — kompozit score: lint + embedding bonus |
 | `cove.py` | **Chain-of-Verification (Dhuliawala 2023).** 4-koračni pipeline (plan → verify ×N → judge). `verify_question`, `verify_questions` |
-| `solvability.py` | **LLM-blind solver** za a-priori item difficulty. `assess_solvability(question, n_trials=5)` — sakrije ključ, šuffluje opcije, vraća sintetičku p-vrednost i difficulty label |
+| `solvability.py` | **LLM-blind solver** za a-priori item difficulty. `assess_solvability(question, n_trials=5)` — sakrije ključ, šuffluje opcije, vraća sintetičku p-vrednost. Plus **`assess_stem_only_solvability`** (Haladyna H4) — sakrije *opcije*, traži free-text odgovor i embedding-poredi sa ključem |
+| `ioc.py` | **A. Item-Objective Congruence (Rovinelli & Hambleton 1977).** `ioc_rate_question`, `ioc_report` — drugi LLM rangira svako pitanje -1/0/+1 protiv LO/sekcije gde je anchored; agregira u IOC index ∈ [-1, +1] |
+| `readability.py` | **C. Flesch / Flesch-Kincaid (Flesch 1948 + Kincaid 1975).** `compute_readability`, `assess_question_readability`, `readability_report` — pure-Python, bez LLM-a. Grade level se poredi sa SOLO target rangom |
+| `ambiguity.py` | **D. Linguistic ambiguity (Downing 2005).** `assess_ambiguity`, `ambiguity_report` — LLM proverava da li pitanje admittuje više interpretacija (lexical / referential / syntactic / scope) |
+| `misconception_mining.py` | **E. Source-grounded misconceptions (Sadler 1998).** `mine_misconceptions`, `mine_lesson_misconceptions` — regex cue windows + LLM ekstrakcija (misconception, correction) parova iz izvora |
+| `cloze_distractor.py` | **F. Sibling-concept pool (Aldabe 2009).** `gather_sibling_concepts`, `suggest_cloze_distractors`, `format_pool_for_prompt` — pure-Python, vadi distraktorske kandidate iz LO keywords-a |
+| `grammar_homogeneity.py` | **G. POS-based homogenost (Haladyna O7 / Tarrant 2009).** `check_homogeneity`, `homogeneity_report` — LLM klasifikuje svaku opciju u tip (`noun_phrase`/`verb_phrase`/…), flag-uje outlier-e. Posebno flag-uje slučaj gde je *correct* outlier |
+| `face_validity.py` | **H. Distractor face validity (Considine 2005 + Tarrant & Ware 2008).** `assess_face_validity`, `face_validity_report` — LLM rubrika 1-5 po 4 kriterijuma (plausibility, representativeness, no_giveaways, clarity) |
 | `jobs.py` | ThreadPoolExecutor + in-memory job store. `submit(kind, runner)`, `get(job_id)`, `list_recent()` |
 | `ontology_manager.py` | Spaja seed TBox (`ontology/`) sa DB ABox-om. `export_lesson_ontology(lesson_id, fmt)` / `export_full_ontology(course_id, fmt)` u `'turtle'` ili `'xml'` (RDF/XML) |
 | `sparql_service.py` | Učitava ontologiju, izvršava SPARQL upite |
@@ -192,7 +199,7 @@ Poslovna logika i AI integracije. Sve glavne funkcije izložene su kroz
 
 ### 4.7 Tests (`backend/tests/`)
 
-Pytest suite. **266 testova trenutno**, nijedan ne zahteva Ollama, DB ili
+Pytest suite. **356 testova trenutno**, nijedan ne zahteva Ollama, DB ili
 mrežu. `conftest.py` mokuje `requests.get` da import-time probe Ollama
 servera ne čeka 5s timeout.
 
@@ -206,14 +213,22 @@ Pokrivene oblasti:
 - ontology helpers (`test_ontology_helpers.py`, `test_ontology_batching.py`);
 - jezička detekcija (`test_lang_detect.py`);
 - question deduplication (`test_quiz_generator_dedup.py`);
-- **validity sloj** (sve sa injektabilnim `llm_caller`-om):
+- **validity sloj — osnovni** (sve sa injektabilnim `llm_caller`-om):
   - `test_concept_coverage.py` — concept coverage v2
   - `test_mcq_lint.py` — Haladyna 11 pravila + embedding flagovi
   - `test_solo_judge.py` — Cohen κ + confusion matrix + parsing
   - `test_self_consistency.py` — best-of-N selektor
   - `test_cove.py` — 4-step CoVe pipeline
-  - `test_solvability.py` — LLM-blind solver, shuffle invertovanje
+  - `test_solvability.py` — LLM-blind solver + stem-only (H4)
   - `test_generate_for_lessons.py` — auto-quota nad izabranim lekcijama
+- **validity sloj — prošireni (A–H)**:
+  - `test_ioc.py` — A. IOC rating + index agregat
+  - `test_readability.py` — C. Flesch/FK formula + SOLO fit
+  - `test_ambiguity.py` — D. ambiguity detection + tipovi
+  - `test_misconception_mining.py` — E. cue windows + LLM ekstrakcija
+  - `test_cloze_distractor.py` — F. sibling concepts + dedup
+  - `test_grammar_homogeneity.py` — G. POS klasifikacija + outlier detekcija
+  - `test_face_validity.py` — H. rubrika + criterion means
 
 Pokretanje:
 ```bash
@@ -241,7 +256,10 @@ Jedna axios instanca + grupisani objekti:
   `healthApi`, `ontologyApi`, `sparqlApi`, `chatApi`, `translationApi`.
 - **`questionApi`** — manual, per-lessons, per-course, uncovered generation,
   CRUD, **`lint`**, **`lintLesson`**, **`soloJudge`**, **`soloJudgeLesson`**,
-  **`cove`**, **`coveLesson`**, **`solvability`**, **`solvabilityLesson`**.
+  **`cove`**, **`coveLesson`**, **`solvability`**, **`solvabilityLesson`**,
+  plus extended validity helperi: **`stemOnlySolvabilityLesson`**,
+  **`iocLesson`**, **`readabilityLesson`**, **`ambiguityLesson`**,
+  **`misconceptionMining`**, **`grammarHomogeneityLesson`**, **`faceValidityLesson`**.
 - **`jobsApi`** — `get(jobId)`, `list()` za polling background poslova.
 - **`adminApi`** — LLM cache stats + clear.
 
@@ -269,11 +287,12 @@ Bazni URL: `REACT_APP_API_URL` (default `http://localhost:5000/api`).
 |------|----------|
 | `CourseManager.js` | Lista i CRUD kurseva |
 | `LessonManager.js` | Upload PDF lekcija |
-| `ContentViewer.js` | Pregled lekcije, sekcija, LO-a, ontologije; ugrađuje **CoveragePanel**, **MCQLintPanel**, **SoloJudgePanel** i **AdvancedQualityPanel** |
+| `ContentViewer.js` | Pregled lekcije, sekcija, LO-a, ontologije; ugrađuje **CoveragePanel**, **MCQLintPanel**, **SoloJudgePanel**, **AdvancedQualityPanel** i **ExtendedValidityPanel** |
 | `CoveragePanel.js` | Stranice + **concept coverage v2** (heatmap, težinski %, top uncovered concepts chipovi) |
 | `MCQLintPanel.js` | Haladyna lint UI + embedding plausibility/diversity stat blok; per-question collapsible flagovi |
 | `SoloJudgePanel.js` | Cohen κ + Landis-Koch qualitative label + confusion matrix; "Run" dugme jer je sporo prvi put |
 | `AdvancedQualityPanel.js` | Dve sekcije: **CoVe** (verdict counts + per-question status) i **Solvability** (LLM p-value distribucija) |
+| `ExtendedValidityPanel.js` | Sedam sekcija (A–H) sa zasebnim "Run" dugmićima: IOC, Stem-Only H4, Readability, Ambiguity, Misconception Mining, Grammar Homogeneity, Face Validity. Rezultati keširani server-side preko `llm_cache` tabele. |
 | `QuestionGenerator.js` | 3 moda generisanja: ručni (lessons + levels + count), **Generate Full Questions for Selected Lessons** (auto-quota nad izabranima), Whole Course, Target Uncovered |
 | `QuestionBank.js` | Lista pitanja sa `source_line` i ontology anchor chipom |
 | `ManualQuestionAdder.js` | Forma za ručno dodavanje pitanja |
@@ -308,11 +327,21 @@ Bazni URL: `REACT_APP_API_URL` (default `http://localhost:5000/api`).
    Frontend polluje `GET /api/jobs/<id>`.
 
 5. **Validacioni sloj** (svi a-priori, bez studentskih odgovora):
-   - Concept coverage v2 — `GET /api/lessons/<id>/coverage`
-   - Haladyna lint + embedding plausibility/diversity — `GET /api/lessons/<id>/lint`
-   - SOLO LLM-judge → Cohen κ — `GET /api/lessons/<id>/solo-judge`
-   - Chain-of-Verification — `GET /api/lessons/<id>/cove`
-   - LLM-blind solvability — `GET /api/lessons/<id>/solvability?n_trials=5`
+   - **Osnovni:**
+     - Concept coverage v2 — `GET /api/lessons/<id>/coverage`
+     - Haladyna lint + embedding plausibility/diversity — `GET /api/lessons/<id>/lint`
+     - SOLO LLM-judge → Cohen κ — `GET /api/lessons/<id>/solo-judge`
+     - Chain-of-Verification — `GET /api/lessons/<id>/cove`
+     - LLM-blind solvability — `GET /api/lessons/<id>/solvability?n_trials=5`
+   - **Prošireni (A–H):**
+     - A. Item-Objective Congruence — `GET /api/lessons/<id>/ioc`
+     - B. Stem-Only Solvability (H4) — `GET /api/lessons/<id>/stem-only-solvability`
+     - C. Readability (Flesch/FK) — `GET /api/lessons/<id>/readability`
+     - D. Linguistic ambiguity — `GET /api/lessons/<id>/ambiguity`
+     - E. Misconception mining iz izvora — `GET /api/lessons/<id>/misconception-mining`
+     - G. Grammatical homogeneity — `GET /api/lessons/<id>/grammar-homogeneity`
+     - H. Distractor face validity — `GET /api/lessons/<id>/face-validity`
+     - F. (Cloze sibling pool je pure-Python helper, koristi se u generatoru)
 
 6. **Kviz** → `POST /api/quizzes` + `add-questions` → `Quiz` + `QuizQuestion`.
 7. **Prevodi** → `POST /api/translate/...` → `*Translation` zapisi.
@@ -321,9 +350,9 @@ Bazni URL: `REACT_APP_API_URL` (default `http://localhost:5000/api`).
 9. **Chatbot** → `POST /api/chat` → kontekst (course + lesson + section
    prefix) → `chatbot_service`.
 10. **LLM keš** je transparentan: svaki LLM poziv (generator, judge, CoVe,
-    solver) prvo proverava `llm_cache.get(...)`. Embeddings imaju zasebnu
-    `embedding_cache` tabelu sa istim mehanizmom. `/api/admin/llm-cache`
-    izlaže stats + clear.
+    solver, IOC, ambiguity, miner, grammar, face) prvo proverava
+    `llm_cache.get(...)`. Embeddings imaju zasebnu `embedding_cache`
+    tabelu sa istim mehanizmom. `/api/admin/llm-cache` izlaže stats + clear.
 
 ---
 
@@ -348,6 +377,12 @@ OLLAMA_JUDGE_MODEL=llama3.1:8b
 OLLAMA_COVE_MODEL=llama3.1:8b
 OLLAMA_SOLVER_MODEL=llama3.1:8b
 OLLAMA_EMBED_MODEL=nomic-embed-text
+# Prošireni validacioni sloj (A-H):
+OLLAMA_IOC_MODEL=llama3.1:8b
+OLLAMA_AMBIGUITY_MODEL=llama3.1:8b
+OLLAMA_MINER_MODEL=llama3.1:8b
+OLLAMA_GRAMMAR_MODEL=llama3.1:8b
+OLLAMA_FACE_MODEL=llama3.1:8b
 ```
 
 ---

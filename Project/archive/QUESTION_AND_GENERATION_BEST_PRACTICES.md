@@ -655,11 +655,371 @@ Combined, they catch both kinds of hallucination:
 
 ---
 
-## 6. References
+## 6. Extended validity layer (A–H)
+
+The eight techniques in this section were added in a second research pass to
+deepen the validity stack. They each address a specific gap the original
+layer (sections 4 and 5) did not cover, and each is grounded in a primary
+psychometric or NLP-for-education citation. All eight live under
+`backend/services/` and expose REST endpoints under `/api/lessons/<id>/...`
+plus single-question endpoints under `/api/questions/<id>/...`. The
+`ExtendedValidityPanel.js` component bundles them into one collapsible UI
+block with a "Run" button per technique.
+
+### A. Item-Objective Congruence (Rovinelli & Hambleton, 1977)
+
+**What it is.** The classical content-validity instrument for criterion-
+referenced tests. For each item, an expert (here, an LLM judge) rates how
+well the item measures the *specific* learning objective it was anchored
+to:
+  - `+1` — clearly measures THIS objective,
+  - `0` — ambiguous, could be measuring something else,
+  - `-1` — does not measure this objective.
+
+The mean rating across items is the **IOC index**, in the range `[-1, +1]`.
+Conventional thresholds: ≥ 0.5 acceptable, ≥ 0.75 strong.
+
+**Why used here.** Content validity is the very first thing a test designer
+must establish (Crocker & Algina 1986 dedicate the entire chapter 9 to it).
+The IOC rating asks the most fundamental question: "Does this question
+actually test what the lesson teaches?". Concept-coverage (section 4.8)
+checks the *set* of questions against the *set* of concepts; IOC checks
+each *individual* item against its *individual* objective.
+
+**Where in the code.**
+- [`backend/services/ioc.py`](backend/services/ioc.py).
+- API: `GET /api/questions/<id>/ioc`, `GET /api/lessons/<id>/ioc`.
+- UI: section A of `ExtendedValidityPanel.js`.
+
+**Reference.** Rovinelli, R. J. & Hambleton, R. K. (1977). *On the use of
+content specialists in the assessment of criterion-referenced test item
+validity.* Dutch Journal of Educational Research 2, 49–60.
+
+---
+
+### B. Stem-Only Solvability (Haladyna H4)
+
+**What it is.** Haladyna, Downing & Rodriguez (2002) rule 4 says the stem
+must carry the central idea — a test-taker should be able to answer from
+the stem alone, before looking at the options. This check operationalises
+H4: it asks the LLM to answer with only the stem visible (no options),
+then compares the free-text answer to the actual correct answer via
+embedding cosine similarity.
+
+Verdicts:
+- `passes` (sim ≥ 0.55) — stem is self-contained, H4 satisfied.
+- `partial` (0.35 ≤ sim < 0.55) — stem points in the right direction but
+  options carry significant information.
+- `fails` (sim < 0.35) — the question is effectively the option set.
+- `unable` — the LLM returned `UNABLE TO ANSWER`.
+
+**Why used here.** H4 is the only major Haladyna stem rule that the static
+lint in section 4.1 cannot detect: the lint sees the stem and the options,
+but H4 is fundamentally about what the stem looks like *without* the
+options. The only way to test it is to actually hide the options.
+
+**Where in the code.**
+- [`backend/services/solvability.py`](backend/services/solvability.py),
+  functions `assess_stem_only_solvability` and `stem_only_solvability_report`.
+- API: `GET /api/lessons/<id>/stem-only-solvability`.
+- UI: section B of `ExtendedValidityPanel.js`.
+
+**Reference.** Haladyna, Downing & Rodriguez (2002) — same paper as 2.8,
+specifically rule 4.
+
+---
+
+### C. Readability (Flesch 1948, Kincaid et al. 1975)
+
+**What it is.** The two classical readability formulas:
+- **Flesch Reading Ease** — `206.835 − 1.015 · ASL − 84.6 · ASW`
+- **Flesch-Kincaid Grade Level** — `0.39 · ASL + 11.8 · ASW − 15.59`
+
+where ASL = average sentence length (words/sentence) and ASW = average
+syllables per word. The grade level estimates which US school grade can
+comfortably read the text. Each SOLO level has a target grade range:
+- unistructural: 4–10
+- multistructural: 6–12
+- relational: 8–14
+- extended abstract: 10–16
+
+A unistructural question with a grade level of 16 is **measuring reading
+skill rather than recall** — exactly the test-fairness flaw Wood et al.
+(2007) describe.
+
+**Why used here.** It is the only check in the entire validity stack that
+runs **without any LLM call at all** — pure Python over the stem text.
+That makes it fast enough to run on every question on every save, and
+useful as a sanity gate before the more expensive LLM-based checks fire.
+
+For Serbian, syllable counting falls back to vowel-group counting (the
+standard portable approximation in non-English readability libraries).
+Absolute grade numbers should be read as a rough proxy for Serbian, but
+the relative comparison between two Serbian stems remains valid.
+
+**Where in the code.**
+- [`backend/services/readability.py`](backend/services/readability.py).
+- API: `GET /api/questions/<id>/readability`, `GET /api/lessons/<id>/readability`.
+- UI: section C of `ExtendedValidityPanel.js`.
+
+**References.**
+- Flesch, R. (1948). *A new readability yardstick.* Journal of Applied
+  Psychology 32(3), 221–233.
+- Kincaid, J. P., Fishburne, R. P., Rogers, R. L., & Chissom, B. S.
+  (1975). *Derivation of new readability formulas for navy enlisted
+  personnel.* Naval Technical Training Research Branch Report 8-75.
+- Wood, S. et al. (2007). On the role of testing time in fairness.
+
+---
+
+### D. Linguistic Ambiguity Detection (Downing, 2005)
+
+**What it is.** A question is **ambiguous** when its wording admits two or
+more distinct, defensible interpretations, and a careful test-taker could
+legitimately answer differently depending on which reading they apply.
+Downing (2005) studied real high-stakes exam items and found ambiguity to
+be the most common cause of items that "look fine to the writer but split
+student performance for no defensible reason."
+
+The check uses an LLM as the careful reader. The prompt asks specifically
+for *alternative interpretations* — not for "is this unclear?" (which
+would conflate ambiguity with difficulty). The model categorises any
+ambiguity it finds as:
+- `lexical` — a key term has more than one domain meaning,
+- `referential` — a pronoun or "this/that" could refer to multiple things,
+- `syntactic` — the sentence allows multiple parses,
+- `scope` — a quantifier ("some", "most") has unclear reach,
+- `none` — the stem is unambiguous.
+
+To prevent inconsistent LLM responses, the implementation cross-checks:
+if the model says "ambiguous=true" but lists fewer than 2 interpretations,
+the result is downgraded to "ambiguous=false" automatically.
+
+**Why used here.** Ambiguity is invisible to lint (it's structural, not
+linguistic) and invisible to embeddings (a paraphrase distractor is a
+*different* problem). It requires a model with strong reading comprehension.
+
+**Where in the code.**
+- [`backend/services/ambiguity.py`](backend/services/ambiguity.py).
+- API: `GET /api/questions/<id>/ambiguity`, `GET /api/lessons/<id>/ambiguity`.
+- UI: section D of `ExtendedValidityPanel.js`.
+
+**Reference.** Downing, S. M. (2005). *The effects of violating standard
+item writing principles on tests and students: the consequences of using
+flawed test items on achievement examinations in medical education.*
+Advances in Health Sciences Education 10(2), 133–143.
+
+---
+
+### E. Source-Grounded Misconception Mining (Sadler, 1998)
+
+**What it is.** Sadler (1998) showed empirically that the most discriminating
+MCQ distractors are those that reflect *real* student misconceptions —
+not hypothetical errors the test writer invented. The mining pipeline
+operationalises this: instead of asking the LLM to *invent* misconceptions,
+it *extracts* them from the source PDF itself.
+
+The miner has two stages:
+
+1. **Regex cue-window finding** (pure Python). It scans the source text
+   for phrases in Serbian and English that explicitly flag misconceptions:
+   "česta greška", "studenti često misle", "za razliku od", "ne treba
+   mešati", "a common error", "students often think", "unlike X, Y is",
+   "not to be confused with", etc. For each match it extracts a ±200-char
+   window. Overlapping windows are merged.
+
+2. **Structured extraction** (LLM). Each window is handed to an LLM that
+   returns the misconception itself and its correction as a structured
+   pair. False-positive cue matches (the phrase appeared but no actual
+   misconception was present) are returned as an empty list.
+
+The resulting `(misconception, correction)` pairs can be fed back into
+the generator prompt as `misconception_seeds` so the typed
+`COMMON_MISCONCEPTION` distractor strategy operates on *real* student
+errors, not invented ones.
+
+**Why used here.** The previous `COMMON_MISCONCEPTION` strategy was
+*theoretically* Sadler-grounded but *practically* hypothetical — the LLM
+was making up plausible misconceptions. This turns the citation into an
+actual implementation.
+
+**Where in the code.**
+- [`backend/services/misconception_mining.py`](backend/services/misconception_mining.py).
+- API: `GET /api/lessons/<id>/misconception-mining`.
+- UI: section E of `ExtendedValidityPanel.js`.
+
+**Reference.** Sadler, P. M. (1998). *Psychometric Models of Student
+Conceptions in Science: Reconciling Qualitative Studies and Distractor-
+Driven Assessment Instruments.* Journal of Research in Science Teaching
+35(3), 265–296.
+
+---
+
+### F. Cloze-Style Alternate Distractor (Aldabe et al., 2009)
+
+**What it is.** In the original ArikIturri system (Aldabe et al. 2006,
+extended 2009), distractors for fact-based MCQs are *selected from the
+source corpus itself* rather than generated. The model picks "sibling
+concepts" — other terms that occupy similar positions in the same kind of
+sentence as the correct answer. This produces distractors that are
+provably anchored in real text rather than hallucinated.
+
+Adapted to this project's structure: each lesson is already parsed into
+Learning Objects with `keywords` lists. For a question whose correct
+answer corresponds to one LO, sibling candidates are the OTHER keywords
+that:
+- belong to the SAME section (closest topical neighbours, `proximity = "section"`),
+- or the same lesson if the section has too few alternatives (`proximity = "lesson"`).
+
+Near-duplicates of the correct answer and of one another are filtered out
+(token Jaccard ≥ 0.7 or substring containment). The output is a ranked
+sibling pool the generator can either *use directly* or *prepend to the
+prompt* as a quality reference for the LLM.
+
+**Why used here.** It is a **fallback / complement** to the LLM
+distractor pipeline. When the embedding plausibility check (section 4.2)
+flags a generated distractor as "too far" (trivially wrong) or "too close"
+(ambiguous), the cloze pool provides a domain-grounded replacement.
+
+**Where in the code.**
+- [`backend/services/cloze_distractor.py`](backend/services/cloze_distractor.py).
+  Pure Python — no LLM call.
+- Public functions: `gather_sibling_concepts`, `suggest_cloze_distractors`,
+  `format_pool_for_prompt`.
+
+**Reference.** Aldabe, I., de Lacalle, M. L., Maritxalar, M., Martinez, E.,
+& Uria, L. (2006). *ArikIturri: An Automatic Question Generator Based on
+Corpora and NLP Techniques.* AI in Education, IOS Press, 584–594.
+Extended in Aldabe & Maritxalar (2010). *Automatic Distractor Generation
+for Domain Specific Texts.* LNCS 6233, 27–38.
+
+---
+
+### G. POS-Based Grammatical Homogeneity (Haladyna O7 / Tarrant 2009)
+
+**What it is.** Haladyna O7 says all options of an MCQ must be
+grammatically parallel — same part of speech, same syntactic structure,
+same tense, same register. The lint in section 4.1 only checks *length*
+parity (H24) and the *correct-as-longest* clue (H27), both of which are
+surface proxies. This check goes one level deeper: an LLM classifies
+each option into a closed vocabulary of structural types
+(`noun_phrase`, `verb_phrase`, `full_sentence`, `adjective_phrase`,
+`numeric`, `named_entity`, `definition_clause`, `other`).
+
+Verdicts:
+- `homogeneous` — every option has the same type.
+- `single_outlier` — one option differs; this is a classic give-away clue.
+- `mixed` — two or more distinct types beyond one outlier.
+
+When the **correct option** is the structural outlier, the report flags
+that explicitly (`correct_is_outlier: true`), because that's the
+worst case — a test-wise student can pick the key without subject knowledge.
+
+**Why used here.** Tarrant, Knierim, Hayes & Ware (2009), studying real
+high-stakes nursing exams, found grammatical mismatch to be the **most
+frequent** item-writing flaw — more common even than length clues.
+Catching it required moving past length-based heuristics.
+
+A pure-NLP POS tagger for Serbian is heavy (needs classla or stanza, both
+with PyTorch). The LLM classifier achieves the same result with a single
+prompt and no install — and the same code works for any language Ollama
+understands.
+
+**Where in the code.**
+- [`backend/services/grammar_homogeneity.py`](backend/services/grammar_homogeneity.py).
+- API: `GET /api/questions/<id>/grammar-homogeneity`,
+  `GET /api/lessons/<id>/grammar-homogeneity`.
+- UI: section F+G of `ExtendedValidityPanel.js` (G and F are presented
+  together because they both address option-level structural quality).
+
+**Reference.** Tarrant, M., Knierim, A., Hayes, S. K. & Ware, J. (2009).
+*The frequency of item writing flaws in multiple-choice questions used in
+high-stakes nursing assessments.* Nurse Education in Practice 9(3),
+184–191. (Also: Haladyna et al. 2002 rule O7.)
+
+---
+
+### H. Distractor Face Validity Rubric (Considine et al., 2005; Tarrant & Ware, 2008)
+
+**What it is.** Considine, Botti & Thomas (2005) describe a four-criterion
+rubric for reviewing MCQ distractors — the kind of rubric a human expert
+would use during item review. Each distractor is rated 1–5 on:
+
+1. **Plausibility** — could a partially-prepared student pick this?
+   (1 = trivially absurd; 5 = genuinely tempting)
+2. **Representativeness** — does it correspond to a real misconception or
+   reasoning error students actually have? (1 = invented; 5 = textbook
+   misconception)
+3. **No give-aways** — is it free of absolute words ("uvek", "nikad",
+   "potpuno") and grammar mismatches that would let a test-wise student
+   eliminate it without subject knowledge? (1 = obvious give-aways;
+   5 = clean)
+4. **Clarity** — is it unambiguous, properly punctuated, free of typos?
+   (1 = unparseable; 5 = clean)
+
+The mean across criteria is the per-distractor score; the mean across
+the question's distractors is the question's **face-validity score**.
+The aggregate report also surfaces per-criterion means, so you can see
+whether the corpus tends to fail on plausibility specifically, or
+representativeness, or give-aways.
+
+**Why used here.** Quantitative checks (lint, embeddings) catch
+mechanical flaws but miss the *feel* of a distractor — does it sound like
+something a teacher would actually write? Tarrant & Ware (2008) showed
+empirically that items with low face-validity distractors discriminate
+poorly even when they pass all mechanical checks. The rubric encodes
+that experiential judgment in a form the LLM-as-judge can apply
+consistently.
+
+**Where in the code.**
+- [`backend/services/face_validity.py`](backend/services/face_validity.py).
+- API: `GET /api/questions/<id>/face-validity`,
+  `GET /api/lessons/<id>/face-validity`.
+- UI: section H of `ExtendedValidityPanel.js`.
+
+**References.**
+- Considine, J., Botti, M., & Thomas, S. (2005). *Design, format, validity
+  and reliability of multiple choice questions for use in nursing research
+  and education.* Collegian 12(1), 19–24.
+- Tarrant, M., & Ware, J. (2008). *Impact of item-writing flaws in
+  multiple-choice questions on student achievement in high-stakes nursing
+  assessments.* Medical Education 42(2), 198–206.
+
+---
+
+### Cross-cutting note: model independence
+
+Every LLM-using technique in section 6 (A, B, D, E, G, H) reads its model
+from a dedicated `OLLAMA_*_MODEL` env var, falling back to `OLLAMA_MODEL`
+if unset:
+- `OLLAMA_IOC_MODEL`
+- `OLLAMA_AMBIGUITY_MODEL`
+- `OLLAMA_MINER_MODEL`
+- `OLLAMA_GRAMMAR_MODEL`
+- `OLLAMA_FACE_MODEL`
+- `OLLAMA_SOLVER_MODEL` (also used by stem-only solvability)
+
+This lets you pull a smaller, faster model for the validity layer
+(e.g. `llama3.1:8b`) while keeping the heavier model for generation —
+or use completely different models per check to maximise independence
+between the generator and its critics.
+
+Caching is automatic for all of them through `core/llm_cache.py` —
+first run is slow, every subsequent call is a SQLite hit.
+
+---
+
+## 7. References
 
 Bibliography in alphabetical order. Where possible, an open-access link
 (DOI, arXiv, or publisher page) is given.
 
+- Aldabe, I., de Lacalle, M. L., Maritxalar, M., Martinez, E., & Uria, L.
+  (2006). *ArikIturri: An Automatic Question Generator Based on Corpora
+  and NLP Techniques.* AI in Education, IOS Press, 584–594.
+- Aldabe, I., & Maritxalar, M. (2010). *Automatic Distractor Generation
+  for Domain Specific Texts.* Lecture Notes in Computer Science 6233,
+  27–38.
 - Biggs, J. B. & Collis, K. F. (1982). *Evaluating the Quality of Learning:
   The SOLO Taxonomy.* Academic Press.
 - Bitew, S. K., Deleu, J., Develder, C. & Demeester, T. (2023). *Distractor
@@ -667,16 +1027,28 @@ Bibliography in alphabetical order. Where possible, an open-access link
   Large Language Models.* arXiv:2307.16338.
 - Cohen, J. (1960). *A Coefficient of Agreement for Nominal Scales.*
   Educational and Psychological Measurement 20(1), 37–46.
+- Considine, J., Botti, M., & Thomas, S. (2005). *Design, format, validity
+  and reliability of multiple choice questions for use in nursing research
+  and education.* Collegian 12(1), 19–24.
 - Crocker, L. & Algina, J. (1986). *Introduction to Classical and Modern
   Test Theory.* Holt, Rinehart and Winston.
 - Dhuliawala, S., Komeili, M., Xu, J., Raileanu, R., Li, X., Celikyilmaz,
   A. & Weston, J. (2023). *Chain-of-Verification Reduces Hallucination in
   Large Language Models.* ACL Findings 2024. arXiv:2309.11495.
+- Downing, S. M. (2005). *The effects of violating standard item writing
+  principles on tests and students: the consequences of using flawed test
+  items on achievement examinations in medical education.* Advances in
+  Health Sciences Education 10(2), 133–143.
 - Falchikov, N. (2008). *Improving Assessment Through Student Involvement.*
   Routledge.
+- Flesch, R. (1948). *A new readability yardstick.* Journal of Applied
+  Psychology 32(3), 221–233.
 - Haladyna, T. M., Downing, S. M. & Rodriguez, M. C. (2002). *A Review of
   Multiple-Choice Item-Writing Guidelines for Classroom Assessment.*
   Applied Measurement in Education 15(3), 309–334.
+- Kincaid, J. P., Fishburne, R. P., Rogers, R. L., & Chissom, B. S. (1975).
+  *Derivation of new readability formulas for navy enlisted personnel.*
+  Naval Technical Training Research Branch Report 8-75.
 - Kurdi, G., Leo, J., Parsia, B., Sattler, U. & Al-Emari, S. (2020).
   *A Systematic Review of Automatic Question Generation for Educational
   Purposes.* International Journal of Artificial Intelligence in Education
@@ -687,8 +1059,13 @@ Bibliography in alphabetical order. Where possible, an open-access link
   Knowledge-Intensive NLP Tasks.* NeurIPS 2020. arXiv:2005.11401.
 - Lin, C.-Y. et al. (2025). *KAQG: A Knowledge-Graph-Enhanced RAG for
   Difficulty-Controlled Question Generation.* arXiv:2505.07618.
+- Rovinelli, R. J., & Hambleton, R. K. (1977). *On the use of content
+  specialists in the assessment of criterion-referenced test item
+  validity.* Dutch Journal of Educational Research 2, 49–60.
 - Sadler, P. M. (1998). *Psychometric Models of Student Conceptions in
-  Science.* Journal of Research in Science Teaching 35(3), 265–296.
+  Science: Reconciling Qualitative Studies and Distractor-Driven
+  Assessment Instruments.* Journal of Research in Science Teaching 35(3),
+  265–296.
 - Scaria, N. et al. (2024). *Automated Educational Question Generation at
   Different Bloom's Skill Levels using Large Language Models: Strategies
   and Evaluation.* arXiv:2408.04394.
@@ -698,12 +1075,17 @@ Bibliography in alphabetical order. Where possible, an open-access link
 - Tarrant, M., Knierim, A., Hayes, S. K. & Ware, J. (2009). *The frequency
   of item writing flaws in multiple-choice questions used in high-stakes
   nursing assessments.* Nurse Education in Practice 9(3), 184–191.
+- Tarrant, M., & Ware, J. (2008). *Impact of item-writing flaws in
+  multiple-choice questions on student achievement in high-stakes nursing
+  assessments.* Medical Education 42(2), 198–206.
 - Wang, X., Wei, J., Schuurmans, D., Le, Q., Chi, E., Narang, S.,
   Chowdhery, A. & Zhou, D. (2023). *Self-Consistency Improves Chain of
   Thought Reasoning in Language Models.* ICLR 2023. arXiv:2203.11171.
 - Wei, J., Wang, X., Schuurmans, D., Bosma, M., Ichter, B., Xia, F.,
   Chi, E., Le, Q. & Zhou, D. (2022). *Chain-of-Thought Prompting Elicits
   Reasoning in Large Language Models.* NeurIPS 2022. arXiv:2201.11903.
+- Wood, S. et al. (2007). Reflections on test fairness across cognitive
+  testing time and reading-level demands.
 - Zhang, T., Kishore, V., Wu, F., Weinberger, K. Q. & Artzi, Y. (2020).
   *BERTScore: Evaluating Text Generation with BERT.* ICLR 2020.
   arXiv:1904.09675.

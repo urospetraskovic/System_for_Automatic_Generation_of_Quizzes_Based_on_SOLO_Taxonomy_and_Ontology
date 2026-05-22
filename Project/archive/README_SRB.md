@@ -20,10 +20,17 @@ stavki i usklađenost sa SOLO nivoom — sve bez ikakvih troškova cloud API-ja.
 - **Generisanje pitanja.** Po SOLO nivou (unistructural / multistructural /
   relational / extended abstract), koristeći PS4 prompt šablon, tipizirane
   strategije distraktora i Haladyna 2002 pravila pisanja stavki.
-- **Merenje kvaliteta.** Šestoslojni a-priori validacioni stack:
-  concept coverage, Haladyna lint, embedding-based plausibility i diversity
-  distraktora, Chain-of-Verification, LLM-blind solvability, i SOLO
-  LLM-judge (sa Cohen's κ).
+- **Merenje kvaliteta.** Dvoslojni a-priori validacioni stack:
+  - **Osnovni (6 metrika):** concept coverage, Haladyna lint, embedding
+    plausibility i diversity distraktora, Chain-of-Verification, LLM-blind
+    solvability, i SOLO LLM-judge (sa Cohen's κ).
+  - **Prošireni (7 dodatnih metrika — A–H):** Item-Objective Congruence
+    (Rovinelli & Hambleton 1977), Stem-Only Solvability (Haladyna H4),
+    Flesch-Kincaid čitljivost u odnosu na SOLO target, lingvistička
+    ambiguity detection (Downing 2005), source-grounded misconception
+    mining (Sadler 1998), cloze-style sibling-concept distractor pool
+    (Aldabe 2009), gramatička homogenost (Haladyna O7 / Tarrant 2009),
+    distractor face-validity rubrika (Considine 2005 / Tarrant & Ware 2008).
 - **Pravljenje kvizova.** Ručno kuriranje kvizova iz banke pitanja, prevod,
   predaja studentima.
 
@@ -66,10 +73,16 @@ Opciono: nezavisni modeli za validacioni sloj u `backend/.env`:
 
 ```bash
 OLLAMA_MODEL=qwen2.5:14b-instruct-q4_K_M
-OLLAMA_JUDGE_MODEL=llama3.1:8b      # SOLO LLM-judge (inače fallback na OLLAMA_MODEL)
-OLLAMA_COVE_MODEL=llama3.1:8b       # Chain-of-Verification
-OLLAMA_SOLVER_MODEL=llama3.1:8b     # Solvability blind-solver
-OLLAMA_EMBED_MODEL=nomic-embed-text # embeddings
+OLLAMA_JUDGE_MODEL=llama3.1:8b       # SOLO LLM-judge (inače fallback na OLLAMA_MODEL)
+OLLAMA_COVE_MODEL=llama3.1:8b        # Chain-of-Verification
+OLLAMA_SOLVER_MODEL=llama3.1:8b      # Solvability blind-solver + stem-only (H4)
+OLLAMA_EMBED_MODEL=nomic-embed-text  # embeddings
+# Prošireni validacioni sloj (A-H):
+OLLAMA_IOC_MODEL=llama3.1:8b         # Item-Objective Congruence
+OLLAMA_AMBIGUITY_MODEL=llama3.1:8b   # ambiguity detection
+OLLAMA_MINER_MODEL=llama3.1:8b       # misconception mining
+OLLAMA_GRAMMAR_MODEL=llama3.1:8b     # grammatical homogeneity
+OLLAMA_FACE_MODEL=llama3.1:8b        # face validity rubric
 ```
 
 Pokreni tri terminala (Ollama, backend, frontend) i otvori
@@ -104,16 +117,23 @@ Project/
 │   ├── services/
 │   │   ├── lesson_service.py, question_service.py, quiz_service.py
 │   │   ├── coverage_service.py        # page + concept coverage
-│   │   ├── mcq_lint.py                # Haladyna lint
+│   │   ├── mcq_lint.py                # Haladyna lint + embedding plausibility
 │   │   ├── embedding_service.py       # Ollama embeddings + cosine helper
 │   │   ├── solo_judge.py              # second-LLM SOLO klasifikator (Cohen κ)
 │   │   ├── self_consistency.py        # best-of-N selektor
 │   │   ├── cove.py                    # Chain-of-Verification
-│   │   ├── solvability.py             # LLM-blind solver (sintetička p-vrednost)
+│   │   ├── solvability.py             # LLM-blind solver + stem-only (H4)
+│   │   ├── ioc.py                     # A. Item-Objective Congruence (Rovinelli 1977)
+│   │   ├── readability.py             # C. Flesch / Flesch-Kincaid (pure-Python)
+│   │   ├── ambiguity.py               # D. Linguistic ambiguity (Downing 2005)
+│   │   ├── misconception_mining.py    # E. Source-grounded misconceptions (Sadler 1998)
+│   │   ├── cloze_distractor.py        # F. Sibling-concept pool (Aldabe 2009)
+│   │   ├── grammar_homogeneity.py     # G. POS-based O7 (Tarrant 2009)
+│   │   ├── face_validity.py           # H. Considine 2005 rubrika
 │   │   ├── ontology_manager.py, sparql_service.py, translation_service.py
 │   │   ├── chatbot_service.py, jobs.py
 │   ├── routes/                         # Flask blueprints (jedan po domenu)
-│   └── tests/                          # pytest suite (266 testova)
+│   └── tests/                          # pytest suite (356 testova)
 ├── frontend/
 │   └── src/components/
 │       ├── QuestionGenerator.js       # UI sa 3 moda generisanja
@@ -122,6 +142,7 @@ Project/
 │       ├── MCQLintPanel.js            # Haladyna lint UI
 │       ├── SoloJudgePanel.js          # Cohen κ + confusion matrix
 │       ├── AdvancedQualityPanel.js    # CoVe + solvability
+│       ├── ExtendedValidityPanel.js   # A-H tehnike on-demand
 │       ├── ContentViewer.js, LessonManager.js, CourseManager.js
 │       ├── QuizBuilder.js, QuizSolver.js, ManualQuestionAdder.js
 │       ├── TranslationManager.js, TranslationViewer.js
@@ -166,12 +187,21 @@ Grupisano po domenu. Sve pod `/api`.
 - `POST /questions` — ručno kreiranje
 - `GET|PUT|DELETE /questions/<id>`
 
-### Kvalitet / validity
+### Kvalitet / validity — osnovni
 - `GET /questions/<id>/lint`, `GET /lessons/<id>/lint` — Haladyna + embedding lint
 - `GET /questions/<id>/solo-judge`, `GET /lessons/<id>/solo-judge` — Cohen κ vs intended SOLO
 - `GET /questions/<id>/cove`, `GET /lessons/<id>/cove` — Chain-of-Verification
 - `GET /questions/<id>/solvability?n_trials=N`, `GET /lessons/<id>/solvability?n_trials=N` — LLM-blind solver
 - `GET /lessons/<id>/coverage` — page + concept coverage
+
+### Kvalitet / validity — prošireni (A–H)
+- `GET /questions/<id>/ioc`, `GET /lessons/<id>/ioc` — Item-Objective Congruence (A)
+- `GET /lessons/<id>/stem-only-solvability` — Haladyna H4 stem-only (B)
+- `GET /questions/<id>/readability`, `GET /lessons/<id>/readability` — Flesch / FK grade (C)
+- `GET /questions/<id>/ambiguity`, `GET /lessons/<id>/ambiguity` — ambiguity detection (D)
+- `GET /lessons/<id>/misconception-mining` — Sadler-style mining (E)
+- `GET /questions/<id>/grammar-homogeneity`, `GET /lessons/<id>/grammar-homogeneity` — POS O7 (G)
+- `GET /questions/<id>/face-validity`, `GET /lessons/<id>/face-validity` — Considine rubrika (H)
 
 ### Kvizovi, prevodi, chatbot, admin
 - Standardni CRUD na `/quizzes`, `/translate/*`, `/chat`, `/admin/llm-cache`
@@ -195,10 +225,11 @@ cd backend
 .\venv\Scripts\python.exe -m pytest tests/
 ```
 
-Pytest suite (266 testova u trenutku pisanja) ne zahteva Ollamu, popunjenu
-bazu ili mrežu. Validacioni servisi (judge, CoVe, solver) koriste
-injektabilan `llm_caller` parametar tako da njihovi testovi mokuju LLM
-sa scripted odgovorima.
+Pytest suite (356 testova u trenutku pisanja) ne zahteva Ollamu, popunjenu
+bazu ili mrežu. Validacioni servisi (judge, CoVe, solver, IOC, ambiguity,
+misconception miner, grammar homogeneity, face validity) koriste injektabilan
+`llm_caller` parametar tako da njihovi testovi mokuju LLM sa scripted
+odgovorima.
 
 ## Konfiguracija
 

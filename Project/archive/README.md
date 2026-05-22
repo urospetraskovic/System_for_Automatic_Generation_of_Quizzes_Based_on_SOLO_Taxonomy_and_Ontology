@@ -21,10 +21,17 @@ quality, and SOLO-level alignment without any cloud API costs.
 - **Generate questions.** Per SOLO level (unistructural / multistructural /
   relational / extended abstract), using the PS4 prompt template, typed
   distractor strategies, and the Haladyna 2002 item-writing rules.
-- **Measure quality.** A six-layer a-priori validity stack:
-  concept coverage, Haladyna lint, embedding-based distractor plausibility
-  and diversity, Chain-of-Verification, LLM-blind solvability, and SOLO
-  LLM-judge (with Cohen's κ).
+- **Measure quality.** A two-tier a-priori validity stack:
+  - **Core (6 metrics):** concept coverage, Haladyna lint, embedding-based
+    distractor plausibility and diversity, Chain-of-Verification,
+    LLM-blind solvability, and SOLO LLM-judge (with Cohen's κ).
+  - **Extended (7 more metrics — A–H):** Item-Objective Congruence
+    (Rovinelli & Hambleton 1977), Stem-Only Solvability (Haladyna H4),
+    Flesch-Kincaid readability vs. SOLO grade target, Linguistic ambiguity
+    detection (Downing 2005), Source-grounded misconception mining
+    (Sadler 1998), Cloze-style sibling-concept distractor pool
+    (Aldabe 2009), Grammatical homogeneity (Haladyna O7 / Tarrant 2009),
+    Distractor face-validity rubric (Considine 2005 / Tarrant & Ware 2008).
 - **Build quizzes.** Hand-curate quiz sets from the question bank, translate
   them, hand them to students.
 
@@ -111,16 +118,23 @@ Project/
 │   ├── services/
 │   │   ├── lesson_service.py, question_service.py, quiz_service.py
 │   │   ├── coverage_service.py        # page + concept coverage
-│   │   ├── mcq_lint.py                # Haladyna lint
+│   │   ├── mcq_lint.py                # Haladyna lint + embedding plausibility
 │   │   ├── embedding_service.py       # Ollama embeddings + cosine helper
 │   │   ├── solo_judge.py              # second-LLM SOLO classifier (Cohen κ)
 │   │   ├── self_consistency.py        # best-of-N selector
 │   │   ├── cove.py                    # Chain-of-Verification
-│   │   ├── solvability.py             # LLM-blind solver (synthetic p-value)
+│   │   ├── solvability.py             # LLM-blind solver + stem-only (H4)
+│   │   ├── ioc.py                     # A. Item-Objective Congruence (Rovinelli 1977)
+│   │   ├── readability.py             # C. Flesch / Flesch-Kincaid (pure-Python)
+│   │   ├── ambiguity.py               # D. Linguistic ambiguity (Downing 2005)
+│   │   ├── misconception_mining.py    # E. Source-grounded misconceptions (Sadler 1998)
+│   │   ├── cloze_distractor.py        # F. Sibling-concept pool (Aldabe 2009)
+│   │   ├── grammar_homogeneity.py     # G. POS-based O7 check (Tarrant 2009)
+│   │   ├── face_validity.py           # H. Considine 2005 rubric
 │   │   ├── ontology_manager.py, sparql_service.py, translation_service.py
 │   │   ├── chatbot_service.py, jobs.py
 │   ├── routes/                         # Flask blueprints (one per domain)
-│   └── tests/                          # pytest suite (266 tests)
+│   └── tests/                          # pytest suite (356 tests)
 ├── frontend/
 │   └── src/components/
 │       ├── QuestionGenerator.js       # 3-mode generation UI
@@ -129,6 +143,7 @@ Project/
 │       ├── MCQLintPanel.js            # Haladyna lint UI
 │       ├── SoloJudgePanel.js          # Cohen κ + confusion matrix
 │       ├── AdvancedQualityPanel.js    # CoVe + solvability
+│       ├── ExtendedValidityPanel.js   # A-H techniques on-demand
 │       ├── ContentViewer.js, LessonManager.js, CourseManager.js
 │       ├── QuizBuilder.js, QuizSolver.js, ManualQuestionAdder.js
 │       ├── TranslationManager.js, TranslationViewer.js
@@ -173,12 +188,21 @@ Grouped by domain. All under `/api`.
 - `POST /questions` — manual creation
 - `GET|PUT|DELETE /questions/<id>`
 
-### Quality / validity
+### Quality / validity — core
 - `GET /questions/<id>/lint`, `GET /lessons/<id>/lint` — Haladyna + embedding lint
 - `GET /questions/<id>/solo-judge`, `GET /lessons/<id>/solo-judge` — Cohen κ vs intended SOLO
 - `GET /questions/<id>/cove`, `GET /lessons/<id>/cove` — Chain-of-Verification
 - `GET /questions/<id>/solvability?n_trials=N`, `GET /lessons/<id>/solvability?n_trials=N` — LLM-blind solver
 - `GET /lessons/<id>/coverage` — page + concept coverage
+
+### Quality / validity — extended (A–H)
+- `GET /questions/<id>/ioc`, `GET /lessons/<id>/ioc` — Item-Objective Congruence (A)
+- `GET /lessons/<id>/stem-only-solvability` — Haladyna H4 (B)
+- `GET /questions/<id>/readability`, `GET /lessons/<id>/readability` — Flesch/FK (C)
+- `GET /questions/<id>/ambiguity`, `GET /lessons/<id>/ambiguity` — ambiguity detection (D)
+- `GET /lessons/<id>/misconception-mining` — Sadler-style mining (E)
+- `GET /questions/<id>/grammar-homogeneity`, `GET /lessons/<id>/grammar-homogeneity` — POS O7 (G)
+- `GET /questions/<id>/face-validity`, `GET /lessons/<id>/face-validity` — Considine rubric (H)
 
 ### Quizzes, translations, chatbot, admin
 - Standard CRUD on `/quizzes`, `/translate/*`, `/chat`, `/admin/llm-cache`
@@ -203,7 +227,7 @@ cd backend
 .\venv\Scripts\python.exe -m pytest tests/
 ```
 
-The pytest suite (266 tests at time of writing) does not require Ollama, a
+The pytest suite (356 tests at time of writing) does not require Ollama, a
 populated database, or a network connection. The validation services
 (judge, CoVe, solver) use injectable `llm_caller` parameters so their
 tests mock out the LLM with scripted responses.
