@@ -32,6 +32,15 @@ function LessonManager({ course, onSelectLesson, onLessonsChange, onSuccess, onE
     }
   }, [course?.id]);
 
+  // Always re-fetch from the server when the course id changes. The
+  // parent's `course.lessons` can be stale (e.g. after a hard refresh on
+  // the lessons tab, or when the previous page mutated lessons without
+  // re-fetching the parent course). Fetching directly here guarantees
+  // we render every lesson the backend actually has.
+  useEffect(() => {
+    refreshLessons();
+  }, [refreshLessons]);
+
   const handleExportCourseOntology = async () => {
     try {
       setExporting(true);
@@ -239,24 +248,6 @@ function LessonManager({ course, onSelectLesson, onLessonsChange, onSuccess, onE
           </div>
         )}
 
-        <div className="help-section">
-          <h4>Lesson Workflow</h4>
-          <ol>
-            <li><strong>Upload:</strong> Add a PDF lesson file</li>
-            <li><strong>Parse:</strong> AI extracts sections and learning objects (Step 1)</li>
-            <li><strong>Review:</strong> View the extracted content structure</li>
-            <li><strong>Generate Ontology:</strong> Create domain ontology from sections/learning objects (Step 2)</li>
-            <li><strong>Generate Questions:</strong> Create questions from parsed content</li>
-          </ol>
-          <p style={{ fontSize: '0.9rem', color: 'var(--neutral-600)', marginTop: '10px' }}>
-            <strong>Note:</strong> Steps 1 and 2 are now separate. After parsing (Step 1), you can view the extracted content, 
-            and then generate or regenerate the ontology (Step 2) anytime from the Content Viewer.
-          </p>
-          <p style={{ fontSize: '0.9rem', color: 'var(--neutral-600)', marginTop: '8px' }}>
-            <strong>Export Course Ontology:</strong> Downloads a single OWL file containing all lessons, sections, 
-            learning objects, relationships, and questions for this course. Open in Protégé to visualize!
-          </p>
-        </div>
       </div>
       
       <TranslationViewer

@@ -32,7 +32,7 @@ function AdvancedQualityPanel({ lessonId }) {
   const runCove = () => {
     setCoveLoading(true);
     setCoveErr(null);
-    questionApi.coveLesson(lessonId)
+    return questionApi.coveLesson(lessonId)
       .then((res) => setCoveData(res.data))
       .catch((err) => setCoveErr(err.response?.data?.error || 'CoVe failed'))
       .finally(() => setCoveLoading(false));
@@ -41,11 +41,19 @@ function AdvancedQualityPanel({ lessonId }) {
   const runSolv = () => {
     setSolvLoading(true);
     setSolvErr(null);
-    questionApi.solvabilityLesson(lessonId, 5)
+    return questionApi.solvabilityLesson(lessonId, 5)
       .then((res) => setSolvData(res.data))
       .catch((err) => setSolvErr(err.response?.data?.error || 'Solvability failed'))
       .finally(() => setSolvLoading(false));
   };
+
+  const runBoth = async () => {
+    await runCove();
+    await runSolv();
+  };
+
+  const anyLoading = coveLoading || solvLoading;
+  const completedCount = (coveData ? 1 : 0) + (solvData ? 1 : 0);
 
   const headerStyle = {
     padding: '20px',
@@ -93,6 +101,30 @@ function AdvancedQualityPanel({ lessonId }) {
 
       {expanded && (
         <div style={{ marginTop: '16px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+          {/* Run-both master action */}
+          <div style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            gap: 14,
+            padding: '12px 16px',
+            background: 'white',
+            border: '1px solid var(--neutral-200)',
+            borderLeft: '4px solid #0d7a4a',
+            borderRadius: 8,
+          }}>
+            <div style={{ fontSize: '0.88rem', color: 'var(--neutral-700)', flex: 1 }}>
+              Two slow but powerful semantic checks. Click <strong>Run both</strong> to fire them sequentially, or run each individually below.
+            </div>
+            <button
+              onClick={runBoth}
+              disabled={anyLoading}
+              style={btnStyle(anyLoading, 'accent')}
+            >
+              {anyLoading ? 'Running…' : (completedCount > 0 ? 'Re-run both' : 'Run both')}
+            </button>
+          </div>
+
           {/* CoVe section */}
           <section style={{
             background: 'white',
@@ -101,21 +133,21 @@ function AdvancedQualityPanel({ lessonId }) {
             border: '1px solid var(--neutral-200)',
             borderLeft: '4px solid #06b6d4',
           }}>
-            <h5 style={{ marginTop: 0 }}>Chain-of-Verification (CoVe)</h5>
-            <div style={{ fontSize: '0.85rem', color: 'var(--neutral-600)', marginBottom: '12px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 12 }}>
+              <h5 style={{ margin: 0 }}>Chain-of-Verification (CoVe)</h5>
+              <button
+                onClick={runCove}
+                disabled={coveLoading || anyLoading}
+                style={btnStyle(coveLoading || anyLoading, 'primary')}
+              >
+                {coveLoading ? 'Running…' : (coveData ? 'Re-run' : 'Run')}
+              </button>
+            </div>
+            <div style={{ fontSize: '0.85rem', color: 'var(--neutral-600)', margin: '8px 0 12px' }}>
               Dhuliawala et al. 2023, ACL 2024. A second LLM plans verification questions
               about the correct answer, answers them from source material only, and decides
               whether the correct answer is uniquely defensible.
             </div>
-            {!coveData && (
-              <button
-                onClick={runCove}
-                disabled={coveLoading}
-                style={btnStyle(coveLoading)}
-              >
-                {coveLoading ? 'Running CoVe…' : 'Run Chain-of-Verification'}
-              </button>
-            )}
             {coveErr && <p style={{ color: '#d32f2f' }}>{coveErr}</p>}
             {coveData && (
               <>
@@ -160,21 +192,21 @@ function AdvancedQualityPanel({ lessonId }) {
             border: '1px solid var(--neutral-200)',
             borderLeft: '4px solid #f59e0b',
           }}>
-            <h5 style={{ marginTop: 0 }}>Solvability test (a-priori item difficulty)</h5>
-            <div style={{ fontSize: '0.85rem', color: 'var(--neutral-600)', marginBottom: '12px' }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 12 }}>
+              <h5 style={{ margin: 0 }}>Solvability test (a-priori item difficulty)</h5>
+              <button
+                onClick={runSolv}
+                disabled={solvLoading || anyLoading}
+                style={btnStyle(solvLoading || anyLoading, 'primary')}
+              >
+                {solvLoading ? 'Running…' : (solvData ? 'Re-run' : 'Run')}
+              </button>
+            </div>
+            <div style={{ fontSize: '0.85rem', color: 'var(--neutral-600)', margin: '8px 0 12px' }}>
               LLM-blind solver: hide the key, ask an LLM to pick the best option N=5 times
               (shuffled per trial), compute p-value. p ≈ 1 → trivially easy; 0.6–0.9 → appropriate;
               p &lt; 0.5 → ambiguous or misframed.
             </div>
-            {!solvData && (
-              <button
-                onClick={runSolv}
-                disabled={solvLoading}
-                style={btnStyle(solvLoading)}
-              >
-                {solvLoading ? 'Running solver…' : 'Run solvability test'}
-              </button>
-            )}
             {solvErr && <p style={{ color: '#d32f2f' }}>{solvErr}</p>}
             {solvData && (
               <>
@@ -193,15 +225,23 @@ function AdvancedQualityPanel({ lessonId }) {
   );
 }
 
-const btnStyle = (loading) => ({
-  padding: '8px 16px',
-  background: loading ? 'var(--neutral-200)' : 'var(--primary-600)',
-  color: 'white',
-  border: 'none',
-  borderRadius: '6px',
-  cursor: loading ? 'wait' : 'pointer',
-  fontWeight: 600,
-});
+const btnStyle = (loading, kind = 'primary') => {
+  const palette = {
+    primary: { bg: '#1b3a4b', text: '#ffffff' },
+    accent:  { bg: '#0d7a4a', text: '#ffffff' },
+  }[kind];
+  return {
+    padding: '8px 16px',
+    background: loading ? '#c4c4d6' : palette.bg,
+    color: palette.text,
+    border: 'none',
+    borderRadius: '6px',
+    cursor: loading ? 'wait' : 'pointer',
+    fontWeight: 600,
+    fontSize: '0.9rem',
+    transition: 'background 120ms ease',
+  };
+};
 
 const statsGridStyle = {
   display: 'grid',

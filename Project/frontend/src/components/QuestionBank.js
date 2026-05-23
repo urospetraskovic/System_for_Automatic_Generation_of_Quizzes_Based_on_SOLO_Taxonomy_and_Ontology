@@ -4,6 +4,7 @@ import TranslationViewer from './TranslationViewer';
 
 function QuestionBank({ questions, courseId, onRefresh, onSuccess, onError }) {
   const [filter, setFilter] = useState('all');
+  const [lessonFilter, setLessonFilter] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedQuestions, setSelectedQuestions] = useState([]);
   const [expandedQuestion, setExpandedQuestion] = useState(null);
@@ -13,11 +14,32 @@ function QuestionBank({ questions, courseId, onRefresh, onSuccess, onError }) {
   const [showTranslationViewer, setShowTranslationViewer] = useState(false);
   const [viewingTranslationId, setViewingTranslationId] = useState(null);
 
+  // Collect unique lessons from the loaded questions, with counts.
+  // We derive this from the questions themselves (rather than fetching
+  // the lesson list separately) so the filter only shows lessons that
+  // actually contributed at least one question.
+  const lessonOptions = React.useMemo(() => {
+    const map = new Map();
+    for (const q of questions) {
+      const id = q.primary_lesson_id;
+      if (id == null) continue;
+      const title = q.primary_lesson_title || `Lesson ${id}`;
+      if (!map.has(id)) {
+        map.set(id, { id, title, count: 0 });
+      }
+      map.get(id).count += 1;
+    }
+    return Array.from(map.values()).sort((a, b) => a.id - b.id);
+  }, [questions]);
+
   const filteredQuestions = questions.filter(q => {
-    const matchesFilter = filter === 'all' || q.solo_level === filter;
-    const matchesSearch = !searchTerm || 
+    const matchesLevel = filter === 'all' || q.solo_level === filter;
+    const matchesLesson = lessonFilter === 'all'
+      || String(q.primary_lesson_id) === String(lessonFilter)
+      || String(q.secondary_lesson_id) === String(lessonFilter);
+    const matchesSearch = !searchTerm ||
       q.question_text?.toLowerCase().includes(searchTerm.toLowerCase());
-    return matchesFilter && matchesSearch;
+    return matchesLevel && matchesLesson && matchesSearch;
   });
 
   const handleSelectQuestion = (questionId) => {
@@ -175,6 +197,7 @@ function QuestionBank({ questions, courseId, onRefresh, onSuccess, onError }) {
 
         {/* Filters */}
         <div className="filters-section">
+          {/* SOLO level filter */}
           <div className="filter-tabs">
             {[
               { key: 'all', label: 'All' },
@@ -193,8 +216,51 @@ function QuestionBank({ questions, courseId, onRefresh, onSuccess, onError }) {
               </button>
             ))}
           </div>
-          
-          <div className="search-box">
+
+          {/* Lesson filter — only show when there are 2+ lessons in the bank */}
+          {lessonOptions.length >= 2 && (
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: 10,
+              flexWrap: 'wrap',
+              marginTop: 12,
+              padding: '10px 14px',
+              background: 'var(--neutral-50)',
+              border: '1px solid var(--neutral-200)',
+              borderRadius: 8,
+            }}>
+              <span style={{
+                fontSize: '0.8rem',
+                color: 'var(--neutral-600)',
+                fontWeight: 600,
+                textTransform: 'uppercase',
+                letterSpacing: '0.05em',
+              }}>
+                Lesson:
+              </span>
+              <button
+                onClick={() => setLessonFilter('all')}
+                className={`filter-tab ${lessonFilter === 'all' ? 'active' : ''}`}
+                style={{ padding: '4px 12px', fontSize: '0.85rem' }}
+              >
+                All lessons ({questions.length})
+              </button>
+              {lessonOptions.map((lo) => (
+                <button
+                  key={lo.id}
+                  onClick={() => setLessonFilter(String(lo.id))}
+                  className={`filter-tab ${String(lessonFilter) === String(lo.id) ? 'active' : ''}`}
+                  style={{ padding: '4px 12px', fontSize: '0.85rem' }}
+                  title={lo.title}
+                >
+                  {lo.title.length > 30 ? lo.title.slice(0, 30) + '…' : lo.title} ({lo.count})
+                </button>
+              ))}
+            </div>
+          )}
+
+          <div className="search-box" style={{ marginTop: 12 }}>
             <input
               type="text"
               placeholder="Search questions..."
@@ -202,6 +268,39 @@ function QuestionBank({ questions, courseId, onRefresh, onSuccess, onError }) {
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
+
+          {(filter !== 'all' || lessonFilter !== 'all' || searchTerm) && (
+            <div style={{
+              fontSize: '0.85rem',
+              color: 'var(--neutral-600)',
+              marginTop: 8,
+              display: 'flex',
+              alignItems: 'center',
+              gap: 12,
+            }}>
+              <span>
+                Showing <strong>{filteredQuestions.length}</strong> of {questions.length} questions
+              </span>
+              <button
+                onClick={() => {
+                  setFilter('all');
+                  setLessonFilter('all');
+                  setSearchTerm('');
+                }}
+                style={{
+                  fontSize: '0.8rem',
+                  padding: '4px 10px',
+                  background: 'transparent',
+                  border: '1px solid var(--neutral-300)',
+                  borderRadius: 6,
+                  cursor: 'pointer',
+                  color: 'var(--neutral-700)',
+                }}
+              >
+                Clear all filters
+              </button>
+            </div>
+          )}
         </div>
 
         {/* Selection Actions */}

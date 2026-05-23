@@ -188,6 +188,7 @@ def mine_misconceptions(source_text: str, *, llm_caller=None,
     """Extract Sadler-style misconception/correction pairs from a source text."""
     call = llm_caller or _call_llm
     windows = find_cue_windows(source_text, max_windows=max_windows)
+    print(f'[Misconception] Source text scanned — found {len(windows)} cue window(s).', flush=True)
     if not windows:
         return {
             'available': True,
@@ -197,13 +198,16 @@ def mine_misconceptions(source_text: str, *, llm_caller=None,
         }
 
     all_pairs: List[Dict[str, Any]] = []
-    for w in windows:
+    for i, w in enumerate(windows, start=1):
+        print(f'[Misconception] Extracting from window {i}/{len(windows)} (cue: {w["cue"][:60]})', flush=True)
         raw = call(build_extract_prompt(w['context']))
         pairs = _parse_misconceptions(raw or '')
         for p in pairs:
             p['source_cue'] = w['cue']
             p['source_offset'] = w['start']
             all_pairs.append(p)
+        print(f'[Misconception] Window {i}: extracted {len(pairs)} pair(s).', flush=True)
+    print(f'[Misconception] Done. Total pairs: {len(all_pairs)}.', flush=True)
 
     return {
         'available': True,

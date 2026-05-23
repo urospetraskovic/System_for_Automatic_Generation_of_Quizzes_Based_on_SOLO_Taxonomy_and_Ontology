@@ -76,8 +76,8 @@ function CoveragePanel({ lessonId, refreshKey }) {
           <h4 style={{ margin: 0 }}>PDF Coverage</h4>
           {data?.available && (
             <span className="badge" style={{
-              background: 'var(--primary-100)',
-              color: 'var(--primary-700)',
+              background: 'var(--primary-lighter)',
+              color: 'var(--primary-dark)',
               padding: '2px 8px',
               borderRadius: '10px',
               fontSize: '0.8rem',

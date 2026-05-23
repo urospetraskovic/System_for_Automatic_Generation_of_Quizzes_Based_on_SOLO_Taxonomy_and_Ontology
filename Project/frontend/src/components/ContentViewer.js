@@ -6,6 +6,7 @@ import MCQLintPanel from './MCQLintPanel';
 import SoloJudgePanel from './SoloJudgePanel';
 import AdvancedQualityPanel from './AdvancedQualityPanel';
 import ExtendedValidityPanel from './ExtendedValidityPanel';
+import QualityOverviewPanel from './QualityOverviewPanel';
 
 function ContentViewer({ lesson, onBack, onSuccess, onError, onLessonUpdate }) {
   const [sections, setSections] = useState([]);
@@ -280,6 +281,11 @@ function ContentViewer({ lesson, onBack, onSuccess, onError, onLessonUpdate }) {
           </div>
         )}
 
+        {/* Master Quality Overview hub — runs everything at once */}
+        {sections.length > 0 && (
+          <QualityOverviewPanel lessonId={lesson.id} />
+        )}
+
         {/* PDF Coverage Panel */}
         {sections.length > 0 && (
           <CoveragePanel lessonId={lesson.id} refreshKey={sections.length} />
@@ -317,7 +323,7 @@ function ContentViewer({ lesson, onBack, onSuccess, onError, onLessonUpdate }) {
                 onClick={() => setShowOntology(!showOntology)}
               >
                 <h4 style={{ margin: 0 }}>Domain Ontology</h4>
-                <span className="badge" style={{ background: 'var(--primary-100)', color: 'var(--primary-700)', padding: '2px 8px', borderRadius: '10px', fontSize: '0.8rem' }}>
+                <span className="badge" style={{ background: 'var(--primary-lighter)', color: 'var(--primary-dark)', padding: '2px 8px', borderRadius: '10px', fontSize: '0.8rem' }}>
                   {ontology.length} Relationships
                 </span>
               </div>
@@ -428,15 +434,15 @@ function ContentViewer({ lesson, onBack, onSuccess, onError, onLessonUpdate }) {
                             </td>
                             <td style={{ padding: '15px 20px', textAlign: 'center' }}>
                               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '4px' }}>
-                                <span style={{ 
-                                  fontSize: '0.7rem', 
-                                  fontWeight: '800', 
-                                  textTransform: 'uppercase', 
-                                  color: 'var(--primary-600)',
-                                  background: 'var(--primary-50)',
+                                <span style={{
+                                  fontSize: '0.7rem',
+                                  fontWeight: '800',
+                                  textTransform: 'uppercase',
+                                  color: 'var(--primary-main)',
+                                  background: 'var(--primary-lighter)',
                                   padding: '2px 8px',
                                   borderRadius: '4px',
-                                  border: '1px solid var(--primary-100)',
+                                  border: '1px solid var(--primary-light)',
                                   whiteSpace: 'nowrap'
                                 }}>
                                   {rel.relationship_type.replace('_', ' ')}

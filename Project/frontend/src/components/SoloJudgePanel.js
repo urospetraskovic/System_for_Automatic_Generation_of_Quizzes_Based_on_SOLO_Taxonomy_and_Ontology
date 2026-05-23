@@ -101,12 +101,13 @@ function SoloJudgePanel({ lessonId }) {
               disabled={loading}
               style={{
                 padding: '8px 16px',
-                background: loading ? 'var(--neutral-200)' : 'var(--primary-600)',
-                color: 'white',
+                background: loading ? '#c4c4d6' : '#1b3a4b',
+                color: '#ffffff',
                 border: 'none',
                 borderRadius: '6px',
                 cursor: loading ? 'wait' : 'pointer',
                 fontWeight: 600,
+                fontSize: '0.9rem',
               }}
             >
               {loading ? 'Running judge…' : 'Run SOLO judge'}

@@ -193,7 +193,15 @@ def check_homogeneity(question: Dict[str, Any], *, llm_caller=None) -> Dict[str,
 
 
 def homogeneity_report(questions: List[Dict[str, Any]], *, llm_caller=None) -> Dict[str, Any]:
-    reports = [check_homogeneity(q, llm_caller=llm_caller) for q in questions]
+    total = len(questions)
+    print(f'[Grammar] Starting grammatical-homogeneity check on {total} question(s) — model={GRAMMAR_MODEL}', flush=True)
+    reports = []
+    for i, q in enumerate(questions, start=1):
+        r = check_homogeneity(q, llm_caller=llm_caller)
+        reports.append(r)
+        if i == 1 or i == total or i % 5 == 0:
+            verdict = r.get('verdict') if r.get('available') else 'unavail'
+            print(f'[Grammar] {i}/{total} — Q#{q.get("id")} → {verdict}', flush=True)
     available = [r for r in reports if r.get('available')]
     n = len(available)
     distribution = {'homogeneous': 0, 'single_outlier': 0, 'mixed': 0}

@@ -234,7 +234,15 @@ def verify_questions(
     llm_caller=None,
 ) -> Dict[str, Any]:
     """Batch CoVe. Returns aggregate stats + per-question reports."""
-    reports = [verify_question(q, llm_caller=llm_caller) for q in questions]
+    total = len(questions)
+    print(f'[CoVe] Starting Chain-of-Verification on {total} question(s) — model={COVE_MODEL} (4 LLM calls per question)', flush=True)
+    reports = []
+    for i, q in enumerate(questions, start=1):
+        r = verify_question(q, llm_caller=llm_caller)
+        reports.append(r)
+        verdict = r.get('verdict') or 'unparseable'
+        # CoVe is the slowest — log every question, not every 5.
+        print(f'[CoVe] {i}/{total} — Q#{q.get("id")} → {verdict}', flush=True)
     total = len(reports)
     supported = sum(1 for r in reports if r['verdict'] == 'SUPPORTED')
     underdetermined = sum(1 for r in reports if r['verdict'] == 'UNDERDETERMINED')

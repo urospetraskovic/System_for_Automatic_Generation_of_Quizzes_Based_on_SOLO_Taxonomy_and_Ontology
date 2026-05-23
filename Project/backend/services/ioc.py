@@ -213,8 +213,17 @@ def rate_question(question: Dict[str, Any], *, objective: Optional[Dict[str, str
 
 def ioc_report(questions: List[Dict[str, Any]], *, llm_caller=None) -> Dict[str, Any]:
     """Batch IOC report. Returns per-question ratings and the aggregate IOC index."""
-    reports = [rate_question(q, llm_caller=llm_caller) for q in questions]
+    total = len(questions)
+    print(f'[IOC] Starting Item-Objective Congruence rating on {total} question(s) — model={IOC_MODEL}', flush=True)
+    reports = []
+    for i, q in enumerate(questions, start=1):
+        r = rate_question(q, llm_caller=llm_caller)
+        reports.append(r)
+        if i == 1 or i == total or i % 5 == 0:
+            verdict = r.get('rating') if r.get('available') else 'unavail'
+            print(f'[IOC] {i}/{total} — Q#{q.get("id")} → {verdict}', flush=True)
     rated = [r for r in reports if r.get('available')]
+    print(f'[IOC] Done. {len(rated)}/{total} rated.', flush=True)
     n = len(rated)
     if n == 0:
         return {

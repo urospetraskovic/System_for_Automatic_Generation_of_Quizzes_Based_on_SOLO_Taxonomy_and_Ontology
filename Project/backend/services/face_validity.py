@@ -196,7 +196,15 @@ def assess_face_validity(question: Dict[str, Any], *, llm_caller=None) -> Dict[s
 
 
 def face_validity_report(questions: List[Dict[str, Any]], *, llm_caller=None) -> Dict[str, Any]:
-    reports = [assess_face_validity(q, llm_caller=llm_caller) for q in questions]
+    total = len(questions)
+    print(f'[FaceValidity] Starting distractor face-validity scoring on {total} question(s) — model={FACE_MODEL}', flush=True)
+    reports = []
+    for i, q in enumerate(questions, start=1):
+        r = assess_face_validity(q, llm_caller=llm_caller)
+        reports.append(r)
+        if i == 1 or i == total or i % 5 == 0:
+            score = r.get('face_validity_score') if r.get('available') else 'unavail'
+            print(f'[FaceValidity] {i}/{total} — Q#{q.get("id")} → score={score}', flush=True)
     available = [r for r in reports if r.get('available')]
     n = len(available)
     scores = [r['face_validity_score'] for r in available

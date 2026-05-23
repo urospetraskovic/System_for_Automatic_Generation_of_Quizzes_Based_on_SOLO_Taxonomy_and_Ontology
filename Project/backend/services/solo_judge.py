@@ -218,11 +218,21 @@ def judge_questions(
     llm_caller=None,
 ) -> Dict[str, Any]:
     """Classify every question in `questions` and return aggregate stats."""
-    reports = [classify_question(q, llm_caller=llm_caller) for q in questions]
+    total = len(questions)
+    print(f'[SOLO-Judge] Starting SOLO classification on {total} question(s) — model={JUDGE_MODEL}', flush=True)
+    reports = []
+    for i, q in enumerate(questions, start=1):
+        r = classify_question(q, llm_caller=llm_caller)
+        reports.append(r)
+        if i == 1 or i == total or i % 5 == 0:
+            cl = r.get("classified_level") or 'unparseable'
+            agree = '✓' if r.get("agrees") else '✗'
+            print(f'[SOLO-Judge] {i}/{total} — Q#{q.get("id")} intended={r.get("intended_level")} classified={cl} {agree}', flush=True)
     parse_failures = sum(1 for r in reports if not r["parse_ok"])
     usable = [r for r in reports if r["parse_ok"] and r["intended_level"]]
     agreement_count = sum(1 for r in usable if r["agrees"])
     accuracy = agreement_count / len(usable) if usable else None
+    print(f'[SOLO-Judge] Done. {agreement_count}/{len(usable)} agree ({round(100*accuracy,1) if accuracy else 0}%).', flush=True)
 
     return {
         "total_questions": len(reports),

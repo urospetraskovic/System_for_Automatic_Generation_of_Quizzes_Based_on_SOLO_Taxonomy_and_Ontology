@@ -381,10 +381,15 @@ def stem_only_solvability_report(
     cosine=None,
 ) -> Dict[str, Any]:
     """Batch stem-only solvability report (H4 conformance across a lesson)."""
-    reports = [
-        assess_stem_only_solvability(q, llm_caller=llm_caller, embedder=embedder, cosine=cosine)
-        for q in questions
-    ]
+    total = len(questions)
+    print(f'[StemOnly] Starting Haladyna H4 stem-only check on {total} question(s) — model={SOLVER_MODEL}', flush=True)
+    reports = []
+    for i, q in enumerate(questions, start=1):
+        r = assess_stem_only_solvability(q, llm_caller=llm_caller, embedder=embedder, cosine=cosine)
+        reports.append(r)
+        if i == 1 or i == total or i % 5 == 0:
+            verdict = r.get('verdict') if r.get('available') else 'unavail'
+            print(f'[StemOnly] {i}/{total} — Q#{q.get("id")} → {verdict}', flush=True)
     available = [r for r in reports if r.get('available')]
     n = len(available)
     distribution = {'passes': 0, 'partial': 0, 'fails': 0, 'unable': 0}
@@ -414,10 +419,18 @@ def solvability_report(
     llm_caller=None,
 ) -> Dict[str, Any]:
     """Batch solvability report for a list of questions."""
-    reports = [
-        assess_solvability(q, n_trials=n_trials, shuffle=shuffle, llm_caller=llm_caller)
-        for q in questions
-    ]
+    total = len(questions)
+    expected_calls = total * n_trials
+    print(f'[Solvability] Starting LLM-blind solver on {total} question(s) — model={SOLVER_MODEL}, n_trials={n_trials}', flush=True)
+    print(f'[Solvability]   This will make up to {expected_calls} LLM calls total. With local Ollama this can take HOURS.', flush=True)
+    reports = []
+    for i, q in enumerate(questions, start=1):
+        r = assess_solvability(q, n_trials=n_trials, shuffle=shuffle, llm_caller=llm_caller)
+        reports.append(r)
+        # Solvability is the slowest — log every question.
+        p = r.get('p_value') if r.get('available') else 'unavail'
+        label = r.get('difficulty_label', '')
+        print(f'[Solvability] {i}/{total} — Q#{q.get("id")} → p={p} ({label})', flush=True)
     usable = [r for r in reports if r.get('available') and r.get('p_value') is not None]
 
     distribution = {'trivially_easy': 0, 'appropriate': 0, 'hard': 0, 'too_hard_or_misframed': 0}

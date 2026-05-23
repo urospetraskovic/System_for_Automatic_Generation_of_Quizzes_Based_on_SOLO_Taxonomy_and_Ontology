@@ -151,7 +151,15 @@ def assess_ambiguity(question: Dict[str, Any], *, llm_caller=None) -> Dict[str, 
 
 
 def ambiguity_report(questions: List[Dict[str, Any]], *, llm_caller=None) -> Dict[str, Any]:
-    reports = [assess_ambiguity(q, llm_caller=llm_caller) for q in questions]
+    total = len(questions)
+    print(f'[Ambiguity] Starting linguistic-ambiguity detection on {total} question(s) — model={AMBIGUITY_MODEL}', flush=True)
+    reports = []
+    for i, q in enumerate(questions, start=1):
+        r = assess_ambiguity(q, llm_caller=llm_caller)
+        reports.append(r)
+        if i == 1 or i == total or i % 5 == 0:
+            verdict = 'AMBIG' if r.get('ambiguous') else 'clear'
+            print(f'[Ambiguity] {i}/{total} — Q#{q.get("id")} → {verdict}', flush=True)
     available = [r for r in reports if r.get('available')]
     n = len(available)
     ambiguous_count = sum(1 for r in available if r.get('ambiguous'))
