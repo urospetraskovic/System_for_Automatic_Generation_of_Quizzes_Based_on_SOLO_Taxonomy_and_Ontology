@@ -168,14 +168,48 @@ def test_question_prompt_carries_stem_and_option_rules(level):
         source_text="X is a thing.",
         language="en",
     )
-    # Stem rules — H14, H16, H17.
+    # Stem rules — H14, H16, H17 plus the new S5/S6/S7 quality rules.
     assert "STEM RULES" in prompt
     for code in ("H14", "H16", "H17"):
         assert code in prompt
-    # Option rules — H19, H22, H24, H27, H25, H21.
+    assert "S5" in prompt and "S6" in prompt and "S7" in prompt
+    # Option rules — H19, H22, H24, H27, H25, H21 plus the new O8 quality rule.
     assert "OPTION RULES" in prompt
     for code in ("H19", "H22", "H24", "H27", "H25", "H21"):
         assert code in prompt
+    assert "O8" in prompt
+
+
+@pytest.mark.parametrize("level", SOLO_LEVELS)
+def test_question_prompt_carries_banned_openers_block(level):
+    """Anti-formulaic openers (added May 2026 after corpus analysis) must
+    appear in every generation prompt so the model avoids them."""
+    prompt = build_question_prompt(
+        level=level,
+        lesson_title="Test Lesson",
+        content_block="X: a thing.",
+        source_text="X is a thing.",
+        language="en",
+    )
+    assert "BANNED STEM OPENERS" in prompt
+    # The two most-frequent problem openers from the corpus analysis.
+    assert "Koji od sledećih je ključni za razumevanje" in prompt
+    assert "Po čemu se" in prompt
+
+
+def test_extended_abstract_pass1_carries_banned_openers():
+    """Extended-abstract Pass 1 also writes a stem, so banned openers apply."""
+    prompt = build_extended_abstract_pass1_prompt(
+        lesson_title="Operating Systems",
+        secondary_title=None,
+        primary_content="processes; scheduling",
+        secondary_content="",
+        primary_source="Processes are scheduled by the OS.",
+        secondary_source="",
+        ontology_anchor_block="",
+        language="en",
+    )
+    assert "BANNED STEM OPENERS" in prompt
 
 
 def test_extended_abstract_pass1_carries_stem_rules_only():

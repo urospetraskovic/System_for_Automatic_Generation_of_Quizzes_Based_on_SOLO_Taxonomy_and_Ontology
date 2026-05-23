@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { questionApi } from '../api';
 
 // Seven on-demand validity checks (techniques A through H from the
@@ -171,10 +171,39 @@ const BTN_STYLE = (loading, kind = 'primary') => {
   };
 };
 
-function ExtendedValidityPanel({ lessonId }) {
+function ExtendedValidityPanel({ lessonId, initialResults }) {
   const [expanded, setExpanded] = useState(false);
-  const [state, setState] = useState({}); // {sectionKey: {data, loading, error}}
-  const [runAllProgress, setRunAllProgress] = useState(null);  // {current, total, label} | null
+
+  // Seed state from any initialResults that are present so the user does
+  // not have to click Run on each sub-section after the Quality Overview
+  // already ran them.
+  const seededState = React.useMemo(() => {
+    const out = {};
+    if (initialResults) {
+      for (const key of Object.keys(initialResults)) {
+        if (initialResults[key]) out[key] = { data: initialResults[key] };
+      }
+    }
+    return out;
+  }, [initialResults]);
+
+  const [state, setState] = useState(seededState);
+  const [runAllProgress, setRunAllProgress] = useState(null);
+
+  // When new initialResults arrive (e.g. parent re-runs the audit), merge
+  // them into our local state without dropping anything we already had.
+  useEffect(() => {
+    if (!initialResults) return;
+    setState((prev) => {
+      const next = { ...prev };
+      for (const key of Object.keys(initialResults)) {
+        if (initialResults[key]) {
+          next[key] = { ...(next[key] || {}), data: initialResults[key] };
+        }
+      }
+      return next;
+    });
+  }, [initialResults]);
 
   if (!lessonId) return null;
 

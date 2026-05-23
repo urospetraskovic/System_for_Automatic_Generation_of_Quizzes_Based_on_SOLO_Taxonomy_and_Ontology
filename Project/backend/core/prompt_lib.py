@@ -190,10 +190,43 @@ COT_SCAFFOLD = (
     "THINK STEP BY STEP INTERNALLY (do not include this reasoning in your output):\n"
     "  1. Identify the single fact or relationship this question will test.\n"
     "  2. Locate the exact line in SOURCE TEXT that justifies the correct answer.\n"
-    "  3. Draft the question stem. Avoid starting with 'Which of the following'.\n"
-    "  4. Write the correct option using terminology from SOURCE TEXT.\n"
+    "     This is your source_line — it MUST contain the specific terminology\n"
+    "     from the correct answer, not just the broader topic.\n"
+    "  3. Draft the question stem. AVOID generic openers like 'Koji od sledećih je\n"
+    "     ključni za razumevanje X' / 'Which is key to understanding X' — those\n"
+    "     test definition, not the actual concept being asked.\n"
+    "  4. Write the correct option using exact terminology from SOURCE TEXT,\n"
+    "     and keep it SHORT — aim for the same length as your distractors.\n"
     "  5. Build 3 distractors, each following one of the DISTRACTOR STRATEGIES.\n"
-    "  6. Verify the STEM RULES and OPTION RULES below before emitting JSON."
+    "  6. SANITY CHECK before emitting JSON:\n"
+    "     - Count characters of all four options. The correct answer should be of\n"
+    "       AVERAGE length — neither the longest nor the shortest (rule O4).\n"
+    "       If any option is an outlier (especially the correct one), rewrite ALL\n"
+    "       four to be uniform. Do NOT just shorten the correct answer — that\n"
+    "       flips the clue, it doesn't remove it.\n"
+    "     - Check the stem against the BANNED OPENERS list.\n"
+    "     - Make sure source_line literally contains the key terms from the\n"
+    "       correct answer, otherwise rewrite the correct answer to match."
+)
+
+
+# Banned formulaic openers that produce low-IOC, low-CoVe questions.
+# Empirically observed in 80%+ of the worst questions in the corpus.
+BANNED_OPENERS = (
+    "BANNED STEM OPENERS — do NOT begin the stem with any of these. They produce\n"
+    "vague pseudo-relational questions that fail content validity:\n"
+    "  ✗ 'Koji od sledećih je ključni za razumevanje …'\n"
+    "  ✗ 'Koji od sledećih pristupačnog/odgovornog/značajnog je …'\n"
+    "  ✗ 'Which of the following is key to understanding …'\n"
+    "  ✗ 'Šta sadrži informacije koje …' (when really asking for a definition)\n"
+    "  ✗ 'Po čemu se …' (too vague)\n"
+    "  ✗ Statement-style stems ending in a colon ':' (e.g. 'Process is characterised by:')\n"
+    "INSTEAD use direct, specific stems:\n"
+    "  ✓ 'Šta je <X>?'\n"
+    "  ✓ 'Koja je razlika između <X> i <Y>?'\n"
+    "  ✓ 'Kako <X> utiče na <Y>?' (for Relational)\n"
+    "  ✓ 'Definiši <X>.'  'Navedi tri <X>.'\n"
+    "  ✓ 'Zašto se <X> dešava kad <Y>?' (for Relational)"
 )
 
 
@@ -202,16 +235,31 @@ COT_SCAFFOLD = (
 # rules better when they are stated as numbered constraints than when buried
 # in a checklist. Rule codes match services.mcq_lint so the prevention layer
 # and the detection layer use the same vocabulary.
+#
+# Empirical calibration (May 2026): the local-Ollama qwen2.5:14b corpus showed
+# 41% length-clue (H27), 38.7% lexical ambiguity, and 97% IOC ≤ 0 on lesson 1.
+# The rules below were tightened with explicit checks (count characters, name
+# the exact concept) to attack those failure modes at the prompt level.
 STEM_RULES = (
     "STEM RULES (item-writing best practice — follow strictly):\n"
     "  S1 (H14) End the stem with a question mark, OR start with a clear imperative "
-    "(Define, Describe, Explain, Determine, Calculate…). No statement-style stems.\n"
+    "(Define, Describe, Explain, Determine, Calculate, Definiši, Navedi, Opiši, Objasni). "
+    "NO statement-style stems ending in a colon — those are banned.\n"
     "  S2 (H16) Keep the stem under ~250 characters. No window dressing, no "
     "back-story, no double questions.\n"
     "  S3 (H17) Avoid negation in the stem (NOT, EXCEPT, NIJE, OSIM). If unavoidable, "
     "emphasize it by surrounding the negation in **double asterisks**.\n"
     "  S4 Place the central idea in the stem, not in the choices — the stem must be "
-    "answerable without reading the options."
+    "answerable without reading the options. The stem must name the SPECIFIC concept "
+    "the question is about (e.g. 'Šta je PCB?' not 'Koji od sledećih je važan?').\n"
+    "  S5 (lexical clarity) Every domain term in the stem must be named explicitly. "
+    "Do not use vague heads like 'koncept', 'mehanizam', 'pristup' without naming WHICH "
+    "concept/mechanism/approach. Lexically ambiguous stems fail content validity.\n"
+    "  S6 (referential clarity) No bare pronouns ('to', 'ovo', 'taj') without an explicit "
+    "noun referent already in the stem.\n"
+    "  S7 (source binding) The fact tested in the stem MUST appear in SOURCE TEXT. If you "
+    "cannot find an exact line in SOURCE TEXT that uses the same terminology as your "
+    "correct answer, abandon this stem and pick another fact from SOURCE TEXT."
 )
 
 OPTION_RULES = (
@@ -220,14 +268,23 @@ OPTION_RULES = (
     "  O2 (H22) No two options may be paraphrases of one another. Distractors must be "
     "lexically distinct.\n"
     "  O3 (H24) Keep option lengths roughly equal — the longest option may be at most "
-    "twice the length of the shortest.\n"
-    "  O4 (H27) The CORRECT option must NOT be the longest one. If your draft has the "
-    "correct answer as longest, shorten it or lengthen a distractor.\n"
+    "twice the length of the shortest. Count characters and verify before emitting.\n"
+    "  O4 (H27) Length must not be a clue. The correct option must NOT be the longest, "
+    "and it must NOT be the shortest either — it should sit in the MIDDLE of the length "
+    "distribution. **HARD CHECK**: after drafting, count the characters of all four "
+    "options. Their lengths should fall within ~30% of each other. If the correct "
+    "answer is an outlier in either direction (longest OR shortest), rewrite ALL "
+    "options to be more uniform — do NOT just shorten the correct answer, because that "
+    "produces a 'pick the shortest' clue instead.\n"
     "  O5 (H25) Never use 'all of the above' / 'none of the above' / 'svi navedeni' / "
     "'nijedan od navedenih'. Each option must stand on its own.\n"
     "  O6 (H21) If options are numeric, list them in ascending or descending order.\n"
     "  O7 Match grammatical structure across options — same part of speech, same "
-    "register, same tense."
+    "register, same tense. If three options are noun phrases, the fourth must be a noun "
+    "phrase too. Structurally-outlier options give the answer away.\n"
+    "  O8 (linguistic quality) Write in natural, grammatical Serbian (or English). Avoid "
+    "torturous constructions ('Koji je odgovorni za upravljanje resursima …'). If a phrase "
+    "sounds awkward when read aloud, rewrite it."
 )
 
 
@@ -268,6 +325,8 @@ SOURCE TEXT (verbatim from the lesson — your `source_line` must be a quote fro
 {source_text or "(no source excerpt available — generate from CONTENT only)"}{ontology_anchor_block}
 
 {STEM_RULES}
+
+{BANNED_OPENERS}
 
 {OPTION_RULES}
 
@@ -334,13 +393,17 @@ PRIMARY SOURCE TEXT:
 
 {STEM_RULES}
 
+{BANNED_OPENERS}
+
 THINK STEP BY STEP INTERNALLY (do not include this reasoning):
   1. Pick one principle that meaningfully transfers to a new context.
   2. Sketch a NEW scenario grounded in the materials, not invented from scratch.
-  3. Write the question stem. Avoid starting with 'Which of the following'.
+  3. Write the question stem. Avoid generic openers like 'Koji od sledećih je
+     ključni za razumevanje X' — name the specific principle explicitly.
   4. Write the correct answer using terminology from the materials.
+     Keep it SHORT — long correct answers are a give-away (rule O4).
   5. Verify the answer is uniquely defensible given the source content.
-  6. Verify the STEM RULES above before emitting JSON.
+  6. Verify the STEM RULES and BANNED OPENERS above before emitting JSON.
 
 {lang_clause}
 

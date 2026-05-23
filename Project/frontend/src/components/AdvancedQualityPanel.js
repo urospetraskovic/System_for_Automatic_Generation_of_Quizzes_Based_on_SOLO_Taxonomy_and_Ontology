@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { questionApi } from '../api';
 
 // Cove + Solvability share a panel because they are both slow (multiple LLM
@@ -18,14 +18,18 @@ const DIFFICULTY_COLOR = {
   too_hard_or_misframed: '#dc2626',
 };
 
-function AdvancedQualityPanel({ lessonId }) {
+function AdvancedQualityPanel({ lessonId, initialCove, initialSolv }) {
   const [expanded, setExpanded] = useState(false);
-  const [coveData, setCoveData] = useState(null);
-  const [solvData, setSolvData] = useState(null);
+  const [coveData, setCoveData] = useState(initialCove || null);
+  const [solvData, setSolvData] = useState(initialSolv || null);
   const [coveLoading, setCoveLoading] = useState(false);
   const [solvLoading, setSolvLoading] = useState(false);
   const [coveErr, setCoveErr] = useState(null);
   const [solvErr, setSolvErr] = useState(null);
+
+  // Hydrate from parent (Quality Overview) results when they arrive.
+  useEffect(() => { if (initialCove) setCoveData(initialCove); }, [initialCove]);
+  useEffect(() => { if (initialSolv) setSolvData(initialSolv); }, [initialSolv]);
 
   if (!lessonId) return null;
 

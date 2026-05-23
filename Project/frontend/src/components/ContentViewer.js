@@ -17,6 +17,12 @@ function ContentViewer({ lesson, onBack, onSuccess, onError, onLessonUpdate }) {
   const [editingLO, setEditingLO] = useState(null);
   const [editFormData, setEditFormData] = useState({});
   const [showEditModal, setShowEditModal] = useState(false);
+
+  // Shared quality-check results. When QualityOverviewPanel runs Run All / Quick
+  // Run, it pushes the per-check data here; the sub-panels (SOLO judge, CoVe,
+  // Solvability, Extended A–H) read their slice from this and display it
+  // without forcing the user to click Run again on each sub-panel.
+  const [qualityResults, setQualityResults] = useState({});
   const [showTranslationViewer, setShowTranslationViewer] = useState(false);
   const [viewingTranslationId, setViewingTranslationId] = useState(null);
   const [viewingTranslationType, setViewingTranslationType] = useState('section');
@@ -283,7 +289,11 @@ function ContentViewer({ lesson, onBack, onSuccess, onError, onLessonUpdate }) {
 
         {/* Master Quality Overview hub — runs everything at once */}
         {sections.length > 0 && (
-          <QualityOverviewPanel lessonId={lesson.id} />
+          <QualityOverviewPanel
+            lessonId={lesson.id}
+            onResultsChange={setQualityResults}
+            initialResults={qualityResults}
+          />
         )}
 
         {/* PDF Coverage Panel */}
@@ -298,18 +308,33 @@ function ContentViewer({ lesson, onBack, onSuccess, onError, onLessonUpdate }) {
 
         {/* SOLO LLM-judge Panel */}
         {sections.length > 0 && (
-          <SoloJudgePanel lessonId={lesson.id} />
+          <SoloJudgePanel lessonId={lesson.id} initialData={qualityResults.judge} />
         )}
 
         {/* Advanced validity: CoVe + Solvability */}
         {sections.length > 0 && (
-          <AdvancedQualityPanel lessonId={lesson.id} />
+          <AdvancedQualityPanel
+            lessonId={lesson.id}
+            initialCove={qualityResults.cove}
+            initialSolv={qualityResults.solv}
+          />
         )}
 
         {/* Extended validity layer: A-H (IOC, stem-only, readability, ambiguity,
             misconception mining, grammar homogeneity, face validity) */}
         {sections.length > 0 && (
-          <ExtendedValidityPanel lessonId={lesson.id} />
+          <ExtendedValidityPanel
+            lessonId={lesson.id}
+            initialResults={{
+              ioc: qualityResults.ioc,
+              stem: qualityResults.stem,
+              readability: qualityResults.readability,
+              ambiguity: qualityResults.ambiguity,
+              misconception: qualityResults.misc,
+              grammar: qualityResults.grammar,
+              face: qualityResults.face,
+            }}
+          />
         )}
 
         {/* Domain Ontology Section */}

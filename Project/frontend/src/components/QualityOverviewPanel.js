@@ -50,9 +50,15 @@ const STAT_BOX = {
   border: '1px solid var(--neutral-200)',
 };
 
-function QualityOverviewPanel({ lessonId }) {
+function QualityOverviewPanel({ lessonId, onResultsChange, initialResults }) {
   const [expanded, setExpanded] = useState(true);
-  const [results, setResults] = useState({});  // {key: data}
+  const [results, setResults] = useState(initialResults || {});  // {key: data}
+
+  // Whenever local results change, surface them to the parent so the
+  // detail-panels below the hub can show the same data without re-running.
+  useEffect(() => {
+    if (onResultsChange) onResultsChange(results);
+  }, [results, onResultsChange]);
   const [progress, setProgress] = useState(null);  // {idx, total, label, mode, list} | null
   const [errors, setErrors] = useState({});
   const [activeJobs, setActiveJobs] = useState(0);

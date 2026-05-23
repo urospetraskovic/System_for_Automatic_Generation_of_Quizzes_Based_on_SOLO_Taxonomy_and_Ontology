@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { questionApi } from '../api';
 
 const SOLO_LEVELS = ['unistructural', 'multistructural', 'relational', 'extended_abstract'];
@@ -20,11 +20,16 @@ function kappaQualitative(k) {
   return { label: 'almost perfect', color: '#15803d' };
 }
 
-function SoloJudgePanel({ lessonId }) {
-  const [data, setData] = useState(null);
+function SoloJudgePanel({ lessonId, initialData }) {
+  const [data, setData] = useState(initialData || null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [expanded, setExpanded] = useState(false);
+
+  // Hydrate from parent (Quality Overview) results when they arrive.
+  useEffect(() => {
+    if (initialData) setData(initialData);
+  }, [initialData]);
 
   const runJudge = () => {
     if (!lessonId) return;

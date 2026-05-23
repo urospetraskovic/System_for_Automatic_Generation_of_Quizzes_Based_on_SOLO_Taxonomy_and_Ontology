@@ -221,10 +221,18 @@ def _check_options(
             ))
         if correct_index is not None and 0 <= correct_index < len(texts):
             correct_len = len(texts[correct_index])
+            # Symmetric length-clue check: correct must not be at either extreme.
+            # Both "correct is longest" and "correct is shortest" are clues —
+            # the latter is what naive overcorrection of H27 produces.
             if correct_len == hi and correct_len > lo:
                 flags.append(_flag(
                     'H27_CORRECT_LONGEST', SEVERITY_WARN,
                     'Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue).',
+                ))
+            elif correct_len == lo and correct_len < hi:
+                flags.append(_flag(
+                    'H27_CORRECT_SHORTEST', SEVERITY_WARN,
+                    'Tačan odgovor je najkraći — obrnut length-clue. Izjednači dužine. / Correct answer is shortest (inverted length clue).',
                 ))
 
     # H25: avoid "all/none of the above".

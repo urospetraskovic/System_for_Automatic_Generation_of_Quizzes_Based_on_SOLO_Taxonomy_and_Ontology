@@ -163,6 +163,38 @@ def test_correct_answer_longest_is_length_clue():
     assert 'H24_LENGTH_DISPARITY' in _codes(r)
 
 
+def test_correct_answer_shortest_is_inverted_length_clue():
+    """Naively over-correcting H27 produces 'correct is always shortest' clues.
+    The lint must catch that symmetrically."""
+    r = lint_question(_q(
+        options=[
+            'Proces',  # correct, shortest
+            'Datoteka koja se nalazi u sistemu i koristi se za skladištenje',
+            'Korisnik koji je trenutno prijavljen u operativni sistem',
+            'Resurs koji procesi koriste tokom svog izvršavanja',
+        ],
+        correct_index=0,
+    ))
+    assert 'H27_CORRECT_SHORTEST' in _codes(r)
+    assert 'H27_CORRECT_LONGEST' not in _codes(r)
+
+
+def test_correct_answer_middle_length_passes():
+    """When all options are similar length and correct is in the middle,
+    neither length-clue flag should fire."""
+    r = lint_question(_q(
+        options=[
+            'Program u izvršavanju',
+            'Datoteka u memoriji',         # correct (medium length)
+            'Korisnik prijavljen na sistem',
+            'Hardver',
+        ],
+        correct_index=1,
+    ))
+    assert 'H27_CORRECT_LONGEST' not in _codes(r)
+    assert 'H27_CORRECT_SHORTEST' not in _codes(r)
+
+
 def test_all_of_the_above_flagged():
     r = lint_question(_q(options=[
         'Program u izvršavanju.',
