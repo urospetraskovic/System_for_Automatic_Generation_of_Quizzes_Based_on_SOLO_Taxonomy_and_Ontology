@@ -1,0 +1,1868 @@
+{
+  "total_questions": 194,
+  "evaluated_questions": 194,
+  "ambiguous_count": 100,
+  "ambiguity_rate": 51.5,
+  "type_distribution": {
+    "none": 94,
+    "scope": 0,
+    "syntactic": 8,
+    "lexical": 80,
+    "referential": 12
+  },
+  "reports": [
+    {
+      "question_id": 1,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question 'Koje je aktivna instanca programa?' is clearly asking about the active instance of a program, which aligns directly with one of the given options without any lexical, referential, syntactic or scope ambiguities."
+    },
+    {
+      "question_id": 2,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Šta OS mora da obeshrabruje kako bi bilo moguće instalirati i koristiti različite aplikacije?",
+        "Šta OS mora da obeshrabruje u smislu softvera koji omogućava dostupnost više razlicitih aplikacija?"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The phrase 'obeshrabruje tako da je dostupno' can be interpreted in multiple ways, leading to confusion about what the OS needs to support."
+    },
+    {
+      "question_id": 3,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Šta je entitet koji se može dodeliti i izvršavati na procesoru? -> A) Program u izvršavanju",
+        "Šta je entitet koji se može dodeliti i izvršavati na procesoru? -> C) Programski kod"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'dodeliti' (to allocate or assign) is ambiguous in the context of computer science, as it can refer to either assigning a program for execution or assigning resources. This leads to potential confusion between options A and C."
+    },
+    {
+      "question_id": 4,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question clearly asks what characterizes a unit of activity in executing a program, which is unambiguous and does not allow for multiple defensible interpretations based on the context provided."
+    },
+    {
+      "question_id": 5,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question 'Šta proces treba da uradi po definiciji programskog koda?' (What must a process do according to the definition of program code?) is clear in meaning and intent. Each option provided corresponds directly to an operation that can be performed by a process, making it unambiguous."
+    },
+    {
+      "question_id": 6,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question is clear in its meaning as it asks about an important part of a process element, which can be understood unambiguously."
+    },
+    {
+      "question_id": 7,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Naredbe za izvršavanje karakterišu programski kod koji se može deliti između više instanci",
+        "Naredbe za izvršavanje su jedinica aktivnosti koja ima svoje stanje i dodeljeni resursi"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'naredbe za izvršavanje' could be interpreted as instructions for execution or commands that define what constitutes an execution, leading to different interpretations of the question."
+    },
+    {
+      "question_id": 8,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Šta je preplitanje izvršavanja više procesa? (contextual meaning related to synchronization)",
+        "Šta je preplitanje izvršavanja više procesa? (contextual meaning related to resource allocation)"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'preplitanje' can have multiple meanings depending on the context, leading to potential confusion about whether the question is asking about synchronization or resource allocation."
+    },
+    {
+      "question_id": 9,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Šta je jedan od osnovnih elemenata procesa u računalnom okviru?",
+        "Šta je jedan od osnovnih elemenata procesa izvedenih funkcija?"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'proces' in Serbian can refer to both a computer process and a general function or method, leading to potential confusion."
+    },
+    {
+      "question_id": 10,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Elementi procesa koji opisuju stanje procesa su statusne informacije.",
+        "Elementi procesa koji opisuju stanje procesa su skupovi podataka, programski kod i atributi."
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'elementi' (elements) can refer either specifically to status information or more broadly to data sets, code, and attributes."
+    },
+    {
+      "question_id": 11,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question 'Šta je identifikator procesa?' clearly asks for the meaning of a process identifier, and there is no lexical, referential, syntactic, or scope ambiguity that could lead to multiple distinct interpretations."
+    },
+    {
+      "question_id": 12,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Šta je Upravljački blok procesa (UBP) kao atributi koji opisuju stanje procesa",
+        "Šta je Upravljački blok procesa (UBP) kao informacije koje OS koristi za upravljanje procesom"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'Upravljački blok procesa' can be interpreted as either attributes describing the state of a process or information that the operating system uses to manage a process."
+    },
+    {
+      "question_id": 13,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Šta je element procesa koji predstavlja šta proces treba da uradi? Ako se odnosi na funkcionalnost, to bi mogli biti atributi koji opisuju ciljeve i zadatak procesa.",
+        "Šta je element procesa koji predstavlja šta proces treba da uradi? Ako se odnosi na konkretne instrukcije za izvršavanje, to bi mogli biti programski kod ili statusne informacije o U/I operacijama."
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The phrase 'šta proces treba da uradi' is unclear and can be interpreted as either the purpose or function of the process, or specific instructions for what the process should do."
+    },
+    {
+      "question_id": 14,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Šta je entitet koji se može dodeliti i izvršavati u procesoru? A referse to a process.",
+        "Šta je entitet koji se može dodeliti i izvršavati u procesoru? D refers to the program code that can be assigned and executed in a processor."
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'entitet' is ambiguous as it could refer to different concepts in computer science, leading to multiple interpretations of what can be assigned and executed on a processor."
+    },
+    {
+      "question_id": 15,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Šta je identifikator u kontekstu atributa procesa kao što su status i stanje?",
+        "Šta je identifikator koji se odnosi samo na jednu specifičnu kategoriju atributa procesa, npr. numerički identifikator procesa?"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'atributa procesa' can be interpreted broadly to include various attributes or narrowly to refer specifically to a particular attribute like the process identifier."
+    },
+    {
+      "question_id": 16,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Šta je programski brojač? Je li to pokazivač stanja procesora.",
+        "Šta je programski brojač? Je li to adresa sledeće instrukcije u programskom kodu."
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'programski brojač' (program counter) can be interpreted in multiple ways based on the context and options provided, leading to potential confusion."
+    },
+    {
+      "question_id": 17,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Pokazivači na memorijske blokove ukazuju na kod i podatke vezane za proces.",
+        "Pokazivači na memorijske blokove ukazuju na kontekstni podaci iz registara procesora."
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'memorijske blokove' (memory blocks) can be interpreted in different contexts, leading to two distinct meanings."
+    },
+    {
+      "question_id": 18,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Preplitanje izvršavanja procesa omogućava deljenje resursa računara između više procesa.",
+        "Preplitanje izvršavanja procesa omogućava sinhronizaciju radnje između procesa."
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'preplitanje izvršavanja' (contextualized as 'process scheduling') can be interpreted in the context of resource allocation or synchronization, leading to multiple valid interpretations."
+    },
+    {
+      "question_id": 19,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Šta OS dodeljuje procesima kako bi zaštitio njihov pristup resursima od nekontrolisanih promena?",
+        "Šta OS dodeljuje procesima kako bi zaštitio njihov pristup svim delima računara (u širem smislu) od nekontrolisanih promena?"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'pristup' can mean either 'access to resources' or a broader 'overall access,' leading to potential misinterpretation of the question."
+    },
+    {
+      "question_id": 20,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question is clear in its meaning as it specifically asks about one of the functions of an operating system in process management, and all options are directly related to this context."
+    },
+    {
+      "question_id": 21,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question asks about one of the requirements of an OS when managing processes, and all options are clear in their meaning."
+    },
+    {
+      "question_id": 22,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Šta zahteva OS od procesa pri preplitanju izvršavanja više procesa?",
+        "Šta zahteva OS pri preplitanju izvršavanja više procesa od procesa?"
+      ],
+      "ambiguity_type": "referential",
+      "reasoning": "The phrase 'zahteva od procesa' can be interpreted as either the operating system demanding something from processes in general or specifically requiring actions from the processes involved in preplitanje izvršavanja."
+    },
+    {
+      "question_id": 23,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question clearly asks about one of the primary functions of an operating system in process management, without any lexical, referential, syntactic, or scope ambiguities."
+    },
+    {
+      "question_id": 24,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "What does the process need to do?",
+        "Which process needs to be done?"
+      ],
+      "ambiguity_type": "referential",
+      "reasoning": "The phrase 'Šta proces treba da uradi?' can be interpreted as asking what a specific process needs to accomplish or identifying which process from multiple options is needed."
+    },
+    {
+      "question_id": 25,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question 'Šta je skup podataka nad kojima se posao izvršava?' (What is the dataset on which the job is performed?) has a clear meaning and does not admit multiple interpretations."
+    },
+    {
+      "question_id": 26,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question clearly asks for the address of the next instruction in the program code, which is unambiguous."
+    },
+    {
+      "question_id": 27,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Šta pokazivači na memorijske blokove vezani za proces uključuju? (Interpretation where 'vezani za proces' refers to the pointers)",
+        "Šta pokazivači na memorijske blokove vezani za proces uključuju? (Interpretation where 'vezani za proces' refers to the memory blocks)"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The phrase 'vezani za proces' can be interpreted as either referring to the pointers or the memory blocks, leading to different understandings of what is being asked."
+    },
+    {
+      "question_id": 28,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question 'Šta su kontekstni podaci procesa?' is clear in meaning, asking about the context data of a process. There are no lexical, referential, syntactic or scope ambiguities that would lead to multiple interpretations."
+    },
+    {
+      "question_id": 29,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Šta su neobrađeni zahtevi u kontekstu 'U/I' kao skraćenje od upis/izlaz statusne informacije?",
+        "Šta su neobrađeni zahtevi u kontekstu 'U/I' kao skraćenje od upravljanja infrastrukturama statusne informacije?"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The abbreviation 'U/I' can refer to different concepts depending on the context, leading to potential confusion."
+    },
+    {
+      "question_id": 30,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Računovodstvene informacije procesa odnose se na metriku i podatke vezane za upravljanje resursima procesa, kao što je vreme pokretanja programa.",
+        "Računovodstvene informacije procesa mogu biti povezane sa fiskalnim ili financijernim aspektima tokom izvođenja poslovnih operacija koje obuhvataju različite procese."
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'računovodstvene informacije' can refer to accounting and financial data, potentially leading to different interpretations of the question."
+    },
+    {
+      "question_id": 31,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Šta je OS zadužen za kreiranje i upravljanje resursima sistema?",
+        "Šta je OS zadužen za kreiranje i upravljanje procesa?"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The phrase 'kreiranje i upravljanje' is ambiguous because it can refer to the creation and management of system resources or processes without additional context."
+    },
+    {
+      "question_id": 32,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Identifikator atributa procesa je identifikator.",
+        "Šta je identifikator atributa procesa u kontekstu IT i računalne značajke?"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'identifikator atributa procesa' could be interpreted in different contexts, leading to multiple meanings."
+    },
+    {
+      "question_id": 33,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Šta je atribut procesa koji označava trenutno stanje procesa? - Atribut može biti Prioritet ili Stanje",
+        "Šta je atribut procesa koji označava trenutno stanje procesa? - Može se pitati o specificnom programskom brojaču ili identifikatoru koji predstavlja stanje"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'atribut' (attribute) can refer to different aspects of a process, leading to possible confusion about what exactly is being asked."
+    },
+    {
+      "question_id": 34,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Šta je prioritet atributa procesa? -> What is the priority attribute of the process?",
+        "Šta je prioritet atributa procesa? -> What are the attributes of a process' priority?"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'prioritet atributa procesa' can be interpreted as either asking about an attribute that has priority or asking what attributes relate to a process's priority."
+    },
+    {
+      "question_id": 35,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question clearly asks about two key facts concerning processes in operating systems, and each option provides a clear interpretation related to the topic."
+    },
+    {
+      "question_id": 36,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question clearly asks about key facts when an operating system manages resources for multiple applications, and the options provide clear interpretations that do not create lexical, referential, syntactic or scope ambiguity."
+    },
+    {
+      "question_id": 37,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Koji su elementi programa u toku izvršavanja (programskog koda i resursa)?",
+        "Koji su elementi programa koji se koriste za izvršavanje (tekuće stanje i resursi)?"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The phrase 'u izvršavanju' can be interpreted either as part of the execution process (during execution) or as a purpose for which elements are used (for executing)."
+    },
+    {
+      "question_id": 38,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question 'Koja su nezavisna komponenta procesa?' is clear in its meaning as it asks about the independent components of a process, and there are no lexical, referential, syntactic, or scope ambiguities that would lead to multiple interpretations."
+    },
+    {
+      "question_id": 39,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question clearly asks for four requirements of an OS in managing processes, and the options provided do not introduce any lexical, referential, syntactic, or scope ambiguities."
+    },
+    {
+      "question_id": 40,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Koji su elementi programa koji se odnose na programski kod?",
+        "Koji su elementi procesa (operativnog sistema) koji se odnose na izvršenje programskog koda?"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'proces' can refer to either a computer program or an operating system process."
+    },
+    {
+      "question_id": 41,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Koje su atributi procesa uključene u upravljački blok procesa (UBP) za procese?",
+        "Koje su atributi procesa uključene u upravljački blok procesa (UBP) za uređaje ili resurse?"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'attribution' in the question is ambiguous and could refer to attributes of processes or resources."
+    },
+    {
+      "question_id": 42,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question 'Šta sadrži upravljački blok procesa (UBP)?' has a clear and unambiguous meaning in the context of computer science, specifically regarding what information is contained within a process control block. The options provided are distinct and related to specific aspects of processes and system operations."
+    },
+    {
+      "question_id": 43,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Šta predstavljaju tragovi različitih procesa u ponašanju procesora? (What do the traces of different processes represent in processor behavior?)",
+        "Šta predstavljaju tragovi, koji su rezultat različitih procesa, u ponašanju procesora? (What do the trails resulting from different processes represent in processor behavior?)"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'tragovi' can be interpreted as either general traces or specific trails, leading to distinct meanings."
+    },
+    {
+      "question_id": 44,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question asks about the five basic states of processes in an operating system, and all options provided are specific terms related to process management in OS. There is no lexical, referential, syntactic, or scope ambiguity that would lead a careful test-taker to interpret the question differently."
+    },
+    {
+      "question_id": 45,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question clearly asks about the steps an OS takes when creating a new process, and each option provides specific actions related to process creation without introducing ambiguity in meaning."
+    },
+    {
+      "question_id": 46,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Indikatori su korisničke akcije i grešaka u programu koje dovode do završetka procesa.",
+        "Indikatori su instrukcije roditeljskog procesa za prekid ili završavanje potomskih procesa."
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'indikatori' can be interpreted in multiple ways, leading to different meanings of the question."
+    },
+    {
+      "question_id": 47,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question clearly asks about the criteria for transitioning from the 'Izvršavanje' (Execution) state to the 'Blokiran stanje procesa' (Blocked state). The options are specific and do not have multiple interpretations."
+    },
+    {
+      "question_id": 48,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question asks for three key pieces of information found in a PCB (Process Control Block) for process management, and the options provided are all contextually related to process control blocks."
+    },
+    {
+      "question_id": 49,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question clearly asks about the attributes that an OS must maintain for managing active processes, without any lexical, referential, syntactic, or scope ambiguities."
+    },
+    {
+      "question_id": 50,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question clearly asks about components of the physical representation of a process, and each option provides specific technical terms without introducing lexical, referential, syntactic, or scope ambiguities."
+    },
+    {
+      "question_id": 51,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question and options do not contain any linguistic ambiguities that would lead to multiple distinct interpretations."
+    },
+    {
+      "question_id": 52,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question has a clear meaning in the context of operating systems and process management."
+    },
+    {
+      "question_id": 53,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Koje od sledećih sadrže informacije o stanju procesa i njegovom roditeljskom procesu u Linux-u? (A)",
+        "Koje od sledećih sadrže informacije o stanju procesa i njegovom roditeljskom procesu u Linux-u? (D)"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'state' in the question can be interpreted as a variable or data structure ('state') or as a general condition ('the state of')."
+    },
+    {
+      "question_id": 54,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Članovi statusnog registra određuju trenutni režim procesora i kontrolu nad njime.",
+        "Koji su članovi statusnog registra koji određuju trenutni režim procesora, a kontrola nad njime?"
+      ],
+      "ambiguity_type": "syntactic",
+      "reasoning": "The syntax of the question allows for two distinct interpretations due to its structure."
+    },
+    {
+      "question_id": 55,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question clearly asks about three elements assigned to a new process during its creation, without any lexical, referential, syntactic, or scope ambiguity."
+    },
+    {
+      "question_id": 56,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question does not contain lexical, referential, syntactic or scope ambiguities."
+    },
+    {
+      "question_id": 57,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Šta se dešava kada je isteklo maksimalno dozvoljeno vreme procesora za neki specifični radnji (operacija) u tom procesu?",
+        "Šta se dešava kada je završio ili isteklo maksimalno dozvoljeno vreme celog procesa izvršavanja?"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'proces' (process) can refer either to the entire process being executed or a specific operation within that process."
+    },
+    {
+      "question_id": 58,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Koji sastojci se ažuriraju u PCB-u kada proces promeni svoje stanje na Spreman ili Blokiran?",
+        "Koji su tri sastojka koji se mogu pridružiti PCB-u kad proces promeni svoje stanje na Spreman ili Blokiran?"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The phrase 'Koji su tri sastojka...' can be interpreted as asking for components that are updated or those that are merely associated with the PCB."
+    },
+    {
+      "question_id": 59,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question does not have any lexical, referential, syntactic, or scope ambiguities that would cause a test-taker to interpret the meaning of the question differently."
+    },
+    {
+      "question_id": 60,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question asks for two reasons of inter-process communication. The phrase 'Koji su dva razloga' is unambiguously asking for 'What are the two reasons'. There is no ambiguity in lexical, referential, syntactic or scope issues that could lead to multiple interpretations."
+    },
+    {
+      "question_id": 61,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question clearly asks about the two fundamental methods of inter-process communication, which are 'shared memory' and 'message passing'. The options provided also align with this interpretation without introducing any lexical, referential, syntactic or scope ambiguity."
+    },
+    {
+      "question_id": 62,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question clearly asks about how operating systems influence the effective sharing of resources among applications, without introducing any lexical, referential, syntactic, or scope ambiguities."
+    },
+    {
+      "question_id": 63,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Zašto proces mora biti u stanju izvršavanja kako bi se dozvolio potez u stanje spreman? (Interpretation: Why must a process be in an execution state to allow a transition into the ready state?)",
+        "Zašto proces mora biti u stanju izvršavanja kako bi se dozvolio potez u stanje spreman? (Interpretation: Why does being in an execution state enable the ability for another process to move from the ready state into the running state?)"
+      ],
+      "ambiguity_type": "syntactic",
+      "reasoning": "The syntax allows two possible interpretations regarding which processes are involved in transitioning states."
+    },
+    {
+      "question_id": 64,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question clearly asks about the conditions under which a process transitions to a blocked (waiting) state from a ready state, and each option provides a distinct condition that could lead to this transition."
+    },
+    {
+      "question_id": 65,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question clearly asks about how a blocked process in wait state affects the creation of new processes, which is unambiguous."
+    },
+    {
+      "question_id": 66,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question clearly asks why the creation of a new process is a prerequisite for achieving an output state, and each option provides a distinct explanation without introducing ambiguity."
+    },
+    {
+      "question_id": 67,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Kako stvaranje procesa utiče na kraj samog procesa?",
+        "Kako stvaranje jednog procesa utiče na završavanje drugog, već postojećeg procesa?"
+      ],
+      "ambiguity_type": "referential",
+      "reasoning": "The pronoun 'proces' (process) could refer either to the process being created or an already existing process, leading to different interpretations."
+    },
+    {
+      "question_id": 68,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Kako proces stvaranja utiče na indeks za završavanje postojećih procesa?",
+        "Kako proces stvaranja utiče na indeks za završetak tijekom samog procesa stvaranja?"
+      ],
+      "ambiguity_type": "referential",
+      "reasoning": "The term 'indikatori za završavanje procesa' can refer to indicators for ending existing processes or those that determine when a process should end during its creation."
+    },
+    {
+      "question_id": 69,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Kako stanje izvršavanja utiče na specifično stanje izlaz procesa?",
+        "Koji faktori u sistemu utiču na opće stanje izlaza?"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'izlaz' can refer either to the exit state of a process or the general output condition of the system."
+    },
+    {
+      "question_id": 70,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Kako stanje spreman utiče na prelazak procesa u stanje blokiran, kada je spreman resursno zauzet od strane drugih?",
+        "Kako stanje spreman utiče na prelazak procesa u stanje blokiran, bez dodatnih informacija o razlikama među različitim stanicima?"
+      ],
+      "ambiguity_type": "referential",
+      "reasoning": "The phrase 'utiče na' (influences) is unclear because it does not specify whether the readiness state affects the transition to a blocked state due to external factors or other states."
+    },
+    {
+      "question_id": 71,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Prelaz stanja iz Izvršavanje u Spreman utiče na informacije o trenutnom radu procesora.",
+        "Prelaz stanja iz Izvršavanje u Spreman utiče na informacije o generalnom stanju i mogućnost upravljanja procesom tokom prelaza."
+      ],
+      "ambiguity_type": "syntactic",
+      "reasoning": "The question can be interpreted in two ways due to the vagueness of 'informacije o stanju procesora', which could refer either to current operational details or general state information."
+    },
+    {
+      "question_id": 72,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question clearly asks about how programming code and instructions influence inter-process communication, and the provided options address various aspects of system management but are specific in their meaning."
+    },
+    {
+      "question_id": 73,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Kako upravljačke strukture procesa utiču na režime izvršenja procesora?",
+        "Kako procesi utiču na režime izvršenja procesora kroz upravljajuće strukture?"
+      ],
+      "ambiguity_type": "syntactic",
+      "reasoning": "The phrase 'upravljačke strukture procesa' can be parsed as either modifying the noun phrase it directly follows (proces) or as a separate clause describing how processes are managed."
+    },
+    {
+      "question_id": 74,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question clearly asks about the distinction between independent processes and mutually dependent processes, which is unambiguous in its meaning."
+    },
+    {
+      "question_id": 75,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Kako režimi izvršenja procesora utiču na promenu u korisničkom režimu? (meaning how do execution modes of the processor affect changes in user mode)",
+        "Kako režimi izvršenja procesora utiču na promene u korisnikovom režimu? (referring to changes caused by execution modes affecting a specific user's mode)"
+      ],
+      "ambiguity_type": "referential",
+      "reasoning": "The phrase 'promenu u korisničkom režimu' can be interpreted as referring either generally to the transition or state of user mode, or specifically to a change in a particular user’s mode."
+    },
+    {
+      "question_id": 76,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Kako promena režima izvršavanja utiče na funkcionalnosti i performanse kernela?",
+        "Kako promena režima izvršavanja utiče na interakcije sa režimom kernela?"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The phrase 'režim kernela' can be interpreted in different ways, leading to distinct possible meanings of the question."
+    },
+    {
+      "question_id": 77,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Kako međusobno zavisni procesi utiču na prekid (prekida) izvršavanja drugih procesa?",
+        "Kako međusobno nezavisni procesi utiču na prebacivanje u red?"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'međusobno zavisni' can be interpreted as both interdependent and independent processes."
+    },
+    {
+      "question_id": 78,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question clearly asks about how memory sharing affects communication between independent processes, without any lexical, referential, syntactic or scope ambiguities that could lead to multiple distinct interpretations."
+    },
+    {
+      "question_id": 79,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question asks how inter-process communication affects the acceleration of computation. The meaning is clear, and none of the options introduce an ambiguity in the wording."
+    },
+    {
+      "question_id": 80,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question asks how processor programming code affects inter-process communication in the context of scheduling execution, but it does not contain any linguistic elements that could lead to multiple defensible interpretations."
+    },
+    {
+      "question_id": 81,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Proces kao jedinica izvršavanja je skup instrukcija koje procesor izvršava samostalno",
+        "Proces kao jedinica izvršavanja je skup vremenski isprepletenih aktivnosti među različitim programima"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'jedinica izvršavanja' can be interpreted in multiple ways, leading to different understandings of the question."
+    },
+    {
+      "question_id": 82,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Proces koji se trenutno izvršava je spremnog stanja",
+        "Proces koji se trenutno izvršava je sam proces izvršavanja"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'je' (is) could refer to the state of being prepared for execution or the act of executing."
+    },
+    {
+      "question_id": 83,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Šta je nit u kontekstu višenitne obrade kao jedinstveni tok izvršavanja?",
+        "Šta je nit u kontekstu višenitne obrade kao skup konkurentnih putanja?"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'nit' (thread) in the context of multi-threaded processing can be ambiguous due to its potential meanings."
+    },
+    {
+      "question_id": 84,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question clearly asks about what an object of the thread class in C++11 represents, which has a single correct answer without any lexical, referential, syntactic, or scope ambiguity."
+    },
+    {
+      "question_id": 85,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Šta se naziva funkcijom koju nit izvršava? Može to značati 'Šta je ime ili opis rada čega što ga niti izvodi?', to jest, šta je ta specifična funkcija.",
+        "Može biti i da pita 'Šta se naziva deo niti koji predstavlja tu funkciju?', dakle kako se zove dio koji odgovara za taj rad?"
+      ],
+      "ambiguity_type": "referential",
+      "reasoning": "The phrase 'funkcijom koju nit izvršava' is ambiguous because it can be interpreted as referring to the function that a thread executes or the part of the thread that performs the action."
+    },
+    {
+      "question_id": 86,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question clearly asks about the entry point of a program according to the C++11 standard, and 'main' is unambiguously the correct answer in this context."
+    },
+    {
+      "question_id": 87,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question's meaning is clear and unambiguous. The method described in the question, which waits until a thread completes its execution, corresponds clearly to option D) join()."
+    },
+    {
+      "question_id": 88,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question clearly asks about the object of the thread class in the header <thread>, without any linguistic ambiguity that would lead to different interpretations."
+    },
+    {
+      "question_id": 89,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question does not contain lexical, referential, syntactic, or scope ambiguities that could lead to different interpretations."
+    },
+    {
+      "question_id": 90,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Objekt klase thread predstavlja instrument za kreirać novu nit.",
+        "Objekt klase thread može biti interpretiran kao metoda za izvršavanje glavnog programa."
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'thread' can be misinterpreted in the context of programming, leading to confusion between creating a new thread and executing main program logic."
+    },
+    {
+      "question_id": 91,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Kada se instance klase thread instancira, postize se kraj glavnog programa.",
+        "Kada se instance klase thread instancira, nova nit je spremna za izvršavanje."
+      ],
+      "ambiguity_type": "syntactic",
+      "reasoning": "The sentence structure can lead to two interpretations of what happens upon instantiating an object of the Thread class."
+    },
+    {
+      "question_id": 92,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Metoda join() služi za povezivanje više niti u jednu.",
+        "Metoda join() blokira izvršenje dok se nit ne završi."
+      ],
+      "ambiguity_type": "syntactic",
+      "reasoning": "The question could be interpreted in two different ways based on the intended functionality of join(). One interpretation involves joining multiple threads together, while another considers it a method that blocks execution until a thread completes."
+    },
+    {
+      "question_id": 93,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question clearly asks about the method join() of the thread class making it blocking, which has one clear meaning in the context of programming."
+    },
+    {
+      "question_id": 94,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Šta je parametar konstruktora klase thread? A. Ulazna tačka programa (referring to a parameter used for specifying the entry point of a program)",
+        "Šta je parametar konstruktora klase thread? B. Telo niti (interpreting 'parametar' as referring to a function body or method that will be run by the thread)"
+      ],
+      "ambiguity_type": "referential",
+      "reasoning": "The question could be interpreted in two ways depending on whether it is asking about an entry point for the program or the body of code that the thread will execute."
+    },
+    {
+      "question_id": 95,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question asks about the entry point of a program in the C++11 standard, which is unambiguously 'main' function."
+    },
+    {
+      "question_id": 96,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question 'Šta čini metodu join() klase thread blokirajućom?' has a clear meaning, asking what makes the method join() of the thread class blocking. There is no lexical, referential, syntactic, or scope ambiguity that would lead to multiple distinct and defensible interpretations."
+    },
+    {
+      "question_id": 97,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "detach() metoda uključuje blokirajuće čekanje dok se stvorena nit ne završi",
+        "detach() metoda omogućava neblokirajuće završavanje niti"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'omogućava' can be interpreted in two ways: enabling a blocking wait until the thread finishes or allowing non-blocking termination of threads."
+    },
+    {
+      "question_id": 98,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Koja se koristi kao parametri konstruktora klase thread u prenosu parametara? (What is used as parameters for the constructor of the Thread class when passing parameters?)",
+        "Koja metoda ili funkcija se koristi kao parametri konstruktora klase thread u prenosu parametara? (Which method or function is used as parameters for the constructor of the Thread class when passing parameters?)"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'parametri' can be interpreted in two ways: directly as arguments to a constructor, or indirectly through methods/functions that set up those arguments."
+    },
+    {
+      "question_id": 99,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question asks about two key functions of an operating system and the options provided are all related to this context."
+    },
+    {
+      "question_id": 100,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question clearly asks about two phases during the execution of a process, and all options are related to this context without introducing any unclear terms or structural ambiguity."
+    },
+    {
+      "question_id": 101,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Niti u kontekstu višenitne obrade predstavljaju jednu konkuretnu putanju izvršavanja unutar procesa.",
+        "Niti u kontekstu višenitne obrade mogu predstavljati skup paralelnih operacija koje se izvode zajedno."
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'niti' can refer to either a single thread/path or multiple threads/paths in the context of multi-thread processing."
+    },
+    {
+      "question_id": 102,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question asks specifically about three key elements for creating new threads in C++11, and the options provided are all relevant to thread creation in this context."
+    },
+    {
+      "question_id": 103,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question clearly asks for three independent facts about threads in C++11, and each option presents distinct sets of elements related to threading. The language is clear and unambiguous."
+    },
+    {
+      "question_id": 104,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question clearly asks about the four main characteristics of the join() method in the thread class, which has a specific meaning and context within computer science."
+    },
+    {
+      "question_id": 105,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Čeka da stvorena nit završi rad i blokira ga dok to ne bude u izvrsenju",
+        "Prenosi parametre funkciji po referenci"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'join()' in the context of threading can be ambiguous due to its possible interpretation as either a method that waits for a thread to finish or a function related to passing parameters by reference."
+    },
+    {
+      "question_id": 106,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Koja su dva parametra potrebna za prenos u nit kao konstruktor klase thread?",
+        "Koja su dva parametra potrebna za prenos u nit kao konstruktori (dva različita) klase thread?"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'konstruktori' is ambiguous because it could be singular or plural, leading to different interpretations."
+    },
+    {
+      "question_id": 107,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Koji su dva moguća niti za poboljšanje performansi? (Which two threads are possible for improving performance?)",
+        "Koji su dva moguća putanja za poboljšanje performansi? (Which two approaches/ways are possible for improving performance?)"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'niti' can be interpreted as threads or approaches depending on the context, leading to different interpretations of what is being asked."
+    },
+    {
+      "question_id": 108,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Koristi višenitne obrade u performansama su brzina izvršavanja i interakcija sa korisnikom",
+        "Koristi višenitne obrade u performansama su pozadinski posao i asinhrona obrada"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'koristi' can be interpreted in two ways: benefits or users, causing lexical ambiguity."
+    },
+    {
+      "question_id": 109,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question 'Šta su tri koristi višenitne obrade?' is clear in its intent and there are no lexical, referential, syntactic or scope ambiguities that would lead to multiple distinct interpretations."
+    },
+    {
+      "question_id": 110,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Koji su primjeri OS koje podržavaju više procesa sa po jednom nitu? (UNIX i Java VM)",
+        "Koji su primjeri OS koje podržavaju više procesa sa po jednom nitu? (tradicionalni UNIX i Linux)"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The question uses 'OS' which could refer to different systems depending on context, and the phrase 'više procesa sa po jednom nitu' is open to interpretation regarding how many threads per process are allowed."
+    },
+    {
+      "question_id": 111,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question clearly asks about four protective components in a multitasking process, and each option is listed with distinct elements that are not lexically, referentially, syntactically, or scopally ambiguous."
+    },
+    {
+      "question_id": 112,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question in Serbian asks about the key elements of a thread state in a multi-threaded process, and all options refer to concepts related to threading states or contexts that are clear within this domain."
+    },
+    {
+      "question_id": 113,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question asks about the four main components of a thread state in a multithreaded system, and each option provides a clear set of components. There are no lexical, referential, syntactic, or scope ambiguities that would lead to multiple defensible interpretations."
+    },
+    {
+      "question_id": 114,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Šta su ključne karakteristike višenitnog modela procesa?",
+        "Šta su neke karakteristike višenitnog modela ključnih procesa?"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'ključne karakteristike' can be interpreted as either general characteristics of a multithreaded process or specific key (important) characteristics, leading to potential confusion."
+    },
+    {
+      "question_id": 115,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Nit je materija koja može biti u stanjima spreman, blokiran i zadržan.",
+        "Nit je programski element koji može biti u stanjima izvršavanje, spreman i blokiran."
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'nit' can refer to either a thread or a software concept, leading to different sets of possible states."
+    },
+    {
+      "question_id": 116,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Koja su tri stanja niti tokom procesa izvršavanja?",
+        "Koja su tri stanja kada se oseća (ili procjenjuje) da je niti u stanju izvršavanja?"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'tokom' can be interpreted to refer either to the process of execution or a state perceived during execution."
+    },
+    {
+      "question_id": 117,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Ključne činjenike su da niti deli adresni prostor i potrebno je izbegavati neispravan rad programa.",
+        "Ključne činjenike su da niti deli resurse procesa i potrebno je izbegavati konflikte pristupa."
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'ključni činjenika' can be interpreted as referring to critical facts about memory sharing (address space) or resource sharing, leading to two distinct but plausible options."
+    },
+    {
+      "question_id": 118,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question asks about the join() method of the thread class in C++11, which has a clear and unambiguous meaning."
+    },
+    {
+      "question_id": 119,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question clearly asks how to create a new thread in C++11, which is unambiguous and the options are specific and clear."
+    },
+    {
+      "question_id": 120,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question clearly asks about the impact of the join() method on thread object instantiation in C++11, and all options are specific to the behavior or purpose of the join() method."
+    },
+    {
+      "question_id": 121,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question clearly asks about the effect of instantiating an object of the thread class on creating a new thread, which is unambiguous in its meaning."
+    },
+    {
+      "question_id": 122,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question clearly asks about the method join() in C++11, and the options directly address this without any lexical, referential, syntactic or scope ambiguity."
+    },
+    {
+      "question_id": 123,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Kako metoda join() utiče na ulaznu tačku programa (main funkciju)?",
+        "Kako metoda join() utiče na ulazni tok izvršavanja programa?"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'ulazna tačka' can be interpreted as either the main entry point function (main) or the general input point of execution in a program."
+    },
+    {
+      "question_id": 124,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Kako koristi višenitne obrade utiču na blokiranje u višenitnoj obradi?",
+        "Kako koriste od višenitnih ob-rađivanja (od vrsta obrada) utiču na blokiranje u višenitnoj obradi?"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The phrase 'koristi od' can be interpreted as either 'koristi višenitne obrade' or 'koriste od vrsta obrada', leading to different meanings."
+    },
+    {
+      "question_id": 125,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question clearly asks about the difference in behavior between detach() and join() methods concerning thread execution, without any lexical, referential, syntactic, or scope ambiguities."
+    },
+    {
+      "question_id": 126,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Kako poboljšanje performansi upotrebom višenitne obrade utiče na ekonomiju?",
+        "Kako poboljšanje performansi upotrebom višenitne obrade utiče na ekonomično stanje i efikvancu resursa?"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'ekonomičnost' can be interpreted as either a general economic impact or more specifically related to cost-effectiveness and resource utilization."
+    },
+    {
+      "question_id": 127,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question and options are clear in their meaning without any lexical, referential, syntactic or scope ambiguity."
+    },
+    {
+      "question_id": 128,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Asinhrona obrada utiče na modularnu strukturu programa tako što omogućava deljenje resursa i izvršavanje neblokirajućih operacija.",
+        "Asinhrona obrada utiče na modularnu strukturu programa kao proces kroz koji se svaki deo programa mora implementirati u zasebnim nitima kako bi bio modularan."
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'utiče' can be interpreted in a way that the influence of asynchronous processing on program modularity could either refer to how it enables resource sharing and non-blocking operations, or it could mean imposing a requirement for each part of the program to run in separate threads."
+    },
+    {
+      "question_id": 129,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Kako procesi utiču na stanje pojedinačnih niti?",
+        "Kako procesi utiču na celokupno stanje višenitnog sistema?"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'stanje niti' can refer to the state of individual threads or the overall state of a multi-threaded system."
+    },
+    {
+      "question_id": 130,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question clearly asks about the influence of background processes on thread scheduling within a process. There are no lexical, referential, syntactic, or scope ambiguities that could lead to different interpretations."
+    },
+    {
+      "question_id": 131,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Šta bi se desilo ako program koristi metodu join() za sinkronizaciju dva zahteva poslatih udaljenom serveru? (metoda join() povezuje rezultate zahteva)",
+        "Šta bi se desilo ako program koristi metodu join() kako bi čekao izvršavanje niti koje su poslate zahtevi udaljenoj strani servera? (join() čeka završetak nit)"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'join()' is ambiguous because it can refer to joining results of requests or waiting for threads execution."
+    },
+    {
+      "question_id": 132,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Kako se glavni program završava dok proces izvršava posebnu nit kreiranoj kroz instanciranje klase thread?",
+        "Kako se nezavrši glavni program dok se proces izvršava u posebnoj niti kreiranoj kroz instanciranje klase thread?"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The negation 'ne' in the question leads to confusion about whether the question is asking how to prevent or how to achieve a certain program termination state."
+    },
+    {
+      "question_id": 133,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question asks about the importance of managing concurrent threads in C++11, specifically regarding the method join(). The options provided are clear and do not introduce any lexical, referential, syntactic, or scope ambiguities."
+    },
+    {
+      "question_id": 134,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question clearly asks about the behavior of the join() method in C++11 when used for synchronization between threads, and none of the options offer conflicting interpretations based on lexical, referential, syntactic, or scope ambiguities."
+    },
+    {
+      "question_id": 135,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question clearly asks about the difference between join() and detach() methods in C++11 threads, without any lexical, referential, syntactic, or scope ambiguities that could lead to multiple defensible interpretations."
+    },
+    {
+      "question_id": 136,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question and options are clear and specific to the domain of process management in computing."
+    },
+    {
+      "question_id": 137,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question is clear in its meaning, asking about an important aspect of managing multiple processes."
+    },
+    {
+      "question_id": 138,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question asks about a problem related to competitiveness and each option clearly pertains to technical or computer science terminology. There is no linguistic ambiguity that would cause a test-taker to interpret the meaning of the question differently."
+    },
+    {
+      "question_id": 139,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question has a clear meaning in the context of operating systems (OS) management, with no lexical, referential, syntactic, or scope ambiguities."
+    },
+    {
+      "question_id": 140,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question clearly asks about one of the fundamental reasons for concurrency in multiprogramming systems, which can be interpreted unambiguously."
+    },
+    {
+      "question_id": 141,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Konkurentnost u strukturiranim korisničkim aplikacijama je prikazana kao deljenje globalnih resursa",
+        "Konkumentnost se odnosi na situaciju gde jedna aplikacija može sadržati više konkurentnih niti/procesa"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'konkurentnost' can refer to different aspects of concurrency, such as resource sharing or competing threads/processes within an application."
+    },
+    {
+      "question_id": 142,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Gde se konkurentnost javlja u kontekstu operativnog sistema?",
+        "Gde se konkurentnost javlja kao deo samog operativnog sistema?"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'operativnom sistemu' can be interpreted as referring to the context of an operating system or a part within the operating system itself."
+    },
+    {
+      "question_id": 143,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Šta je redosled izvršavanja koji se javlja kada dva procesa deluju na istu globalnu promenljivu? A) Neodređen B) Deterministički pravilan C) Prigoden svakom procesu D) Uvijek određivan",
+        "Šta je redosled izvršavanja koji se javlja kada dva procesa deluju na iste globalne promenljive? A) Neodređen B) Deterministički pravilan C) Prigoden svakom procesu D) Uvijek određivan"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'istu globalnu promenljivu' can be interpreted as either a single shared variable or multiple distinct variables."
+    },
+    {
+      "question_id": 144,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Where does competition occur in the context of processes?",
+        "Where does competition appear in terms of different meanings or contexts?"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'konkurentnost' (competition) can be interpreted either in a technical process-related context or more broadly across various domains."
+    },
+    {
+      "question_id": 145,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Karakteristika višestrukih aplikacija je da različiti procesi izvršavaju različite funkcije.",
+        "Karakteristika višestrukih aplikacija je da različiti procesi pristupaju istim resursima."
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'višestrukih' can refer to either multiple applications or the characteristic of being multi-functional, leading to potential confusion."
+    },
+    {
+      "question_id": 146,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Deljene globalni resursi su procesi koji pristupaju drugim lokalnim resursima.",
+        "Deljene globalni resursi su promenljive koje se koriste u više različitih procesa."
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'deljeni globalni resursi' is ambiguous as it could refer to shared variables or other resources accessed by multiple processes."
+    },
+    {
+      "question_id": 147,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question clearly asks about the problem that arises when two processes perform read/write operations on the same global variable. This is unambiguous in meaning and context."
+    },
+    {
+      "question_id": 148,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Šta se može desiti sa resursom u procesima? A) Resurs može biti dodeljen nepotrebnom procesu",
+        "Šta se može desiti sa resursom u procesima? C) Blokiranje ostalih procesa zbog čekanja na resurse"
+      ],
+      "ambiguity_type": "referential",
+      "reasoning": "The question could be interpreted to ask about potential issues or outcomes related to resources in processes, but options A and C both provide plausible interpretations of what 'se može desiti sa resursom' (what can happen with a resource) without a clear indication that the question is seeking multiple specific types of issues."
+    },
+    {
+      "question_id": 149,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Šta je teži zadatka u detekciji grešaka (u kompetitivnom okruženju)",
+        "Šta je teži zadatka u detekciji grešaka konkurenta (u okruženju)"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The phrase 'konkurentni okruženje' can refer to a competitive environment or errors of competitors, leading to different interpretations."
+    },
+    {
+      "question_id": 150,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question clearly asks about the problem when two processes perform read/write operations on the same global variable, which is a standard issue in concurrent programming."
+    },
+    {
+      "question_id": 151,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Šta je neodređen redosled izvršavanja i rezultata operacija u konkurentnim procesima? (What is the undefined order of execution and results of operations in concurrent processes?)",
+        "Šta je neodređen redosled izvršavanja i rezultata operacija kada se referentni procesi pokreću u konkurentnom okruženju? (What is the undefined order of execution and results of operations when referring processes are started in a concurrent environment?)"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'neodređen redosled izvršavanja i rezultata operacija' can be interpreted as either referring to the undefined order of execution and results generally, or specifically due to concurrency."
+    },
+    {
+      "question_id": 152,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Šta se desava kada dva konkurentna procesa čekaju na isti resurs? - može značiti situaciju gdje su procesi blokirani počekaći na drugog.",
+        "Šta se desava kada dva konkurentna procesa čekaju na isti resurs? - može značiti situaciju gdje procesi traže redosled izvršavanja operacija, ali to nije uvijek deterministički."
+      ],
+      "ambiguity_type": "syntactic",
+      "reasoning": "Pitanje može biti prepoznato kao situaciju koja podržava više različitih interpretacija zbog nejasnosti u sintaksi pitanja - procesi mogu čekati na resurs ili na svaki drugi."
+    },
+    {
+      "question_id": 153,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Šta je međusobna isključivost u kontekstu konkurentnosti? - Iskazana je jako šire interpretacija kao da se pitaju opšti pojmovi konkurenca i isključivanje.",
+        "Šta je međusobna isključivost u kontekstu konkurentnosti? - Međusobna isključivost mogu značiti konkretnu osobinu ili proces u konkurenci, kao i odnos između konkurenca i njihove isključivosti."
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "Ključne reči 'međusobna isključivost' mogu biti preopterećene ili imati različite kontekstualne značenja."
+    },
+    {
+      "question_id": 154,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Šta je mogućnost procesa da obavi akciju bez negativnog uticaja drugih procesa na njega?",
+        "Šta je mogućnost procesa da obavi akciju bez negativnog uticaja processa na druge procese?"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The phrase 'bez negativnog uticaja drugih procesa' can be interpreted in two ways, either the process affects itself negatively or it affects other processes negatively."
+    },
+    {
+      "question_id": 155,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Šta je deljeni resurs u kontekstu datog primjera štetnog preplitanja? Cini se da se pitate o objektu (x ili y) koji može biti deljeni resurs.",
+        "Šta je deljeni resurs u kontekstu datog primjera štetnog preplitanja? Možda se pitate o deklaraciji varijable kao deljenog resursa, što bi mogli razumjeti kao 'cin >> x' ili 'cout << y'."
+      ],
+      "ambiguity_type": "referential",
+      "reasoning": "Pitanje nije jasno u odnosu na to da li se traži konkretni deljeni resurs (x ili y) ili deklaracija operacije koja koristi takav resurs ('cin >> x' ili 'cout << y')."
+    },
+    {
+      "question_id": 156,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Šta je rezultat programa u situaciji kada postoji data 'race' kao uslovni izraz?",
+        "Šta je rezultat programa u situaciji 'kada postoji' (u toku vremena) i 'data race' kao samostalno stanje sistema?"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'race' can be interpreted either as a competitive event or a data race in computing, leading to different understandings of the question."
+    },
+    {
+      "question_id": 157,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Deljeni resurs je varijabla x.",
+        "Deljeni resurs je metoda echo() koja koristi promenjivu x."
+      ],
+      "ambiguity_type": "referential",
+      "reasoning": "The term 'deljeni resurs' (shared resource) can be interpreted as either referring to the variable x which is shared between functions, or to a method like echo() that might use this shared variable."
+    },
+    {
+      "question_id": 158,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question 'Šta je rezultat programa zavisan od?' is clear in its meaning. It asks about the factors that a program's result depends on, and each option provides specific elements related to software execution or system configuration."
+    },
+    {
+      "question_id": 159,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Deljeni resurs je varijabla x",
+        "Deljeni resurs je proces"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'deljeni resurs' can refer to different entities in the context of harmful injection, leading to potential confusion."
+    },
+    {
+      "question_id": 160,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Šta karakteriše konkretan slučaj data race? (What characterizes a specific case of data race?)",
+        "Šta karakteriše pojam data race u teorijskom kontekstu? (What characterizes the concept of data race in theoretical context?)"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'data race' can be interpreted either as a specific instance or as an abstract concept."
+    },
+    {
+      "question_id": 161,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Šta je rezultat programa u slučaju data race-a? Zavisi od redosleda izvršavanja instrukcija.",
+        "Šta je rezultat programa u slučaju da se procesi preplite? Ovisi o brzi procesa u odnosu na ostale."
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'data race' can be ambiguous as it could either refer to a specific concurrency issue or the question might be asking about process interference, leading to different interpretations."
+    },
+    {
+      "question_id": 162,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question 'Šta je karakteristično za determinističko ponašanje procesa?' clearly asks about characteristics of deterministic process behavior, and each option provides a distinct feature that could be associated with or contrary to such behavior."
+    },
+    {
+      "question_id": 163,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question 'Šta je koncept nadmetanja?' has a clear meaning in the context of computer science, referring to concurrency or sharing resources. There are no lexical, referential, syntactic, or scope ambiguities that would lead to multiple distinct interpretations."
+    },
+    {
+      "question_id": 164,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Šta je rezultat programa kada se dogodi data race? -> Ako dođe do 'data race' (kompjuterski termin), rezultat programa zavisi od redosleda izvršavanja instrukcija",
+        "Šta je rezultat programa kada se dogodi data race? -> Data race može biti činjenica da neki podaci su 'rezervisani' ili 'uređeni', što bi moglo znakati da program ima edinstven rezultat"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'data race' is ambiguous as it could refer to the computer science concept or a more general data management issue."
+    },
+    {
+      "question_id": 165,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Šta je potrebno za ispravan rad procesa kada više procesa pristupa istim resursima?",
+        "Šta je potrebno za ispravan rad kada više procesa pristupa resursima? (osigurava da se razume pitanje kao da se odnosi na osnovne uvjete za rad sistemskih procesa bez specifičnih mehanizama.)"
+      ],
+      "ambiguity_type": "referential",
+      "reasoning": "The phrase 'kada više procesa pristupa istim resursima' can be interpreted as specifying what is needed when multiple processes access the same resources, or it can imply a general context where this situation occurs."
+    },
+    {
+      "question_id": 166,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question clearly asks what happens when multiple processes attempt to access the same resource, which can be interpreted in only one way without confusion."
+    },
+    {
+      "question_id": 167,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Više procesa ne može da koristi isti resurs u jednom trenutku",
+        "Procesi su svesni drugih procesa i koordiniraju rad"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'uzajamna isključivost' can be interpreted both as mutual exclusivity of resource access and coordination between processes."
+    },
+    {
+      "question_id": 168,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question asks about three problems caused by competition in a technical context, and there is only one clearly correct answer (A) that addresses issues commonly associated with concurrency."
+    },
+    {
+      "question_id": 169,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Koji su dva ključna elementa međusobno nezavisnih niti u kontekstu operativnog sustava?",
+        "Koji su dva ključna elementa međusobno nezavisnih niti u kontekstu programiranja?"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'međusobno nezavisni niti' (mutually independent threads) could be interpreted differently depending on the context, leading to different sets of key elements."
+    },
+    {
+      "question_id": 170,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question asks about three key ingredients of competitiveness in managing multiple processes, which is clearly related to operating systems or software engineering. There is no ambiguity in the meaning or scope of the terms used."
+    },
+    {
+      "question_id": 171,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question 'Koje su dva ključna aspekta konkurentnosti procesa?' is clear in its meaning and does not admit multiple distinct, defensible interpretations."
+    },
+    {
+      "question_id": 172,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question clearly asks about elements of competitiveness in managing multiple processes, without any lexical, referential, syntactic, or scope ambiguities that would lead to different interpretations."
+    },
+    {
+      "question_id": 173,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question and all options are clear in their meaning without any lexical, referential, syntactic or scope ambiguities."
+    },
+    {
+      "question_id": 174,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question and all options are clear in meaning without multiple defensible interpretations."
+    },
+    {
+      "question_id": 175,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "elementi koji se povezuju sa međusobnom isključivosti u kontekstu računarskih procesa",
+        "različiti elementi kroz razne domene (npr., fizika, sociologija)"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'međusobna isključivost' can refer to mutual exclusivity in different domains, leading to potential misinterpretation."
+    },
+    {
+      "question_id": 176,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Šta su dva ključna elementa scenarija data race-a u programa?",
+        "Šta su dva ključna elementa scenarija za 'data race' unutar programa?"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'data race' can be interpreted as a single phrase referring to a specific type of concurrency issue or as two separate words, potentially leading to different interpretations."
+    },
+    {
+      "question_id": 177,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Šta karakteriše data race u kontekstu konkurentnog pristupa resursima?",
+        "Šta karakteriše kvantitativni aspekt (race) podataka?"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'data race' could be interpreted in two ways: one related to concurrent access to resources, and another potentially referring to a race condition with data itself."
+    },
+    {
+      "question_id": 178,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Procesi koji pristupaju istim resursima mogu biti programe predviđene da rade zajedno na istom zadatku",
+        "Procesi koji pristupaju istim resursima su nezavisni procesi koji nisu planirani da deluju zajedno ali se ipak pokreću na istim resursima"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "Ključne riječi kao 'karakteristika' i 'pristupaju' mogu imati različite značajke u kontekstu konfliktnog pristupa resursima, što može voditi do dvosmislenosti."
+    },
+    {
+      "question_id": 179,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Procesi koji koriste zajedničke resurse i su nezavisni",
+        "Nezavisni procesi koji mogu da koriste bilo kakve zajedničke resurse"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The phrase 'koji koriste' can be interpreted to modify either 'nezavisni procesi' or the entire subject of the sentence, leading to different meanings."
+    },
+    {
+      "question_id": 180,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question clearly asks about the behavior of other processes trying to enter a critical section when one process is already inside, and only option D fits this scenario."
+    },
+    {
+      "question_id": 181,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Šta su dva ključna elementa za prvu varijantu busy waiting u kontekstu konkurentnih struktura podataka?",
+        "Šta su dva ključna elementa za prvu varijantu busy waiting u kontekstu operativnog sistema?"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'busy waiting' can be interpreted in different contexts, leading to distinct interpretations of the question."
+    },
+    {
+      "question_id": 182,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question has a clear meaning in the context of operating systems, specifically concerning process behavior when attempting to enter a critical section. There is no lexical, referential, syntactic, or scope ambiguity that would lead to multiple defensible interpretations."
+    },
+    {
+      "question_id": 183,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question asks about two processes for acquiring a semaphore, and the options provided clearly relate to checking if the semaphore is available and taking possession of it. There is no lexical, referential, syntactic or scope ambiguity in this context."
+    },
+    {
+      "question_id": 184,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question clearly asks what happens when two processes simultaneously check the availability of a semaphore, without any lexical, referential, syntactic, or scope ambiguities."
+    },
+    {
+      "question_id": 185,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question clearly asks about methods used for locking and unlocking resources in a mutex class, which is unambiguous."
+    },
+    {
+      "question_id": 186,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question clearly asks about the key components used for managing mutex locking and unlocking in C++11, with no lexical, referential, syntactic, or scope ambiguities."
+    },
+    {
+      "question_id": 187,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question is clear in its meaning; it asks about two situations that can occur when processes attack resources, and the options clearly relate to this context."
+    },
+    {
+      "question_id": 188,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question clearly asks about the two main types of problems that can occur when copying mutex objects, and there is no lexical, referential, syntactic, or scope ambiguity in the question."
+    },
+    {
+      "question_id": 189,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Situacija kada procesi nisu u stanju da napreduju zbog blokiranja resursa (gladovanje)",
+        "Situation where multiple processes are unable to proceed due to mutual state dependency leading to deadlock"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'uzajamno blokiranje, livelock i gladovanje' is ambiguous because it contains technical terms that may be unclear or have overlapping meanings without context."
+    },
+    {
+      "question_id": 190,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Koja tri uslova su zahtevana za međusobnu isključivost kritičnih sekcija?",
+        "Koja tri uslova su zahtevana za međusobnu isključivost procesa?"
+      ],
+      "ambiguity_type": "lexical",
+      "reasoning": "The term 'međusobna isključivost' can refer to mutual exclusion in the context of critical sections or processes, leading to potential confusion."
+    },
+    {
+      "question_id": 191,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question asks about the two main operations of a semaphore in a programming context, which is clear and unambiguous."
+    },
+    {
+      "question_id": 192,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question asks about the two basic operations used to change the value of a shared counter in semaphore context, and all options relate clearly to this topic without introducing ambiguity."
+    },
+    {
+      "question_id": 193,
+      "available": true,
+      "ambiguous": true,
+      "interpretations": [
+        "Koji su dva tipa semafora prema brojaču?",
+        "Koji su dva tipa brojača prema semaforima?"
+      ],
+      "ambiguity_type": "syntactic",
+      "reasoning": "The phrase 'prema brojaču' could be interpreted as modifying either 'samafora' or the whole question structure, leading to different possible meanings."
+    },
+    {
+      "question_id": 194,
+      "available": true,
+      "ambiguous": false,
+      "interpretations": [],
+      "ambiguity_type": "none",
+      "reasoning": "The question clearly asks about the effect of competitiveness on process synchronization, with no lexical, referential, syntactic, or scope ambiguities that could lead to multiple distinct interpretations."
+    }
+  ],
+  "ambiguity_model": "qwen2.5:14b-instruct-q4_K_M"
+}

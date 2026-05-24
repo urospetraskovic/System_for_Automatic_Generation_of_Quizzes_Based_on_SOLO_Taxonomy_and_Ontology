@@ -1,0 +1,3705 @@
+{
+  "total_questions": 194,
+  "computable_questions": 194,
+  "mean_flesch_kincaid_grade": 15.87,
+  "mean_flesch_reading_ease": -2.13,
+  "fit_distribution": {
+    "in_range": 32,
+    "too_easy": 2,
+    "too_hard": 160,
+    "unknown": 0
+  },
+  "bucket_distribution": {
+    "easy": 2,
+    "medium": 40,
+    "hard": 152
+  },
+  "reports": [
+    {
+      "question_id": 1,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 5,
+        "syllables": 12,
+        "avg_sentence_length": 5.0,
+        "avg_syllables_per_word": 2.4,
+        "flesch_reading_ease": -1.3,
+        "flesch_kincaid_grade": 14.7
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 2,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 12,
+        "syllables": 28,
+        "avg_sentence_length": 12.0,
+        "avg_syllables_per_word": 2.33,
+        "flesch_reading_ease": -2.7,
+        "flesch_kincaid_grade": 16.6
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 3,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 11,
+        "syllables": 24,
+        "avg_sentence_length": 11.0,
+        "avg_syllables_per_word": 2.18,
+        "flesch_reading_ease": 11.1,
+        "flesch_kincaid_grade": 14.4
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 4,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 7,
+        "syllables": 22,
+        "avg_sentence_length": 7.0,
+        "avg_syllables_per_word": 3.14,
+        "flesch_reading_ease": -66.2,
+        "flesch_kincaid_grade": 24.2
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 5,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 9,
+        "syllables": 20,
+        "avg_sentence_length": 9.0,
+        "avg_syllables_per_word": 2.22,
+        "flesch_reading_ease": 9.7,
+        "flesch_kincaid_grade": 14.1
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 6,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 6,
+        "syllables": 12,
+        "avg_sentence_length": 6.0,
+        "avg_syllables_per_word": 2.0,
+        "flesch_reading_ease": 31.5,
+        "flesch_kincaid_grade": 10.4
+      },
+      "bucket": "medium",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 7,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 5,
+        "syllables": 14,
+        "avg_sentence_length": 5.0,
+        "avg_syllables_per_word": 2.8,
+        "flesch_reading_ease": -35.1,
+        "flesch_kincaid_grade": 19.4
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 8,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 6,
+        "syllables": 15,
+        "avg_sentence_length": 6.0,
+        "avg_syllables_per_word": 2.5,
+        "flesch_reading_ease": -10.8,
+        "flesch_kincaid_grade": 16.2
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 9,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 7,
+        "syllables": 16,
+        "avg_sentence_length": 7.0,
+        "avg_syllables_per_word": 2.29,
+        "flesch_reading_ease": 6.4,
+        "flesch_kincaid_grade": 14.1
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 10,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 8,
+        "syllables": 20,
+        "avg_sentence_length": 8.0,
+        "avg_syllables_per_word": 2.5,
+        "flesch_reading_ease": -12.8,
+        "flesch_kincaid_grade": 17.0
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 11,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 4,
+        "syllables": 11,
+        "avg_sentence_length": 4.0,
+        "avg_syllables_per_word": 2.75,
+        "flesch_reading_ease": -29.9,
+        "flesch_kincaid_grade": 18.4
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 12,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 6,
+        "syllables": 11,
+        "avg_sentence_length": 6.0,
+        "avg_syllables_per_word": 1.83,
+        "flesch_reading_ease": 45.6,
+        "flesch_kincaid_grade": 8.4
+      },
+      "bucket": "medium",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "in_range"
+    },
+    {
+      "question_id": 13,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 11,
+        "syllables": 22,
+        "avg_sentence_length": 11.0,
+        "avg_syllables_per_word": 2.0,
+        "flesch_reading_ease": 26.5,
+        "flesch_kincaid_grade": 12.3
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 14,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 11,
+        "syllables": 24,
+        "avg_sentence_length": 11.0,
+        "avg_syllables_per_word": 2.18,
+        "flesch_reading_ease": 11.1,
+        "flesch_kincaid_grade": 14.4
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 15,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 7,
+        "syllables": 19,
+        "avg_sentence_length": 7.0,
+        "avg_syllables_per_word": 2.71,
+        "flesch_reading_ease": -29.9,
+        "flesch_kincaid_grade": 19.2
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 16,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 4,
+        "syllables": 7,
+        "avg_sentence_length": 4.0,
+        "avg_syllables_per_word": 1.75,
+        "flesch_reading_ease": 54.7,
+        "flesch_kincaid_grade": 6.6
+      },
+      "bucket": "medium",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "in_range"
+    },
+    {
+      "question_id": 17,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 6,
+        "syllables": 18,
+        "avg_sentence_length": 6.0,
+        "avg_syllables_per_word": 3.0,
+        "flesch_reading_ease": -53.1,
+        "flesch_kincaid_grade": 22.2
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 18,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 7,
+        "syllables": 25,
+        "avg_sentence_length": 7.0,
+        "avg_syllables_per_word": 3.57,
+        "flesch_reading_ease": -102.4,
+        "flesch_kincaid_grade": 29.3
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 19,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 12,
+        "syllables": 30,
+        "avg_sentence_length": 12.0,
+        "avg_syllables_per_word": 2.5,
+        "flesch_reading_ease": -16.8,
+        "flesch_kincaid_grade": 18.6
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 20,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 10,
+        "syllables": 25,
+        "avg_sentence_length": 10.0,
+        "avg_syllables_per_word": 2.5,
+        "flesch_reading_ease": -14.8,
+        "flesch_kincaid_grade": 17.8
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 21,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 10,
+        "syllables": 19,
+        "avg_sentence_length": 10.0,
+        "avg_syllables_per_word": 1.9,
+        "flesch_reading_ease": 35.9,
+        "flesch_kincaid_grade": 10.7
+      },
+      "bucket": "medium",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 22,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 10,
+        "syllables": 23,
+        "avg_sentence_length": 10.0,
+        "avg_syllables_per_word": 2.3,
+        "flesch_reading_ease": 2.1,
+        "flesch_kincaid_grade": 15.4
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 23,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 11,
+        "syllables": 28,
+        "avg_sentence_length": 11.0,
+        "avg_syllables_per_word": 2.55,
+        "flesch_reading_ease": -19.7,
+        "flesch_kincaid_grade": 18.7
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 24,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 5,
+        "syllables": 9,
+        "avg_sentence_length": 5.0,
+        "avg_syllables_per_word": 1.8,
+        "flesch_reading_ease": 49.5,
+        "flesch_kincaid_grade": 7.6
+      },
+      "bucket": "medium",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "in_range"
+    },
+    {
+      "question_id": 25,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 9,
+        "syllables": 17,
+        "avg_sentence_length": 9.0,
+        "avg_syllables_per_word": 1.89,
+        "flesch_reading_ease": 37.9,
+        "flesch_kincaid_grade": 10.2
+      },
+      "bucket": "medium",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 26,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 8,
+        "syllables": 18,
+        "avg_sentence_length": 8.0,
+        "avg_syllables_per_word": 2.25,
+        "flesch_reading_ease": 8.4,
+        "flesch_kincaid_grade": 14.1
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 27,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 9,
+        "syllables": 24,
+        "avg_sentence_length": 9.0,
+        "avg_syllables_per_word": 2.67,
+        "flesch_reading_ease": -27.9,
+        "flesch_kincaid_grade": 19.4
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 28,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 5,
+        "syllables": 11,
+        "avg_sentence_length": 5.0,
+        "avg_syllables_per_word": 2.2,
+        "flesch_reading_ease": 15.6,
+        "flesch_kincaid_grade": 12.3
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 29,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 10,
+        "syllables": 23,
+        "avg_sentence_length": 10.0,
+        "avg_syllables_per_word": 2.3,
+        "flesch_reading_ease": 2.1,
+        "flesch_kincaid_grade": 15.4
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 30,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 5,
+        "syllables": 16,
+        "avg_sentence_length": 5.0,
+        "avg_syllables_per_word": 3.2,
+        "flesch_reading_ease": -69.0,
+        "flesch_kincaid_grade": 24.1
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 31,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 8,
+        "syllables": 15,
+        "avg_sentence_length": 8.0,
+        "avg_syllables_per_word": 1.88,
+        "flesch_reading_ease": 40.1,
+        "flesch_kincaid_grade": 9.7
+      },
+      "bucket": "medium",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "in_range"
+    },
+    {
+      "question_id": 32,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 5,
+        "syllables": 15,
+        "avg_sentence_length": 5.0,
+        "avg_syllables_per_word": 3.0,
+        "flesch_reading_ease": -52.0,
+        "flesch_kincaid_grade": 21.8
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 33,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 9,
+        "syllables": 22,
+        "avg_sentence_length": 9.0,
+        "avg_syllables_per_word": 2.44,
+        "flesch_reading_ease": -9.1,
+        "flesch_kincaid_grade": 16.8
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 34,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 5,
+        "syllables": 12,
+        "avg_sentence_length": 5.0,
+        "avg_syllables_per_word": 2.4,
+        "flesch_reading_ease": -1.3,
+        "flesch_kincaid_grade": 14.7
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 35,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 10,
+        "syllables": 25,
+        "avg_sentence_length": 10.0,
+        "avg_syllables_per_word": 2.5,
+        "flesch_reading_ease": -14.8,
+        "flesch_kincaid_grade": 17.8
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 36,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 13,
+        "syllables": 33,
+        "avg_sentence_length": 13.0,
+        "avg_syllables_per_word": 2.54,
+        "flesch_reading_ease": -21.1,
+        "flesch_kincaid_grade": 19.4
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 37,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 6,
+        "syllables": 15,
+        "avg_sentence_length": 6.0,
+        "avg_syllables_per_word": 2.5,
+        "flesch_reading_ease": -10.8,
+        "flesch_kincaid_grade": 16.2
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 38,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 5,
+        "syllables": 14,
+        "avg_sentence_length": 5.0,
+        "avg_syllables_per_word": 2.8,
+        "flesch_reading_ease": -35.1,
+        "flesch_kincaid_grade": 19.4
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 39,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 12,
+        "syllables": 28,
+        "avg_sentence_length": 12.0,
+        "avg_syllables_per_word": 2.33,
+        "flesch_reading_ease": -2.7,
+        "flesch_kincaid_grade": 16.6
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 40,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 10,
+        "syllables": 21,
+        "avg_sentence_length": 10.0,
+        "avg_syllables_per_word": 2.1,
+        "flesch_reading_ease": 19.0,
+        "flesch_kincaid_grade": 13.1
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 41,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 10,
+        "syllables": 24,
+        "avg_sentence_length": 10.0,
+        "avg_syllables_per_word": 2.4,
+        "flesch_reading_ease": -6.4,
+        "flesch_kincaid_grade": 16.6
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 42,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 6,
+        "syllables": 12,
+        "avg_sentence_length": 6.0,
+        "avg_syllables_per_word": 2.0,
+        "flesch_reading_ease": 31.5,
+        "flesch_kincaid_grade": 10.4
+      },
+      "bucket": "medium",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "in_range"
+    },
+    {
+      "question_id": 43,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 8,
+        "syllables": 24,
+        "avg_sentence_length": 8.0,
+        "avg_syllables_per_word": 3.0,
+        "flesch_reading_ease": -55.1,
+        "flesch_kincaid_grade": 22.9
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 44,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 9,
+        "syllables": 21,
+        "avg_sentence_length": 9.0,
+        "avg_syllables_per_word": 2.33,
+        "flesch_reading_ease": 0.3,
+        "flesch_kincaid_grade": 15.5
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 45,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 10,
+        "syllables": 20,
+        "avg_sentence_length": 10.0,
+        "avg_syllables_per_word": 2.0,
+        "flesch_reading_ease": 27.5,
+        "flesch_kincaid_grade": 11.9
+      },
+      "bucket": "medium",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "in_range"
+    },
+    {
+      "question_id": 46,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 6,
+        "syllables": 15,
+        "avg_sentence_length": 6.0,
+        "avg_syllables_per_word": 2.5,
+        "flesch_reading_ease": -10.8,
+        "flesch_kincaid_grade": 16.2
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 47,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 12,
+        "syllables": 26,
+        "avg_sentence_length": 12.0,
+        "avg_syllables_per_word": 2.17,
+        "flesch_reading_ease": 11.4,
+        "flesch_kincaid_grade": 14.7
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 48,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 13,
+        "syllables": 28,
+        "avg_sentence_length": 13.0,
+        "avg_syllables_per_word": 2.15,
+        "flesch_reading_ease": 11.4,
+        "flesch_kincaid_grade": 14.9
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 49,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 13,
+        "syllables": 30,
+        "avg_sentence_length": 13.0,
+        "avg_syllables_per_word": 2.31,
+        "flesch_reading_ease": -1.6,
+        "flesch_kincaid_grade": 16.7
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 50,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 6,
+        "syllables": 19,
+        "avg_sentence_length": 6.0,
+        "avg_syllables_per_word": 3.17,
+        "flesch_reading_ease": -67.2,
+        "flesch_kincaid_grade": 24.1
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 51,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 8,
+        "syllables": 21,
+        "avg_sentence_length": 8.0,
+        "avg_syllables_per_word": 2.62,
+        "flesch_reading_ease": -23.4,
+        "flesch_kincaid_grade": 18.5
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 52,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 7,
+        "syllables": 20,
+        "avg_sentence_length": 7.0,
+        "avg_syllables_per_word": 2.86,
+        "flesch_reading_ease": -42.0,
+        "flesch_kincaid_grade": 20.9
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 53,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 15,
+        "syllables": 34,
+        "avg_sentence_length": 15.0,
+        "avg_syllables_per_word": 2.27,
+        "flesch_reading_ease": -0.1,
+        "flesch_kincaid_grade": 17.0
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 54,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 14,
+        "syllables": 34,
+        "avg_sentence_length": 14.0,
+        "avg_syllables_per_word": 2.43,
+        "flesch_reading_ease": -12.8,
+        "flesch_kincaid_grade": 18.5
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 55,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 12,
+        "syllables": 29,
+        "avg_sentence_length": 12.0,
+        "avg_syllables_per_word": 2.42,
+        "flesch_reading_ease": -9.8,
+        "flesch_kincaid_grade": 17.6
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 56,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 10,
+        "syllables": 27,
+        "avg_sentence_length": 10.0,
+        "avg_syllables_per_word": 2.7,
+        "flesch_reading_ease": -31.7,
+        "flesch_kincaid_grade": 20.2
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 57,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 13,
+        "syllables": 30,
+        "avg_sentence_length": 13.0,
+        "avg_syllables_per_word": 2.31,
+        "flesch_reading_ease": -1.6,
+        "flesch_kincaid_grade": 16.7
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 58,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 18,
+        "syllables": 36,
+        "avg_sentence_length": 18.0,
+        "avg_syllables_per_word": 2.0,
+        "flesch_reading_ease": 19.4,
+        "flesch_kincaid_grade": 15.0
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 59,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 9,
+        "syllables": 23,
+        "avg_sentence_length": 9.0,
+        "avg_syllables_per_word": 2.56,
+        "flesch_reading_ease": -18.5,
+        "flesch_kincaid_grade": 18.1
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 60,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 7,
+        "syllables": 19,
+        "avg_sentence_length": 7.0,
+        "avg_syllables_per_word": 2.71,
+        "flesch_reading_ease": -29.9,
+        "flesch_kincaid_grade": 19.2
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 61,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 7,
+        "syllables": 21,
+        "avg_sentence_length": 7.0,
+        "avg_syllables_per_word": 3.0,
+        "flesch_reading_ease": -54.1,
+        "flesch_kincaid_grade": 22.5
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 62,
+      "solo_level": "relational",
+      "metrics": {
+        "sentences": 1,
+        "words": 11,
+        "syllables": 35,
+        "avg_sentence_length": 11.0,
+        "avg_syllables_per_word": 3.18,
+        "flesch_reading_ease": -73.5,
+        "flesch_kincaid_grade": 26.2
+      },
+      "bucket": "hard",
+      "target_range": [
+        8,
+        14
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 63,
+      "solo_level": "relational",
+      "metrics": {
+        "sentences": 1,
+        "words": 15,
+        "syllables": 29,
+        "avg_sentence_length": 15.0,
+        "avg_syllables_per_word": 1.93,
+        "flesch_reading_ease": 28.1,
+        "flesch_kincaid_grade": 13.1
+      },
+      "bucket": "hard",
+      "target_range": [
+        8,
+        14
+      ],
+      "fit": "in_range"
+    },
+    {
+      "question_id": 64,
+      "solo_level": "relational",
+      "metrics": {
+        "sentences": 1,
+        "words": 12,
+        "syllables": 23,
+        "avg_sentence_length": 12.0,
+        "avg_syllables_per_word": 1.92,
+        "flesch_reading_ease": 32.5,
+        "flesch_kincaid_grade": 11.7
+      },
+      "bucket": "medium",
+      "target_range": [
+        8,
+        14
+      ],
+      "fit": "in_range"
+    },
+    {
+      "question_id": 65,
+      "solo_level": "relational",
+      "metrics": {
+        "sentences": 1,
+        "words": 11,
+        "syllables": 27,
+        "avg_sentence_length": 11.0,
+        "avg_syllables_per_word": 2.45,
+        "flesch_reading_ease": -12.0,
+        "flesch_kincaid_grade": 17.7
+      },
+      "bucket": "hard",
+      "target_range": [
+        8,
+        14
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 66,
+      "solo_level": "relational",
+      "metrics": {
+        "sentences": 1,
+        "words": 10,
+        "syllables": 24,
+        "avg_sentence_length": 10.0,
+        "avg_syllables_per_word": 2.4,
+        "flesch_reading_ease": -6.4,
+        "flesch_kincaid_grade": 16.6
+      },
+      "bucket": "hard",
+      "target_range": [
+        8,
+        14
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 67,
+      "solo_level": "relational",
+      "metrics": {
+        "sentences": 1,
+        "words": 8,
+        "syllables": 23,
+        "avg_sentence_length": 8.0,
+        "avg_syllables_per_word": 2.88,
+        "flesch_reading_ease": -44.5,
+        "flesch_kincaid_grade": 21.5
+      },
+      "bucket": "hard",
+      "target_range": [
+        8,
+        14
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 68,
+      "solo_level": "relational",
+      "metrics": {
+        "sentences": 1,
+        "words": 9,
+        "syllables": 25,
+        "avg_sentence_length": 9.0,
+        "avg_syllables_per_word": 2.78,
+        "flesch_reading_ease": -37.3,
+        "flesch_kincaid_grade": 20.7
+      },
+      "bucket": "hard",
+      "target_range": [
+        8,
+        14
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 69,
+      "solo_level": "relational",
+      "metrics": {
+        "sentences": 1,
+        "words": 7,
+        "syllables": 16,
+        "avg_sentence_length": 7.0,
+        "avg_syllables_per_word": 2.29,
+        "flesch_reading_ease": 6.4,
+        "flesch_kincaid_grade": 14.1
+      },
+      "bucket": "hard",
+      "target_range": [
+        8,
+        14
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 70,
+      "solo_level": "relational",
+      "metrics": {
+        "sentences": 1,
+        "words": 12,
+        "syllables": 26,
+        "avg_sentence_length": 12.0,
+        "avg_syllables_per_word": 2.17,
+        "flesch_reading_ease": 11.4,
+        "flesch_kincaid_grade": 14.7
+      },
+      "bucket": "hard",
+      "target_range": [
+        8,
+        14
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 71,
+      "solo_level": "relational",
+      "metrics": {
+        "sentences": 1,
+        "words": 13,
+        "syllables": 30,
+        "avg_sentence_length": 13.0,
+        "avg_syllables_per_word": 2.31,
+        "flesch_reading_ease": -1.6,
+        "flesch_kincaid_grade": 16.7
+      },
+      "bucket": "hard",
+      "target_range": [
+        8,
+        14
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 72,
+      "solo_level": "relational",
+      "metrics": {
+        "sentences": 1,
+        "words": 9,
+        "syllables": 26,
+        "avg_sentence_length": 9.0,
+        "avg_syllables_per_word": 2.89,
+        "flesch_reading_ease": -46.7,
+        "flesch_kincaid_grade": 22.0
+      },
+      "bucket": "hard",
+      "target_range": [
+        8,
+        14
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 73,
+      "solo_level": "relational",
+      "metrics": {
+        "sentences": 1,
+        "words": 9,
+        "syllables": 26,
+        "avg_sentence_length": 9.0,
+        "avg_syllables_per_word": 2.89,
+        "flesch_reading_ease": -46.7,
+        "flesch_kincaid_grade": 22.0
+      },
+      "bucket": "hard",
+      "target_range": [
+        8,
+        14
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 74,
+      "solo_level": "relational",
+      "metrics": {
+        "sentences": 1,
+        "words": 9,
+        "syllables": 25,
+        "avg_sentence_length": 9.0,
+        "avg_syllables_per_word": 2.78,
+        "flesch_reading_ease": -37.3,
+        "flesch_kincaid_grade": 20.7
+      },
+      "bucket": "hard",
+      "target_range": [
+        8,
+        14
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 75,
+      "solo_level": "relational",
+      "metrics": {
+        "sentences": 1,
+        "words": 10,
+        "syllables": 27,
+        "avg_sentence_length": 10.0,
+        "avg_syllables_per_word": 2.7,
+        "flesch_reading_ease": -31.7,
+        "flesch_kincaid_grade": 20.2
+      },
+      "bucket": "hard",
+      "target_range": [
+        8,
+        14
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 76,
+      "solo_level": "relational",
+      "metrics": {
+        "sentences": 1,
+        "words": 8,
+        "syllables": 21,
+        "avg_sentence_length": 8.0,
+        "avg_syllables_per_word": 2.62,
+        "flesch_reading_ease": -23.4,
+        "flesch_kincaid_grade": 18.5
+      },
+      "bucket": "hard",
+      "target_range": [
+        8,
+        14
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 77,
+      "solo_level": "relational",
+      "metrics": {
+        "sentences": 1,
+        "words": 9,
+        "syllables": 23,
+        "avg_sentence_length": 9.0,
+        "avg_syllables_per_word": 2.56,
+        "flesch_reading_ease": -18.5,
+        "flesch_kincaid_grade": 18.1
+      },
+      "bucket": "hard",
+      "target_range": [
+        8,
+        14
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 78,
+      "solo_level": "relational",
+      "metrics": {
+        "sentences": 1,
+        "words": 9,
+        "syllables": 29,
+        "avg_sentence_length": 9.0,
+        "avg_syllables_per_word": 3.22,
+        "flesch_reading_ease": -74.9,
+        "flesch_kincaid_grade": 25.9
+      },
+      "bucket": "hard",
+      "target_range": [
+        8,
+        14
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 79,
+      "solo_level": "relational",
+      "metrics": {
+        "sentences": 1,
+        "words": 7,
+        "syllables": 26,
+        "avg_sentence_length": 7.0,
+        "avg_syllables_per_word": 3.71,
+        "flesch_reading_ease": -114.5,
+        "flesch_kincaid_grade": 31.0
+      },
+      "bucket": "hard",
+      "target_range": [
+        8,
+        14
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 80,
+      "solo_level": "extended_abstract",
+      "metrics": {
+        "sentences": 1,
+        "words": 12,
+        "syllables": 39,
+        "avg_sentence_length": 12.0,
+        "avg_syllables_per_word": 3.25,
+        "flesch_reading_ease": -80.3,
+        "flesch_kincaid_grade": 27.4
+      },
+      "bucket": "hard",
+      "target_range": [
+        10,
+        16
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 81,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 6,
+        "syllables": 13,
+        "avg_sentence_length": 6.0,
+        "avg_syllables_per_word": 2.17,
+        "flesch_reading_ease": 17.4,
+        "flesch_kincaid_grade": 12.3
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 82,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 7,
+        "syllables": 13,
+        "avg_sentence_length": 7.0,
+        "avg_syllables_per_word": 1.86,
+        "flesch_reading_ease": 42.6,
+        "flesch_kincaid_grade": 9.1
+      },
+      "bucket": "medium",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "in_range"
+    },
+    {
+      "question_id": 83,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 7,
+        "syllables": 14,
+        "avg_sentence_length": 7.0,
+        "avg_syllables_per_word": 2.0,
+        "flesch_reading_ease": 30.5,
+        "flesch_kincaid_grade": 10.7
+      },
+      "bucket": "medium",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 84,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 9,
+        "syllables": 15,
+        "avg_sentence_length": 9.0,
+        "avg_syllables_per_word": 1.67,
+        "flesch_reading_ease": 56.7,
+        "flesch_kincaid_grade": 7.6
+      },
+      "bucket": "medium",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "in_range"
+    },
+    {
+      "question_id": 85,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 7,
+        "syllables": 14,
+        "avg_sentence_length": 7.0,
+        "avg_syllables_per_word": 2.0,
+        "flesch_reading_ease": 30.5,
+        "flesch_kincaid_grade": 10.7
+      },
+      "bucket": "medium",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 86,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 9,
+        "syllables": 17,
+        "avg_sentence_length": 9.0,
+        "avg_syllables_per_word": 1.89,
+        "flesch_reading_ease": 37.9,
+        "flesch_kincaid_grade": 10.2
+      },
+      "bucket": "medium",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 87,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 13,
+        "syllables": 21,
+        "avg_sentence_length": 13.0,
+        "avg_syllables_per_word": 1.62,
+        "flesch_reading_ease": 57.0,
+        "flesch_kincaid_grade": 8.5
+      },
+      "bucket": "medium",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "in_range"
+    },
+    {
+      "question_id": 88,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 8,
+        "syllables": 14,
+        "avg_sentence_length": 8.0,
+        "avg_syllables_per_word": 1.75,
+        "flesch_reading_ease": 50.7,
+        "flesch_kincaid_grade": 8.2
+      },
+      "bucket": "medium",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "in_range"
+    },
+    {
+      "question_id": 89,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 10,
+        "syllables": 17,
+        "avg_sentence_length": 10.0,
+        "avg_syllables_per_word": 1.7,
+        "flesch_reading_ease": 52.9,
+        "flesch_kincaid_grade": 8.4
+      },
+      "bucket": "medium",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "in_range"
+    },
+    {
+      "question_id": 90,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 5,
+        "syllables": 9,
+        "avg_sentence_length": 5.0,
+        "avg_syllables_per_word": 1.8,
+        "flesch_reading_ease": 49.5,
+        "flesch_kincaid_grade": 7.6
+      },
+      "bucket": "medium",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "in_range"
+    },
+    {
+      "question_id": 91,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 9,
+        "syllables": 18,
+        "avg_sentence_length": 9.0,
+        "avg_syllables_per_word": 2.0,
+        "flesch_reading_ease": 28.5,
+        "flesch_kincaid_grade": 11.5
+      },
+      "bucket": "medium",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 92,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 6,
+        "syllables": 9,
+        "avg_sentence_length": 6.0,
+        "avg_syllables_per_word": 1.5,
+        "flesch_reading_ease": 73.8,
+        "flesch_kincaid_grade": 4.5
+      },
+      "bucket": "easy",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "in_range"
+    },
+    {
+      "question_id": 93,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 7,
+        "syllables": 15,
+        "avg_sentence_length": 7.0,
+        "avg_syllables_per_word": 2.14,
+        "flesch_reading_ease": 18.4,
+        "flesch_kincaid_grade": 12.4
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 94,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 6,
+        "syllables": 13,
+        "avg_sentence_length": 6.0,
+        "avg_syllables_per_word": 2.17,
+        "flesch_reading_ease": 17.4,
+        "flesch_kincaid_grade": 12.3
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 95,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 9,
+        "syllables": 16,
+        "avg_sentence_length": 9.0,
+        "avg_syllables_per_word": 1.78,
+        "flesch_reading_ease": 47.3,
+        "flesch_kincaid_grade": 8.9
+      },
+      "bucket": "medium",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "in_range"
+    },
+    {
+      "question_id": 96,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 7,
+        "syllables": 15,
+        "avg_sentence_length": 7.0,
+        "avg_syllables_per_word": 2.14,
+        "flesch_reading_ease": 18.4,
+        "flesch_kincaid_grade": 12.4
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 97,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 6,
+        "syllables": 14,
+        "avg_sentence_length": 6.0,
+        "avg_syllables_per_word": 2.33,
+        "flesch_reading_ease": 3.3,
+        "flesch_kincaid_grade": 14.3
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 98,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 11,
+        "syllables": 27,
+        "avg_sentence_length": 11.0,
+        "avg_syllables_per_word": 2.45,
+        "flesch_reading_ease": -12.0,
+        "flesch_kincaid_grade": 17.7
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 99,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 7,
+        "syllables": 17,
+        "avg_sentence_length": 7.0,
+        "avg_syllables_per_word": 2.43,
+        "flesch_reading_ease": -5.7,
+        "flesch_kincaid_grade": 15.8
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 100,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 11,
+        "syllables": 23,
+        "avg_sentence_length": 11.0,
+        "avg_syllables_per_word": 2.09,
+        "flesch_reading_ease": 18.8,
+        "flesch_kincaid_grade": 13.4
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 101,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 7,
+        "syllables": 18,
+        "avg_sentence_length": 7.0,
+        "avg_syllables_per_word": 2.57,
+        "flesch_reading_ease": -17.8,
+        "flesch_kincaid_grade": 17.5
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 102,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 12,
+        "syllables": 21,
+        "avg_sentence_length": 12.0,
+        "avg_syllables_per_word": 1.75,
+        "flesch_reading_ease": 46.6,
+        "flesch_kincaid_grade": 9.7
+      },
+      "bucket": "medium",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "in_range"
+    },
+    {
+      "question_id": 103,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 11,
+        "syllables": 21,
+        "avg_sentence_length": 11.0,
+        "avg_syllables_per_word": 1.91,
+        "flesch_reading_ease": 34.2,
+        "flesch_kincaid_grade": 11.2
+      },
+      "bucket": "medium",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "in_range"
+    },
+    {
+      "question_id": 104,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 9,
+        "syllables": 20,
+        "avg_sentence_length": 9.0,
+        "avg_syllables_per_word": 2.22,
+        "flesch_reading_ease": 9.7,
+        "flesch_kincaid_grade": 14.1
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 105,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 13,
+        "syllables": 24,
+        "avg_sentence_length": 13.0,
+        "avg_syllables_per_word": 1.85,
+        "flesch_reading_ease": 37.5,
+        "flesch_kincaid_grade": 11.3
+      },
+      "bucket": "medium",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "in_range"
+    },
+    {
+      "question_id": 106,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 13,
+        "syllables": 24,
+        "avg_sentence_length": 13.0,
+        "avg_syllables_per_word": 1.85,
+        "flesch_reading_ease": 37.5,
+        "flesch_kincaid_grade": 11.3
+      },
+      "bucket": "medium",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "in_range"
+    },
+    {
+      "question_id": 107,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 8,
+        "syllables": 18,
+        "avg_sentence_length": 8.0,
+        "avg_syllables_per_word": 2.25,
+        "flesch_reading_ease": 8.4,
+        "flesch_kincaid_grade": 14.1
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 108,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 8,
+        "syllables": 19,
+        "avg_sentence_length": 8.0,
+        "avg_syllables_per_word": 2.38,
+        "flesch_reading_ease": -2.2,
+        "flesch_kincaid_grade": 15.6
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 109,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 6,
+        "syllables": 13,
+        "avg_sentence_length": 6.0,
+        "avg_syllables_per_word": 2.17,
+        "flesch_reading_ease": 17.4,
+        "flesch_kincaid_grade": 12.3
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 110,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 12,
+        "syllables": 24,
+        "avg_sentence_length": 12.0,
+        "avg_syllables_per_word": 2.0,
+        "flesch_reading_ease": 25.5,
+        "flesch_kincaid_grade": 12.7
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 111,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 9,
+        "syllables": 23,
+        "avg_sentence_length": 9.0,
+        "avg_syllables_per_word": 2.56,
+        "flesch_reading_ease": -18.5,
+        "flesch_kincaid_grade": 18.1
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 112,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 9,
+        "syllables": 20,
+        "avg_sentence_length": 9.0,
+        "avg_syllables_per_word": 2.22,
+        "flesch_reading_ease": 9.7,
+        "flesch_kincaid_grade": 14.1
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 113,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 10,
+        "syllables": 23,
+        "avg_sentence_length": 10.0,
+        "avg_syllables_per_word": 2.3,
+        "flesch_reading_ease": 2.1,
+        "flesch_kincaid_grade": 15.4
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 114,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 8,
+        "syllables": 22,
+        "avg_sentence_length": 8.0,
+        "avg_syllables_per_word": 2.75,
+        "flesch_reading_ease": -33.9,
+        "flesch_kincaid_grade": 20.0
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 115,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 10,
+        "syllables": 17,
+        "avg_sentence_length": 10.0,
+        "avg_syllables_per_word": 1.7,
+        "flesch_reading_ease": 52.9,
+        "flesch_kincaid_grade": 8.4
+      },
+      "bucket": "medium",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "in_range"
+    },
+    {
+      "question_id": 116,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 7,
+        "syllables": 14,
+        "avg_sentence_length": 7.0,
+        "avg_syllables_per_word": 2.0,
+        "flesch_reading_ease": 30.5,
+        "flesch_kincaid_grade": 10.7
+      },
+      "bucket": "medium",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "in_range"
+    },
+    {
+      "question_id": 117,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 13,
+        "syllables": 30,
+        "avg_sentence_length": 13.0,
+        "avg_syllables_per_word": 2.31,
+        "flesch_reading_ease": -1.6,
+        "flesch_kincaid_grade": 16.7
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 118,
+      "solo_level": "relational",
+      "metrics": {
+        "sentences": 1,
+        "words": 13,
+        "syllables": 25,
+        "avg_sentence_length": 13.0,
+        "avg_syllables_per_word": 1.92,
+        "flesch_reading_ease": 30.9,
+        "flesch_kincaid_grade": 12.2
+      },
+      "bucket": "hard",
+      "target_range": [
+        8,
+        14
+      ],
+      "fit": "in_range"
+    },
+    {
+      "question_id": 119,
+      "solo_level": "relational",
+      "metrics": {
+        "sentences": 1,
+        "words": 7,
+        "syllables": 10,
+        "avg_sentence_length": 7.0,
+        "avg_syllables_per_word": 1.43,
+        "flesch_reading_ease": 78.9,
+        "flesch_kincaid_grade": 4.0
+      },
+      "bucket": "easy",
+      "target_range": [
+        8,
+        14
+      ],
+      "fit": "too_easy"
+    },
+    {
+      "question_id": 120,
+      "solo_level": "relational",
+      "metrics": {
+        "sentences": 1,
+        "words": 14,
+        "syllables": 28,
+        "avg_sentence_length": 14.0,
+        "avg_syllables_per_word": 2.0,
+        "flesch_reading_ease": 23.4,
+        "flesch_kincaid_grade": 13.5
+      },
+      "bucket": "hard",
+      "target_range": [
+        8,
+        14
+      ],
+      "fit": "in_range"
+    },
+    {
+      "question_id": 121,
+      "solo_level": "relational",
+      "metrics": {
+        "sentences": 1,
+        "words": 10,
+        "syllables": 24,
+        "avg_sentence_length": 10.0,
+        "avg_syllables_per_word": 2.4,
+        "flesch_reading_ease": -6.4,
+        "flesch_kincaid_grade": 16.6
+      },
+      "bucket": "hard",
+      "target_range": [
+        8,
+        14
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 122,
+      "solo_level": "relational",
+      "metrics": {
+        "sentences": 1,
+        "words": 12,
+        "syllables": 22,
+        "avg_sentence_length": 12.0,
+        "avg_syllables_per_word": 1.83,
+        "flesch_reading_ease": 39.6,
+        "flesch_kincaid_grade": 10.7
+      },
+      "bucket": "medium",
+      "target_range": [
+        8,
+        14
+      ],
+      "fit": "in_range"
+    },
+    {
+      "question_id": 123,
+      "solo_level": "relational",
+      "metrics": {
+        "sentences": 1,
+        "words": 8,
+        "syllables": 18,
+        "avg_sentence_length": 8.0,
+        "avg_syllables_per_word": 2.25,
+        "flesch_reading_ease": 8.4,
+        "flesch_kincaid_grade": 14.1
+      },
+      "bucket": "hard",
+      "target_range": [
+        8,
+        14
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 124,
+      "solo_level": "relational",
+      "metrics": {
+        "sentences": 1,
+        "words": 11,
+        "syllables": 29,
+        "avg_sentence_length": 11.0,
+        "avg_syllables_per_word": 2.64,
+        "flesch_reading_ease": -27.4,
+        "flesch_kincaid_grade": 19.8
+      },
+      "bucket": "hard",
+      "target_range": [
+        8,
+        14
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 125,
+      "solo_level": "relational",
+      "metrics": {
+        "sentences": 1,
+        "words": 12,
+        "syllables": 26,
+        "avg_sentence_length": 12.0,
+        "avg_syllables_per_word": 2.17,
+        "flesch_reading_ease": 11.4,
+        "flesch_kincaid_grade": 14.7
+      },
+      "bucket": "hard",
+      "target_range": [
+        8,
+        14
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 126,
+      "solo_level": "relational",
+      "metrics": {
+        "sentences": 1,
+        "words": 9,
+        "syllables": 30,
+        "avg_sentence_length": 9.0,
+        "avg_syllables_per_word": 3.33,
+        "flesch_reading_ease": -84.3,
+        "flesch_kincaid_grade": 27.3
+      },
+      "bucket": "hard",
+      "target_range": [
+        8,
+        14
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 127,
+      "solo_level": "relational",
+      "metrics": {
+        "sentences": 1,
+        "words": 11,
+        "syllables": 27,
+        "avg_sentence_length": 11.0,
+        "avg_syllables_per_word": 2.45,
+        "flesch_reading_ease": -12.0,
+        "flesch_kincaid_grade": 17.7
+      },
+      "bucket": "hard",
+      "target_range": [
+        8,
+        14
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 128,
+      "solo_level": "relational",
+      "metrics": {
+        "sentences": 1,
+        "words": 8,
+        "syllables": 23,
+        "avg_sentence_length": 8.0,
+        "avg_syllables_per_word": 2.88,
+        "flesch_reading_ease": -44.5,
+        "flesch_kincaid_grade": 21.5
+      },
+      "bucket": "hard",
+      "target_range": [
+        8,
+        14
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 129,
+      "solo_level": "relational",
+      "metrics": {
+        "sentences": 1,
+        "words": 9,
+        "syllables": 21,
+        "avg_sentence_length": 9.0,
+        "avg_syllables_per_word": 2.33,
+        "flesch_reading_ease": 0.3,
+        "flesch_kincaid_grade": 15.5
+      },
+      "bucket": "hard",
+      "target_range": [
+        8,
+        14
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 130,
+      "solo_level": "relational",
+      "metrics": {
+        "sentences": 1,
+        "words": 10,
+        "syllables": 26,
+        "avg_sentence_length": 10.0,
+        "avg_syllables_per_word": 2.6,
+        "flesch_reading_ease": -23.3,
+        "flesch_kincaid_grade": 19.0
+      },
+      "bucket": "hard",
+      "target_range": [
+        8,
+        14
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 131,
+      "solo_level": "extended_abstract",
+      "metrics": {
+        "sentences": 1,
+        "words": 16,
+        "syllables": 38,
+        "avg_sentence_length": 16.0,
+        "avg_syllables_per_word": 2.38,
+        "flesch_reading_ease": -10.3,
+        "flesch_kincaid_grade": 18.7
+      },
+      "bucket": "hard",
+      "target_range": [
+        10,
+        16
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 132,
+      "solo_level": "extended_abstract",
+      "metrics": {
+        "sentences": 1,
+        "words": 18,
+        "syllables": 35,
+        "avg_sentence_length": 18.0,
+        "avg_syllables_per_word": 1.94,
+        "flesch_reading_ease": 24.1,
+        "flesch_kincaid_grade": 14.4
+      },
+      "bucket": "hard",
+      "target_range": [
+        10,
+        16
+      ],
+      "fit": "in_range"
+    },
+    {
+      "question_id": 133,
+      "solo_level": "extended_abstract",
+      "metrics": {
+        "sentences": 1,
+        "words": 11,
+        "syllables": 21,
+        "avg_sentence_length": 11.0,
+        "avg_syllables_per_word": 1.91,
+        "flesch_reading_ease": 34.2,
+        "flesch_kincaid_grade": 11.2
+      },
+      "bucket": "medium",
+      "target_range": [
+        10,
+        16
+      ],
+      "fit": "in_range"
+    },
+    {
+      "question_id": 134,
+      "solo_level": "extended_abstract",
+      "metrics": {
+        "sentences": 1,
+        "words": 19,
+        "syllables": 41,
+        "avg_sentence_length": 19.0,
+        "avg_syllables_per_word": 2.16,
+        "flesch_reading_ease": 5.0,
+        "flesch_kincaid_grade": 17.3
+      },
+      "bucket": "hard",
+      "target_range": [
+        10,
+        16
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 135,
+      "solo_level": "extended_abstract",
+      "metrics": {
+        "sentences": 1,
+        "words": 13,
+        "syllables": 21,
+        "avg_sentence_length": 13.0,
+        "avg_syllables_per_word": 1.62,
+        "flesch_reading_ease": 57.0,
+        "flesch_kincaid_grade": 8.5
+      },
+      "bucket": "medium",
+      "target_range": [
+        10,
+        16
+      ],
+      "fit": "too_easy"
+    },
+    {
+      "question_id": 136,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 8,
+        "syllables": 19,
+        "avg_sentence_length": 8.0,
+        "avg_syllables_per_word": 2.38,
+        "flesch_reading_ease": -2.2,
+        "flesch_kincaid_grade": 15.6
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 137,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 9,
+        "syllables": 21,
+        "avg_sentence_length": 9.0,
+        "avg_syllables_per_word": 2.33,
+        "flesch_reading_ease": 0.3,
+        "flesch_kincaid_grade": 15.5
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 138,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 10,
+        "syllables": 19,
+        "avg_sentence_length": 10.0,
+        "avg_syllables_per_word": 1.9,
+        "flesch_reading_ease": 35.9,
+        "flesch_kincaid_grade": 10.7
+      },
+      "bucket": "medium",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 139,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 12,
+        "syllables": 24,
+        "avg_sentence_length": 12.0,
+        "avg_syllables_per_word": 2.0,
+        "flesch_reading_ease": 25.5,
+        "flesch_kincaid_grade": 12.7
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 140,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 10,
+        "syllables": 29,
+        "avg_sentence_length": 10.0,
+        "avg_syllables_per_word": 2.9,
+        "flesch_reading_ease": -48.7,
+        "flesch_kincaid_grade": 22.5
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 141,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 10,
+        "syllables": 34,
+        "avg_sentence_length": 10.0,
+        "avg_syllables_per_word": 3.4,
+        "flesch_reading_ease": -91.0,
+        "flesch_kincaid_grade": 28.4
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 142,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 7,
+        "syllables": 17,
+        "avg_sentence_length": 7.0,
+        "avg_syllables_per_word": 2.43,
+        "flesch_reading_ease": -5.7,
+        "flesch_kincaid_grade": 15.8
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 143,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 15,
+        "syllables": 33,
+        "avg_sentence_length": 15.0,
+        "avg_syllables_per_word": 2.2,
+        "flesch_reading_ease": 5.5,
+        "flesch_kincaid_grade": 16.2
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 144,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 4,
+        "syllables": 8,
+        "avg_sentence_length": 4.0,
+        "avg_syllables_per_word": 2.0,
+        "flesch_reading_ease": 33.6,
+        "flesch_kincaid_grade": 9.6
+      },
+      "bucket": "medium",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "in_range"
+    },
+    {
+      "question_id": 145,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 5,
+        "syllables": 18,
+        "avg_sentence_length": 5.0,
+        "avg_syllables_per_word": 3.6,
+        "flesch_reading_ease": -102.8,
+        "flesch_kincaid_grade": 28.8
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 146,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 8,
+        "syllables": 20,
+        "avg_sentence_length": 8.0,
+        "avg_syllables_per_word": 2.5,
+        "flesch_reading_ease": -12.8,
+        "flesch_kincaid_grade": 17.0
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 147,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 16,
+        "syllables": 32,
+        "avg_sentence_length": 16.0,
+        "avg_syllables_per_word": 2.0,
+        "flesch_reading_ease": 21.4,
+        "flesch_kincaid_grade": 14.3
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 148,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 8,
+        "syllables": 16,
+        "avg_sentence_length": 8.0,
+        "avg_syllables_per_word": 2.0,
+        "flesch_reading_ease": 29.5,
+        "flesch_kincaid_grade": 11.1
+      },
+      "bucket": "medium",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 149,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 10,
+        "syllables": 24,
+        "avg_sentence_length": 10.0,
+        "avg_syllables_per_word": 2.4,
+        "flesch_reading_ease": -6.4,
+        "flesch_kincaid_grade": 16.6
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 150,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 13,
+        "syllables": 26,
+        "avg_sentence_length": 13.0,
+        "avg_syllables_per_word": 2.0,
+        "flesch_reading_ease": 24.4,
+        "flesch_kincaid_grade": 13.1
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 151,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 11,
+        "syllables": 31,
+        "avg_sentence_length": 11.0,
+        "avg_syllables_per_word": 2.82,
+        "flesch_reading_ease": -42.7,
+        "flesch_kincaid_grade": 22.0
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 152,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 11,
+        "syllables": 23,
+        "avg_sentence_length": 11.0,
+        "avg_syllables_per_word": 2.09,
+        "flesch_reading_ease": 18.8,
+        "flesch_kincaid_grade": 13.4
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 153,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 7,
+        "syllables": 19,
+        "avg_sentence_length": 7.0,
+        "avg_syllables_per_word": 2.71,
+        "flesch_reading_ease": -29.9,
+        "flesch_kincaid_grade": 19.2
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 154,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 12,
+        "syllables": 29,
+        "avg_sentence_length": 12.0,
+        "avg_syllables_per_word": 2.42,
+        "flesch_reading_ease": -9.8,
+        "flesch_kincaid_grade": 17.6
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 155,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 10,
+        "syllables": 22,
+        "avg_sentence_length": 10.0,
+        "avg_syllables_per_word": 2.2,
+        "flesch_reading_ease": 10.6,
+        "flesch_kincaid_grade": 14.3
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 156,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 10,
+        "syllables": 22,
+        "avg_sentence_length": 10.0,
+        "avg_syllables_per_word": 2.2,
+        "flesch_reading_ease": 10.6,
+        "flesch_kincaid_grade": 14.3
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 157,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 7,
+        "syllables": 13,
+        "avg_sentence_length": 7.0,
+        "avg_syllables_per_word": 1.86,
+        "flesch_reading_ease": 42.6,
+        "flesch_kincaid_grade": 9.1
+      },
+      "bucket": "medium",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "in_range"
+    },
+    {
+      "question_id": 158,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 6,
+        "syllables": 12,
+        "avg_sentence_length": 6.0,
+        "avg_syllables_per_word": 2.0,
+        "flesch_reading_ease": 31.5,
+        "flesch_kincaid_grade": 10.4
+      },
+      "bucket": "medium",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 159,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 8,
+        "syllables": 17,
+        "avg_sentence_length": 8.0,
+        "avg_syllables_per_word": 2.12,
+        "flesch_reading_ease": 18.9,
+        "flesch_kincaid_grade": 12.6
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 160,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 4,
+        "syllables": 10,
+        "avg_sentence_length": 4.0,
+        "avg_syllables_per_word": 2.5,
+        "flesch_reading_ease": -8.7,
+        "flesch_kincaid_grade": 15.5
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 161,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 9,
+        "syllables": 17,
+        "avg_sentence_length": 9.0,
+        "avg_syllables_per_word": 1.89,
+        "flesch_reading_ease": 37.9,
+        "flesch_kincaid_grade": 10.2
+      },
+      "bucket": "medium",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 162,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 7,
+        "syllables": 22,
+        "avg_sentence_length": 7.0,
+        "avg_syllables_per_word": 3.14,
+        "flesch_reading_ease": -66.2,
+        "flesch_kincaid_grade": 24.2
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 163,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 4,
+        "syllables": 8,
+        "avg_sentence_length": 4.0,
+        "avg_syllables_per_word": 2.0,
+        "flesch_reading_ease": 33.6,
+        "flesch_kincaid_grade": 9.6
+      },
+      "bucket": "medium",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "in_range"
+    },
+    {
+      "question_id": 164,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 9,
+        "syllables": 18,
+        "avg_sentence_length": 9.0,
+        "avg_syllables_per_word": 2.0,
+        "flesch_reading_ease": 28.5,
+        "flesch_kincaid_grade": 11.5
+      },
+      "bucket": "medium",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 165,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 12,
+        "syllables": 26,
+        "avg_sentence_length": 12.0,
+        "avg_syllables_per_word": 2.17,
+        "flesch_reading_ease": 11.4,
+        "flesch_kincaid_grade": 14.7
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 166,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 10,
+        "syllables": 23,
+        "avg_sentence_length": 10.0,
+        "avg_syllables_per_word": 2.3,
+        "flesch_reading_ease": 2.1,
+        "flesch_kincaid_grade": 15.4
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 167,
+      "solo_level": "unistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 4,
+        "syllables": 10,
+        "avg_sentence_length": 4.0,
+        "avg_syllables_per_word": 2.5,
+        "flesch_reading_ease": -8.7,
+        "flesch_kincaid_grade": 15.5
+      },
+      "bucket": "hard",
+      "target_range": [
+        4,
+        10
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 168,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 9,
+        "syllables": 19,
+        "avg_sentence_length": 9.0,
+        "avg_syllables_per_word": 2.11,
+        "flesch_reading_ease": 19.1,
+        "flesch_kincaid_grade": 12.8
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 169,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 8,
+        "syllables": 20,
+        "avg_sentence_length": 8.0,
+        "avg_syllables_per_word": 2.5,
+        "flesch_reading_ease": -12.8,
+        "flesch_kincaid_grade": 17.0
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 170,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 10,
+        "syllables": 27,
+        "avg_sentence_length": 10.0,
+        "avg_syllables_per_word": 2.7,
+        "flesch_reading_ease": -31.7,
+        "flesch_kincaid_grade": 20.2
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 171,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 7,
+        "syllables": 17,
+        "avg_sentence_length": 7.0,
+        "avg_syllables_per_word": 2.43,
+        "flesch_reading_ease": -5.7,
+        "flesch_kincaid_grade": 15.8
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 172,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 9,
+        "syllables": 27,
+        "avg_sentence_length": 9.0,
+        "avg_syllables_per_word": 3.0,
+        "flesch_reading_ease": -56.1,
+        "flesch_kincaid_grade": 23.3
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 173,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 10,
+        "syllables": 26,
+        "avg_sentence_length": 10.0,
+        "avg_syllables_per_word": 2.6,
+        "flesch_reading_ease": -23.3,
+        "flesch_kincaid_grade": 19.0
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 174,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 8,
+        "syllables": 22,
+        "avg_sentence_length": 8.0,
+        "avg_syllables_per_word": 2.75,
+        "flesch_reading_ease": -33.9,
+        "flesch_kincaid_grade": 20.0
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 175,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 9,
+        "syllables": 23,
+        "avg_sentence_length": 9.0,
+        "avg_syllables_per_word": 2.56,
+        "flesch_reading_ease": -18.5,
+        "flesch_kincaid_grade": 18.1
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 176,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 11,
+        "syllables": 22,
+        "avg_sentence_length": 11.0,
+        "avg_syllables_per_word": 2.0,
+        "flesch_reading_ease": 26.5,
+        "flesch_kincaid_grade": 12.3
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 177,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 4,
+        "syllables": 10,
+        "avg_sentence_length": 4.0,
+        "avg_syllables_per_word": 2.5,
+        "flesch_reading_ease": -8.7,
+        "flesch_kincaid_grade": 15.5
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 178,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 10,
+        "syllables": 26,
+        "avg_sentence_length": 10.0,
+        "avg_syllables_per_word": 2.6,
+        "flesch_reading_ease": -23.3,
+        "flesch_kincaid_grade": 19.0
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 179,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 8,
+        "syllables": 21,
+        "avg_sentence_length": 8.0,
+        "avg_syllables_per_word": 2.62,
+        "flesch_reading_ease": -23.4,
+        "flesch_kincaid_grade": 18.5
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 180,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 19,
+        "syllables": 40,
+        "avg_sentence_length": 19.0,
+        "avg_syllables_per_word": 2.11,
+        "flesch_reading_ease": 9.4,
+        "flesch_kincaid_grade": 16.7
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 181,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 10,
+        "syllables": 19,
+        "avg_sentence_length": 10.0,
+        "avg_syllables_per_word": 1.9,
+        "flesch_reading_ease": 35.9,
+        "flesch_kincaid_grade": 10.7
+      },
+      "bucket": "medium",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "in_range"
+    },
+    {
+      "question_id": 182,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 11,
+        "syllables": 21,
+        "avg_sentence_length": 11.0,
+        "avg_syllables_per_word": 1.91,
+        "flesch_reading_ease": 34.2,
+        "flesch_kincaid_grade": 11.2
+      },
+      "bucket": "medium",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "in_range"
+    },
+    {
+      "question_id": 183,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 10,
+        "syllables": 26,
+        "avg_sentence_length": 10.0,
+        "avg_syllables_per_word": 2.6,
+        "flesch_reading_ease": -23.3,
+        "flesch_kincaid_grade": 19.0
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 184,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 10,
+        "syllables": 28,
+        "avg_sentence_length": 10.0,
+        "avg_syllables_per_word": 2.8,
+        "flesch_reading_ease": -40.2,
+        "flesch_kincaid_grade": 21.3
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 185,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 12,
+        "syllables": 28,
+        "avg_sentence_length": 12.0,
+        "avg_syllables_per_word": 2.33,
+        "flesch_reading_ease": -2.7,
+        "flesch_kincaid_grade": 16.6
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 186,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 15,
+        "syllables": 37,
+        "avg_sentence_length": 15.0,
+        "avg_syllables_per_word": 2.47,
+        "flesch_reading_ease": -17.1,
+        "flesch_kincaid_grade": 19.4
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 187,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 12,
+        "syllables": 27,
+        "avg_sentence_length": 12.0,
+        "avg_syllables_per_word": 2.25,
+        "flesch_reading_ease": 4.3,
+        "flesch_kincaid_grade": 15.6
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 188,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 13,
+        "syllables": 29,
+        "avg_sentence_length": 13.0,
+        "avg_syllables_per_word": 2.23,
+        "flesch_reading_ease": 4.9,
+        "flesch_kincaid_grade": 15.8
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 189,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 7,
+        "syllables": 18,
+        "avg_sentence_length": 7.0,
+        "avg_syllables_per_word": 2.57,
+        "flesch_reading_ease": -17.8,
+        "flesch_kincaid_grade": 17.5
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 190,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 8,
+        "syllables": 20,
+        "avg_sentence_length": 8.0,
+        "avg_syllables_per_word": 2.5,
+        "flesch_reading_ease": -12.8,
+        "flesch_kincaid_grade": 17.0
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 191,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 6,
+        "syllables": 15,
+        "avg_sentence_length": 6.0,
+        "avg_syllables_per_word": 2.5,
+        "flesch_reading_ease": -10.8,
+        "flesch_kincaid_grade": 16.2
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 192,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 13,
+        "syllables": 35,
+        "avg_sentence_length": 13.0,
+        "avg_syllables_per_word": 2.69,
+        "flesch_reading_ease": -34.1,
+        "flesch_kincaid_grade": 21.2
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 193,
+      "solo_level": "multistructural",
+      "metrics": {
+        "sentences": 1,
+        "words": 7,
+        "syllables": 15,
+        "avg_sentence_length": 7.0,
+        "avg_syllables_per_word": 2.14,
+        "flesch_reading_ease": 18.4,
+        "flesch_kincaid_grade": 12.4
+      },
+      "bucket": "hard",
+      "target_range": [
+        6,
+        12
+      ],
+      "fit": "too_hard"
+    },
+    {
+      "question_id": 194,
+      "solo_level": "relational",
+      "metrics": {
+        "sentences": 1,
+        "words": 6,
+        "syllables": 19,
+        "avg_sentence_length": 6.0,
+        "avg_syllables_per_word": 3.17,
+        "flesch_reading_ease": -67.2,
+        "flesch_kincaid_grade": 24.1
+      },
+      "bucket": "hard",
+      "target_range": [
+        8,
+        14
+      ],
+      "fit": "too_hard"
+    }
+  ]
+}

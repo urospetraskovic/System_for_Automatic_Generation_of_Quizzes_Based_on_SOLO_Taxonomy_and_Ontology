@@ -1,0 +1,2984 @@
+{
+  "total_questions": 194,
+  "average_score": 95.9,
+  "aggregate_counts": {
+    "error": 0,
+    "warn": 160,
+    "info": 0
+  },
+  "flag_frequency": {
+    "H27_CORRECT_LONGEST": 63,
+    "H27_CORRECT_SHORTEST": 49,
+    "H24_LENGTH_DISPARITY": 45,
+    "H22_OPTION_OVERLAP": 2,
+    "H14_UNCLEAR_DIRECTIVE": 1
+  },
+  "reports": [
+    {
+      "question_id": 1,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 2,
+      "flags": [
+        {
+          "code": "H27_CORRECT_SHORTEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najkraći — obrnut length-clue. Izjednači dužine. / Correct answer is shortest (inverted length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 3,
+      "flags": [
+        {
+          "code": "H24_LENGTH_DISPARITY",
+          "severity": "warn",
+          "message": "Razlika u dužini opcija je velika (najduža 45 vs najkraća 17 karaktera). / Option length disparity.",
+          "min_length": 17,
+          "max_length": 45
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 4,
+      "flags": [
+        {
+          "code": "H27_CORRECT_SHORTEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najkraći — obrnut length-clue. Izjednači dužine. / Correct answer is shortest (inverted length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 5,
+      "flags": [
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 6,
+      "flags": [
+        {
+          "code": "H24_LENGTH_DISPARITY",
+          "severity": "warn",
+          "message": "Razlika u dužini opcija je velika (najduža 63 vs najkraća 25 karaktera). / Option length disparity.",
+          "min_length": 25,
+          "max_length": 63
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 7,
+      "flags": [
+        {
+          "code": "H24_LENGTH_DISPARITY",
+          "severity": "warn",
+          "message": "Razlika u dužini opcija je velika (najduža 113 vs najkraća 30 karaktera). / Option length disparity.",
+          "min_length": 30,
+          "max_length": 113
+        },
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 2,
+        "info": 0
+      },
+      "score": 90
+    },
+    {
+      "question_id": 8,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 9,
+      "flags": [
+        {
+          "code": "H27_CORRECT_SHORTEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najkraći — obrnut length-clue. Izjednači dužine. / Correct answer is shortest (inverted length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 10,
+      "flags": [
+        {
+          "code": "H24_LENGTH_DISPARITY",
+          "severity": "warn",
+          "message": "Razlika u dužini opcija je velika (najduža 27 vs najkraća 11 karaktera). / Option length disparity.",
+          "min_length": 11,
+          "max_length": 27
+        },
+        {
+          "code": "H27_CORRECT_SHORTEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najkraći — obrnut length-clue. Izjednači dužine. / Correct answer is shortest (inverted length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 2,
+        "info": 0
+      },
+      "score": 90
+    },
+    {
+      "question_id": 11,
+      "flags": [
+        {
+          "code": "H24_LENGTH_DISPARITY",
+          "severity": "warn",
+          "message": "Razlika u dužini opcija je velika (najduža 49 vs najkraća 18 karaktera). / Option length disparity.",
+          "min_length": 18,
+          "max_length": 49
+        },
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 2,
+        "info": 0
+      },
+      "score": 90
+    },
+    {
+      "question_id": 12,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 13,
+      "flags": [
+        {
+          "code": "H24_LENGTH_DISPARITY",
+          "severity": "warn",
+          "message": "Razlika u dužini opcija je velika (najduža 39 vs najkraća 17 karaktera). / Option length disparity.",
+          "min_length": 17,
+          "max_length": 39
+        },
+        {
+          "code": "H27_CORRECT_SHORTEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najkraći — obrnut length-clue. Izjednači dužine. / Correct answer is shortest (inverted length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 2,
+        "info": 0
+      },
+      "score": 90
+    },
+    {
+      "question_id": 14,
+      "flags": [
+        {
+          "code": "H24_LENGTH_DISPARITY",
+          "severity": "warn",
+          "message": "Razlika u dužini opcija je velika (najduža 45 vs najkraća 9 karaktera). / Option length disparity.",
+          "min_length": 9,
+          "max_length": 45
+        },
+        {
+          "code": "H27_CORRECT_SHORTEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najkraći — obrnut length-clue. Izjednači dužine. / Correct answer is shortest (inverted length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 2,
+        "info": 0
+      },
+      "score": 90
+    },
+    {
+      "question_id": 15,
+      "flags": [
+        {
+          "code": "H24_LENGTH_DISPARITY",
+          "severity": "warn",
+          "message": "Razlika u dužini opcija je velika (najduža 35 vs najkraća 17 karaktera). / Option length disparity.",
+          "min_length": 17,
+          "max_length": 35
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 16,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 17,
+      "flags": [
+        {
+          "code": "H27_CORRECT_SHORTEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najkraći — obrnut length-clue. Izjednači dužine. / Correct answer is shortest (inverted length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 18,
+      "flags": [
+        {
+          "code": "H14_UNCLEAR_DIRECTIVE",
+          "severity": "warn",
+          "message": "Stem nema jasnu direktivu (znak pitanja ili imperativ). / Stem lacks a clear directive."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 19,
+      "flags": [
+        {
+          "code": "H27_CORRECT_SHORTEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najkraći — obrnut length-clue. Izjednači dužine. / Correct answer is shortest (inverted length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 20,
+      "flags": [
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 21,
+      "flags": [
+        {
+          "code": "H24_LENGTH_DISPARITY",
+          "severity": "warn",
+          "message": "Razlika u dužini opcija je velika (najduža 99 vs najkraća 32 karaktera). / Option length disparity.",
+          "min_length": 32,
+          "max_length": 99
+        },
+        {
+          "code": "H27_CORRECT_SHORTEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najkraći — obrnut length-clue. Izjednači dužine. / Correct answer is shortest (inverted length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 2,
+        "info": 0
+      },
+      "score": 90
+    },
+    {
+      "question_id": 22,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 23,
+      "flags": [
+        {
+          "code": "H27_CORRECT_SHORTEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najkraći — obrnut length-clue. Izjednači dužine. / Correct answer is shortest (inverted length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 24,
+      "flags": [
+        {
+          "code": "H24_LENGTH_DISPARITY",
+          "severity": "warn",
+          "message": "Razlika u dužini opcija je velika (najduža 39 vs najkraća 16 karaktera). / Option length disparity.",
+          "min_length": 16,
+          "max_length": 39
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 25,
+      "flags": [
+        {
+          "code": "H27_CORRECT_SHORTEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najkraći — obrnut length-clue. Izjednači dužine. / Correct answer is shortest (inverted length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 26,
+      "flags": [
+        {
+          "code": "H24_LENGTH_DISPARITY",
+          "severity": "warn",
+          "message": "Razlika u dužini opcija je velika (najduža 48 vs najkraća 17 karaktera). / Option length disparity.",
+          "min_length": 17,
+          "max_length": 48
+        },
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 2,
+        "info": 0
+      },
+      "score": 90
+    },
+    {
+      "question_id": 27,
+      "flags": [
+        {
+          "code": "H24_LENGTH_DISPARITY",
+          "severity": "warn",
+          "message": "Razlika u dužini opcija je velika (najduža 47 vs najkraća 17 karaktera). / Option length disparity.",
+          "min_length": 17,
+          "max_length": 47
+        },
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 2,
+        "info": 0
+      },
+      "score": 90
+    },
+    {
+      "question_id": 28,
+      "flags": [
+        {
+          "code": "H24_LENGTH_DISPARITY",
+          "severity": "warn",
+          "message": "Razlika u dužini opcija je velika (najduža 56 vs najkraća 27 karaktera). / Option length disparity.",
+          "min_length": 27,
+          "max_length": 56
+        },
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 2,
+        "info": 0
+      },
+      "score": 90
+    },
+    {
+      "question_id": 29,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 30,
+      "flags": [
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 31,
+      "flags": [
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 32,
+      "flags": [
+        {
+          "code": "H24_LENGTH_DISPARITY",
+          "severity": "warn",
+          "message": "Razlika u dužini opcija je velika (najduža 20 vs najkraća 9 karaktera). / Option length disparity.",
+          "min_length": 9,
+          "max_length": 20
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 33,
+      "flags": [
+        {
+          "code": "H24_LENGTH_DISPARITY",
+          "severity": "warn",
+          "message": "Razlika u dužini opcija je velika (najduža 20 vs najkraća 9 karaktera). / Option length disparity.",
+          "min_length": 9,
+          "max_length": 20
+        },
+        {
+          "code": "H27_CORRECT_SHORTEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najkraći — obrnut length-clue. Izjednači dužine. / Correct answer is shortest (inverted length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 2,
+        "info": 0
+      },
+      "score": 90
+    },
+    {
+      "question_id": 34,
+      "flags": [
+        {
+          "code": "H24_LENGTH_DISPARITY",
+          "severity": "warn",
+          "message": "Razlika u dužini opcija je velika (najduža 46 vs najkraća 17 karaktera). / Option length disparity.",
+          "min_length": 17,
+          "max_length": 46
+        },
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 2,
+        "info": 0
+      },
+      "score": 90
+    },
+    {
+      "question_id": 35,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 36,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 37,
+      "flags": [
+        {
+          "code": "H27_CORRECT_SHORTEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najkraći — obrnut length-clue. Izjednači dužine. / Correct answer is shortest (inverted length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 38,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 39,
+      "flags": [
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 40,
+      "flags": [
+        {
+          "code": "H24_LENGTH_DISPARITY",
+          "severity": "warn",
+          "message": "Razlika u dužini opcija je velika (najduža 82 vs najkraća 35 karaktera). / Option length disparity.",
+          "min_length": 35,
+          "max_length": 82
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 41,
+      "flags": [
+        {
+          "code": "H27_CORRECT_SHORTEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najkraći — obrnut length-clue. Izjednači dužine. / Correct answer is shortest (inverted length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 42,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 43,
+      "flags": [
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 44,
+      "flags": [
+        {
+          "code": "H27_CORRECT_SHORTEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najkraći — obrnut length-clue. Izjednači dužine. / Correct answer is shortest (inverted length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 45,
+      "flags": [
+        {
+          "code": "H24_LENGTH_DISPARITY",
+          "severity": "warn",
+          "message": "Razlika u dužini opcija je velika (najduža 100 vs najkraća 41 karaktera). / Option length disparity.",
+          "min_length": 41,
+          "max_length": 100
+        },
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 2,
+        "info": 0
+      },
+      "score": 90
+    },
+    {
+      "question_id": 46,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 47,
+      "flags": [
+        {
+          "code": "H24_LENGTH_DISPARITY",
+          "severity": "warn",
+          "message": "Razlika u dužini opcija je velika (najduža 81 vs najkraća 39 karaktera). / Option length disparity.",
+          "min_length": 39,
+          "max_length": 81
+        },
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 2,
+        "info": 0
+      },
+      "score": 90
+    },
+    {
+      "question_id": 48,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 49,
+      "flags": [
+        {
+          "code": "H24_LENGTH_DISPARITY",
+          "severity": "warn",
+          "message": "Razlika u dužini opcija je velika (najduža 38 vs najkraća 15 karaktera). / Option length disparity.",
+          "min_length": 15,
+          "max_length": 38
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 50,
+      "flags": [
+        {
+          "code": "H24_LENGTH_DISPARITY",
+          "severity": "warn",
+          "message": "Razlika u dužini opcija je velika (najduža 88 vs najkraća 39 karaktera). / Option length disparity.",
+          "min_length": 39,
+          "max_length": 88
+        },
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 2,
+        "info": 0
+      },
+      "score": 90
+    },
+    {
+      "question_id": 51,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 52,
+      "flags": [
+        {
+          "code": "H24_LENGTH_DISPARITY",
+          "severity": "warn",
+          "message": "Razlika u dužini opcija je velika (najduža 73 vs najkraća 27 karaktera). / Option length disparity.",
+          "min_length": 27,
+          "max_length": 73
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 53,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 54,
+      "flags": [
+        {
+          "code": "H24_LENGTH_DISPARITY",
+          "severity": "warn",
+          "message": "Razlika u dužini opcija je velika (najduža 43 vs najkraća 17 karaktera). / Option length disparity.",
+          "min_length": 17,
+          "max_length": 43
+        },
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 2,
+        "info": 0
+      },
+      "score": 90
+    },
+    {
+      "question_id": 55,
+      "flags": [
+        {
+          "code": "H27_CORRECT_SHORTEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najkraći — obrnut length-clue. Izjednači dužine. / Correct answer is shortest (inverted length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 56,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 57,
+      "flags": [
+        {
+          "code": "H24_LENGTH_DISPARITY",
+          "severity": "warn",
+          "message": "Razlika u dužini opcija je velika (najduža 94 vs najkraća 30 karaktera). / Option length disparity.",
+          "min_length": 30,
+          "max_length": 94
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 58,
+      "flags": [
+        {
+          "code": "H27_CORRECT_SHORTEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najkraći — obrnut length-clue. Izjednači dužine. / Correct answer is shortest (inverted length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 59,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 60,
+      "flags": [
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 61,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 62,
+      "flags": [
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 63,
+      "flags": [
+        {
+          "code": "H24_LENGTH_DISPARITY",
+          "severity": "warn",
+          "message": "Razlika u dužini opcija je velika (najduža 102 vs najkraća 40 karaktera). / Option length disparity.",
+          "min_length": 40,
+          "max_length": 102
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 64,
+      "flags": [
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 65,
+      "flags": [
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 66,
+      "flags": [
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 67,
+      "flags": [
+        {
+          "code": "H24_LENGTH_DISPARITY",
+          "severity": "warn",
+          "message": "Razlika u dužini opcija je velika (najduža 97 vs najkraća 40 karaktera). / Option length disparity.",
+          "min_length": 40,
+          "max_length": 97
+        },
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 2,
+        "info": 0
+      },
+      "score": 90
+    },
+    {
+      "question_id": 68,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 69,
+      "flags": [
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 70,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 71,
+      "flags": [
+        {
+          "code": "H24_LENGTH_DISPARITY",
+          "severity": "warn",
+          "message": "Razlika u dužini opcija je velika (najduža 159 vs najkraća 73 karaktera). / Option length disparity.",
+          "min_length": 73,
+          "max_length": 159
+        },
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 2,
+        "info": 0
+      },
+      "score": 90
+    },
+    {
+      "question_id": 72,
+      "flags": [
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 73,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 74,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 75,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 76,
+      "flags": [
+        {
+          "code": "H24_LENGTH_DISPARITY",
+          "severity": "warn",
+          "message": "Razlika u dužini opcija je velika (najduža 108 vs najkraća 41 karaktera). / Option length disparity.",
+          "min_length": 41,
+          "max_length": 108
+        },
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 2,
+        "info": 0
+      },
+      "score": 90
+    },
+    {
+      "question_id": 77,
+      "flags": [
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 78,
+      "flags": [
+        {
+          "code": "H27_CORRECT_SHORTEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najkraći — obrnut length-clue. Izjednači dužine. / Correct answer is shortest (inverted length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 79,
+      "flags": [
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 80,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 81,
+      "flags": [
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 82,
+      "flags": [
+        {
+          "code": "H24_LENGTH_DISPARITY",
+          "severity": "warn",
+          "message": "Razlika u dužini opcija je velika (najduža 24 vs najkraća 7 karaktera). / Option length disparity.",
+          "min_length": 7,
+          "max_length": 24
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 83,
+      "flags": [
+        {
+          "code": "H24_LENGTH_DISPARITY",
+          "severity": "warn",
+          "message": "Razlika u dužini opcija je velika (najduža 46 vs najkraća 14 karaktera). / Option length disparity.",
+          "min_length": 14,
+          "max_length": 46
+        },
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 2,
+        "info": 0
+      },
+      "score": 90
+    },
+    {
+      "question_id": 84,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 85,
+      "flags": [
+        {
+          "code": "H27_CORRECT_SHORTEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najkraći — obrnut length-clue. Izjednači dužine. / Correct answer is shortest (inverted length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 86,
+      "flags": [
+        {
+          "code": "H27_CORRECT_SHORTEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najkraći — obrnut length-clue. Izjednači dužine. / Correct answer is shortest (inverted length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 87,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 88,
+      "flags": [
+        {
+          "code": "H27_CORRECT_SHORTEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najkraći — obrnut length-clue. Izjednači dužine. / Correct answer is shortest (inverted length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 89,
+      "flags": [
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 90,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 91,
+      "flags": [
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 92,
+      "flags": [
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 93,
+      "flags": [
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 94,
+      "flags": [
+        {
+          "code": "H27_CORRECT_SHORTEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najkraći — obrnut length-clue. Izjednači dužine. / Correct answer is shortest (inverted length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 95,
+      "flags": [
+        {
+          "code": "H24_LENGTH_DISPARITY",
+          "severity": "warn",
+          "message": "Razlika u dužini opcija je velika (najduža 38 vs najkraća 16 karaktera). / Option length disparity.",
+          "min_length": 16,
+          "max_length": 38
+        },
+        {
+          "code": "H27_CORRECT_SHORTEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najkraći — obrnut length-clue. Izjednači dužine. / Correct answer is shortest (inverted length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 2,
+        "info": 0
+      },
+      "score": 90
+    },
+    {
+      "question_id": 96,
+      "flags": [
+        {
+          "code": "H24_LENGTH_DISPARITY",
+          "severity": "warn",
+          "message": "Razlika u dužini opcija je velika (najduža 44 vs najkraća 21 karaktera). / Option length disparity.",
+          "min_length": 21,
+          "max_length": 44
+        },
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 2,
+        "info": 0
+      },
+      "score": 90
+    },
+    {
+      "question_id": 97,
+      "flags": [
+        {
+          "code": "H24_LENGTH_DISPARITY",
+          "severity": "warn",
+          "message": "Razlika u dužini opcija je velika (najduža 78 vs najkraća 31 karaktera). / Option length disparity.",
+          "min_length": 31,
+          "max_length": 78
+        },
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 2,
+        "info": 0
+      },
+      "score": 90
+    },
+    {
+      "question_id": 98,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 99,
+      "flags": [
+        {
+          "code": "H27_CORRECT_SHORTEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najkraći — obrnut length-clue. Izjednači dužine. / Correct answer is shortest (inverted length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 100,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 101,
+      "flags": [
+        {
+          "code": "H27_CORRECT_SHORTEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najkraći — obrnut length-clue. Izjednači dužine. / Correct answer is shortest (inverted length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 102,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 103,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 104,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 105,
+      "flags": [
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 106,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 107,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 108,
+      "flags": [
+        {
+          "code": "H27_CORRECT_SHORTEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najkraći — obrnut length-clue. Izjednači dužine. / Correct answer is shortest (inverted length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 109,
+      "flags": [
+        {
+          "code": "H27_CORRECT_SHORTEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najkraći — obrnut length-clue. Izjednači dužine. / Correct answer is shortest (inverted length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 110,
+      "flags": [
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 111,
+      "flags": [
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 112,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 113,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 114,
+      "flags": [
+        {
+          "code": "H24_LENGTH_DISPARITY",
+          "severity": "warn",
+          "message": "Razlika u dužini opcija je velika (najduža 71 vs najkraća 28 karaktera). / Option length disparity.",
+          "min_length": 28,
+          "max_length": 71
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 115,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 116,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 117,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 118,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 119,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 120,
+      "flags": [
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 121,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 122,
+      "flags": [
+        {
+          "code": "H27_CORRECT_SHORTEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najkraći — obrnut length-clue. Izjednači dužine. / Correct answer is shortest (inverted length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 123,
+      "flags": [
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 124,
+      "flags": [
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 125,
+      "flags": [
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 126,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 127,
+      "flags": [
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 128,
+      "flags": [
+        {
+          "code": "H27_CORRECT_SHORTEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najkraći — obrnut length-clue. Izjednači dužine. / Correct answer is shortest (inverted length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 129,
+      "flags": [
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 130,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 131,
+      "flags": [
+        {
+          "code": "H27_CORRECT_SHORTEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najkraći — obrnut length-clue. Izjednači dužine. / Correct answer is shortest (inverted length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 132,
+      "flags": [
+        {
+          "code": "H27_CORRECT_SHORTEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najkraći — obrnut length-clue. Izjednači dužine. / Correct answer is shortest (inverted length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 133,
+      "flags": [
+        {
+          "code": "H27_CORRECT_SHORTEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najkraći — obrnut length-clue. Izjednači dužine. / Correct answer is shortest (inverted length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 134,
+      "flags": [
+        {
+          "code": "H27_CORRECT_SHORTEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najkraći — obrnut length-clue. Izjednači dužine. / Correct answer is shortest (inverted length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 135,
+      "flags": [
+        {
+          "code": "H22_OPTION_OVERLAP",
+          "severity": "warn",
+          "message": "Opcije 1 i 2 previše se preklapaju (tekst je gotovo isti). / Options overlap.",
+          "positions": [
+            1,
+            2
+          ]
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 136,
+      "flags": [
+        {
+          "code": "H24_LENGTH_DISPARITY",
+          "severity": "warn",
+          "message": "Razlika u dužini opcija je velika (najduža 38 vs najkraća 16 karaktera). / Option length disparity.",
+          "min_length": 16,
+          "max_length": 38
+        },
+        {
+          "code": "H27_CORRECT_SHORTEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najkraći — obrnut length-clue. Izjednači dužine. / Correct answer is shortest (inverted length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 2,
+        "info": 0
+      },
+      "score": 90
+    },
+    {
+      "question_id": 137,
+      "flags": [
+        {
+          "code": "H27_CORRECT_SHORTEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najkraći — obrnut length-clue. Izjednači dužine. / Correct answer is shortest (inverted length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 138,
+      "flags": [
+        {
+          "code": "H27_CORRECT_SHORTEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najkraći — obrnut length-clue. Izjednači dužine. / Correct answer is shortest (inverted length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 139,
+      "flags": [
+        {
+          "code": "H27_CORRECT_SHORTEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najkraći — obrnut length-clue. Izjednači dužine. / Correct answer is shortest (inverted length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 140,
+      "flags": [
+        {
+          "code": "H27_CORRECT_SHORTEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najkraći — obrnut length-clue. Izjednači dužine. / Correct answer is shortest (inverted length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 141,
+      "flags": [
+        {
+          "code": "H24_LENGTH_DISPARITY",
+          "severity": "warn",
+          "message": "Razlika u dužini opcija je velika (najduža 79 vs najkraća 29 karaktera). / Option length disparity.",
+          "min_length": 29,
+          "max_length": 79
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 142,
+      "flags": [
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 143,
+      "flags": [
+        {
+          "code": "H24_LENGTH_DISPARITY",
+          "severity": "warn",
+          "message": "Razlika u dužini opcija je velika (najduža 27 vs najkraća 12 karaktera). / Option length disparity.",
+          "min_length": 12,
+          "max_length": 27
+        },
+        {
+          "code": "H27_CORRECT_SHORTEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najkraći — obrnut length-clue. Izjednači dužine. / Correct answer is shortest (inverted length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 2,
+        "info": 0
+      },
+      "score": 90
+    },
+    {
+      "question_id": 144,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 145,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 146,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 147,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 148,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 149,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 150,
+      "flags": [
+        {
+          "code": "H24_LENGTH_DISPARITY",
+          "severity": "warn",
+          "message": "Razlika u dužini opcija je velika (najduža 44 vs najkraća 21 karaktera). / Option length disparity.",
+          "min_length": 21,
+          "max_length": 44
+        },
+        {
+          "code": "H27_CORRECT_SHORTEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najkraći — obrnut length-clue. Izjednači dužine. / Correct answer is shortest (inverted length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 2,
+        "info": 0
+      },
+      "score": 90
+    },
+    {
+      "question_id": 151,
+      "flags": [
+        {
+          "code": "H24_LENGTH_DISPARITY",
+          "severity": "warn",
+          "message": "Razlika u dužini opcija je velika (najduža 101 vs najkraća 25 karaktera). / Option length disparity.",
+          "min_length": 25,
+          "max_length": 101
+        },
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 2,
+        "info": 0
+      },
+      "score": 90
+    },
+    {
+      "question_id": 152,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 153,
+      "flags": [
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 154,
+      "flags": [
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 155,
+      "flags": [
+        {
+          "code": "H24_LENGTH_DISPARITY",
+          "severity": "warn",
+          "message": "Razlika u dužini opcija je velika (najduža 12 vs najkraća 4 karaktera). / Option length disparity.",
+          "min_length": 4,
+          "max_length": 12
+        },
+        {
+          "code": "H27_CORRECT_SHORTEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najkraći — obrnut length-clue. Izjednači dužine. / Correct answer is shortest (inverted length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 2,
+        "info": 0
+      },
+      "score": 90
+    },
+    {
+      "question_id": 156,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 157,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 158,
+      "flags": [
+        {
+          "code": "H27_CORRECT_SHORTEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najkraći — obrnut length-clue. Izjednači dužine. / Correct answer is shortest (inverted length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 159,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 160,
+      "flags": [
+        {
+          "code": "H24_LENGTH_DISPARITY",
+          "severity": "warn",
+          "message": "Razlika u dužini opcija je velika (najduža 86 vs najkraća 37 karaktera). / Option length disparity.",
+          "min_length": 37,
+          "max_length": 86
+        },
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 2,
+        "info": 0
+      },
+      "score": 90
+    },
+    {
+      "question_id": 161,
+      "flags": [
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 162,
+      "flags": [
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 163,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 164,
+      "flags": [
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 165,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 166,
+      "flags": [
+        {
+          "code": "H24_LENGTH_DISPARITY",
+          "severity": "warn",
+          "message": "Razlika u dužini opcija je velika (najduža 65 vs najkraća 32 karaktera). / Option length disparity.",
+          "min_length": 32,
+          "max_length": 65
+        },
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 2,
+        "info": 0
+      },
+      "score": 90
+    },
+    {
+      "question_id": 167,
+      "flags": [
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 168,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 169,
+      "flags": [
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 170,
+      "flags": [
+        {
+          "code": "H27_CORRECT_SHORTEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najkraći — obrnut length-clue. Izjednači dužine. / Correct answer is shortest (inverted length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 171,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 172,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 173,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 174,
+      "flags": [
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 175,
+      "flags": [
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 176,
+      "flags": [
+        {
+          "code": "H27_CORRECT_SHORTEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najkraći — obrnut length-clue. Izjednači dužine. / Correct answer is shortest (inverted length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 177,
+      "flags": [
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 178,
+      "flags": [
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 179,
+      "flags": [
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 180,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 181,
+      "flags": [
+        {
+          "code": "H24_LENGTH_DISPARITY",
+          "severity": "warn",
+          "message": "Razlika u dužini opcija je velika (najduža 48 vs najkraća 23 karaktera). / Option length disparity.",
+          "min_length": 23,
+          "max_length": 48
+        },
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 2,
+        "info": 0
+      },
+      "score": 90
+    },
+    {
+      "question_id": 182,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 183,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 184,
+      "flags": [
+        {
+          "code": "H27_CORRECT_SHORTEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najkraći — obrnut length-clue. Izjednači dužine. / Correct answer is shortest (inverted length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 185,
+      "flags": [
+        {
+          "code": "H27_CORRECT_SHORTEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najkraći — obrnut length-clue. Izjednači dužine. / Correct answer is shortest (inverted length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 186,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 187,
+      "flags": [
+        {
+          "code": "H27_CORRECT_SHORTEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najkraći — obrnut length-clue. Izjednači dužine. / Correct answer is shortest (inverted length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 188,
+      "flags": [
+        {
+          "code": "H27_CORRECT_LONGEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najduži — klasičan length-clue. Izjednači dužine. / Correct answer is longest (length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    },
+    {
+      "question_id": 189,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 190,
+      "flags": [
+        {
+          "code": "H22_OPTION_OVERLAP",
+          "severity": "warn",
+          "message": "Opcije 0 i 2 previše se preklapaju (tekst je gotovo isti). / Options overlap.",
+          "positions": [
+            0,
+            2
+          ]
+        },
+        {
+          "code": "H24_LENGTH_DISPARITY",
+          "severity": "warn",
+          "message": "Razlika u dužini opcija je velika (najduža 186 vs najkraća 84 karaktera). / Option length disparity.",
+          "min_length": 84,
+          "max_length": 186
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 2,
+        "info": 0
+      },
+      "score": 90
+    },
+    {
+      "question_id": 191,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 192,
+      "flags": [
+        {
+          "code": "H24_LENGTH_DISPARITY",
+          "severity": "warn",
+          "message": "Razlika u dužini opcija je velika (najduža 30 vs najkraća 12 karaktera). / Option length disparity.",
+          "min_length": 12,
+          "max_length": 30
+        },
+        {
+          "code": "H27_CORRECT_SHORTEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najkraći — obrnut length-clue. Izjednači dužine. / Correct answer is shortest (inverted length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 2,
+        "info": 0
+      },
+      "score": 90
+    },
+    {
+      "question_id": 193,
+      "flags": [],
+      "counts": {
+        "error": 0,
+        "warn": 0,
+        "info": 0
+      },
+      "score": 100
+    },
+    {
+      "question_id": 194,
+      "flags": [
+        {
+          "code": "H27_CORRECT_SHORTEST",
+          "severity": "warn",
+          "message": "Tačan odgovor je najkraći — obrnut length-clue. Izjednači dužine. / Correct answer is shortest (inverted length clue)."
+        }
+      ],
+      "counts": {
+        "error": 0,
+        "warn": 1,
+        "info": 0
+      },
+      "score": 95
+    }
+  ]
+}

@@ -1,0 +1,1783 @@
+{
+  "total_questions": 194,
+  "judged_questions": 194,
+  "parse_failures": 0,
+  "agreement_count": 137,
+  "accuracy": 0.706,
+  "cohen_kappa": 0.54,
+  "confusion_matrix": {
+    "unistructural": {
+      "unistructural": 64,
+      "multistructural": 10,
+      "relational": 10,
+      "extended_abstract": 0
+    },
+    "multistructural": {
+      "unistructural": 14,
+      "multistructural": 55,
+      "relational": 3,
+      "extended_abstract": 0
+    },
+    "relational": {
+      "unistructural": 5,
+      "multistructural": 9,
+      "relational": 18,
+      "extended_abstract": 0
+    },
+    "extended_abstract": {
+      "unistructural": 1,
+      "multistructural": 2,
+      "relational": 3,
+      "extended_abstract": 0
+    }
+  },
+  "reports": [
+    {
+      "question_id": 1,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires recalling a single definition or fact about what constitutes an active instance of a program.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 2,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires identifying one specific fact or term related to the operating system's management of application resources.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 3,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires recalling a single definition of an entity that can be assigned and executed on a processor.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 4,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question asks for a single defining characteristic of an activity unit in program execution, which requires recalling one specific fact.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 5,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question asks for the definition of what a process does according to the definition of program code, which requires recalling one fact or term.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 6,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question asks for the definition of a crucial part of an execution process, which aligns with recalling one specific fact or term.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 7,
+      "intended_level": "unistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.9,
+      "reasoning": "The question requires identifying multiple independent components that define a process execution command, without requiring an explanation of their interconnections.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 8,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires recalling a single definition or fact about what preplitanje izvršavanja više procesa means.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 9,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 1.0,
+      "reasoning": "The question asks for the recall of a single basic element, which is a straightforward fact or term.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 10,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question asks for the definition or identification of one element that describes a process state, fitting the criteria for unistructural level.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 11,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question asks for the definition of a process identifier, which requires recalling one fact.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 12,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 1.0,
+      "reasoning": "The question asks for a definition of Upravljački blok procesa (UBP) without requiring any connections or integration with other concepts.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 13,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question asks for a single definition or fact about an element of the process, requiring no connection to other concepts.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 14,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question asks for the definition of an entity that can be assigned and executed on a processor, which requires recalling one specific term or concept.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 15,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 1.0,
+      "reasoning": "The question asks for a definition of an identifier in the context of process attributes, which requires recalling one specific term or fact.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 16,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question asks for the definition of a program counter, which requires recalling one specific fact.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 17,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires recalling a single fact about what pointers to memory blocks indicate.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 18,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires recalling a single fact or definition about what preplitanje izvršavanja procesa accomplishes.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 19,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question asks for a single concept or fact related to OS resource allocation and protection.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 20,
+      "intended_level": "unistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question asks for one of several independent functions of an operating system, without requiring integration or explanation of relationships between these functions.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 21,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question asks for a single requirement of an OS without expecting connections or explanations between concepts.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 22,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question asks for the definition of a single concept related to process execution synchronization.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 23,
+      "intended_level": "unistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question asks for one of the basic functions of an operating system, which involves listing multiple independent components without integrating them into a whole concept.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 24,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 1.0,
+      "reasoning": "The question asks for the definition of what a process needs to do, requiring recall of one fact.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 25,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 1.0,
+      "reasoning": "The question requires recalling a single definition or fact without any need for integration of concepts.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 26,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 1.0,
+      "reasoning": "The question requires recalling a single definition or fact without requiring connections to other concepts.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 27,
+      "intended_level": "unistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires identification of several independent components related to process memory pointers without integrating them into a coherent whole.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 28,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question asks for the definition of 'kontekstni podaci procesa', which can be answered by recalling a single fact or term.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 29,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 1.0,
+      "reasoning": "The question asks for a definition or identification of one concept related to unprocessed requests in the context of status information.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 30,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires recalling a single definition or fact about accounting information of a process.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 31,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires recalling a single fact about the OS's responsibility.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 32,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 1.0,
+      "reasoning": "The question requires recalling a single definition or term.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 33,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 1.0,
+      "reasoning": "The question requires recalling a single term that defines the attribute of a process indicating its current state.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 34,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires recalling a single fact or term without integration of concepts.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 35,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires identifying two separate but independent key facts or components of processes in operating systems, without requiring an explanation of their relationship.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 36,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question asks for two independent facts about resource management by an operating system, without requiring the integration of these concepts.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 37,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires identifying several independent components of a program during execution without explaining their relationships.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 38,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires identification of several independent components without requiring understanding of their interconnections.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 39,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires identifying multiple independent components of OS process management without explaining their interconnections.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 40,
+      "intended_level": "multistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question asks for a single element related to the program code process, which fits the recall of one fact or term.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 41,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question asks for multiple attributes of the control process block without requiring explanation of their relationships.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 42,
+      "intended_level": "multistructural",
+      "classified_level": "unistructural",
+      "confidence": 1.0,
+      "reasoning": "The question requires recalling a single fact about what the upravljački blok procesa contains.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 43,
+      "intended_level": "multistructural",
+      "classified_level": "relational",
+      "confidence": 0.9,
+      "reasoning": "The question requires understanding the interconnection between different processes and their traces in processor behavior.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 44,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires the identification of five separate but independent states of a process, without requiring an explanation of their relationships or integration into a coherent whole.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 45,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires identification of multiple independent components involved in creating a new process, without expecting an explanation of their relationships.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 46,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires identifying several independent factors that can cause the termination of a process, without integrating them into a cohesive explanation.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 47,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires the identification of three separate criteria without explaining their interconnections.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 48,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question asks for three independent key pieces of information without requiring any connection between them.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 49,
+      "intended_level": "multistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires recalling a single attribute or fact related to the process management attributes maintained by an OS.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 50,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question asks for several independent components of the physical representation of a process without requiring an explanation of how they connect.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 51,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires the identification of three independent elements without explaining their relationships.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 52,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.9,
+      "reasoning": "The question requires identification of several independent components necessary for process scheduling without integrating them into a cohesive explanation.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 53,
+      "intended_level": "multistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires recalling a single piece of information about process state and parent process in Linux.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 54,
+      "intended_level": "multistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question asks for the definition or identification of one specific component related to processor mode control.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 55,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires the identification of three independent elements without requiring an explanation of their relationships.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 56,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires identifying two independent control events that can trigger process switching, without requiring an explanation of their interconnections.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 57,
+      "intended_level": "multistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires recalling a single, specific fact about what happens when the maximum allowed CPU time for a process elapses.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 58,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question asks for the identification of three independent components that are updated, without requiring an explanation of their interconnections.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 59,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires identifying three separate and distinct components without explaining their relationships.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 60,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires listing two independent reasons for interprocess communication without integrating them into a broader concept or explaining their relationship.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 61,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires identifying two separate but independent methods of interprocess communication without explaining their relationship.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 62,
+      "intended_level": "relational",
+      "classified_level": "multistructural",
+      "confidence": 0.9,
+      "reasoning": "The question requires listing several independent aspects of process management in operating systems without integrating them into a cohesive explanation.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 63,
+      "intended_level": "relational",
+      "classified_level": "multistructural",
+      "confidence": 0.9,
+      "reasoning": "The question requires identifying several independent facts about process states without integrating them into a coherent whole.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 64,
+      "intended_level": "relational",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question asks for a single condition that causes a process to enter a blocked state, which requires recalling one specific fact.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 65,
+      "intended_level": "relational",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires the identification of several independent facts about resource management and process creation without integrating them into a coherent whole.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 66,
+      "intended_level": "relational",
+      "classified_level": "multistructural",
+      "confidence": 0.9,
+      "reasoning": "The question requires identifying several independent facts about process states and their outcomes without integrating them into a cohesive explanation.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 67,
+      "intended_level": "relational",
+      "classified_level": "relational",
+      "confidence": 0.95,
+      "reasoning": "The question requires understanding the dependency between creating a process and its completion mechanism.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 68,
+      "intended_level": "relational",
+      "classified_level": "relational",
+      "confidence": 0.95,
+      "reasoning": "The question requires understanding the relationship between process creation and completion indicators.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 69,
+      "intended_level": "relational",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires identification of several independent facts related to process execution and its impact on output state without integrating them into a coherent whole.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 70,
+      "intended_level": "relational",
+      "classified_level": "relational",
+      "confidence": 0.9,
+      "reasoning": "The question requires understanding the cause-effect relationship between readiness state and process blocking.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 71,
+      "intended_level": "relational",
+      "classified_level": "relational",
+      "confidence": 0.95,
+      "reasoning": "The question requires understanding the connection between state transitions and their impact on processor status information.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 72,
+      "intended_level": "relational",
+      "classified_level": "relational",
+      "confidence": 0.9,
+      "reasoning": "The question requires understanding the relationship between programming code/instructions and inter-process communication.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 73,
+      "intended_level": "relational",
+      "classified_level": "relational",
+      "confidence": 0.95,
+      "reasoning": "The question requires understanding the relationship between control structures and execution modes to explain how they jointly manage resource access.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 74,
+      "intended_level": "relational",
+      "classified_level": "relational",
+      "confidence": 0.95,
+      "reasoning": "The question requires understanding the relationship between independent and interdependent processes.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 75,
+      "intended_level": "relational",
+      "classified_level": "multistructural",
+      "confidence": 0.9,
+      "reasoning": "The question requires identifying several independent facts about process execution modes without integrating them into a cohesive explanation.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 76,
+      "intended_level": "relational",
+      "classified_level": "relational",
+      "confidence": 0.95,
+      "reasoning": "The question requires understanding the relationship between execution mode changes and their effect on the kernel mode, indicating a relational level of cognitive demand.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 77,
+      "intended_level": "relational",
+      "classified_level": "relational",
+      "confidence": 0.95,
+      "reasoning": "The question requires understanding the interdependence and communication between processes, indicating a relational level of cognitive demand.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 78,
+      "intended_level": "relational",
+      "classified_level": "relational",
+      "confidence": 0.9,
+      "reasoning": "The question requires understanding the relationship between memory sharing and inter-process communication.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 79,
+      "intended_level": "relational",
+      "classified_level": "relational",
+      "confidence": 0.95,
+      "reasoning": "The question requires understanding the relationship between interprocess communication and computational speed-up, indicating a relational level of cognitive demand.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 80,
+      "intended_level": "extended_abstract",
+      "classified_level": "relational",
+      "confidence": 0.95,
+      "reasoning": "The question requires understanding the relationship between program instructions and inter-process communication, indicating a relational level of cognitive demand.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 81,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question asks for a definition of a process as an execution unit, which requires recalling one specific fact.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 82,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question asks for the identification of a single process, requiring recall of one term or fact.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 83,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question asks for the definition of a term 'nit' in the context of multithreaded processing, which requires recalling one fact.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 84,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 1.0,
+      "reasoning": "The question requires recalling a single definition or fact about what an object of class thread represents in C++11.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 85,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 1.0,
+      "reasoning": "The question requires recalling the definition of a single term 'funkcija koju nit izvršava' (function that a thread executes), which is answered by selecting one option.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 86,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 1.0,
+      "reasoning": "The question asks for the single correct definition of the entry point according to the C++11 standard.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 87,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires recalling a single method name from memory without understanding its relationship to other concepts.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 88,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires recalling a single definition or fact about what the thread class object represents.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 89,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires recalling a single fact or definition.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 90,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question asks for the definition of an object of class thread, which requires recalling a single fact or term.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 91,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires recalling a single fact about what happens when an instance of the thread class is created.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 92,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires recalling the definition of a specific method, join(), which fits the unistructural level.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 93,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires recalling a single fact about the join() method of the thread class.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 94,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 1.0,
+      "reasoning": "The question requires recalling a single fact about the parameter of a thread constructor.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 95,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 1.0,
+      "reasoning": "The question requires recalling a single fact about the entry point of a C++ program.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 96,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires recalling a single fact about the join() method of the thread class.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 97,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires recalling a single definition or fact about the detach() method of the thread class.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 98,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question asks for the recall of a single, specific fact related to parameters used by the thread constructor.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 99,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires the identification of two independent functions of an operating system, without integrating them into a cohesive explanation or application.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 100,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires the identification of two independent phases without explaining their connection or integration.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 101,
+      "intended_level": "multistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question asks for a definition or one relevant fact about threads in the context of multithreading.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 102,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 1.0,
+      "reasoning": "The question requires identifying three independent components for creating a new thread in C++11 without explaining their interconnections.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 103,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires identifying three separate facts about threads in C++11 without integrating them into a larger concept.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 104,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires identifying several independent characteristics of the join() method without integrating them into a coherent whole.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 105,
+      "intended_level": "multistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.9,
+      "reasoning": "The question requires recalling a single fact about the join() method of a thread.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 106,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires identification of two independent parameters without explaining their relationship or integration.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 107,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires identifying two independent factors that can improve performance, without explaining their relationships or applying them to a new context.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 108,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires listing two independent benefits of multi-core processing without explaining how they connect.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 109,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question asks for listing three benefits of multi-threaded processing without requiring an explanation of how they interconnect.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 110,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires the identification of multiple operating systems that support a specific processing model, without requiring explanation of connections or application to new situations.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 111,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires the identification of several independent components without requiring an explanation of their relationships or integration.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 112,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.9,
+      "reasoning": "The question requires identification of several independent elements without integration into a cohesive concept.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 113,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires identification of four independent components without integrating them into a coherent whole.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 114,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question asks for several independent characteristics of a multithreaded process model, without requiring integration or explanation of relationships between them.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 115,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires the identification of three separate but independent states, without expecting an explanation of their relationships.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 116,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires the identification of three independent states during program execution without integrating them into a cohesive explanation or application.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 117,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires listing two independent facts about thread synchronization without integrating them into a cohesive explanation.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 118,
+      "intended_level": "relational",
+      "classified_level": "relational",
+      "confidence": 0.9,
+      "reasoning": "The question requires understanding the connection between the join() method and thread synchronization, implying a causal or dependency relationship.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 119,
+      "intended_level": "relational",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires recalling a single method to create a new thread in C++11 without integrating multiple concepts.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 120,
+      "intended_level": "relational",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires recalling a single fact about the join() method's functionality.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 121,
+      "intended_level": "relational",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires recalling a single fact about creating a new thread when an object of the Thread class is instantiated.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 122,
+      "intended_level": "relational",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires recalling a single fact about the function of join() method.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 123,
+      "intended_level": "relational",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires identifying several independent facts about the join() method without integrating them into a cohesive explanation.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 124,
+      "intended_level": "relational",
+      "classified_level": "relational",
+      "confidence": 0.9,
+      "reasoning": "The question requires understanding the relationship between multi-threaded processing and thread blocking to explain how one affects the other.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 125,
+      "intended_level": "relational",
+      "classified_level": "relational",
+      "confidence": 0.95,
+      "reasoning": "The question requires understanding the relationship between two methods and their effects on thread execution.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 126,
+      "intended_level": "relational",
+      "classified_level": "relational",
+      "confidence": 0.9,
+      "reasoning": "The question requires understanding the relationship between performance improvement through multi-threaded processing and its economic impact.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 127,
+      "intended_level": "relational",
+      "classified_level": "relational",
+      "confidence": 0.9,
+      "reasoning": "The question requires understanding the relationship between multithreaded processing and background task execution in C++11.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 128,
+      "intended_level": "relational",
+      "classified_level": "relational",
+      "confidence": 0.9,
+      "reasoning": "The question requires understanding the relationship between asynchronous processing and resource sharing among threads.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 129,
+      "intended_level": "relational",
+      "classified_level": "multistructural",
+      "confidence": 0.9,
+      "reasoning": "The question requires identifying several independent facts about processes and threads without integrating them into a coherent whole.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 130,
+      "intended_level": "relational",
+      "classified_level": "relational",
+      "confidence": 0.95,
+      "reasoning": "The question requires understanding the connection between background processes and thread scheduling within a process.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 131,
+      "intended_level": "extended_abstract",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires identifying several independent components of the join() method's behavior without integrating them into a cohesive explanation.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 132,
+      "intended_level": "extended_abstract",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires identifying several independent facts about thread methods without integrating them into a cohesive explanation.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 133,
+      "intended_level": "extended_abstract",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question asks for a definition or recall of one specific fact about the join() method in C++11, without requiring integration with other concepts.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 134,
+      "intended_level": "extended_abstract",
+      "classified_level": "relational",
+      "confidence": 0.95,
+      "reasoning": "The question requires understanding the relationship between thread synchronization and program flow control.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 135,
+      "intended_level": "extended_abstract",
+      "classified_level": "relational",
+      "confidence": 0.95,
+      "reasoning": "The question requires explaining the relationship and differences between two methods, join() and detach(), which involves understanding their dependencies and structural relationships.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 136,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.9,
+      "reasoning": "The question asks for identification of one aspect related to managing multiple processes without requiring explanation or connection between concepts.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 137,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question asks for a single important aspect without requiring connections to other concepts.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 138,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires the identification of one problem related to competitiveness without requiring connections or integration with other concepts.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 139,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question asks for a single important aspect without requiring connection to other concepts.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 140,
+      "intended_level": "unistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.9,
+      "reasoning": "The question requires identification of one reason for concurrency issues from multiple independent options without explaining connections between concepts.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 141,
+      "intended_level": "unistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires identification of several independent aspects related to concurrency in user applications.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 142,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.9,
+      "reasoning": "The question asks for a single fact about where competitiveness is observed in an operating system.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 143,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires recalling a single fact about the order of execution when two processes affect the same global variable.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 144,
+      "intended_level": "unistructural",
+      "classified_level": "relational",
+      "confidence": 0.95,
+      "reasoning": "The question requires understanding the relationship between different processes and concurrency, indicating a relational level of cognitive demand.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 145,
+      "intended_level": "unistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires identifying several independent characteristics of multi-application processes without requiring an explanation of their connections.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 146,
+      "intended_level": "unistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires the identification of several independent facts about shared global resources without integrating them into a coherent whole.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 147,
+      "intended_level": "unistructural",
+      "classified_level": "relational",
+      "confidence": 0.9,
+      "reasoning": "The question requires understanding the cause-effect relationship between concurrent processes accessing a shared variable.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 148,
+      "intended_level": "unistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.9,
+      "reasoning": "The question asks about several potential outcomes related to resource management in processes, requiring the identification of multiple independent facts without integration.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 149,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question asks for a definition or identification of one specific aspect related to detecting errors, fitting the recall of a single fact or term.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 150,
+      "intended_level": "unistructural",
+      "classified_level": "relational",
+      "confidence": 0.95,
+      "reasoning": "The question requires understanding the relationship between concurrent processes and their impact on shared global variables.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 151,
+      "intended_level": "unistructural",
+      "classified_level": "relational",
+      "confidence": 0.95,
+      "reasoning": "The question requires understanding the relationship between process execution order and results in concurrent processes.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 152,
+      "intended_level": "unistructural",
+      "classified_level": "relational",
+      "confidence": 0.95,
+      "reasoning": "The question requires understanding the dependency and cause-effect relationship between concurrent processes and resource access.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 153,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question asks for the definition of mutual exclusivity, which requires recalling a single concept.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 154,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.9,
+      "reasoning": "The question asks for the definition of a single concept, 'međusobna isključivost', without requiring connections to other concepts.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 155,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires the recall of a single fact or term without requiring connections to other concepts.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 156,
+      "intended_level": "unistructural",
+      "classified_level": "relational",
+      "confidence": 0.95,
+      "reasoning": "The question requires understanding the dependency and cause-effect relationship between processes and their execution order.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 157,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 1.0,
+      "reasoning": "The question asks for the identification of one specific term or fact without requiring any connections to other concepts.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 158,
+      "intended_level": "unistructural",
+      "classified_level": "relational",
+      "confidence": 0.95,
+      "reasoning": "The question requires understanding the dependency between a program's result and its execution scenario, indicating an explanation of how concepts connect.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 159,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 1.0,
+      "reasoning": "The question requires recalling a single fact or term related to the concept of shared resources in harmful interference.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 160,
+      "intended_level": "unistructural",
+      "classified_level": "relational",
+      "confidence": 0.9,
+      "reasoning": "The question requires understanding the relationship between program execution order and process preemption to determine the outcome.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 161,
+      "intended_level": "unistructural",
+      "classified_level": "relational",
+      "confidence": 0.95,
+      "reasoning": "The question requires understanding the dependency between instruction execution order and program result, indicating relational thinking.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 162,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question asks for a single characteristic of deterministic process behavior without requiring integration or application.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 163,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 1.0,
+      "reasoning": "The question asks for the definition of a single concept, 'nadmetanja', which fits the unistructural level.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 164,
+      "intended_level": "unistructural",
+      "classified_level": "relational",
+      "confidence": 0.95,
+      "reasoning": "The question requires understanding the dependency between instruction execution order and program result, indicating a relational level of cognitive demand.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 165,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question asks for a single correct term to address resource contention, requiring recall of one fact.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 166,
+      "intended_level": "unistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires identifying several independent facts about resource access and process interaction without requiring an explanation of their interconnections.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 167,
+      "intended_level": "unistructural",
+      "classified_level": "unistructural",
+      "confidence": 1.0,
+      "reasoning": "The question asks for the definition of mutual exclusivity, which requires recalling a single fact or term.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 168,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires identifying three independent problems without integrating them into a coherent whole.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 169,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.9,
+      "reasoning": "The question requires identifying two independent elements without explaining their relationship.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 170,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires identifying three independent components of competitiveness without integrating them into a coherent whole.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 171,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires identifying two independent aspects of process competitiveness without integrating them into a coherent whole.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 172,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires identifying several independent elements of competitiveness without integrating them into a coherent whole.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 173,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question asks for three independent facts related to competitiveness in multiprogrammed systems without requiring an explanation of their connections.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 174,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question asks for two independent characteristics of errors in a competitive environment without requiring an explanation of their connection.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 175,
+      "intended_level": "multistructural",
+      "classified_level": "relational",
+      "confidence": 0.95,
+      "reasoning": "The question requires understanding the relationship between processes and their mutual exclusivity.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 176,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question asks for two independent elements of a data race scenario without requiring an explanation of their relationship.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 177,
+      "intended_level": "multistructural",
+      "classified_level": "relational",
+      "confidence": 0.95,
+      "reasoning": "The question requires understanding the dependency between processes and their execution order, indicating a relational connection.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 178,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires identification of multiple independent characteristics without integrating them into a cohesive explanation.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 179,
+      "intended_level": "multistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.9,
+      "reasoning": "The question requires recalling the definition of independent processes that use shared resources.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 180,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires the identification of several independent facts about process behavior without integrating them into a cohesive explanation.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 181,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires identifying two independent elements of busy waiting without explaining their relationship.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 182,
+      "intended_level": "multistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.9,
+      "reasoning": "The question requires recalling a single fact or definition about what happens when a process cannot enter a critical section.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 183,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires the identification of two separate processes, which are independent facts without integration.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 184,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.9,
+      "reasoning": "The question requires identifying multiple independent facts related to process verification and resource availability without requiring the explanation of their connections.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 185,
+      "intended_level": "multistructural",
+      "classified_level": "unistructural",
+      "confidence": 1.0,
+      "reasoning": "The question requires recalling a specific definition or fact without connecting it to other concepts.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 186,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires identifying two independent components without explaining their relationship.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 187,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question asks for two independent situations without requiring an explanation of their connection.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 188,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question asks for two independent types of problems without requiring an explanation of their relationship or application to a new situation.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 189,
+      "intended_level": "multistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires recalling the definition of one concept, mutual exclusion, which is indicated by the correct answer focusing on a single aspect.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 190,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires identifying three separate conditions for mutual exclusion without integrating them into a cohesive explanation or applying them to a new situation.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 191,
+      "intended_level": "multistructural",
+      "classified_level": "unistructural",
+      "confidence": 1.0,
+      "reasoning": "The question requires recalling two specific functions of a semaphore without integrating or explaining relationships between concepts.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 192,
+      "intended_level": "multistructural",
+      "classified_level": "unistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires recalling a specific pair of functions associated with semaphores, without requiring any integration or explanation.",
+      "agrees": false,
+      "parse_ok": true
+    },
+    {
+      "question_id": 193,
+      "intended_level": "multistructural",
+      "classified_level": "multistructural",
+      "confidence": 0.95,
+      "reasoning": "The question requires recalling and listing two distinct types of semaphores without explaining their connections.",
+      "agrees": true,
+      "parse_ok": true
+    },
+    {
+      "question_id": 194,
+      "intended_level": "relational",
+      "classified_level": "multistructural",
+      "confidence": 0.9,
+      "reasoning": "The question requires identifying several independent aspects of concurrency and synchronization without integrating them into a coherent whole.",
+      "agrees": false,
+      "parse_ok": true
+    }
+  ],
+  "judge_model": "qwen2.5:14b-instruct-q4_K_M"
+}

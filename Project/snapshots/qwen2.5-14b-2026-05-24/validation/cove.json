@@ -1,0 +1,4841 @@
+{
+  "total_questions": 194,
+  "supported": 28,
+  "underdetermined": 165,
+  "contradicted": 1,
+  "needs_review": 166,
+  "support_rate": 14.4,
+  "reports": [
+    {
+      "question_id": 1,
+      "verdict": "SUPPORTED",
+      "confidence": 1.0,
+      "reasoning": "Verification evidence confirms that a process is an active instance of a program running on a computer.",
+      "verification_trace": [
+        {
+          "question": "Što označava pojam 'aktivna instanca programa' u operativnom sustavu?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kakvo je odnos između procesa i aktivne instance programa?",
+          "answer": "Proces je isto što i aktivna instanca programa koja se izvodi na računaru.",
+          "supported_by_source": true
+        },
+        {
+          "question": "U kakvom kontekstu se obično koristi termin 'proces' kada se razmatra rad programa?",
+          "answer": "aktivna instanca programa koji se izvodi na računaru",
+          "supported_by_source": true
+        }
+      ],
+      "needs_review": false,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 2,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.95,
+      "reasoning": "Evidence does not provide any information to support or contradict the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Koja je funkcija operativnog sistema u odnosu na aplikacije?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako resursi procesora uticuju na dostupnost razlicitih aplikacija?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Šta potrebno mora biti dostupno OS-u kako bi podržao više različitih aplikacija?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 3,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.85,
+      "reasoning": "Verification evidence does not provide any relevant information to support or contradict the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Šta predstavlja entitet koji se može dodeliti i izvršavati na procesoru?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako se razlikuje program u izvršavanju od drugih vrsta entiteta na računalu?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Može li se programski kod, bez njegovog izvršavanja, smatrati entitetom koji se dodeljuje i izvršava na procesoru?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 4,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.75,
+      "reasoning": "The verification evidence does not provide enough context to uniquely defend the candidate correct answer, as it only partially supports the inclusion of 'naredbe za izvršavanje' without confirming exclusivity.",
+      "verification_trace": [
+        {
+          "question": "Koje se elemente uključuju u jedinicu aktivnosti kada program izvršava naredbe?",
+          "answer": "naredbe za izvršavanje, tekuće stanje i dodeljeni skup sistemskih resursa",
+          "supported_by_source": true
+        },
+        {
+          "question": "Šta precizno označava postupak izvršavanja naredbi tijekom programskog izvođenja?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako se definira 'jedinica aktivnosti' u kontekstu izvršavanja programa?",
+          "answer": "Jedinica aktivnosti koju karakterišu naredbe za izvršavanje, tekuće stanje i dodeljeni skup sistemskih resursa",
+          "supported_by_source": true
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 5,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Verification evidence does not provide any information that supports or contradicts the candidate correct answer.",
+      "verification_trace": [
+        {
+          "question": "Šta čini osnovni deo funkcije programskog koda?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako se naziva proces u kom računalo izvršava naredbe programskog koda?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Šta treba da uradi programski kod kako bi bio uspešno izvršen?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 6,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.75,
+      "reasoning": "A3 indicates that the definition of 'skup podataka' is not provided in the source, making it unclear if C) is uniquely correct.",
+      "verification_trace": [
+        {
+          "question": "Koji se deo elementa procesa odnosi na skup podataka nad kojima se posao izvršava?",
+          "answer": "Skup podataka nad kojima se posao izvršava",
+          "supported_by_source": true
+        },
+        {
+          "question": "Šta predstavlja osnovni skup informacija za rad u procesu?",
+          "answer": "Skup podataka nad kojima se posao izvršava",
+          "supported_by_source": true
+        },
+        {
+          "question": "Kako je definisan 'skup podataka' u kontekstu ovog elementa procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 7,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.7,
+      "reasoning": "The verification evidence does not provide enough details about the current state related to execution commands, making it ambiguous whether 'tekuće stanje' is uniquely defensible.",
+      "verification_trace": [
+        {
+          "question": "Šta je jedinica aktivnosti koju karakterišu naredbe za izvršavanje?",
+          "answer": "naredbe za izvršavanje, tekuće stanje i dodeljeni skup sistemskih resursa",
+          "supported_by_source": true
+        },
+        {
+          "question": "Kako se opisuje tekuće stanje vezano za naredbe za izvršavanje?",
+          "answer": "Tekuće stanje je karakteristika jedinice aktivnosti koja se spaja sa naredbama za izvršavanje, ali konkretni detalji o tome kako se opisuje tekuće stanje vezano za naredbe za izvršavanje u izvoru nisu dostupni.",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kakve sistemsko resurse dobija proces na osnovu naredbi za izvršavanje?",
+          "answer": "dodeljeni skup sistemskih resursa",
+          "supported_by_source": true
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 8,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.2,
+      "reasoning": "Verification evidence does not provide any relevant information to support or contradict the candidate correct answer.",
+      "verification_trace": [
+        {
+          "question": "Šta se događa tijekom preplitanja izvršavanja?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako se obavlja pjenje kontrole između procesa u multitaksingu?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "U kakvom okviru se prenos kontrole između procesa vrši?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 9,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.7,
+      "reasoning": "Evidence is incomplete as it lacks direct support for the role of programski kod without contradictions or clarifications.",
+      "verification_trace": [
+        {
+          "question": "Koje su osnovni elementi procesa u softverskom inzenjeringu?",
+          "answer": "Programski kod, šta proces treba da uradi",
+          "supported_by_source": true
+        },
+        {
+          "question": "Kako se programski kod ponaša kao osnovni element procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Šta je značaj programskog koda u razvoju softvera?",
+          "answer": "šta proces treba da uradi",
+          "supported_by_source": true
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 10,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.75,
+      "reasoning": "The verification evidence does not provide specific details about what attributes are or how they uniquely describe the process state, leaving room for ambiguity.",
+      "verification_trace": [
+        {
+          "question": "Koje su osnovni elementi koji opisuju stanje procesa u računalnom okviru?",
+          "answer": "Atributi koji opisuju stanje procesa",
+          "supported_by_source": true
+        },
+        {
+          "question": "Cemu služe atributi procesa u kontekstu operativnog sustava?",
+          "answer": "Atributi koji opisuju stanje procesa",
+          "supported_by_source": true
+        },
+        {
+          "question": "Koji specifični atributi pokrivaju stanje i kontrolu procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 11,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.9,
+      "reasoning": "Verification evidence does not provide any information relevant to the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Što predstavlja jedinstveni identifikator procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako se određuje i dodeljuje identifikatori procesima?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Koji cilj ima jedinstveni identifikator procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 12,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.75,
+      "reasoning": "The verification evidence is inconsistent due to a translation issue and does not fully support or contradict the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Kakve vrste informacija o procesu čini Upravljački blok procesa?",
+          "answer": "informacije koje OM koristi za upravljanje procesom",
+          "supported_by_source": true
+        },
+        {
+          "question": "Šta su ključne funkcije koje OS izvodi koristeći informacije u UBP-u?",
+          "answer": "UBP sadrži informacije koje OM koristi za upravljanje procesom i omogućava multiprogramiranje.",
+          "supported_by_source": true
+        },
+        {
+          "question": "Koji podaci se smješta u UBP i kako se ti podaci koriste za upravljanje radom procesa?",
+          "answer": "UBP sadrži informacije koje OM koristi za upravljanje procesom i omogućava multiprogramiranje. (Translation: UBP contains information that the OS uses to manage processes and enables multitasking.)",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 13,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.9,
+      "reasoning": "Verification evidence does not provide sufficient information to confirm if 'programski kod' (program code) uniquely defines what a process should do.",
+      "verification_trace": [
+        {
+          "question": "Koji element procesa definiše što treba da uradi?",
+          "answer": "šta proces treba da uradi",
+          "supported_by_source": true
+        },
+        {
+          "question": "U kontekstu procesa, šta predstavlja programski kod?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kojem delu procesa odgovara definicija njenih ciljeva?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 14,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.95,
+      "reasoning": "Verification evidence does not provide any relevant information to support or contradict the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Šta je definicija entiteta u kontekstu računalne arhitekture?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Koji entitet se može dodeliti i izvršavati direktno na procesoru?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kakve specifične karakteristike treba da ima entitet kako bi mogao biti izvršen u procesoru?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 15,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.9,
+      "reasoning": "Verification evidence does not provide any information supporting or contradicting the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Što znači pojam 'identifikator' kada se koristi u odnosu na proces?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Koji vrste identifikatora postoje za označavanje atributa procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "U kom kontekstu se često koristi numerički identifikator kao označenje specifičnog procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 16,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.85,
+      "reasoning": "Verification evidence lacks specific information to confirm or deny the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Šta predstavlja programski brojač u kontekstu izvršavanja programa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako se svakoj instrukciji povezuje adresa u memoriji?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Šta se događa sa vrednošću programskog brojača nakon čitanja i izvršenja jedne instrukcije?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 17,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Verification evidence does not provide any information to support or contradict the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Šta precizno predstavljaju memorijski blokovi ukaza u procesu?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Koji tip podataka i koda se povezuje sa memorijskim blokovima ukaza?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako su memorija blokova ukaza veze relevantne za izvrsavanje programa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 18,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.2,
+      "reasoning": "The verification evidence does not provide any information relevant to the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Šta predstavlja preplitanje izvršavanja procesa u operativnom sistemu?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako operativni sistem dijeli resurse računara između više procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Zašto je deljenje resursa važno za funkcionalnost višekorisničkih operativnih sistema?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 19,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Verification evidence does not provide sufficient information about the types of resources allocated to processes.",
+      "verification_trace": [
+        {
+          "question": "Kakve vrste resursa dodeljuje OS procesima?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako OS osigurava zaštitu procesa od promena drugih procesa?",
+          "answer": "OS dodeljuje resurse procesima i zaštita dodeljenih resursa od nekontrolisanog pristupa drugih procesa.",
+          "supported_by_source": true
+        },
+        {
+          "question": "Šta se dešava kada jedan proces pokušava pristupiti resursu koji mu je nepridružen?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 20,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.85,
+      "reasoning": "Verification evidence does not provide specific information about the functions of process management in an operating system.",
+      "verification_trace": [
+        {
+          "question": "Kako operativni sistem deli procesorsko vreme između različitih procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Koji mehanizmi koristi operativni sistem za komunikaciju između procesa u sistemu?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Šta je važno za održavanje sigurnosti podataka prilikom deljenja informacija između procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 21,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.9,
+      "reasoning": "Verification evidence does not provide any support for the candidate correct answer.",
+      "verification_trace": [
+        {
+          "question": "Koja je funkcija sinhronizacije između procesa u operativnom sistemu?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Šta se dešava kada OS ne sinhronizuje procese?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Koji mehanizmi OS koristi za sinhronizaciju između procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 22,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.2,
+      "reasoning": "Verification evidence does not provide any specific information about the requirements of OS for process scheduling.",
+      "verification_trace": [
+        {
+          "question": "Što je preplitanje izvršavanja više procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Koje specifične zahteve OS imaju od procesa pri tom postupku?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako se organizovanje resursa u operativnom sistemu realizuje tokom preplitanja izvršavanja?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 23,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.85,
+      "reasoning": "Verification evidence does not provide information supporting or contradicting the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Kakva je jedna od osnovnih funkcija operativnog sistema kada se tiče upravljanja procesima?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Šta znači 'deljenje i razmena informacija' u kontekstu operativnog sistema i procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako operativni sistem omogućava komunikaciju između različitih procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 24,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.95,
+      "reasoning": "The verification evidence does not provide any information about the Šta process, making it impossible to confirm or deny the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Koje aktivnosti sastoje se Šta procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Cemu služi izvršavanje Šta procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Šta je cilj korišćenja Šta procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 25,
+      "verdict": "SUPPORTED",
+      "confidence": 1.0,
+      "reasoning": "The verification evidence directly supports the candidate correct answer without any ambiguity or contradiction.",
+      "verification_trace": [
+        {
+          "question": "Koji se skup podataka koristi za izvršavanje posla?",
+          "answer": "Skup podataka nad kojima se posao izvršava",
+          "supported_by_source": true
+        },
+        {
+          "question": "Možete li me upitati o vrsti i strukti podataka koji se koriste?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Šta opisuje funkciju skupa podataka u kontekstu posla?",
+          "answer": "Skup podataka nad kojima se posao izvršava",
+          "supported_by_source": true
+        }
+      ],
+      "needs_review": false,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 26,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Laknja u verifikaciji zbog nedostatka informacija u izvoru o instrukcijama i adresama.",
+      "verification_trace": [
+        {
+          "question": "Koja je sledeća instrukcija navedena u programskom kodu?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Šta predstavlja adresa u kontekstu programskog koda?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako se određuje adresa sledeće instrukcije tokom izvršavanja programa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 27,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.9,
+      "reasoning": "Verification evidence does not provide any relevant information to support or contradict the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Koje vrste podataka su vezane za proces u memoriji?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako se kod i podaci procesa pohazuju u memoriji?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Cime je pokazivac na memorijski blok vezan za proces obicno zapravo identifikovan?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 28,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Verification evidence is incomplete and lacks direct support for the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Koje tipove podataka sadrže registri vezani za proces?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako se definise 'trenutno stanje' u kontekstu operativnog sistema i procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Koji od registratorskih podataka su relevantni za praćenje životnog ciklusa jedinice procesa?",
+          "answer": "podaci iz registara procesora vezani za trenutno stanje procesa",
+          "supported_by_source": true
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 29,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.85,
+      "reasoning": "Verification evidence does not provide information about the nature of unprocessed requests in the context of U/I status information, making it impossible to confirm or refute the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Što uključuju neobrađeni zahtevi u kontekstu U/I statusne informacije?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Koji su elementi ključni za definiciju neobrađenih zahteva kada se radi o U/I statusnim informacijama?",
+          "answer": "neobrađeni U/I zahtevi",
+          "supported_by_source": true
+        },
+        {
+          "question": "Kako se odnose neobrađeni zahtevi na proces obrađivanja i ažuriranja uređaja?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 30,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.95,
+      "reasoning": "The verification evidence does not provide any relevant information to support or contradict the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Kako se definišu računovodstvene informacije procesa u kontekstu IT?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Šta predstavlja procesorsko vreme i zašto je relevantno za računovodstvo procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Koji su drugi tipovi računovodstvenih informacija procesa pored procesorskog vremena?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 31,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "The evidence does not provide specific information about the responsibilities of the UBP or directly confirm its role in creating and managing resources.",
+      "verification_trace": [
+        {
+          "question": "Koji je deo računara odgovoran za upravljanje resursima i izvršenje naredbi?",
+          "answer": "OS",
+          "supported_by_source": true
+        },
+        {
+          "question": "Šta čini osnovni funkcionalni element upravljanja u procesoru?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako se naziva delovi računara koji su zaduženi za kontrolu i koordinaciju radnih programa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 32,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.85,
+      "reasoning": "Verification evidence does not provide any specific information about what an attribute process identifier is, making it impossible to verify the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Koje se pojava ili element koristi za označavanje atributa procesa u pitanju?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Šta predstavlja identifikator atributa procesa u kontekstu razvoja softvera?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "U literature o bazi podataka i modelovanju procesa, koji koncept odgovara pojam 'identifikator atributa procesa'?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 33,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.2,
+      "reasoning": "Verification evidence lacks relevant information to support or contradict the answer.",
+      "verification_trace": [
+        {
+          "question": "Koja je definicija atributa 'Stanje' u kontekstu operativnog sistema?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "U čemu se razlikuje stanje procesa od drugih njegovih atributa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Šta označava specifično stanje aktivnosti procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 34,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Verification evidence does not provide any information supporting or contradicting the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Što predstavlja prioritet atributa procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako se određuje redosled izvršavanja instrukcija u operativnom sistemu?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Koji od atributa procesa utiče na prioritet resursa koji su korištene tijekom izvršavanja programa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 35,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "A3 is not provided in the source, making it ambiguous whether all key facts about process control blocks are covered.",
+      "verification_trace": [
+        {
+          "question": "Što predstavlja kontrolni blok procesa u operativnom sistemu?",
+          "answer": "Kontrolni blok procesa je del operativnog sistema koji se koristi za upravljanje aktivnom instankom programa.",
+          "supported_by_source": true
+        },
+        {
+          "question": "Kako aktivna instanca programa utiče na izvršavanje programa u operativnom sistemu?",
+          "answer": "Aktivna instanca programa se odnosi na proces koji se trenutno izvodi na računalu. Operativni sistem koristi kontrolne blokove za svaki takav proces kako bi upravljao njegovom aktivnom instancom programa.",
+          "supported_by_source": true
+        },
+        {
+          "question": "Koji su ključni podaci koji se čuvaju u kontrolnom bloku procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 36,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.95,
+      "reasoning": "Verification evidence does not provide any information supporting or contradicting the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Kako operativni sistem upravlja resursima procesora za više aplikacija?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Šta se događa kada jedna aplikacija traži dodatne resurse od procesora u relativno zauzetoj sjeni?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kakav je mehanizam operativnog sistema koji omogućava deljenje vremenskih slicaka procesora između različitih aplikacija?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 37,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.9,
+      "reasoning": "Evidencija nije dovoljno detaljna da potvrdi ili otkazuje odgovor, specifični podaci su nedostajući.",
+      "verification_trace": [
+        {
+          "question": "Šta se podrazumeva kao programski kod u kontekstu izvršavanja?",
+          "answer": "šta proces treba da uradi; može biti deljen između više instanci istog procesa",
+          "supported_by_source": true
+        },
+        {
+          "question": "Koji je skup podataka važan za izvršavanje programa i kako se on organizuje?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako se odnose programski kod i skup podataka tokom izvršavanja programa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 38,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Evidence is incomplete as Q2 and Q3 lack source support, making it unclear if 'programski kod' (program code) is a valid component.",
+      "verification_trace": [
+        {
+          "question": "Koje od sledečih predstavljaju nezavisne komponente u procesu operativnog sistema: programski kod, prioritet ili memorijski pokazivači?",
+          "answer": "prioritet ili memorijski pokazivači",
+          "supported_by_source": true
+        },
+        {
+          "question": "U kontekstu operativnih sistema, kako se definisu i korište memorijski pokazivaČi kao nezavisne komponente procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako prioritet utjeća na raspodjelu vremenskog slanja izmeću različtih procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 39,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.9,
+      "reasoning": "The verification evidence does not provide support for 'deljenje informacija' (sharing information).",
+      "verification_trace": [
+        {
+          "question": "Koja je prva funkcija OS u kontekstu upravljanja procesima?",
+          "answer": "Preplitanje izvršavanja više procesa",
+          "supported_by_source": true
+        },
+        {
+          "question": "Šta znači dodela resursa u okviru operativnog sistema?",
+          "answer": "Dodela resursa procesima i zaštita dodeljenih resursa od nekontrolisanog pristupa drugih procesa",
+          "supported_by_source": true
+        },
+        {
+          "question": "Kako operativni sistem osigurava sinhronizaciju između različitih procesa?",
+          "answer": "Sinhronizacija između procesa",
+          "supported_by_source": true
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 40,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.2,
+      "reasoning": "Verification evidence does not provide any information to support or contradict the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Koji su glavni koraci u procesu korišćenja programskog koda?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako se programski kod deli između različitih članova tima?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Šta opisuje radnje koje programski kod obavlja?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 41,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Evidencija nije potpuna za svaki atribut, posebno 'koriseno vreme', i nema informacija o programskom brojaču i pokazivačima na memorijske blokove.",
+      "verification_trace": [
+        {
+          "question": "Koje su atributi svakog procesa koji se nalaze u upravljačkom bloku procesa?",
+          "answer": "Sadrže ključne informacije o stanju i funkcionisanju procesa, uključujući identifikator, prioritet, programski brojač i pokazivače na memorijske bloko.",
+          "supported_by_source": true
+        },
+        {
+          "question": "Šta predstavljaju identifikator, prioritet i koriseno vreme u kontekstu UBP-a?",
+          "answer": "Identifikator i prioritet predstavljaju ključne informacije o stanju i funkcionisanju procesa, dok koriseno vreme odnosi se na informacije o vremenu korišćenja procesora.",
+          "supported_by_source": true
+        },
+        {
+          "question": "Kako se određuje prioritet procesa u UBP-u?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 42,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Verification evidence does not provide specific details to confirm or refute the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Šta se smatra informacijama o procesu koje su dio upravljačkog bloka?",
+          "answer": "UBP sadrži atribute procesa i omogućava OS za kreiranje, upravljanje i multiprogramiranje. Snima vrednosti registara kada se proces prekine.",
+          "supported_by_source": false
+        },
+        {
+          "question": "Koji registri su snimljeni u upravljačkom bloku procesa i zašto je to važno?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako se snimljene vrednosti registara koriste tijekom izvršavanja procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 43,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.75,
+      "reasoning": "Evidence is insufficient to confirm or refute the candidate answer as it lacks direct support for the concept of 'tragovi različitih procesa' and how they relate to instruction sequences.",
+      "verification_trace": [
+        {
+          "question": "Kakva je priroda tragova različitih procesa u ponašanju procesora?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Šta opisuje isprepleteni prikaz nizova instrukcija u kontekstu ponašanja procesora?",
+          "answer": "Ponašanje procesora može se predstaviti isprepletenim prikazom tragova različitih procesa.",
+          "supported_by_source": true
+        },
+        {
+          "question": "U čemu se izraz 'tragovi različitih procesa' ovdje odnosi na rad procesora?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 44,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Evidencija nije potpuna za potvrditi sve pet osnovnih stanja procesa.",
+      "verification_trace": [
+        {
+          "question": "Koji su osnovni procesi koji se obavlja u operativnom sistemu?",
+          "answer": "izvršavanje, spreman, blokiran (u čekanju), novi i izlaz",
+          "supported_by_source": true
+        },
+        {
+          "question": "Kakva je redosled faza kroz koje prođe svaki novi proces do početka izvršavanja?",
+          "answer": "novi, spreman, blokiran (u čekanju), izvršavanje",
+          "supported_by_source": true
+        },
+        {
+          "question": "Šta se događa sa procesom nakon što se izvršava i pre nego što se process isključi?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 45,
+      "verdict": "SUPPORTED",
+      "confidence": 1.0,
+      "reasoning": "The verification evidence fully supports the creation of data structures and loading process or part into memory as described in the candidate correct answer.",
+      "verification_trace": [
+        {
+          "question": "Koje strukture podataka OS kreira za upravljanje novim procesom?",
+          "answer": "strukture podataka za upravljanje procesom",
+          "supported_by_source": true
+        },
+        {
+          "question": "Koji deo novog procesa OS učitava prvi u radnu memoriju?",
+          "answer": "proces ili deo procesa",
+          "supported_by_source": true
+        },
+        {
+          "question": "Šta se dogada sa podacima o novom procesu prije nego što se proces započne vježbati?",
+          "answer": "Kriše se strukture podataka za upravljanje procesom i učitava u radnu memoriju proces ili deo procesa.",
+          "supported_by_source": true
+        }
+      ],
+      "needs_review": false,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 46,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.2,
+      "reasoning": "Verification evidence does not provide any information supporting or contradicting the candidate correct answer.",
+      "verification_trace": [
+        {
+          "question": "Koja su tri glavna vrste signalova koji mogu prekinuti ili promeniti tok procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Šta se dešava kada korisnik izvrši akciju koja uključuje aktivan proces?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kakva je priroda signala koji dolaze od roditeljskog procesa i kakve su njihove posledice?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 47,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "The candidate answer is incomplete as it only mentions one of the two conditions (U/I operations and waiting for data from another process) that can lead to a blocking state.",
+      "verification_trace": [
+        {
+          "question": "Šta su specifične operacije koje mogu izazvati prelaz procesa u Blokiran stanje?",
+          "answer": "U/I operacije i čekanje na podatke od drugog procesa",
+          "supported_by_source": true
+        },
+        {
+          "question": "Koji tip podataka zahteva jedan proces od drugog može dovesti do blokiranja procesa?",
+          "answer": "podatke",
+          "supported_by_source": true
+        },
+        {
+          "question": "Šta se dešava sa procesom koji čeka za pristup nekom resursu?",
+          "answer": "Proces se blokira i čeka.",
+          "supported_by_source": true
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 48,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.2,
+      "reasoning": "Verification evidence does not provide any information supporting or contradicting the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Koje su tri ključne podatka koje PCB za upravljanje procesima koristi za praćenje stanja procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Što označava identifikator na PCB-u i kakve informacije sadrži?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Gdje se nalazi informacija o lokaciji memorije koju proces trenutno koristi?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 49,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Verification evidence does not provide sufficient information to confirm or refute the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Koje specifične informacije o procesu sadrže stanje i atributi?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Koji od ovih atributa OS koristi za upravljanje aktivnim procesima u vremenu izvršavanja?",
+          "answer": "lokaciju procesa, atribute procesa",
+          "supported_by_source": true
+        },
+        {
+          "question": "Šta omogućavaju atributi procesa tijekom njegovog života ciklusa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 50,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.75,
+      "reasoning": "Evidence for 'informacije o stanju procesora' is confirmed, but details on 'identifikatori procesa' are missing.",
+      "verification_trace": [
+        {
+          "question": "Koje detalje o procesu su uključeni u fizičku reprezentaciju?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Koji od ovih elemenata sadrži informacije o trenutnom stanju procesora?",
+          "answer": "Informacije o stanju procesora",
+          "supported_by_source": true
+        },
+        {
+          "question": "Kako se identifikatori procesa koriste u kontekstu fizičke reprezentacije?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 51,
+      "verdict": "SUPPORTED",
+      "confidence": 1.0,
+      "reasoning": "The verification evidence directly supports the three elements mentioned in the candidate correct answer.",
+      "verification_trace": [
+        {
+          "question": "Koje tri elementa su potrebni za jedinstvenu identifikaciju svakog procesa u sustavu?",
+          "answer": "jedinstven identifikator, identifikator roditeljskog procesa i korisnički identifikator",
+          "supported_by_source": true
+        },
+        {
+          "question": "Koji od ovih elemenata omogućava traženje veza između roditeljskih i dijedičnih procesa?",
+          "answer": "identifikator roditeljskog procesa",
+          "supported_by_source": true
+        },
+        {
+          "question": "Što opisuje korisnički identifikator vezan uz proces?",
+          "answer": "Korisnički identifikator vezan uz proces se nalazi u informacijama o procesu.",
+          "supported_by_source": true
+        }
+      ],
+      "needs_review": false,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 52,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Verification evidence does not provide information about 'stanje procesa'.",
+      "verification_trace": [
+        {
+          "question": "Koja je glavna informacija koja se koristi za određivanje redosleda izvršavanja procesa?",
+          "answer": "prioritet",
+          "supported_by_source": true
+        },
+        {
+          "question": "Što predstavlja prioritet u kontekstu raspoređivanja procesa i zašto je bitno?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kakve dodatne informacije su potrebne za preciznije rasporedjivanje procesa?",
+          "answer": "dodatne informacije za raspoređivanje",
+          "supported_by_source": true
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 53,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.85,
+      "reasoning": "Verification evidence lacks specific information to support or contradict the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Koja komanda u Linux-u omogućava pregledanje informacija o stanju procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Koji parametar u komandi za pregled procesa koristi se za prikazivanje identifikatora roditeljskog procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Koji fajl sistemske direktorije sadrži informacije o trenutnim radnim procesima, uključujući njihove roditelje?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 54,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.85,
+      "reasoning": "Verification evidence does not provide information about the specific roles of status registers or control aspects related to processor modes.",
+      "verification_trace": [
+        {
+          "question": "Koji registri kontroliraju režim izvršenja procesora?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kakve specifične funkcije imaju bitovi u statusnim registrima procesora za režime izvršenja?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Koji aspekti kontrole nad procesorskim režmima direktno odražavaju se u statusnim registrima?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 55,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.9,
+      "reasoning": "Evidence is missing information to verify the 'upravljački blok' element.",
+      "verification_trace": [
+        {
+          "question": "Koji se element dodeljuje za označavanje mesta u kojem će proces raditi?",
+          "answer": "prostor",
+          "supported_by_source": true
+        },
+        {
+          "question": "Koji se element odnosi na softversku komponentu koja kontrolira tijek rada procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Koji se element koristi kao jedinstveno ime ili oznaka za razne potrebe identifikacije?",
+          "answer": "identifikator",
+          "supported_by_source": true
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 56,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "The verification evidence does not confirm the 'U/I prekid' mentioned in the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Koji vrste kontrolna događaja mogu rezultirati u komutaciji procesa?",
+          "answer": "prekid generatora takta ako je isteklo maksimalno dozvoljeno korišćenje procesora (time slice)",
+          "supported_by_source": true
+        },
+        {
+          "question": "Šta se dešava sa generatorom takta kada se desi prekid?",
+          "answer": "Ako je isteklo maksimalno dozvoljeno korišćenje procesora (time slice), proces se prekida i prebacuje u stanje Spreman.",
+          "supported_by_source": true
+        },
+        {
+          "question": "Kojim tipom prekida se obično oznaka 'U/I' korićen?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 57,
+      "verdict": "SUPPORTED",
+      "confidence": 1.0,
+      "reasoning": "The verification evidence directly supports the candidate correct answer.",
+      "verification_trace": [
+        {
+          "question": "Šta se događa procesu kada je isteklo maksimalno dozvoljeno vreme izvršavanja na operativnom sistemu?",
+          "answer": "proces se prekida i prebacuje u stanje Spreman",
+          "supported_by_source": true
+        },
+        {
+          "question": "Koji stanaj spremanosti (state) uvek postavlja sistem za procese čija je dozvola vremena iskočila bez obzira na njihovu pripremu za blokirani rad?",
+          "answer": "Spreman",
+          "supported_by_source": true
+        }
+      ],
+      "needs_review": false,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 58,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Evidence is incomplete for the specific registers updated when a process becomes ready or blocked.",
+      "verification_trace": [
+        {
+          "question": "Koji registri se ažuriraju kada proces postane spreman?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Koji registri se promijene kada je proces blokirani?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Što znači 'ažuriranje PCB-a' u ovom kontekstu?",
+          "answer": "Ažuriranje upravljačkog bloka procesa; promena stanja na Spreman ili Blokiran, ažuriranje drugih polja",
+          "supported_by_source": true
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 59,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.9,
+      "reasoning": "Evidence does not confirm the upravljački blok (control block) is a key component, and lacks confirmation for program counter.",
+      "verification_trace": [
+        {
+          "question": "Koje su tri ključne komponente koje se uključuju u čuvanje stanja procesora tokom prekida?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Koji registri i blok upravljanja su odgovorni za čuvanje informacija o trenutnom programskom brojaču tokom prekida?",
+          "answer": "programski brojač, drugi registri",
+          "supported_by_source": true
+        },
+        {
+          "question": "Šta činjenice potvrđuju da programski brojač, drugi registri i upravljački blok predstavljaju ključne komponente za čuvanje stanja procesora tokom prekida?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 60,
+      "verdict": "SUPPORTED",
+      "confidence": 1.0,
+      "reasoning": "The verification evidence fully supports the candidate correct answer as it confirms both reasons mentioned.",
+      "verification_trace": [
+        {
+          "question": "Koji je prvi poimenovani razlog za međuprocesnu komunikaciju u datom kontekstu?",
+          "answer": "Deljenje informacija",
+          "supported_by_source": true
+        },
+        {
+          "question": "Šta se događa kada se informacije dijele između procesa?",
+          "answer": "Deljenje informacija i ubrzanje izračunavanja.",
+          "supported_by_source": true
+        },
+        {
+          "question": "Kako se međuprocesna komunikacija odnosi na brzinku izračunavanja?",
+          "answer": "Ubrzanje izračunavanja",
+          "supported_by_source": true
+        }
+      ],
+      "needs_review": false,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 61,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.9,
+      "reasoning": "Verification evidence does not provide information to support or contradict the candidate correct answer.",
+      "verification_trace": [
+        {
+          "question": "Koje dva ključna koncepta se koriste za ostvarivanje međuprocesne komunikacije u računalnim sustavima?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Što predstavlja deljena memorija u kontekstu međuprocesne komunikacije i kako funkcionira?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kakva je namjena razmena poruka kao metoda međuprocesne komunikacije?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 62,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.2,
+      "reasoning": "Verification evidence lacks specific details about control blocks managing resources and enabling multiprogramming.",
+      "verification_trace": [
+        {
+          "question": "Kako kontrolni blok procesa upravlja pristupom resursima?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Šta je multiprogramiranje i kako se povezuje sa kontrolnim blokovima procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Koji su osnovni zadatak kontrolnih blokova procesa u okviru operativnog sistema?",
+          "answer": "upravljati njegovom izvršenjem",
+          "supported_by_source": true
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 63,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.95,
+      "reasoning": "Verification evidence does not provide any relevant information to support or contradict the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Koja su uvjete potrebni da bi se dozvolio potez u stanje spreman?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Šta treba OS odrediti prije nego što proces može napustiti stanje izvršavanja za stajanje u stanju spreman?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako OS odredi kada je vremena za prekid procesa i stavljanje u stanje spreman?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 64,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.9,
+      "reasoning": "The evidence does not provide sufficient information to uniquely support or contradict the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Koja uslovna izjava moze uzrokovati prekid izvrsavanja procesa?",
+          "answer": "događaj",
+          "supported_by_source": true
+        },
+        {
+          "question": "Cemu se služi blokirani stanaj procesa u operativnom sistemu?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Koji tip događaja zadržava proces u stanju čekanja?",
+          "answer": "neki događaj",
+          "supported_by_source": true
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 65,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Verification evidence does not provide any information relevant to the candidate answer about memory acquisition and process creation.",
+      "verification_trace": [
+        {
+          "question": "Kako se resurse blokiranog procesa obračunavaju kada oni čekaju?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Što se dešava sa memorijom koju koristi proces kada je u stanju čekanja?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Jak li se ograničenja na stvaranje novih procesa javljaju ukoliko postoji veliki broj blokiranih procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 66,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.85,
+      "reasoning": "Verifikacijski dokazi nisu potpuni i ne odgovaraju jednoznačno na pitanje o smislu stvaranja novog procesa kao preduvijek za postizanje stanja izlaz.",
+      "verification_trace": [
+        {
+          "question": "Koji je redosled koraka koji se obavlja kada proces postiže stanje izlaz?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Šta znači da je proces uklonjen iz reda spremnih procesa nakon dovršetka svoje radne funkcije?",
+          "answer": "da je proces završio rad i nije više potreban u redu spremnih procesa",
+          "supported_by_source": true
+        },
+        {
+          "question": "Kakva je smisao stvaranja novog procesa kao preduvijek za postizanje stanja izlaz?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 67,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.95,
+      "reasoning": "Verification evidence does not provide information to support or contradict the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Koje osnovne strukture podataka su potrebne za kreiranje procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "U kojem trenutku tijekom procesa trebaju biti kreirane ove strukture podataka?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Šta se događa ako se ove strukture podataka ne kreiraju prije završetka procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 68,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Verification evidence does not provide any relevant information to support or contradict the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Koja su ključni elementi za određivanje vremena kada se proces treba prekinuti?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Što znače indikatori za završavanje procesa u kontekstu razvoja i implementacije novih procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako su definisani standardni indikatoriji za završetak procesa i kako se primjenjuju?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 69,
+      "verdict": "SUPPORTED",
+      "confidence": 1.0,
+      "reasoning": "Evidence Q1 and A1, as well as Q2 and A2, clearly support the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Šta se dešava sa procesom koji je završio rad u kontekstu redova spremnih procesa?",
+          "answer": "OS ga ukloni iz reda spremnih procesa zato što je završio rad",
+          "supported_by_source": true
+        },
+        {
+          "question": "Kakav je zadatak operativnog sistema kada jedan od procesa završi svoju aktivnost?",
+          "answer": "Operativni sistem uklanja proces iz reda spremnih procesa kada završi svoju aktivnost.",
+          "supported_by_source": true
+        },
+        {
+          "question": "Kako sistem organizuje i upravlja procesima koje čekaju da budu izvršene?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": false,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 70,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.95,
+      "reasoning": "Verification evidence does not provide any specific information to support or contradict the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Šta je dofinisani događaj koji proces čeka da bi se mogao nastaviti izvršavati?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Koja prilikom prelaska u blokirano stanje proces treba da pročekava?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kakva je usled toga eksplicitna akcija potrebna za prekid ove čeknute situacije?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 71,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.95,
+      "reasoning": "Verifikacione informacije nisu dostupne za potvrdu ili odbijanje specifičnih tvrdnji u kandidatu.",
+      "verification_trace": [
+        {
+          "question": "Koje specifične informacije o stanju procesora se ažuriraju tokom prelaza iz Izvršavanja u Spreman?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako precizno upravljanje i monitorovanje procesa tokom ovog prelaza utiče na performanse hardvera?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Šta znači da informacije o stanju procesora se ažuriraju za ove faze?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 72,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.9,
+      "reasoning": "Sve pitanja u verifikacijskim dokazima nisu odgovorenje podacima, čime se čini da su detalji potreban za definitivan odgovor nedostajali.",
+      "verification_trace": [
+        {
+          "question": "Kakve vrste informacija programski kod i instrukcije predviđaju za međuprocesnu komunikaciju?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Koji elementi OM-a (operativnog sistema) koriste te informacije iz programskog koda za upravljanje procesom?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Na koji način se međuprocesna komunikacija realizuje putem specifičnih instrukcija i kodova?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 73,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.85,
+      "reasoning": "Evidence is incomplete as it lacks details about the role of execution modes and does not confirm control over resources.",
+      "verification_trace": [
+        {
+          "question": "Koji su glavni resursi koji se kontrolisu kroz upravljačke strukture i režime izvršenja?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako se pristup memoriji kontrolise putem upravljačkih struktura?",
+          "answer": "struct mm_struct *mm; /* address space of this process */",
+          "supported_by_source": true
+        },
+        {
+          "question": "Kakve uloge imaju različiti režimi izvršenja u kontroli resursa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 74,
+      "verdict": "SUPPORTED",
+      "confidence": 1.0,
+      "reasoning": "The verification evidence directly supports the candidate answer that independent processes do not have to share data with other processes.",
+      "verification_trace": [
+        {
+          "question": "Šta znači da su procesi nezavisni?",
+          "answer": "Procesi su nezavisni kada ne dele podatke sa drugim procesima.",
+          "supported_by_source": true
+        },
+        {
+          "question": "Kakve vrste komunikacije podržavaju međusobno zavisne procesi?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Da li se podaci u nezavisnim procesima mogu kontrolisati i korišćenju drugih procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": false,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 75,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Verification evidence does not provide any relevant information to support or contradict the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Koji događaji uvozdužnu promenu između režima izvršenja?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Šta je sistemski poziv i kako utiče na prelazak između režima procesora?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako se korisnički i nivoovi snaza razlikuju u kontekstu promene režima izvršenja?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 76,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.2,
+      "reasoning": "Verification evidence does not provide any relevant information to support or contradict the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Koje akcije potrebne za prelazak iz korisničkog u kernel režim?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Koji dio operativnog sistema odgovorna je za prevodnju između različitih režima izvršavanja?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako se realizuje sistemski poziv kod promene režima izvršavanja?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 77,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.75,
+      "reasoning": "The verification evidence does not provide enough information to support or contradict the significance of inter-process communication in transitioning to a steady state.",
+      "verification_trace": [
+        {
+          "question": "Koja je vrsta komunikacije potrebna za proslavanje informacija između procesa?",
+          "answer": "međuprocesna komunikacija",
+          "supported_by_source": true
+        },
+        {
+          "question": "Kakav je značaj međuprocesne komunikacije u prebacivanju u red?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Šta se dešava kada ne postoji dobra međuprocesna komunikacija?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 78,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Verification evidence does not provide sufficient information to support or contradict the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Kako se procesi komuniciraju kroz deljenu memoriju?",
+          "answer": "Shared memory je metoda korишена за мејн-процес комуникацију.",
+          "supported_by_source": true
+        },
+        {
+          "question": "Šta znači direktno korišćenje podataka drugim procesima u kontekstu deljene memorije?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Koji je primjer situacije gde bi jedan proces mogao direktno koristiti podatke iz memorije drugog procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 79,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Verification evidence does not provide any information supporting or contradicting the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Koji su glavni elementi međuprocesne komunikacije u multiprocesorskim sustavima?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako se memorija i poruke komuniciraju između procesa za cilj ubrzanja izračunavanja?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Što precizno znači 'putanje za deljenje memorije' u kontekstu međuprocesne komunikacije?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 80,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Verification evidence does not provide any information supporting or contradicting the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Koje instrukcije programa mogu potiči komunikaciju između procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kakva vježba rasporeda resursa utječe na međuprocesnu komunikaciju?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Na koji način može programski kod odrediti redosled operacija za procese u sistemu?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 81,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.2,
+      "reasoning": "Verification evidence does not provide any relevant information to support or contradict the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Kako se definise proces u kontekstu operativnog sistema?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Šta predstavljaju instrukcije unutar procesa i kako su organizovane?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako raditelji (procesori) razdvaja izvršavanje jedne instrukcije od druge tokom izvršavanja procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 82,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Verification evidence does not provide information to support or contradict the candidate correct answer.",
+      "verification_trace": [
+        {
+          "question": "Koji je trenutni faza u kojoj se nalazi proces?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Šta opisuje izvršavanje u kontekstu softvera i hardvera?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kakav je cilj procesa izvršavanja?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 83,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.95,
+      "reasoning": "Verification evidence does not provide any information to support or contradict the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Što predstavlja definiciju niti u kontekstu višenitne obrade?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Koji je tok izvršavanja karakterističan za jednu nit?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "U čemu se razlika među vremenom izvršavanja procesa i pojedinačnih niti?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 84,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Evidencija A2 i A3 nije dostupna, što čini da je odgovor B) podložan neizvesnoći.",
+      "verification_trace": [
+        {
+          "question": "Što se događa kada se objekt klase thread instancira u C++11?",
+          "answer": "Instanciranje objekta kreira novu nit koja postaje spremna",
+          "supported_by_source": true
+        },
+        {
+          "question": "Kako se nit ponaša nakon što je stvorena putem instanciranja objekta klase thread?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Može li se reći da instanciranje objekta klase thread samoprimjenjuje kao pravljenje nove niti u C++11 standardu?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 85,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.75,
+      "reasoning": "Verification evidence Q3 and A3 are not from the source, making it ambiguous whether 'telo niti' is uniquely defensible.",
+      "verification_trace": [
+        {
+          "question": "Što predstavlja telo niti u programskom jeziku?",
+          "answer": "funkcija koju nit izvršava",
+          "supported_by_source": true
+        },
+        {
+          "question": "Koji dio programa definiše funkcije koje nit izvršava?",
+          "answer": "Parametar konstruktora klase thread je funkcija koju nit izvršava",
+          "supported_by_source": true
+        },
+        {
+          "question": "Kako se naziva deo koda koji specificira redosled i karakter radnje nitija?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 86,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.75,
+      "reasoning": "Evidence Q3 is not sourced, making the overall evidence incomplete.",
+      "verification_trace": [
+        {
+          "question": "Šta naveden je kao ulazna tačka programa u C++11 standardu?",
+          "answer": "main funkcija",
+          "supported_by_source": true
+        },
+        {
+          "question": "Koja specifična funkcija se naziva kao početni točka izvršavanja za sve C++ program?",
+          "answer": "main funkcija",
+          "supported_by_source": true
+        },
+        {
+          "question": "U C++11 standardu, koja funkcija mora biti definisana da bi bila validan program?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 87,
+      "verdict": "SUPPORTED",
+      "confidence": 1.0,
+      "reasoning": "The verification evidence clearly supports that the join() method in the thread class is used to wait for a created thread to finish its execution.",
+      "verification_trace": [
+        {
+          "question": "Koja metoda čeka dok se nit ne završi s radom?",
+          "answer": "join()",
+          "supported_by_source": true
+        },
+        {
+          "question": "U kojoj klasi se pronađe metoda join()?",
+          "answer": "thread",
+          "supported_by_source": true
+        },
+        {
+          "question": "Šta radi poziv metode join() na instanci niti?",
+          "answer": "Stvaralac čeka da stvorena nit završi rad",
+          "supported_by_source": true
+        }
+      ],
+      "needs_review": false,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 88,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Evidencija nije dovoljno detaljna da biste jednoznačno potvrdili ili odbijili da objekt klase thread predstavlja novu nit koju treba pokrenuti.",
+      "verification_trace": [
+        {
+          "question": "Kako se objekt klase thread iz zaglavlja <thread> obično opisuje?",
+          "answer": "Predstavljene objektom klase thread iz zaglavlja <thread>",
+          "supported_by_source": true
+        },
+        {
+          "question": "Šta reprezentira klasa thread u standardnom C++ biblioteci za programiranje nitiju i menedžment multithread scenarija?",
+          "answer": "Predstavljene objektom klase thread iz zaglavlja <thread>",
+          "supported_by_source": true
+        },
+        {
+          "question": "Koji su atributi ili metode klase thread koji pokazuju da predstavlja novu nit koju treba pokrenuti?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 89,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.6,
+      "reasoning": "Evidencija nije potpuna jer neki od pitanja nisu utemeljeni u izvodu, što čini da je odgovor C) moguće, ali ne ikskluzivno ispravan.",
+      "verification_trace": [
+        {
+          "question": "Koja je funkcija metode join() klase Thread u Java-u?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Šta se dešava ako stvaralac thread-a pozove da čeka dok podnožje thread-a završi izvršavanje pomoću metode join()?",
+          "answer": "Stvaralac čeka da stvorena nit završi rad",
+          "supported_by_source": true
+        },
+        {
+          "question": "U kom kontekstu se obično koristi metoda join() klase Thread za čekanje završetka drugog thread-a?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 90,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Verification evidence does not provide sufficient information to support or contradict the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Što je glavna funkcija klase thread?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako se nit kreira pomoću klase thread?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Šta čini osnovni deo implementacije niti u programskom jeziku?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 91,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Verification evidence does not provide any information supporting or contradicting the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Šta se automatski desava kada se instancira nova instance klase Thread?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Koji je cilj kreiranja nove instance klase Thread?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Postoji li neki poseban status koji uzima nit nakon njenog kreiranja?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 92,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Lakno je zaključiti da join() blokira, ali osim toga verovatno ima više detalja koji nisu potvrdjeni u ovom istraživanju.",
+      "verification_trace": [
+        {
+          "question": "Kako funkcionira metoda join() u klasi thread?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Šta se dešava kada pozovemo metodu join() na instanci klase thread?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Čemu služi blokirajuća metoda join() u kontekstu višeniti programiranja?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 93,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.2,
+      "reasoning": "Verification evidence does not provide any relevant information to support or contradict the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Što znači kada metoda join() poziva nit?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako reagira glavni thread na poziv join() metode?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Šta se događa sa main threadom dok pozvana nit ne završi svoj rad?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 94,
+      "verdict": "CONTRADICTED",
+      "confidence": 1.0,
+      "reasoning": "The verification evidence consistently indicates that the parameter passed to the thread constructor is a function, not 'Telo niti'.",
+      "verification_trace": [
+        {
+          "question": "Koji parametar treba proslijediti kada se poziva konstruktor klase thread?",
+          "answer": "funkcija koju nit izvršava",
+          "supported_by_source": true
+        },
+        {
+          "question": "Šta predstavlja argument koji se proslijedi konstruktoru klase thread?",
+          "answer": "funkcija koju nit izvršava",
+          "supported_by_source": true
+        },
+        {
+          "question": "Tko ili što definira telo niti koja je potrebna za pokretanje nove nit?",
+          "answer": "funkcija koju nit izvršava",
+          "supported_by_source": true
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 95,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Verification evidence does not provide information on the C++ standard that defines main function as entry point.",
+      "verification_trace": [
+        {
+          "question": "Koja je obavezna funkcija koju mora sadržati svaki C++ program?",
+          "answer": "main funkcija",
+          "supported_by_source": true
+        },
+        {
+          "question": "Šta se dešava kada se izvrši main funkcija u C++ programu?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Koji standard C++ programa definise main funkciju kao ulaznu tačku?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 96,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Evidence is insufficient to confirm or refute the candidate answer as it lacks relevant details about the join() method behavior.",
+      "verification_trace": [
+        {
+          "question": "Što se događa kada pozovete metodu join() na objektu klase Thread?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako se ponašaju main i potporedne niti u momenatu pokretanja join() metode?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Ukoliko je nit već završila izvršavanje, što se događa kada pozovete join()?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 97,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.95,
+      "reasoning": "The verification evidence does not provide any relevant information to support or contradict the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Što znači 'neblokirajuće završavanje' u kontekstu metode detach()?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kakva je ovisnost između stvaralca niti i stvorene niti prije poziva metode detach()?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Šta se dešava s nitima nakon poziva metode detach()?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 98,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.7,
+      "reasoning": "Evidence is incomplete as it lacks a concrete example or direct support for the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Kakva je vrsta parametara koja se koristi u konstruktoru klase thread za prenos parametara?",
+          "answer": "niti",
+          "supported_by_source": true
+        },
+        {
+          "question": "Šta predstavlja 'parametri tela niti' u kontekstu programskog jezika koji podržava nitne strukture kontrole?",
+          "answer": "parametri tela niti se prenose kao parametri konstruktora klase thread nakon naziva funkcije",
+          "supported_by_source": true
+        },
+        {
+          "question": "Koji deo koda prikazuje način prenosa parametara u konstruktor klase thread?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 99,
+      "verdict": "SUPPORTED",
+      "confidence": 1.0,
+      "reasoning": "Evidence confirms that the OS manages memory and processes.",
+      "verification_trace": [
+        {
+          "question": "Koju funkciju od operativnog sistema čini upravljanje memorijom?",
+          "answer": "upravljanje memorijom",
+          "supported_by_source": true
+        },
+        {
+          "question": "Koji dio operativnog sustava je zadužen za upravljanje radnim procesima?",
+          "answer": "OS",
+          "supported_by_source": true
+        },
+        {
+          "question": "Što znači da operativni sistem kontrolira i raspodjelu resurse kao što su procesori i memorija?",
+          "answer": "Operativni sistem kontrolira i raspodjelu resursa kao što su procesori i memorija znači da određuje kako se vreme processora raspolagaju različitim programima (raspoređivanje procesa), te dodeljuje svakom programu potrebnu memoriju (vlasništvo nad memorijom).",
+          "supported_by_source": true
+        }
+      ],
+      "needs_review": false,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 100,
+      "verdict": "SUPPORTED",
+      "confidence": 1.0,
+      "reasoning": "Evidence clearly supports the candidate correct answer.",
+      "verification_trace": [
+        {
+          "question": "Koje su dvije glavne faze u procesu izvršavanja?",
+          "answer": "Izvršavanje, Spreman",
+          "supported_by_source": true
+        },
+        {
+          "question": "U kojoj fazi se nalazi priprema za izvršavanje?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Što znači 'spreman' u kontekstu izvršavanja?",
+          "answer": "proces koji je spreman za izvršavanje, ali trenutno procesor ne izvršava njegove instrukcije",
+          "supported_by_source": true
+        }
+      ],
+      "needs_review": false,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 101,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Verification evidence lacks relevant information to support or contradict the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Šta se podrazumeva pod pojmom 'radna neline' u kontekstu višenitne obrade?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako se određuju i uređuju radne nitne linije u procesu višenitne obrade?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kakve specifične značajke imaju niti kada su jednoznačno uređene?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 102,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.75,
+      "reasoning": "Evidence does not confirm 'main funkcija' and is ambiguous about 'izvršavanje funkcije'.",
+      "verification_trace": [
+        {
+          "question": "Koji od C++11 ključnih elemenata je potreban za definiciju novog nitnog objekta?",
+          "answer": "thread",
+          "supported_by_source": true
+        },
+        {
+          "question": "Kako se naziva funkcija koja definiše izvršavanje niti u C++11 standardu?",
+          "answer": "thread",
+          "supported_by_source": false
+        },
+        {
+          "question": "Što predstavlja thread objekt u kontekstu programskog jezika C++11?",
+          "answer": "Predstavljene objektom klase thread Instanciranje objekta kreira novu nit koja postaje spremna Parametar konstruktora klase thread je funkcija koju nit izvršava",
+          "supported_by_source": true
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 103,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Evidence does not support the candidate answer as it lacks information about whether 'objekt klase thread' is a distinct fact from 'instanciranje objekta thread'.",
+      "verification_trace": [
+        {
+          "question": "Koji su ključni elementi kada se instancira objekt klase thread u C++ 11?",
+          "answer": "Instanciranje objekta kreira novu nit koja postaje spremna. Parametar konstruktora klase thread je funkcija koju nit izvršava.",
+          "supported_by_source": true
+        },
+        {
+          "question": "Šta znači ulazna tačka programa u kontekstu multithreaded aplikacija u C++ 11?",
+          "answer": "Ulazna tačka programa u kontekstu multithreaded aplikacija u C++ 11 je i dalje main funkcija.",
+          "supported_by_source": true
+        },
+        {
+          "question": "Kako se definisaju i pokreću nitovi u standardnom C++ 11 kodu?",
+          "answer": "Nitovi se definisu i pokreću instanciranjem objekta klase thread iz zaglavlja <thread>. Parametar konstruktora je funkcija koju nit izvršava.",
+          "supported_by_source": true
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 104,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Evidence only confirms two out of four characteristics, leaving the other two unspecified and thus ambiguous.",
+      "verification_trace": [
+        {
+          "question": "Koje su dvije glavne karakteristike metode join() u klasi thread?",
+          "answer": "blokirajuća",
+          "supported_by_source": true
+        },
+        {
+          "question": "Je li spajanje točkova izvršavanja blokirajuća operacija?",
+          "answer": "da",
+          "supported_by_source": true
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 105,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.95,
+      "reasoning": "Evidence is not provided to confirm or refute the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Što se događa sa stvarajućoj nitiju kada se metoda join() pozove?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Koji je cilj poziva metode join() u klasi thread?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Može li program nastaviti izvršavanje bez čekanja na završetak niti nakon poziva metode join()?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 106,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Verification evidence does not directly confirm or contradict the candidate answer's claim about the specific parameters needed for threading.",
+      "verification_trace": [
+        {
+          "question": "Koje su dva obavezna parametra za konstruktorsku funkciju klase thread u C++?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Tko predstavlja argument koji sadrzi telo niti u konstruktoru klase thread?",
+          "answer": "funkcija",
+          "supported_by_source": true
+        },
+        {
+          "question": "Koji tip podatka označava referencu na objekat pri prenosu kao parametar u nit?",
+          "answer": "referenca",
+          "supported_by_source": true
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 107,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.9,
+      "reasoning": "Verification evidence does not provide information to support or contradict the candidate correct answer.",
+      "verification_trace": [
+        {
+          "question": "Koji su glavni elementi u poboljšanju performansi programa za više nitiju?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Šta znači 'blokiranje u višenitnoj obradi' i kako utiče na efikasnost radnji sistema?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 108,
+      "verdict": "SUPPORTED",
+      "confidence": 0.95,
+      "reasoning": "The verification evidence confirms the candidate correct answer without providing conflicting information.",
+      "verification_trace": [
+        {
+          "question": "Koje su dva glavna korita višenitne obrade u performansama?",
+          "answer": "Pozadinski posao, Asinhrona obrada",
+          "supported_by_source": true
+        },
+        {
+          "question": "U kome kontekstu se obično koristi pojam 'pozadinski posao' u odnosu na višenitnu obradu?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako asinhrona obrada utice na globalni tok programa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": false,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 109,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Verification evidence lacks support for 'asinhrona obrada' and 'brzina izvršavanja', making the candidate answer incomplete.",
+      "verification_trace": [
+        {
+          "question": "Koja je glavna koristi pozadinskog posla u višenitnom okruženju?",
+          "answer": "Pozadinski poslovi mogu se izvršavati u posebnoj niti i ne blokiraju dalje izvrsavanje drugih niti, što omogućava efikasno izvršenje neposrednih zadataka kao što je upisivanje u log fajl.",
+          "supported_by_source": true
+        },
+        {
+          "question": "Kako asinhrona obrada utiče na performanse programa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "U kakvom kontekstu se brzina izvršavanja povezuje s višenitnim procesiranjem?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 110,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Verification evidence does not provide sufficient information about Linux's support for multiple processes with single threads.",
+      "verification_trace": [
+        {
+          "question": "Koji operativni sistemi iz skupa Unix i Linux podržavaju vie procesa sa po jednom nit?",
+          "answer": "Unix",
+          "supported_by_source": true
+        },
+        {
+          "question": "Cemu se deo OS-ova posvećuje za izvršavanje više procesa sa pojedinim nitima u tradicionalnim Unix-ovima i Linuxu?",
+          "answer": "OS podržava više procesa od kojih svaki sadrži jednu nit (tradicionalni UNIX)",
+          "supported_by_source": true
+        },
+        {
+          "question": "Koji su ključni značajki operativnih sistema Unix i Linux povezane s podrškom za vie niti unutar svakog procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 111,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Evidence does not provide information about inter-process communication and only supports three out of the four listed protections.",
+      "verification_trace": [
+        {
+          "question": "Koji su tri osnovna mehanizma zaštite resursa u višenitnom okruženju?",
+          "answer": "procesoru, fajlovima, U/I resursima (uređaji, kanali)",
+          "supported_by_source": true
+        },
+        {
+          "question": "Kakve vrste fajlova i uređaja se često zaštitaju od pristupa više nitiju u operativnom sistemu?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Koji su elementi kontrolne strukture procesora koji omogućuju zaštitu resursa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 112,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Evidence is incomplete as it lacks information about the stack of execution.",
+      "verification_trace": [
+        {
+          "question": "Koje dva ključna elementa uključuje stanje niti?",
+          "answer": "spremna, izvršavanje",
+          "supported_by_source": true
+        },
+        {
+          "question": "Što predstavlja kontekst nit i kako je povezan sa stanjem izvršavanja?",
+          "answer": "Kontekst niti predstavlja sačuvano stanje procesorskih registara dok se ne izvršava i je povezan sa stanjem izvršavanja.",
+          "supported_by_source": true
+        },
+        {
+          "question": "Kako se stek izvršavanja razlikuje od drugih delova stanja niti?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 113,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Verification evidence lacks information about the context of a thread, making it incomplete for fully supporting or contradicting the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Što se podrazumeva pod kontekstem niti?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako se definira stek izvršavanja za jednu nit?",
+          "answer": "Stek izvršavanja niti",
+          "supported_by_source": true
+        },
+        {
+          "question": "Koji su elementi stanja izvršavanja u višenitnom sistemu?",
+          "answer": "stanje niti, kontekst niti, stek izvršavanja niti, pristup memoriji i resursima svog procesa",
+          "supported_by_source": true
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 114,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.85,
+      "reasoning": "Verification evidence does not provide information to support or contradict the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Što očekuje upravljački blok svake niti u višenitnom modelu procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako se stek podataka organizira i koristi za svaku individualnu nit?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Koji su ključni elementi koji omogućuju funkcionalnost svakog upravljačkog bloka u kontekstu višenitnog modela procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 115,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Verification evidence does not provide any relevant information to support or contradict the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Koja su tri glavna faze u kojima se može nalaziti nit u programskom jeziku?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Šta znači kad niti budu u stanju 'izvršavanje'?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "U čemu se razlika između stanja 'spreman' i 'blokiran' kod nitiju?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 116,
+      "verdict": "SUPPORTED",
+      "confidence": 1.0,
+      "reasoning": "The verification evidence fully supports the candidate correct answer.",
+      "verification_trace": [
+        {
+          "question": "Koja su tri moguća stanja niti tokom njihovog izvršavanja?",
+          "answer": "Izvršavanje, Spreman, Blokiran",
+          "supported_by_source": true
+        },
+        {
+          "question": "Šta znači kad nit bude u 'blokiranoj' fazi?",
+          "answer": "Blokiran",
+          "supported_by_source": true
+        },
+        {
+          "question": "Kako se označava da nit treba priati kontrolu ili je spreman za dalje izvršenje?",
+          "answer": "Spreman",
+          "supported_by_source": true
+        }
+      ],
+      "needs_review": false,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 117,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "A3 contradicts the candidate answer by stating that niti do not share the same address space, which conflicts with the idea of needing to avoid resource access conflicts.",
+      "verification_trace": [
+        {
+          "question": "Koja su glavna resursa procesa koja se dele između nitiju?",
+          "answer": "adresni prostor",
+          "supported_by_source": true
+        },
+        {
+          "question": "Kakve akcije potrebne su za sprečavanje konflikata pristupa kod sinhronizacije niti?",
+          "answer": "Potrebno je sinhronizovati pristup ovim deljenim resursima.",
+          "supported_by_source": true
+        },
+        {
+          "question": "Šta znači da niti deli resurse procesa i kako to utiče na njihovu sinhronizaciju?",
+          "answer": "Niti ne dele isti adresni prostor i potrebno je sinhronizovati pristup deljenim resursima.",
+          "supported_by_source": true
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 118,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.3,
+      "reasoning": "Evidencija ne podržava niti protivrijeđe nemoguće je jednoznačno utvrditi tačnost odgovora.",
+      "verification_trace": [
+        {
+          "question": "Kakva je glavna funkcija metode join() u kontekstu multithread programiranja?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Što se događa kada pozivamo metodu join() na thread objektu?",
+          "answer": "Stvaralac čeka da stvorena nit završi izvršenje.",
+          "supported_by_source": true
+        },
+        {
+          "question": "Kako join() utiče na vremenski redoslijed izvršavanja konkurentnih niti?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 119,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Verification evidence does not provide sufficient information to confirm or refute the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Koji je nacin kreirać nove nit u C++11 koristeći klasi žena thread?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Moguce li je kreirać novu nit samo definisanjem funkcije bez instanciranja klase thread?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Postoje li drugi nači za kreiranje novih nita u C++11 uz koristenje standardnih biblioteka?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 120,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.9,
+      "reasoning": "Laknja u verifikacionim primercima znači da nemamo dovoljno informacija za potpuno ocijeniti odgovor.",
+      "verification_trace": [
+        {
+          "question": "Što određuje metoda join() kada se main nit može nastaviti izvršavati u C++11?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako je precizno definisana funkcija join() u kontekstu multithreadinga u dokumentaciji C++11?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kakve specifične postupke implementira metoda join() kada se poziva na instancu klase thread?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 121,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.85,
+      "reasoning": "Nijedan od dostupnih verifikacionih informacija ne potvrđuje niti se ne protivi predloženoj odgovoru.",
+      "verification_trace": [
+        {
+          "question": "Šta se događa kada se izvrši konstruktor klase Thread?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Koji su različiti koraci potrebni za pokretanje nove niti nakon instanciranja klase Thread?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako se stanje nitiju (thread) menjaju nakon što je nova instancia klase Thread kreirana?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 122,
+      "verdict": "SUPPORTED",
+      "confidence": 0.95,
+      "reasoning": "A1 confirms that the creator thread waits until the created thread finishes execution, which supports the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Šta se dešava sa stvaralcem nitiju kada se pozove metoda join()?",
+          "answer": "Stvaralac čeka da stvorena nit završi rad;",
+          "supported_by_source": true
+        },
+        {
+          "question": "Koji je cilj metode join() u kontekstu multithreading-a u C++11?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Da li metoda join() omogućava da se stvaralac nadjače dok se izvršava stvorena nit?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": false,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 123,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Evidence does not provide information about the impact on program entry point or blocking conditions for other threads.",
+      "verification_trace": [
+        {
+          "question": "Šta određuje funkcija join() u kontekstu višeniti programiranja?",
+          "answer": "Metoda join() klase thread omogućava stvaralacu da čeka dok se ne završi izvršavanje niti koju je kreirao.",
+          "supported_by_source": true
+        },
+        {
+          "question": "Kakva je vrednost metode join() za kontrolu blokada između nita?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako se operacija čekanja završetka nite implementira pomoću metode join()?",
+          "answer": "Metoda join() klase thread omogućava stvaralacu da čeka dok se ne završi izvršavanje niti koju je kreirao.",
+          "supported_by_source": true
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 124,
+      "verdict": "SUPPORTED",
+      "confidence": 1.0,
+      "reasoning": "The evidence supports the candidate's answer that long or blocking operations in a specific thread do not affect other threads.",
+      "verification_trace": [
+        {
+          "question": "Kako se proces blokiranja u višenitnoj obradi razlikuje od njega u jedninitnom okruženju?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Koji tip operacija omogućava nit da ne utiče na preostale niti kroz višenitnu obradu?",
+          "answer": "dugačke ili blokirajuće pozadinske operacije",
+          "supported_by_source": true
+        },
+        {
+          "question": "Kako se implementira izvršavanje dugačkih operacija u višenitnoj okruženju da bi se spasio performans drugih nitiju?",
+          "answer": "Posebnim niti",
+          "supported_by_source": true
+        }
+      ],
+      "needs_review": false,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 125,
+      "verdict": "SUPPORTED",
+      "confidence": 1.0,
+      "reasoning": "Evidence A2 directly supports the candidate answer by confirming that detach() allows the calling thread to continue without waiting for the created thread to finish.",
+      "verification_trace": [
+        {
+          "question": "Kakva je razlika u ponašanju programa kada se koristi metoda detach() umjesto join() za nit?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Što se događa sa programom koji poziva metodu detach() dok je stvorena nit još uvijek u toku izvršavanja?",
+          "answer": "Niti pozivača (stvaralac) odvoji se od niti pozvanog (stvorene niti), ali omogućuje stvaralci da nastavi izvršavanje programa bez čekanja završetka stvorene niti.",
+          "supported_by_source": true
+        }
+      ],
+      "needs_review": false,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 126,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Verification evidence does not provide information relevant to the candidate's answer.",
+      "verification_trace": [
+        {
+          "question": "Kako višenitna obrada utiče na brzinu pokretanja novih radova?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Koji je specifični doprinos višenitih procesora za ekonomiju proizvodnje u odnosu na jednojitne procesore?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Što se događa sa zadržajima procesa kada se koriste višenitni procesori?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 127,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.9,
+      "reasoning": "Evidencija nije dovoljno kompletna da bi potvrdila ili odbacila odgovor, jer ključne informacije nedostaju.",
+      "verification_trace": [
+        {
+          "question": "Kako C++11 omogućava višenitne aplikacije da pruže bolje performanse?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Šta znači 'dugačke operacije' u kontekstu multi-threadinga i kako se ove operacije izvrše bez prekidanja drugih nitiju?",
+          "answer": "dugačke ili blokirajuće pozadinske operacije se mogu izvršavati u posebnoj niti",
+          "supported_by_source": true
+        },
+        {
+          "question": "Koji su novi mehanizmi u C++11 koji pružaju podršku za izvrsavanje pozadinskih poslova bez interferencije sa radom drugih nitiju?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 128,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.2,
+      "reasoning": "Verification evidence lacks relevant information to confirm or refute the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Koji su principi asinhronog programiranja koji omogućuju deljenje resursa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako se niti u asinhronoj obradi bave sa zajedničkim resursima?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Šta je važno razumijevanje prije deljenja resursa unutar aplikacije među različitim nitima?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 129,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.95,
+      "reasoning": "Verification evidence does not provide any relevant information to support or contradict the candidate correct answer.",
+      "verification_trace": [
+        {
+          "question": "Kako operativni sistem kontroliše raspoređivanje niti unutar pojedinog procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Šta je značaj stanja niti u višenitnom sistemu?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kakav ulog ima os operativni sistem u menadžmentu resursa za različite niti?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 130,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.95,
+      "reasoning": "Verifikacijski izvori nisu dostavili potrebne informacije da bi se odlučilo je li odgovor jedinstveno pravilan.",
+      "verification_trace": [
+        {
+          "question": "Kakav je cilj pozadinskog posla kada se radi o izvršavanju dugačkih operacija?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "U čemu se razlika u raspoređivanju niti između preplavljenih i posebnih procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako se garantuje efikasno izvršavanje dugačkih operacija u posebnom procesu?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 131,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Svaki od verifikacionih pitanja nema podrške u izvore, što čini da je potreban dodatni kontekst za odlučivanje.",
+      "verification_trace": [
+        {
+          "question": "Što se događa kada koristite metodu join() za sinkronizaciju niti u programskom jeziku?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako metoda join() utiče na čekanje inicijatora nit prije dobijanja odgovora iz drugih niti?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Ukoliko se primjenjuje join() na dvije niti koje čekaju za odgovore sa udaljenog servera, kako program zna kada je potrebno nastaviti?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 132,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.95,
+      "reasoning": "Verification evidence lacks specific details about detach() method behavior.",
+      "verification_trace": [
+        {
+          "question": "Koji je cilj metode detach() u kontekstu izvršavanja niti?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Šta se događa sa stvorenom nitom nakon poziva metode detach()?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "U kakvoj situaciji korišćenje metode detach() omogućava završetak glavnog programa bez cekanja na završetak niti?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 133,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Evidencija nije dostatno izvršna da podrži ili opozivi tvrdnju o metodi join().",
+      "verification_trace": [
+        {
+          "question": "Koji je značaj metode join() u kontekstu upravljanja konkurentnim nitima?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Šta se događa ako pozovemo metodu join() na niti koja već gotovo završava izvršavanje?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "U kakvoj situaciji je korisno korištenje metode join() za stvaralca nitiju?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 134,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.85,
+      "reasoning": "Verification evidence is insufficient to confirm or deny the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Što čini metoda join() kada se pozove na niti?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kakva je vrsta blokiranja koju metoda join() pruža tokom izvršavanja programa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Šta se događa sa stvarajućom nit koja poziva metodu join() dok se čeka da završe s radom niti na koje se metoda join() primjenjuje?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 135,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.85,
+      "reasoning": "Verification evidence lacks specific details about join() and detach() methods.",
+      "verification_trace": [
+        {
+          "question": "Što se događa kada pozovemo metodu join() na nit?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Koji je razlikujući faktor između poziva metode detach() i join() u kontekstu završetka programa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "U kakvom slučaju bi se odabralo upotrebu metode detach() umjesto join() kada se stvara nova nit?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 136,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.9,
+      "reasoning": "The verification evidence does not provide any information supporting or contradicting the candidate correct answer.",
+      "verification_trace": [
+        {
+          "question": "Koje su ključne karakteristike upravljanja višestrukim procesima?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kakve vještine potiče konkurentnost u kontekstu više radnji istodobno?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako se konkurentnost razlikuje od drugih važnih faktora kao što su koordinacija i komunikacija pri upravljanju višestrukim procesima?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 137,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Evidence for Q2 supports the candidate answer, but evidence from Q1 and Q3 is missing or incomplete.",
+      "verification_trace": [
+        {
+          "question": "Šta predstavlja glavni cilj pri upravljanju višestrukim procesima?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Koji faktor je ključan za uspeh prilikom upravljanja višestrukom projektnom aktivnosti?",
+          "answer": "Konkurentnost",
+          "supported_by_source": true
+        },
+        {
+          "question": "Kakve vrednosti ima efikasno upravljanje resursima pri višestrukom upravljanju?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 138,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.9,
+      "reasoning": "Lakša podrшка za odgovor nije dostupna u potvrđujućem djelu dokaza.",
+      "verification_trace": [
+        {
+          "question": "Koje su komponente sistema koje često doživljavaju štetno preplitanje?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kakve su posledice štetnog preplitanja na konkurentnosti sustava?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "U kakvim okoljima se pojavljuje češće štetno preplitanje?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 139,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.95,
+      "reasoning": "Verification evidence does not provide any information supporting or contradicting the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Koji je aspekt ključan za uređivanje višestrukih procesa u operativnom sistemu?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Što označava konkurentnost u kontekstu višeprocesnog OS-a?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kakva uloga imaju količine potrebnih resursa za konkurentni pristup više procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 140,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Evidence is insufficient as questions Q1 and Q2 are not answered in source, leaving ambiguity.",
+      "verification_trace": [
+        {
+          "question": "Koji su primjeri resursa koji se mogu deleme između različitih procesa u multiprogramiranim sistemima?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako konkurentni pristupanje istim resursima utječe na performanse multiprogramiranog sistema?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Što se dogada kada dva ili više procesa pokušaju istodobno pristupiti istom resursu?",
+          "answer": "kod multiprogramiranih sistema različiti procesi pristupaju istim resursima",
+          "supported_by_source": true
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 141,
+      "verdict": "SUPPORTED",
+      "confidence": 0.85,
+      "reasoning": "The verification evidence supports the candidate answer, although additional context would strengthen confidence.",
+      "verification_trace": [
+        {
+          "question": "Kakve karakteristike mora imati strukturirana korisnička aplikacija da bi podržala konkurentne nitove/procese?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Koji primjeri mogu ilustrirati kako jedna korisnička aplikacija može sadržavati više konkurentnih niti/procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Šta je važno za razumijevanje implementacije konkurentnosti unutar iste korisničke aplikacije?",
+          "answer": "jedna aplikacija može da sadrži više konkurentnih procesa/niti",
+          "supported_by_source": true
+        }
+      ],
+      "needs_review": false,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 142,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "The evidence is incomplete and lacks direct support for the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Koja je ključna karakteristika konkurentnosti u implementaciji operativnog sistema?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Što znači da se funkcije OS realizuju kao više procesa/niti?",
+          "answer": "da se funkcije OS realizuju kao više procesa/niti",
+          "supported_by_source": true
+        },
+        {
+          "question": "Kakve su benefite konkurentne arhitektura operativnih sistema?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 143,
+      "verdict": "SUPPORTED",
+      "confidence": 0.95,
+      "reasoning": "Evidence confirms the answer that the order of execution is indeterminate when two processes attempt to access the same global variable concurrently.",
+      "verification_trace": [
+        {
+          "question": "Šta se događa kada dva procesa pokusaju da pristupe istoj globalnoj promenljivoj u višestrukom vreme (concurrent time)?",
+          "answer": "Neodređeni redosled izvršavan.",
+          "supported_by_source": true
+        },
+        {
+          "question": "Koji mechanismi su prisutni za uređivanje redosleda izvršavanja operacija nad zajedničkim resursima?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Postoje li mehanizmi kontrola koji određuju točan i konstantan redosled izvršavanja procesa u situaciji kada se procesi pokusavaju pristupiti istoj globalnoj promenljivoj?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": false,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 144,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "The verification evidence does not provide any information that supports or contradicts the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Kje se pojavljuje konkurentnost v zmoščenem poslovnem okolju?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kakšni različiti procesi prispevajo k nastanku konkurenca v trgu?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "V katerih področjih se lahko opazuje prepletanje različnih dejavnosti, ki prinaša konkurentnost?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 145,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Verification evidence does not provide information to support or contradict the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Koje su primjere različitih procesa koji pristupaju istim resursima u višestrukim aplikacijama?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako se implementiraju mehanizmi za korištenje zajedničkih resursa u okviru višestrukih aplikacija?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Koji su problema povezani s pristupom zajedničkim resursima u višestrukim aplikacijama i kako se riješe?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 146,
+      "verdict": "SUPPORTED",
+      "confidence": 1.0,
+      "reasoning": "Evidence confirms that two processes attempting to write/read the same global variable is a shared resource issue in a competitive environment.",
+      "verification_trace": [
+        {
+          "question": "Koja je vrsta interakcije koju opisuje deljenje globalnih resursa u konkurentnom okruženju?",
+          "answer": "deljenje globalnog resursa u konkurentnom okruženju opisuje situaciju gde dva ili više procesa pokušavaju da vrše upis i/ili čitanje nad istom promenljivom",
+          "supported_by_source": true
+        },
+        {
+          "question": "Koji tip problema se pojavljuje kada dva procesa pokušaju pristupiti istom globalnoj promenljivoj?",
+          "answer": "Upis/čitanje nad istom globalnom promenljivom",
+          "supported_by_source": true
+        },
+        {
+          "question": "Kako bi se ovaj problem mogao rešiti da bi se osiguralo ispravno funkcionisanje programa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": false,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 147,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "The verification evidence does not provide a direct match for the term 'Štetno preplitanje' or its equivalent in English.",
+      "verification_trace": [
+        {
+          "question": "Što se dešava kada dva procesa istovremeno pokušaju da izmenju globalnu promenljivu?",
+          "answer": "Dva procesa vrše upis/čitanje nad istom globalnom promenljivom",
+          "supported_by_source": true
+        },
+        {
+          "question": "Kojim terminom opisuje se situacija u kojoj su podaci globalne promenljive nekoherentni zbog istovremenih upisa i čitanja različitim procesima?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Koji je tehnički pojam za problem kada dva ili više procesa izmenju istu memoriju bez adekvatnog sinkronizovanja?",
+          "answer": "竞态条件",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 148,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.9,
+      "reasoning": "The verification evidence does not provide any information to support or contradict the candidate correct answer.",
+      "verification_trace": [
+        {
+          "question": "Koje su moguca situacije kada resurs ne koristi potpuno proces koji je dodeljen?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako se moze detektovati da li je resurs dodeljen nepotrebnom procesu?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Šta su posledice dodeljivanja resursa nepotrebnom procesu?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 149,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.85,
+      "reasoning": "Verification evidence does not provide relevant context or support for the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Koje vrste grešaka se obično detektiraju u konkurentnom okruženju?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Šta znači 'neočekivano ponašanje programa' u kontekstu sigurnosti i bezbednosti softvera?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako se razlikuje neočekivano ponašanje programa od normalnog rada programa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 150,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.7,
+      "reasoning": "Verification evidence does not clearly specify 'Štetno preplitanje' as the unique correct answer.",
+      "verification_trace": [
+        {
+          "question": "Što se događa kada dva procesa istovremeno menjaju vrednost globalne promenljive?",
+          "answer": "Se nastajaju štetne situacije.",
+          "supported_by_source": true
+        },
+        {
+          "question": "Koji je problema usled toga što su izmjene nekonsistentne i mogu dovoditi do netacnih rezultata?",
+          "answer": "Dva procesa koji vrše upis/čitanje nad istom globalnom promenljivom mogu nastaviti štetne situacije, kao što su nekonsistentne izmjene i netочные результаты.",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kakav tip pogreške se pojavljuje kada procesi preplite informacije u istom memorijalnom adresiraju?",
+          "answer": "štetne situacije",
+          "supported_by_source": true
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 151,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.95,
+      "reasoning": "Verification evidence lacks specific information to support or contradict the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Što znači da su rezultati operacija neodređeni?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako konkurentni procesi mogu uticati na redosled izvršavanja operacija?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Koji je primjer situacije u kojoj se različiti redovi izvršavanja operacija može dobiti i što to znači za rezultate?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 152,
+      "verdict": "SUPPORTED",
+      "confidence": 0.95,
+      "reasoning": "Evidence confirms that two competing processes waiting for the same resource can be mutually blocked.",
+      "verification_trace": [
+        {
+          "question": "Što znači da dva procesa su međusobno blokirani?",
+          "answer": "Da dva procesa su međusobno blokirani znači da čekaju na resurse koje već drži drugi proces.",
+          "supported_by_source": true
+        },
+        {
+          "question": "Koji je mogući scenarij pri čemu se dva konkurentna procesa čekaju na isti resurs?",
+          "answer": "Dva konkuretna procesa se mogu međusobno blokirati zbog čekanja na isti resurs.",
+          "supported_by_source": true
+        },
+        {
+          "question": "Kako operativni sustav riješava situaciju kada se dva procesa blokiraju počekajući na isti resurs?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": false,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 153,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.2,
+      "reasoning": "Verification evidence does not provide any relevant information to support or contradict the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Što znači pojam 'međusobna isključivost' u operativnom sistemu?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Koji je odgovarajući primjer međusobne isključivosti u kontekstu konkurentnosti procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako se razlikuje međusobna isključivost od ostalih vrsta konkurentnosti između procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 154,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Evidence is incomplete as it lacks a direct definition or support for 'međusobna isključivost' and does not confirm its relationship with the given question.",
+      "verification_trace": [
+        {
+          "question": "Šta predstavlja međusobna isključivost u kontekstu procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako se opisuje situacija kada jedan proces ne utiče negativno na drugi proces?",
+          "answer": "mogućnost procesa da obavi akciju bez negativnog uticaja drugih procesa",
+          "supported_by_source": true
+        },
+        {
+          "question": "Može li dati primer primjene međusobne isključivosti u realnosti?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 155,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.95,
+      "reasoning": "Lakša je dostupna informacija u verifikacijskom djelu da bi se validirao kandidat.",
+      "verification_trace": [
+        {
+          "question": "Koji je resurs u pitanju koji se deli tokom štetnog preplitanja?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako se opisuje problem s deljenim resursom u kontekstu ovog primjera?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Šta rezultati dolaze kao posljedica deljenog resursa prilikom štetnog preplitanja?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 156,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.95,
+      "reasoning": "Verification evidence does not provide sufficient information to support or contradict the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Što određuje redosled izvršenja procesa u programskom okruženju?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako se data race situacija može manifestirati u programskom okviru?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Koji faktori utječu na to kako će se rezultat promijeniti ovisno o redosledu izvršenja procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 157,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.9,
+      "reasoning": "Verification evidence does not provide sufficient information about variable x to confirm it as a shared resource.",
+      "verification_trace": [
+        {
+          "question": "Koji je naziv za deljeni resurs u datom kontekstu?",
+          "answer": "deljeni resurs",
+          "supported_by_source": true
+        },
+        {
+          "question": "Kakva je klasa ili vrsta promenljive x?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "U kojem okviru se koristi varijabla x kao deljeni resurs?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 158,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Evidence is incomplete as A2 is not provided, making it unclear what 'scenarij preplita' means in context.",
+      "verification_trace": [
+        {
+          "question": "Koja faktorima programski rezultat ovisi?",
+          "answer": "scenarija preplita",
+          "supported_by_source": true
+        },
+        {
+          "question": "Šta znači 'scenarij preplita' u kontekstu programa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako promene u scenariju mogu uticati na izvršavanje programa?",
+          "answer": "Promene u scenariju mogu uticati na izvršavanje programa",
+          "supported_by_source": true
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 159,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.95,
+      "reasoning": "The verification evidence does not provide any information that supports or contradicts the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Što predstavlja deljeni resurs u kontekstu štetnog preplitanja?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Koji tip promenljivih može biti zadržan kao deljeni resurs tokom procesa preplitanja?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kakva je moguća konsekvencija korišćenja iste varijable u različitim niti bez adekvatne blokade?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 160,
+      "verdict": "SUPPORTED",
+      "confidence": 1.0,
+      "reasoning": "The candidate answer accurately reflects the verification evidence provided.",
+      "verification_trace": [
+        {
+          "question": "Što znači 'data race' u kontekstu programskog izvođenja?",
+          "answer": "Rezultat programa zavisi od scenarija preplitanja i redosleda izvršavanja instrukcija između procesa",
+          "supported_by_source": true
+        },
+        {
+          "question": "Kakva je posljedica redosleda izvršavanja instrukcija za rezultat programa koji se odnosi na data race?",
+          "answer": "Rezultat programa zavisi od redosleda izvršavanja instrukcija između procesa.",
+          "supported_by_source": true
+        },
+        {
+          "question": "Kako preplitanje procesa utječe na nastanak i slijed događaja u 'data race' situaciji?",
+          "answer": "Preplitanje procesa utječe na nastanak i slijed događaja u situaciji 'data race' tako što rezultat programa zavisi od scenarija preplitanja i redosleda izvršavanja instrukcija između procesa.",
+          "supported_by_source": true
+        }
+      ],
+      "needs_review": false,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 161,
+      "verdict": "SUPPORTED",
+      "confidence": 1.0,
+      "reasoning": "Verification evidence confirms that the result of a program in case of a data race depends on the order of instruction execution.",
+      "verification_trace": [
+        {
+          "question": "Što se događa kada su dva ili više nitiju konkurentno čitaju i pise u istu varijablu?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako se opisuje situacija kada niti mogu dozvole različite rezultate zavisno od redosleda izvršavanja instrukcija u programskom kodu?",
+          "answer": "Rezultat programa zavisi od redosleda izvršavanja instrukcija između procesa.",
+          "supported_by_source": true
+        },
+        {
+          "question": "Koji faktor utiče na tko će nit dobiti pristup varijabli i da li će se dogoditi data race?",
+          "answer": "redosleda izvršavanja instrukcija između procesa",
+          "supported_by_source": true
+        }
+      ],
+      "needs_review": false,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 162,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.2,
+      "reasoning": "Verification evidence does not provide any relevant information to support or contradict the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Koja je definicija determinističkog ponašanja procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "U čemu se razlika između determinističkog i neodređenog (nondeterminističkog) ponašanja procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Koji faktori utiču na rad determinističkih procesa u operativnom sistemu?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 163,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.9,
+      "reasoning": "Evidence is not provided to support or contradict the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Što predstavlja koncept nadmetanja u kontekstu zajedničkih resursa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kakva je veza između nadmetanja i pristupa zajedničkim resursima?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Koji su primjeri situacija kada se desava nadmetanje prije pristupa konkretnim zajedničkim resursima?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 164,
+      "verdict": "SUPPORTED",
+      "confidence": 1.0,
+      "reasoning": "Evidences Q2 and Q3 directly support the candidate correct answer that the result depends on the order of instruction execution.",
+      "verification_trace": [
+        {
+          "question": "Šta se događa kada u programskom kodu nastupa data race?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako može redosled izvršavanja instrukcija uticati na rezultat programa koji sadrži data race?",
+          "answer": "Redosled izvršavanja instrukcija može uticati na rezultat programa koji sadrži data race, jer zavisi od scenarija preplitanja i redosleda izvršavanja instrukcija između procesa.",
+          "supported_by_source": true
+        },
+        {
+          "question": "Koji faktori odredjuju mogućnost pojava različitih rezultata zbog data race?",
+          "answer": "scenarija preplitanja i redosleda izvršavanja instrukcija između procesa",
+          "supported_by_source": true
+        }
+      ],
+      "needs_review": false,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 165,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Verification evidence does not provide direct support for mutual exclusion being the necessary condition, and lacks information on alternative mechanisms.",
+      "verification_trace": [
+        {
+          "question": "Kakva se mehanika primjenjuje kada više procesa moraju pristupiti istom resursu?",
+          "answer": "synchronized access to the resource so that only one process can use it at a time",
+          "supported_by_source": true
+        },
+        {
+          "question": "Šta predstavlja uzajamna isključivost u kontekstu višestruke podrške za procese i kako ona utiče na performanse sustava?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Koji alati ili mehanizmi koristimo za osiguravanje toga da se isti resurs ne pristupa u isto vrijeme od strane više procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 166,
+      "verdict": "SUPPORTED",
+      "confidence": 1.0,
+      "reasoning": "Evidence Q2 and Q3 both support the idea that only one process can use a resource at any given time.",
+      "verification_trace": [
+        {
+          "question": "Koji princip upravljanja resursima se primenjuje kada više procesa traži pristupanje istom resursu?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Šta se dogadjava ako jedan od procesa koji čeka na pristupanje zajedničkom resursu dobije dozvolu za njegovu upotrebu?",
+          "answer": "Za ispravan rad potrebno je da u jednom trenutku samo jedan proces pristupa resursu.",
+          "supported_by_source": true
+        },
+        {
+          "question": "Kako se kontrolira da bi samo jedan proces mogao koristiti resurs u istom trenutku?",
+          "answer": "Za ispravan rad potrebno je da u jednom trenutku samo jedan proces pristupa resursu",
+          "supported_by_source": true
+        }
+      ],
+      "needs_review": false,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 167,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Verification evidence does not provide any relevant information to support or contradict the candidate correct answer.",
+      "verification_trace": [
+        {
+          "question": "Što znači da jedan resurs u operativnom sistemu može biti isključivo zauzet?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako se naziva princip koji ograničava pristup nekim skladistem programa ili podataka tokom izvršavanja procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Šta bi moglo desiti ako dva procesa u operativnom sistemu istovremeno pokušaju da koriste jednu i tu samu resurs?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 168,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.95,
+      "reasoning": "Verification evidence does not provide information to support or contradict the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Koja su tri glavna problema povezana s konkurentnoscu u multitasking operativnim sistemima?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Što se događa kada se procesi preplite zbog konkurentnosti i kako to utiče na performanse sistema?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kakva je posledica blokiranja procesa za redoslijed izvršavanja u situacijama konkurentnosti?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 169,
+      "verdict": "SUPPORTED",
+      "confidence": 1.0,
+      "reasoning": "The verification evidence consistently supports the candidate correct answer regarding isolation and non-sharing of common resources.",
+      "verification_trace": [
+        {
+          "question": "Koje karakteristike moraju imati niti kako bi bile međusobno nezavisne?",
+          "answer": "Niti koje su izolovane i ne deluju zajedničke resurse.",
+          "supported_by_source": true
+        },
+        {
+          "question": "Šta je bitna zaštita u kontekstu ključnih elemenata međusobno nezavisnih niti?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako se preprečava da su niti izvršene na zajedničkim resursima?",
+          "answer": "Niti koje su izolovane i ne deluju zajedničke resurse.",
+          "supported_by_source": true
+        }
+      ],
+      "needs_review": false,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 170,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.95,
+      "reasoning": "Verification evidence does not provide any supporting information for the candidate correct answer.",
+      "verification_trace": [
+        {
+          "question": "Koja su osnovna karakteristike višestrukih procesa u kontekstu konkurentnosti?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako zavisnosti između procesa utječu na njihovu konkurentnost?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Koji je vrhunski prilog interakcije procesa za uspon konkurentnosti?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 171,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.95,
+      "reasoning": "Verification evidence does not provide information on interdependencies and mutual interactions in competitive processes.",
+      "verification_trace": [
+        {
+          "question": "Koje su primjene međusobnih interakcija u procesima konkurentnosti?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako zavisnosti između procesa utječu na njihovu konkurentnost?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Koji su ključni faktori koji definiraju zavisnosti i interakcije u konkurentnim okruženjima?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 172,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.95,
+      "reasoning": "Verification evidence does not provide any support for the candidate correct answer.",
+      "verification_trace": [
+        {
+          "question": "Koje su međusobne veze između procesa važni faktori konkurentnosti?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kakve vrste zavisnosti mogu se pojaviti pri upravljanju višestrukim procesima?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako interakcije između procesa utiču na njihovu efikasnost i konkurentnost?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 173,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.95,
+      "reasoning": "Dva od tri fakta nisu potpuno podržana u dokazu, što čini odgovor nedovoljno sigurnim.",
+      "verification_trace": [
+        {
+          "question": "Šta predstavljaju višestruke aplikacije u multiprogramiranim sistemima?",
+          "answer": "kod multiprogramiranih sistema različiti procesi pristupaju istim resursima",
+          "supported_by_source": true
+        },
+        {
+          "question": "Koji su primjeri deljenja globalnih resursa u multiprogramiranim sistemima?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako se opisuje neodređeni redosled izvršavanja u kontekstu multiprogramiranja?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 174,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Evidence is incomplete as key details about the candidate answer are missing from the source.",
+      "verification_trace": [
+        {
+          "question": "Koje su dve glavne karakteristike grešaka u konkurentnom okruženju?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Što znači težina reprodukcije neočekivanih rezultata?",
+          "answer": "teže je reprodukovati neočekivano ponašanje",
+          "supported_by_source": true
+        },
+        {
+          "question": "Kako je neodređeni redosled izvršavanja operacija povezan s greškama u konkurentnom okruženju?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 175,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Verification evidence does not provide any information supporting or contradicting the candidate correct answer.",
+      "verification_trace": [
+        {
+          "question": "Što znači međusobna isključivost u kontekstu procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Koji su primjeri situacija gdje se jedan proces ne može obaviti bez negativnog uticaja na drugi?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako se opisuje mogućnost da dva ili više procesa funkcioniraju međusobno isključivo?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 176,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Verification evidence lacks detailed information on both shared resources and process interleaving, making it insufficient to definitively support or contradict the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Koji su dva ključna elementa koji se često pojavljuju u scenarijima data race-a?",
+          "answer": "deljeni resurs, preplitanje",
+          "supported_by_source": true
+        },
+        {
+          "question": "Šta znače i kako funkcioniraju deljeni resursi u kontekstu programiranja?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako se definisaju i koja je njihova uloga preplitanja procesa pričinu data race-a?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 177,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.7,
+      "reasoning": "Evidencija nije dopunio specifične primere ili informacije o rešavanju problema data race, što čini odgovor na pitanje nedovoljno dokumentisanim.",
+      "verification_trace": [
+        {
+          "question": "Što znači da rezultat programa ovisi o preplitanju i redosledu izvršavanja instrukcija između procesa?",
+          "answer": "Da rezultat programa ovisi o preplitanju i redosledu izvršavanja instrukcija znači da varijacije u tome kako se procesi povezuju (prepliti) i redosledu u kojem se njihove instrukcije izvrše može uticati na konačnu vrednost ili stanje programa.",
+          "supported_by_source": true
+        },
+        {
+          "question": "Kakve specifične situacije ili primere ilustriraju ovaj karakteristiku data race?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako se mogu identificirati i rešiti problemi povezani s data race u programskom kodu?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 178,
+      "verdict": "SUPPORTED",
+      "confidence": 0.95,
+      "reasoning": "The evidence supports the candidate correct answer without contradicting it.",
+      "verification_trace": [
+        {
+          "question": "Koja su karakteristike procesa koji nisu predviđeni da rade zajedno ali pristupaju istim resursima?",
+          "answer": "Nezavisni procesi koji nisu predviđeni da rade zajedno, ipak pristupaju istim resursima.",
+          "supported_by_source": true
+        },
+        {
+          "question": "Šta znači da dva ili više procesa 'pristupaju istim resursima'?",
+          "answer": "Ipak, pristupaju istim resursima",
+          "supported_by_source": true
+        },
+        {
+          "question": "Kakve probleme mogu nastati kada nezavisni procesi pristupe istim resursima?",
+          "answer": "Kazne mogu ući kada nezavisni procesi pristupe istim resursima zbog konkurencije i potencijalnog konflikta prije spajanja.",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": false,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 179,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.2,
+      "reasoning": "Laknja u evidenciji ne dopušta potpuno ocijeniti odgovor jer nema relevantnih detalja o zajedničkim resursima i njihovom pristupu između procesa.",
+      "verification_trace": [
+        {
+          "question": "Koja su primeri zajedničkih resursa u multitask operativnom sistemu?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Šta se dešava kada dva nezavisna procesa pokušaju pristupiti istom resursu uzimanjem semafora?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako operativni sistem regulise pristup zajedničkim resursima između nezavisnih procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 180,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.85,
+      "reasoning": "Verification evidence does not provide any specific information about what happens to other processes attempting to enter a critical section when one process is already inside.",
+      "verification_trace": [
+        {
+          "question": "Šta se događa drugim procesima koje pokušavaju da uđu u kritičnu sekciju kada je jedan proces već unutar nje?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kakva je procedura za procese koji žele da pristupe kritičnoj sektori kada je ona zauzeta drugim procesom?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako su organizovani čekanje i pristup kritične sekcije između različitih procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 181,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.9,
+      "reasoning": "The verification evidence does not provide enough information to confirm or deny the use of 'neprekidno proveravanje uslova' (continuous condition checking) as it contradicts mentioning cin, cout for condition checks.",
+      "verification_trace": [
+        {
+          "question": "Koje su dva ključna elementa u implementaciji prve varijante busy waiting?",
+          "answer": "is_lock_free, while loop",
+          "supported_by_source": true
+        },
+        {
+          "question": "Koji standardni metodi se koriste za proveru uslova u kontekstu busy waiting?",
+          "answer": "cin, cout",
+          "supported_by_source": false
+        },
+        {
+          "question": "Šta predstavljaju funkcije is_lock_free u odnosu na busy waiting?",
+          "answer": "The variable is_lock_free is used in a busy-waiting loop to prevent execution of critical section until it becomes true.",
+          "supported_by_source": true
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 182,
+      "verdict": "SUPPORTED",
+      "confidence": 0.95,
+      "reasoning": "The evidence confirms that a process enters a blocked state when it cannot enter a critical section.",
+      "verification_trace": [
+        {
+          "question": "Šta se događa procesu koji je blokiran da čeka pristup kritičnoj sekciji?",
+          "answer": "odlazi u stanje blokiran",
+          "supported_by_source": true
+        },
+        {
+          "question": "Koji su mogući rezultati za proces koji ne može ući u kritičnu sekciju zauzete drugim procesom?",
+          "answer": "proces koji ne može da uđe u kritičnu sekciju odlazi u stanje blokiran",
+          "supported_by_source": true
+        },
+        {
+          "question": "Kako sistem upravlja stanjem procesa kojeg je blokirao prilikom pokušaja pristupa kritičnoj sekciji?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": false,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 183,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.9,
+      "reasoning": "Evidencija ne potvrđuje sve korake iz kandidatog odgovora, konkretno nedostaje informacija o spremnim zahtjevima za zauzetost propusnice.",
+      "verification_trace": [
+        {
+          "question": "Koja je prva koraka potrebna prije nego se propusnica zauzme?",
+          "answer": "Proveriti da li je propusnica slobodna",
+          "supported_by_source": true
+        },
+        {
+          "question": "Šta se radi kada se proverava da li je propusnica slobodna?",
+          "answer": "Zauzima se propusnica ako je provereno da je ona slobodna.",
+          "supported_by_source": true
+        },
+        {
+          "question": "Koji spremni zahtevi moraju biti ispunjeni pre zauzetosti propusnice?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 184,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.95,
+      "reasoning": "Verification evidence does not provide any information to support or contradict the candidate correct answer.",
+      "verification_trace": [
+        {
+          "question": "Šta se događa kada dva procesa pokušaju da proveravaju zauzetost iste propusnice zajedno?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Koji je problem stvaranog okruženja kada dva procesa iskorišćuju nezavisne mehanizme za provere dostupnosti propusnice?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kakve konfliktne situacije mogu nastati kada se istovremeno pokušava proveriti zauzetost jedne propusnice?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 185,
+      "verdict": "SUPPORTED",
+      "confidence": 1.0,
+      "reasoning": "Verification evidence clearly supports that lock() and unlock() are the methods used for locking and unlocking resources in the mutex class.",
+      "verification_trace": [
+        {
+          "question": "Koja metoda klase mutex se koristi za zakljuckivanje resursa?",
+          "answer": "lock()",
+          "supported_by_source": true
+        },
+        {
+          "question": "Koji je naziv metode koji služi za otključavanje resursa u klasi mutex?",
+          "answer": "unlock()",
+          "supported_by_source": true
+        },
+        {
+          "question": "Šta čini par metoda lock() i unlock() u kontekstu upravljanja multi-thread aplikacijama?",
+          "answer": "lock() zaključava mutex objekat ako je otključan, a unlock() otključava mutex objekat.",
+          "supported_by_source": true
+        }
+      ],
+      "needs_review": false,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 186,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.7,
+      "reasoning": "Evidence lacks confirmation of Mutex usage, despite unique_lock being confirmed.",
+      "verification_trace": [
+        {
+          "question": "Koji standardni klasa se koristi za realizaciju mutex-a u C++11?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kakva je ključna klase koja omogućava automatsko zaključavanje i otključavanje mutex-a prilikom unosa i izlaza iz zona koda?",
+          "answer": "unique_lock",
+          "supported_by_source": true
+        },
+        {
+          "question": "Šta reprezentuje unique_lock u kontekstu upravljanja resursima?",
+          "answer": "unique_lock koristi se za upravljanje zaključavanjem mutexa i automatsko otključavanje u destruktoru.",
+          "supported_by_source": true
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 187,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.7,
+      "reasoning": "Evidence does not confirm or deny the presence of resource release mechanisms.",
+      "verification_trace": [
+        {
+          "question": "Koji je primer uzajamnog blokiranja resursa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako se procesi mogu oslobediti nakon blokiranja resursa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Šta se dogada kada dva procesa čekaju da drugi oslobode neki zajednički resurs?",
+          "answer": "Svi procesi čekaju da drugi procesi oslobode resurse koji im trebaju.",
+          "supported_by_source": true
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 188,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Verification evidence does not provide any information to support or contradict the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Koje su dve glavne vrste problema koji se mogu desiti prilikom kopiranja mutex objekata?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kakva je priroda problema uzajamnog blokiranja i zaključavanja različitih kopija propusnice u kontekstu mutexa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Koji je posljedicama potencijalne situacije kada se nastane problemi sa kopiranjem mutex objekata?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 189,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.3,
+      "reasoning": "Verification evidence is incomplete for livelock and starvation, only confirming mutual deadlock.",
+      "verification_trace": [
+        {
+          "question": "Koji su uzajamni blokovi karakteristični za situaciju kada procesi čekaju da se drugi procesi oslobode resursa koji im trebaju?",
+          "answer": "Uzajamni blokovi",
+          "supported_by_source": true
+        },
+        {
+          "question": "U kojoj situaciji može nastati livelock vezan uz čekanje rješenja od strane drugih procesa?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako se zna kada je došlo do gladovanja iz-za blokiranja resursa u operativnom sistemu?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 190,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Evidence is missing for one key requirement (Q2: A2), making the answer incomplete.",
+      "verification_trace": [
+        {
+          "question": "Šta predstavlja bez odlaganje pri ulasku u međusobno isključive procese?",
+          "answer": "bez odlaganje pri ulasku u međusobno isključive procese znači da se ulazi u kritičnu sekciju ukoliko nijedan drugi proces nije u sekciji",
+          "supported_by_source": true
+        },
+        {
+          "question": "Kakve akcije mora proces izvršiti nad drugim procesima za osiguranje međusobne isključivosti?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Zašto je bitno da proces izađe iz kritične sekcije u konačnom vremenu?",
+          "answer": "Da bi sprečili beskonačno blokiranje i da osiguraju pristup drugim procesima.",
+          "supported_by_source": true
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 191,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "A3 lacks verification evidence, making the completeness of candidate answer uncertain.",
+      "verification_trace": [
+        {
+          "question": "Koje su funkcije semafora u operativnom sistemu?",
+          "answer": "semWait() ili P() ili down(), semSignal() ili V() ili up()",
+          "supported_by_source": true
+        },
+        {
+          "question": "Cime se zapisuje semWait() i semSignal() u kontekstu računalne zaganjavanja?",
+          "answer": "Uzimanje i vraćanje zasoba (semWait() manji brojač za 1 i čekanje na dozvolu, semSignal() poveća brojač za 1)",
+          "supported_by_source": true
+        },
+        {
+          "question": "U kojem okviru se obično koriste operacije semWait() i semSignal()?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 192,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Verification evidence does not provide any specific information about the functions of P() and V() in semaphores.",
+      "verification_trace": [
+        {
+          "question": "Koje su funkcije P() i V() u kontekstu semafora?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "U cemu se razlikuju implementacije P() i V() izmedju razlicitih operativnih sistema?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako se koriste P() i V() za ovladavanje konkurentnim pristupom deljenim resursima?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 193,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Verification evidence lacks information supporting the existence of only two types of semaphores as stated in the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Šta predstavljaju brojački semafori u odnosu na binarne?",
+          "answer": "Brojački semafor može dobiti proizvoljnu celobrojnu vrednost, dok binarni semafor ima samo dve moguće vrednosti: 0 ili 1.",
+          "supported_by_source": true
+        },
+        {
+          "question": "Koji su osnovni razlike između brojačkih i binarnih semafora?",
+          "answer": "Brojački semafor može imati bilo koju celobrojnu vrednost, dok binarni semafor može imati samo dve vrednosti: 0 ili 1.",
+          "supported_by_source": true
+        },
+        {
+          "question": "U čemu je važnost brojačkog semafora u multitasking okruženju?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    },
+    {
+      "question_id": 194,
+      "verdict": "UNDERDETERMINED",
+      "confidence": 0.8,
+      "reasoning": "Verification evidence lacks relevant information to support or contradict the candidate answer.",
+      "verification_trace": [
+        {
+          "question": "Koje su karakteristike konkurentnosti koji odnose se na međusobnu isključivost?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Kako konkurentnost utiče na uskladjenje radnji više niti u istom vremenskom periodu?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        },
+        {
+          "question": "Šta znači usklađenje radnje više niti u kontekstu konkurentnosti?",
+          "answer": "NOT IN SOURCE",
+          "supported_by_source": false
+        }
+      ],
+      "needs_review": true,
+      "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+    }
+  ],
+  "cove_model": "qwen2.5:14b-instruct-q4_K_M"
+}

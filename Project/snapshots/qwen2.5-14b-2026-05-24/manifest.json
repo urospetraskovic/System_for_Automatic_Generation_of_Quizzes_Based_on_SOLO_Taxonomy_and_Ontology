@@ -1,0 +1,43 @@
+{
+  "label": "qwen2.5-14b-2026-05-24",
+  "created_at": "2026-05-24T13:44:09.811176",
+  "generator_model": "qwen2.5:14b-instruct-q4_K_M",
+  "ollama_base_url": "http://127.0.0.1:11435",
+  "notes": "Local Ollama qwen2.5:14b after BANNED_OPENERS + simetric H27 prompt fix. 194 questions across 3 lessons. Solvability skipped (not cached by design).",
+  "table_counts": {
+    "courses": 1,
+    "lessons": 3,
+    "sections": 97,
+    "learning_objects": 423,
+    "concept_relationships": 51,
+    "questions": 194,
+    "quizzes": 0,
+    "quiz_questions": 0,
+    "translations": 0
+  },
+  "validation_keys": [
+    "ambiguity",
+    "cove",
+    "coverage",
+    "face_validity",
+    "grammar_homogeneity",
+    "ioc",
+    "lint",
+    "misconception_mining",
+    "readability",
+    "solo_judge",
+    "stem_only"
+  ],
+  "env": {
+    "OLLAMA_MODEL": "qwen2.5:14b-instruct-q4_K_M",
+    "OLLAMA_JUDGE_MODEL": null,
+    "OLLAMA_COVE_MODEL": null,
+    "OLLAMA_SOLVER_MODEL": null,
+    "OLLAMA_EMBED_MODEL": null,
+    "OLLAMA_IOC_MODEL": null,
+    "OLLAMA_AMBIGUITY_MODEL": null,
+    "OLLAMA_GRAMMAR_MODEL": null,
+    "OLLAMA_FACE_MODEL": null,
+    "OLLAMA_MINER_MODEL": null
+  }
+}

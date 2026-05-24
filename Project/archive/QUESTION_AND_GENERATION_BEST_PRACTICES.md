@@ -279,6 +279,9 @@ detection). The rule codes (`H14`, `H17`, `H19`, `H21`, `H22`, `H24`, `H25`,
 | H14 | End the stem with a question mark or a clear imperative | `STEM_RULES` S1 |
 | H16 | Keep stem under ~250 chars; no window dressing | `STEM_RULES` S2 |
 | H17 | Avoid negation; if used, emphasise with `**…**` | `STEM_RULES` S3 |
+S5 — lexical clarity: zabranjuje vague heads ("koncept", "mehanizam", "pristup") bez naimenovanog koncepta. Direktno adresira 38 lexical ambiguity flagova.
+S6 — referential clarity: zabranjuje bare pronouns. Adresira 6 referential ambiguity flagova.
+S7 — source binding: ako ne možeš naći exact line u SOURCE TEXT sa istom terminologijom kao tačan odgovor, baci stem i probaj drugi. Direktno adresira 83% CoVe UNDERDETERMINED.
 | H19 | Exactly one correct option | `OPTION_RULES` O1 |
 | H21 | Numeric options in ascending or descending order | `OPTION_RULES` O6 |
 | H22 | No two options are paraphrases of one another | `OPTION_RULES` O2 |

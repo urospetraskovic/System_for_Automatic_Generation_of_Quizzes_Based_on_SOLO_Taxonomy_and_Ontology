@@ -1,0 +1,1760 @@
+{
+  "total_questions": 194,
+  "rated_questions": 194,
+  "ioc_index": -0.01,
+  "ioc_label": "misaligned",
+  "distribution": {
+    "+1": 5,
+    "0": 182,
+    "-1": 7
+  },
+  "reports": [
+    {
+      "question_id": 1,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be interpreted to test general knowledge about program instances rather than specifically the concept of a process in an operating system.",
+      "objective_type": "learning_object",
+      "objective_id": 1,
+      "objective_title": "Operativni sistem procesi"
+    },
+    {
+      "question_id": 2,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be referring to various resources managed by the OS for multiple applications, not specifically CPU resources.",
+      "objective_type": "learning_object",
+      "objective_id": 2,
+      "objective_title": "Resursi za više aplikacija"
+    },
+    {
+      "question_id": 3,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be measuring the concept of a program in execution but also touches upon related concepts like data sets and code, making the primary objective unclear.",
+      "objective_type": "learning_object",
+      "objective_id": 3,
+      "objective_title": "Program u izvršavanju"
+    },
+    {
+      "question_id": 4,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question addresses the concept of a process but includes options that are not directly related to the definition provided in the learning objective, making it ambiguous.",
+      "objective_type": "learning_object",
+      "objective_id": 4,
+      "objective_title": "Definicija procesa"
+    },
+    {
+      "question_id": 5,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be interpreted to test the definition of program code but also touches on execution, which is not clearly specified in the learning objective.",
+      "objective_type": "learning_object",
+      "objective_id": 5,
+      "objective_title": "Elementi procesa - programski kod"
+    },
+    {
+      "question_id": 6,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be measuring the given objective but also potentially other aspects related to process elements.",
+      "objective_type": "learning_object",
+      "objective_id": 6,
+      "objective_title": "Elementi procesa - skup podataka"
+    },
+    {
+      "question_id": 7,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be interpreted to test the understanding of a jedinica aktivnosti broadly, rather than specifically focusing on naredbe za izvršavanje.",
+      "objective_type": "learning_object",
+      "objective_id": 7,
+      "objective_title": "Jedinica aktivnosti"
+    },
+    {
+      "question_id": 8,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it does not clearly specify what aspect of preplitanje izvršavanja više procesa is being tested.",
+      "objective_type": "learning_object",
+      "objective_id": 8,
+      "objective_title": "Preplitanje izvršavanja više procesa"
+    },
+    {
+      "question_id": 9,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be interpreted to ask about fundamental components of a process which might include data, not just program code.",
+      "objective_type": "learning_object",
+      "objective_id": 9,
+      "objective_title": "Proces kao entitet"
+    },
+    {
+      "question_id": 10,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question asks about elements of a process that describe the state of the process but does not specify which elements are being referred to, making it ambiguous.",
+      "objective_type": "learning_object",
+      "objective_id": 10,
+      "objective_title": "Elementi procesa"
+    },
+    {
+      "question_id": 11,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be measuring a tangential aspect of the process attribute rather than directly focusing on 'identifikator' as specified in the learning objective.",
+      "objective_type": "learning_object",
+      "objective_id": 11,
+      "objective_title": "Atributi procesa"
+    },
+    {
+      "question_id": 12,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it does not clearly specify that UBP enables multiprogramming, which is part of the learning objective.",
+      "objective_type": "learning_object",
+      "objective_id": 12,
+      "objective_title": "Upravljački blok procesa (UBP)"
+    },
+    {
+      "question_id": 13,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous and could be related to various aspects of process behavior beyond the specific objective.",
+      "objective_type": "learning_object",
+      "objective_id": 13,
+      "objective_title": "Trag procesa"
+    },
+    {
+      "question_id": 14,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous and could be related to process scheduling but primarily tests knowledge about what can be assigned and executed on a processor, rather than specifically focusing on the concept of a process scheduler.",
+      "objective_type": "learning_object",
+      "objective_id": 14,
+      "objective_title": "Raspoređivač procesora"
+    },
+    {
+      "question_id": 15,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be related to multiple aspects of process attributes rather than clearly focusing on the identification of a specific learning objective.",
+      "objective_type": "learning_object",
+      "objective_id": 15,
+      "objective_title": "Izvor: www.youtube.com"
+    },
+    {
+      "question_id": 16,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be testing general knowledge about the program counter rather than specifically its role in addressing the next instruction.",
+      "objective_type": "learning_object",
+      "objective_id": 16,
+      "objective_title": "Programski brojač"
+    },
+    {
+      "question_id": 17,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be related to multiple aspects of memory pointers and does not clearly isolate the specific learning objective.",
+      "objective_type": "learning_object",
+      "objective_id": 17,
+      "objective_title": "Pokazivači na memorijske blokove"
+    },
+    {
+      "question_id": 18,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches on the concept but also includes options that address related but distinct concepts.",
+      "objective_type": "learning_object",
+      "objective_id": 18,
+      "objective_title": "Preplitanje izvršavanja procesa"
+    },
+    {
+      "question_id": 19,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be interpreted to test synchronization or resource management rather than specifically addressing the objective of resource allocation and protection.",
+      "objective_type": "learning_object",
+      "objective_id": 19,
+      "objective_title": "Dodela i zaštita resursa"
+    },
+    {
+      "question_id": 20,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be measuring multiple aspects of OS functionality rather than specifically focusing on the deljenje i razmena informacija.",
+      "objective_type": "learning_object",
+      "objective_id": 20,
+      "objective_title": "Deljenje i razmena informacija"
+    },
+    {
+      "question_id": 21,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches on the concept of OS managing processes but is ambiguous about whether it specifically measures synchronization as required by the objective.",
+      "objective_type": "learning_object",
+      "objective_id": 21,
+      "objective_title": "Sinhronizacija procesa"
+    },
+    {
+      "question_id": 22,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be testing the understanding of OS requirements rather than the specific concept of preplitanje izvršavanja više procesa.",
+      "objective_type": "learning_object",
+      "objective_id": 22,
+      "objective_title": "Preplitanje izvršavanja više procesa"
+    },
+    {
+      "question_id": 23,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question mentions the exchange of information between processes, which aligns with the objective, but the content and focus are not specified clearly enough to ensure it does not measure other aspects of process management.",
+      "objective_type": "learning_object",
+      "objective_id": 23,
+      "objective_title": "Deljenje i razmena informacija između procesa"
+    },
+    {
+      "question_id": 24,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous and does not clearly measure the specified learning objective.",
+      "objective_type": "learning_object",
+      "objective_id": 24,
+      "objective_title": "Programski kod procesa"
+    },
+    {
+      "question_id": 25,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be interpreted to test related concepts such as data attributes or process state.",
+      "objective_type": "learning_object",
+      "objective_id": 25,
+      "objective_title": "Skup podataka procesa"
+    },
+    {
+      "question_id": 26,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as the options provided do not clearly align with measuring the specific objective of identifying the address of the next instruction in program code.",
+      "objective_type": "learning_object",
+      "objective_id": 28,
+      "objective_title": "adresa sledeće instrukcije u programskom kodu"
+    },
+    {
+      "question_id": 27,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be interpreted to measure related concepts beyond the specified objective.",
+      "objective_type": "learning_object",
+      "objective_id": 30,
+      "objective_title": "Pokazivači na memorijske blokove"
+    },
+    {
+      "question_id": 28,
+      "available": true,
+      "rating": 1,
+      "reasoning": "The question directly asks about context data of a process and the correct answer (D) precisely aligns with the learning objective.",
+      "objective_type": "learning_object",
+      "objective_id": 31,
+      "objective_title": "Kontekstni podaci procesa"
+    },
+    {
+      "question_id": 29,
+      "available": true,
+      "rating": -1,
+      "reasoning": "The question does not measure the objective as it asks about unprocessed requests while the correct answer provided is unrelated to this concept.",
+      "objective_type": "learning_object",
+      "objective_id": 32,
+      "objective_title": "U/I statusne informacije"
+    },
+    {
+      "question_id": 30,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it asks for a general definition of 'računovodstvene informacije procesa' rather than focusing specifically on time usage and temporal constraints.",
+      "objective_type": "learning_object",
+      "objective_id": 33,
+      "objective_title": "Računovodstvene informacije procesa"
+    },
+    {
+      "question_id": 31,
+      "available": true,
+      "rating": 0,
+      "reasoning": "Question is ambiguous as it could be testing knowledge about UBP but also touches on the OS's role which is not clearly the main focus.",
+      "objective_type": "learning_object",
+      "objective_id": 34,
+      "objective_title": "Upravljački blok procesa (UBP)"
+    },
+    {
+      "question_id": 32,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it does not clearly specify what an 'identifikator atributa procesa' refers to, making the connection to the learning objective unclear.",
+      "objective_type": "learning_object",
+      "objective_id": 35,
+      "objective_title": "Identifikator"
+    },
+    {
+      "question_id": 33,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be referring to a general concept rather than a specific learning objective without more context.",
+      "objective_type": "learning_object",
+      "objective_id": 36,
+      "objective_title": "Stanje"
+    },
+    {
+      "question_id": 34,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be related to computer science processes but does not clearly focus on the prioritization aspect specified in the learning objective.",
+      "objective_type": "learning_object",
+      "objective_id": 37,
+      "objective_title": "Prioritet"
+    },
+    {
+      "question_id": 35,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be interpreted to cover a broader aspect of processes in operating systems beyond the specific objective.",
+      "objective_type": "section",
+      "objective_id": 1,
+      "objective_title": "OPERATIVNI SISTEMI"
+    },
+    {
+      "question_id": 36,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be related to resource management but does not specifically focus on process execution and distribution of resources among applications.",
+      "objective_type": "section",
+      "objective_id": 2,
+      "objective_title": "OS upravlja izvršavanjem aplikacija"
+    },
+    {
+      "question_id": 37,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches the objective but also includes elements that are not clearly defined in the learning objective.",
+      "objective_type": "section",
+      "objective_id": 3,
+      "objective_title": "Pojam procesa"
+    },
+    {
+      "question_id": 38,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches on aspects of the process but includes options that mix up various elements without clearly focusing on independent components as defined in the objective.",
+      "objective_type": "section",
+      "objective_id": 4,
+      "objective_title": "Primer"
+    },
+    {
+      "question_id": 39,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question asks about the four requirements but does not specify 'OS upravljanju procesima', making it ambiguous.",
+      "objective_type": "section",
+      "objective_id": 5,
+      "objective_title": "Zahtevi OS pri upravljanju procesima"
+    },
+    {
+      "question_id": 40,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be interpreted to test various elements of the process related to program code, not clearly focusing on 'šta proces treba da uradi' and 'može biti deljen između više instanci istog procesa'.",
+      "objective_type": "section",
+      "objective_id": 6,
+      "objective_title": "Elementi procesa"
+    },
+    {
+      "question_id": 41,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is related to the objective but tests specific attributes that are not clearly delineated in the provided content, making it ambiguous.",
+      "objective_type": "section",
+      "objective_id": 7,
+      "objective_title": "Atributi procesa"
+    },
+    {
+      "question_id": 42,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is somewhat aligned with the objective but also touches on broader aspects not specifically detailed in the learning objective.",
+      "objective_type": "section",
+      "objective_id": 8,
+      "objective_title": "Upravljački blok procesa (UBP)"
+    },
+    {
+      "question_id": 43,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches on the concept of trace but does not clearly specify it as an interwoven sequence of instructions, making it ambiguous.",
+      "objective_type": "section",
+      "objective_id": 9,
+      "objective_title": "Praćenje izvršavanja procesa"
+    },
+    {
+      "question_id": 44,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question asks about the five basic states of a process but includes options that mix terminology from different contexts, making it ambiguous whether it solely measures the specified learning objective.",
+      "objective_type": "section",
+      "objective_id": 10,
+      "objective_title": "Model procesa sa pet stanja"
+    },
+    {
+      "question_id": 45,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is somewhat aligned with the objective but also touches on aspects not directly stated in the given content.",
+      "objective_type": "section",
+      "objective_id": 11,
+      "objective_title": "Stvaranje procesa"
+    },
+    {
+      "question_id": 46,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question addresses aspects of the objective but includes 'prekid od roditeljskog procesa' which is not explicitly stated in the given learning objective.",
+      "objective_type": "section",
+      "objective_id": 12,
+      "objective_title": "Završavanje procesa"
+    },
+    {
+      "question_id": 47,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it includes conditions that are not directly stated in the learning objective and omits one of the given criteria.",
+      "objective_type": "section",
+      "objective_id": 13,
+      "objective_title": "Prelazi stanja"
+    },
+    {
+      "question_id": 48,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches the objective but also includes elements that are broader than just the specific content related to 'Stanja procesa' and 'Upravljačke strukture procesa'.",
+      "objective_type": "section",
+      "objective_id": 14,
+      "objective_title": "Primer –stanja tri procesa"
+    },
+    {
+      "question_id": 49,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question mentions attributes of a process but does not specifically focus on what the OS needs to manage active processes as stated in the objective.",
+      "objective_type": "section",
+      "objective_id": 15,
+      "objective_title": "Upravljačke strukture procesa"
+    },
+    {
+      "question_id": 50,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be interpreted to cover broader aspects of process representation beyond just the physical components listed in the objective.",
+      "objective_type": "section",
+      "objective_id": 16,
+      "objective_title": "Fizička reprezentacija procesa"
+    },
+    {
+      "question_id": 51,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question asks about three key elements for process identification but the objective only specifies two out of the three required elements, making it ambiguous.",
+      "objective_type": "section",
+      "objective_id": 17,
+      "objective_title": "Lokacija slike procesa"
+    },
+    {
+      "question_id": 52,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches on the objective but also includes elements related to scheduling that are not directly specified in the learning objective.",
+      "objective_type": "section",
+      "objective_id": 18,
+      "objective_title": "Informacije za upravljanje procesom"
+    },
+    {
+      "question_id": 53,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches the objective but also includes irrelevant options that distract from measuring specific knowledge about 'state' and 'parent'.",
+      "objective_type": "section",
+      "objective_id": 19,
+      "objective_title": "Reprezentacija procesa u Linuxu"
+    },
+    {
+      "question_id": 54,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be referring to the status register in general rather than specifically the learning objective about mode execution bits and control.",
+      "objective_type": "section",
+      "objective_id": 20,
+      "objective_title": "Režimi izvršenja procesora"
+    },
+    {
+      "question_id": 55,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches on the creation of a process but includes elements that are not clearly aligned with the specified learning objective, making it ambiguous.",
+      "objective_type": "section",
+      "objective_id": 21,
+      "objective_title": "Režim izvršenja procesora"
+    },
+    {
+      "question_id": 56,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question asks about specific control events that trigger process switching but does not clearly focus on the learning objective of how OS handles these events during switching.",
+      "objective_type": "section",
+      "objective_id": 22,
+      "objective_title": "Komutiranje procesa"
+    },
+    {
+      "question_id": 57,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches the objective but also includes elements from other topics like process scheduling and interrupt handling.",
+      "objective_type": "section",
+      "objective_id": 23,
+      "objective_title": "Kada se komutira proces"
+    },
+    {
+      "question_id": 58,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches on the concept of changing process state but also includes elements like updating PCB that are not directly specified in the learning objective.",
+      "objective_type": "section",
+      "objective_id": 24,
+      "objective_title": "Stanja procesa"
+    },
+    {
+      "question_id": 59,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches on the content but includes elements that are not specifically part of the learning objective for 'čuvanje sadržaja procesora'.",
+      "objective_type": "section",
+      "objective_id": 25,
+      "objective_title": "Promena stanja procesa"
+    },
+    {
+      "question_id": 60,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question addresses reasons for inter-process communication but does not specifically focus on the cooperative aspect of processes as outlined in the learning objective.",
+      "objective_type": "section",
+      "objective_id": 26,
+      "objective_title": "Kooperacija između procesa"
+    },
+    {
+      "question_id": 61,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be testing the broader concept of inter-process communication methods rather than specifically focusing on the objective's detailed content.",
+      "objective_type": "section",
+      "objective_id": 27,
+      "objective_title": "Razlozi za međuprocesnu komunikaciju"
+    },
+    {
+      "question_id": 62,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be interpreted to test the general concept of resource sharing rather than specifically how control blocks manage resources for multiprogramming.",
+      "objective_type": "learning_object",
+      "objective_id": 1,
+      "objective_title": "Operativni sistem procesi"
+    },
+    {
+      "question_id": 63,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches on process states but primarily focuses on OS's role in determining process termination indicators rather than the execution state.",
+      "objective_type": "learning_object",
+      "objective_id": 47,
+      "objective_title": "Stanje izvršavanja"
+    },
+    {
+      "question_id": 64,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question addresses the transition from a ready state to a blocked state, but it is unclear if it primarily measures the understanding of the 'spreman' (ready) state as defined in the objective.",
+      "objective_type": "learning_object",
+      "objective_id": 48,
+      "objective_title": "Stanje spreman"
+    },
+    {
+      "question_id": 65,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous and could be related to process management rather than specifically the waiting state of a process.",
+      "objective_type": "learning_object",
+      "objective_id": 49,
+      "objective_title": "Stanje blokiran (u čekanju)"
+    },
+    {
+      "question_id": 66,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous and does not clearly measure the specified objective of creating process structures for resource management.",
+      "objective_type": "learning_object",
+      "objective_id": 52,
+      "objective_title": "Stvaranje procesa"
+    },
+    {
+      "question_id": 67,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches on process creation but primarily focuses on the completion mechanism of a process rather than the specific learning objective related to data structure creation by the OS.",
+      "objective_type": "learning_object",
+      "objective_id": 52,
+      "objective_title": "Stvaranje procesa"
+    },
+    {
+      "question_id": 68,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches on process creation and termination but does not clearly focus on the OS creating data structures for management as specified in the learning objective.",
+      "objective_type": "learning_object",
+      "objective_id": 52,
+      "objective_title": "Stvaranje procesa"
+    },
+    {
+      "question_id": 69,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches on the execution state but primarily focuses on process management by OS rather than the direct impact of the execution state on output state.",
+      "objective_type": "learning_object",
+      "objective_id": 47,
+      "objective_title": "Stanje izvršavanja"
+    },
+    {
+      "question_id": 70,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches on the concept of 'stanje spreman', but it primarily focuses on the transition to a blocked state due to an event, which is tangential.",
+      "objective_type": "learning_object",
+      "objective_id": 48,
+      "objective_title": "Stanje spreman"
+    },
+    {
+      "question_id": 71,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question addresses state transitions but does not clearly focus on the specific timing and conditions of transitioning from Execution to Ready as outlined in the objective.",
+      "objective_type": "learning_object",
+      "objective_id": 62,
+      "objective_title": "Prelazi stanja iz Izvršavanje u Spreman"
+    },
+    {
+      "question_id": 72,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous and could be interpreted as measuring broader aspects of process management rather than specifically focusing on program code and instructions for inter-process communication.",
+      "objective_type": "learning_object",
+      "objective_id": 75,
+      "objective_title": "Programski kod i instrukcije"
+    },
+    {
+      "question_id": 73,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches on upravljačke strukture and their role but veers towards resource access control rather than focusing solely on the given objective about files_struct and mm_struct.",
+      "objective_type": "learning_object",
+      "objective_id": 90,
+      "objective_title": "Upravljačke strukture"
+    },
+    {
+      "question_id": 74,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is somewhat related to the objective but could also be interpreted as touching on the concept of data sharing and isolation, which is not clearly focused on defining independent processes.",
+      "objective_type": "learning_object",
+      "objective_id": 125,
+      "objective_title": "Nezavisni procesi"
+    },
+    {
+      "question_id": 75,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches on the concept of processor execution modes but also includes aspects that may be considered tangential to the specific objective stated.",
+      "objective_type": "learning_object",
+      "objective_id": 93,
+      "objective_title": "Režimi izvršenja procesora"
+    },
+    {
+      "question_id": 76,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is somewhat related but also touches on the concept of system calls and mode transitions, which makes it ambiguous.",
+      "objective_type": "learning_object",
+      "objective_id": 95,
+      "objective_title": "Režim kernela"
+    },
+    {
+      "question_id": 77,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question mentions mutual dependency but does not clearly focus on the process of data sharing between processes as described in the objective.",
+      "objective_type": "learning_object",
+      "objective_id": 126,
+      "objective_title": "Međusobno zavisni procesi"
+    },
+    {
+      "question_id": 78,
+      "available": true,
+      "rating": -1,
+      "reasoning": "The question and options do not align with the learning objective of memory error generation.",
+      "objective_type": "learning_object",
+      "objective_id": 111,
+      "objective_title": "Greška memorije"
+    },
+    {
+      "question_id": 79,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is somewhat related to the objective but also touches on specific technical aspects that may not be central to the learning objective.",
+      "objective_type": "learning_object",
+      "objective_id": 128,
+      "objective_title": "Razlozi za međuprocesnu komunikaciju"
+    },
+    {
+      "question_id": 80,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches on program instructions and their impact on inter-process communication but also involves concepts of resource sharing and synchronization which are not directly stated in the learning objective.",
+      "objective_type": "learning_object",
+      "objective_id": 75,
+      "objective_title": "Programski kod i instrukcije"
+    },
+    {
+      "question_id": 81,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches the objective but also includes tangential information about memory and scheduling.",
+      "objective_type": "learning_object",
+      "objective_id": 172,
+      "objective_title": "Proces kao jedinica izvršavanja"
+    },
+    {
+      "question_id": 82,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question asks about the current state of a process rather than defining what constitutes a 'stanje procesa' as described in the learning objective.",
+      "objective_type": "learning_object",
+      "objective_id": 173,
+      "objective_title": "Stanja procesa"
+    },
+    {
+      "question_id": 83,
+      "available": true,
+      "rating": -1,
+      "reasoning": "The correct answer (A) contradicts the learning objective by defining a thread as a single execution flow, not supporting multiple concurrent paths.",
+      "objective_type": "learning_object",
+      "objective_id": 174,
+      "objective_title": "Višenitna obrada"
+    },
+    {
+      "question_id": 84,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question could be measuring the specified objective but it also asks about a definition which might include other related aspects of thread objects.",
+      "objective_type": "learning_object",
+      "objective_id": 175,
+      "objective_title": "Klase nit C++11"
+    },
+    {
+      "question_id": 85,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be interpreted to ask about the function of a thread rather than specifically what the body of a thread is called.",
+      "objective_type": "learning_object",
+      "objective_id": 176,
+      "objective_title": "Izvršavanje niti"
+    },
+    {
+      "question_id": 86,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches the objective but also asks about a tangential fact by including options that are unrelated to the entry point of a C++ program.",
+      "objective_type": "learning_object",
+      "objective_id": 177,
+      "objective_title": "Sukladni programi"
+    },
+    {
+      "question_id": 87,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be interpreted to test knowledge of thread synchronization methods in general, not specifically the join() method's purpose.",
+      "objective_type": "learning_object",
+      "objective_id": 178,
+      "objective_title": "Metoda join"
+    },
+    {
+      "question_id": 88,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be interpreted to test related concepts such as thread functionality rather than specifically the representation of a new ready thread.",
+      "objective_type": "learning_object",
+      "objective_id": 179,
+      "objective_title": "Nitiu C++ 11 standardu"
+    },
+    {
+      "question_id": 89,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be interpreted to test other thread management methods besides join().",
+      "objective_type": "learning_object",
+      "objective_id": 180,
+      "objective_title": "Odnos niti stvaralac prema stvorenoj niti"
+    },
+    {
+      "question_id": 90,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be interpreted to measure the creation of a thread but the wording 'Instrument za kreirać novu nit' is not precise and clear in the context of C++11 standard.",
+      "objective_type": "learning_object",
+      "objective_id": 181,
+      "objective_title": "Objekt klase thread"
+    },
+    {
+      "question_id": 91,
+      "available": true,
+      "rating": 1,
+      "reasoning": "The question directly asks about the creation of a new thread instance which aligns perfectly with the given learning objective.",
+      "objective_type": "learning_object",
+      "objective_id": 182,
+      "objective_title": "Instanciranje objekta thread"
+    },
+    {
+      "question_id": 92,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question could be interpreted as measuring the objective but includes options that divert focus from the primary purpose of join().",
+      "objective_type": "learning_object",
+      "objective_id": 183,
+      "objective_title": "Metoda join()"
+    },
+    {
+      "question_id": 93,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be interpreted to focus on the concept of waiting for a thread to finish, but also touches on other aspects like thread management and blocking behavior.",
+      "objective_type": "learning_object",
+      "objective_id": 184,
+      "objective_title": "Odnos niti stvaralac prema stvorenoj niti"
+    },
+    {
+      "question_id": 94,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be testing the relationship between a thread constructor parameter and its function rather than clearly measuring the specific objective of what the parameter represents.",
+      "objective_type": "learning_object",
+      "objective_id": 185,
+      "objective_title": "Parametar konstruktora klase thread je funkcija koju nit izvršava"
+    },
+    {
+      "question_id": 95,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be interpreted as testing general knowledge about program entry points rather than specifically the C++ 11 standard's main function.",
+      "objective_type": "learning_object",
+      "objective_id": 186,
+      "objective_title": "Ulazna tačka programa je i dalje main funkcija"
+    },
+    {
+      "question_id": 96,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be interpreted to test related concepts rather than the specific behavior of join().",
+      "objective_type": "learning_object",
+      "objective_id": 187,
+      "objective_title": "Metoda join() klase thread"
+    },
+    {
+      "question_id": 97,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be interpreted to test related but different concepts besides the specific objective.",
+      "objective_type": "learning_object",
+      "objective_id": 188,
+      "objective_title": "Metoda detach() klase thread"
+    },
+    {
+      "question_id": 98,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it does not explicitly specify that parameters are passed to the thread constructor after the function name, and could be interpreted in a broader context of threading concepts.",
+      "objective_type": "learning_object",
+      "objective_id": 189,
+      "objective_title": "Prenos parametara u nit"
+    },
+    {
+      "question_id": 99,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could relate to various aspects of OS functions beyond the specified learning objective.",
+      "objective_type": "section",
+      "objective_id": 37,
+      "objective_title": "OPERATIVNI SISTEMI"
+    },
+    {
+      "question_id": 100,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it does not specifically focus on the states of a process during execution but rather mixes different aspects of process management.",
+      "objective_type": "section",
+      "objective_id": 38,
+      "objective_title": "Stanja procesa"
+    },
+    {
+      "question_id": 101,
+      "available": true,
+      "rating": -1,
+      "reasoning": "The correct answer provided does not align with the learning objective's description of what a thread represents in concurrent execution paths within a process.",
+      "objective_type": "section",
+      "objective_id": 39,
+      "objective_title": "Višenitna obrada"
+    },
+    {
+      "question_id": 102,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches on the objective but includes elements that are not directly related to creating threads in C++11.",
+      "objective_type": "section",
+      "objective_id": 40,
+      "objective_title": "Paralelizam"
+    },
+    {
+      "question_id": 103,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches on the objective but also includes elements that are not directly specified in the learning objective.",
+      "objective_type": "section",
+      "objective_id": 41,
+      "objective_title": "Nitiu C++ 11 standardu"
+    },
+    {
+      "question_id": 104,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches on the join() method but includes an option about detach(), which is not related to the objective.",
+      "objective_type": "section",
+      "objective_id": 42,
+      "objective_title": "Primer višenitne aplikacije"
+    },
+    {
+      "question_id": 105,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches the objective but also includes aspects of blocking behavior which makes it ambiguous.",
+      "objective_type": "section",
+      "objective_id": 43,
+      "objective_title": "Odnos niti stvaralac prema stvorenoj niti"
+    },
+    {
+      "question_id": 106,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be referring to parameters of the thread constructor and their passing mechanism, but does not clearly focus on the objective's specific details about parameter passing in a function body.",
+      "objective_type": "section",
+      "objective_id": 44,
+      "objective_title": "Prenos parametara u nit"
+    },
+    {
+      "question_id": 107,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be interpreted to measure the objective but also touches on unrelated aspects.",
+      "objective_type": "section",
+      "objective_id": 45,
+      "objective_title": "Primer prenosa parametara u nit"
+    },
+    {
+      "question_id": 108,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question asks about two benefits of multithreading but does not specify which ones from the given content.",
+      "objective_type": "section",
+      "objective_id": 46,
+      "objective_title": "Primer poboljšanja performansi"
+    },
+    {
+      "question_id": 109,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could measure multiple aspects of multi-threaded processing but does not clearly focus on a single specific benefit listed in the objective.",
+      "objective_type": "section",
+      "objective_id": 47,
+      "objective_title": "Koristi od višenitne obrade"
+    },
+    {
+      "question_id": 110,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches the objective but includes an incorrect option (Java VM), which confuses the concept of processes and threads.",
+      "objective_type": "section",
+      "objective_id": 48,
+      "objective_title": "Odnos procesa i niti"
+    },
+    {
+      "question_id": 111,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question asks about components of resource protection in a multitasking process but includes options that are not directly related to the given learning objective content.",
+      "objective_type": "section",
+      "objective_id": 49,
+      "objective_title": "Proces u višenitnoj obradi"
+    },
+    {
+      "question_id": 112,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches on the concept of states in threads but includes options that reference unrelated concepts from the objective.",
+      "objective_type": "section",
+      "objective_id": 50,
+      "objective_title": "Procesi"
+    },
+    {
+      "question_id": 113,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question asks about the four main components of thread state in a multitasking system, which relates to the content but is not as specific or clear as required by the given learning objective.",
+      "objective_type": "section",
+      "objective_id": 51,
+      "objective_title": "Nit u višenitnoj obradi"
+    },
+    {
+      "question_id": 114,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be referring to multiple aspects of the model procesa sa višenitnom obradom, not clearly focusing on one specific learning objective.",
+      "objective_type": "section",
+      "objective_id": 52,
+      "objective_title": "Model procesa sa višenitnom obradom"
+    },
+    {
+      "question_id": 115,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question asks about the states of a thread but includes options that refer to actions (kreiranje, deblokiranje, završavanje) which are not clearly part of the three primary states mentioned in the objective.",
+      "objective_type": "section",
+      "objective_id": 53,
+      "objective_title": "Raspoređivanje niti"
+    },
+    {
+      "question_id": 116,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches on the objective but also includes states that are not directly specified in the given content.",
+      "objective_type": "section",
+      "objective_id": 54,
+      "objective_title": "Stanja niti"
+    },
+    {
+      "question_id": 117,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches on the objective but also incorporates broader concepts of resource conflict and synchronization beyond just shared address space.",
+      "objective_type": "section",
+      "objective_id": 55,
+      "objective_title": "Sinhronizacija niti"
+    },
+    {
+      "question_id": 118,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be related to synchronization but does not clearly focus on the stvaralac waiting for a thread to finish.",
+      "objective_type": "learning_object",
+      "objective_id": 180,
+      "objective_title": "Odnos niti stvaralac prema stvorenoj niti"
+    },
+    {
+      "question_id": 119,
+      "available": true,
+      "rating": -1,
+      "reasoning": "The correct answer (A) contradicts the learning objective which states that C++11 uses class thread to create new threads.",
+      "objective_type": "learning_object",
+      "objective_id": 181,
+      "objective_title": "Objekt klase thread"
+    },
+    {
+      "question_id": 120,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches the concept of thread instance but primarily focuses on the join() method behavior rather than instantiation.",
+      "objective_type": "learning_object",
+      "objective_id": 182,
+      "objective_title": "Instanciranje objekta thread"
+    },
+    {
+      "question_id": 121,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be interpreted to test the creation of a thread object rather than specifically the impact on creating a new thread.",
+      "objective_type": "learning_object",
+      "objective_id": 181,
+      "objective_title": "Objekt klase thread"
+    },
+    {
+      "question_id": 122,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is somewhat related but also touches on concepts beyond the specific objective.",
+      "objective_type": "learning_object",
+      "objective_id": 183,
+      "objective_title": "Metoda join()"
+    },
+    {
+      "question_id": 123,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be interpreted as asking about the broader impact of join() on program execution rather than specifically how it waits for a thread to finish.",
+      "objective_type": "learning_object",
+      "objective_id": 183,
+      "objective_title": "Metoda join()"
+    },
+    {
+      "question_id": 124,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches the objective but also includes elements that are not directly related to it.",
+      "objective_type": "learning_object",
+      "objective_id": 200,
+      "objective_title": "Koristi od višenitne obrade"
+    },
+    {
+      "question_id": 125,
+      "available": true,
+      "rating": 0,
+      "reasoning": "Question touches the objective but also introduces concepts like join(), making it ambiguous.",
+      "objective_type": "learning_object",
+      "objective_id": 192,
+      "objective_title": "Metoda detach()"
+    },
+    {
+      "question_id": 126,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it touches on performance improvement but does not clearly focus on the two-thread variant blocking mechanism described in the objective.",
+      "objective_type": "learning_object",
+      "objective_id": 199,
+      "objective_title": "Primer poboljšanja performansi upotrebom višenitne obrade"
+    },
+    {
+      "question_id": 127,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous and could be interpreted as measuring aspects of concurrent processing beyond just background operations.",
+      "objective_type": "learning_object",
+      "objective_id": 200,
+      "objective_title": "Koristi od višenitne obrade"
+    },
+    {
+      "question_id": 128,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches on asinhrona obrada but also encompasses broader aspects of multi-threaded programming that are not directly aligned with the specific learning objective about niti mogu predati posao drugoj niti i nastaviti sa svom radom dok se prethodno izvršena naredba još nije završila.",
+      "objective_type": "learning_object",
+      "objective_id": 202,
+      "objective_title": "Asinhrona obrada"
+    },
+    {
+      "question_id": 129,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question addresses interactions between processes and threads but does not clearly focus on mediating communication through files, devices, and channels as specified in the objective.",
+      "objective_type": "learning_object",
+      "objective_id": 218,
+      "objective_title": "Procesima i niti"
+    },
+    {
+      "question_id": 130,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches on the background task but introduces concepts like thread scheduling and process priority which are not directly aligned with the learning objective of background tasks running in a separate thread to enable user interaction.",
+      "objective_type": "learning_object",
+      "objective_id": 198,
+      "objective_title": "Pozadinski posao"
+    },
+    {
+      "question_id": 131,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches on thread synchronization but includes remote server requests which is tangential to the specific objective of using join() for thread synchronization.",
+      "objective_type": "learning_object",
+      "objective_id": 180,
+      "objective_title": "Odnos niti stvaralac prema stvorenoj niti"
+    },
+    {
+      "question_id": 132,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is about thread management in C++ but does not specifically focus on the creation aspect of an object of class thread as stated in the learning objective.",
+      "objective_type": "learning_object",
+      "objective_id": 181,
+      "objective_title": "Objekt klase thread"
+    },
+    {
+      "question_id": 133,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question addresses thread management in C++11 but does not specifically measure the creation of a thread object instance.",
+      "objective_type": "learning_object",
+      "objective_id": 182,
+      "objective_title": "Instanciranje objekta thread"
+    },
+    {
+      "question_id": 134,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches on the C++11 thread object but primarily tests the behavior of the join() method rather than its creation or existence as stated in the objective.",
+      "objective_type": "learning_object",
+      "objective_id": 181,
+      "objective_title": "Objekt klase thread"
+    },
+    {
+      "question_id": 135,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches the objective but also includes details about detach(), making it ambiguous.",
+      "objective_type": "learning_object",
+      "objective_id": 183,
+      "objective_title": "Metoda join()"
+    },
+    {
+      "question_id": 136,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be related to concurrency but also touches on other aspects of managing multiple processes.",
+      "objective_type": "learning_object",
+      "objective_id": 263,
+      "objective_title": "Međusobno zavisne niti"
+    },
+    {
+      "question_id": 137,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches on multiprogramming but its primary focus is broader and could include aspects not directly related to the specific learning objective of concurrent execution in an OS.",
+      "objective_type": "learning_object",
+      "objective_id": 264,
+      "objective_title": "Multiprogramiranje"
+    },
+    {
+      "question_id": 138,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be addressing multiple aspects of resource contention issues, not clearly focusing on 'štetno preplitanje' alone.",
+      "objective_type": "learning_object",
+      "objective_id": 265,
+      "objective_title": "Problemi konkurentnosti"
+    },
+    {
+      "question_id": 139,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be measuring multiple aspects of OS process management.",
+      "objective_type": "learning_object",
+      "objective_id": 284,
+      "objective_title": "Konkurentnost"
+    },
+    {
+      "question_id": 140,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be interpreted to measure related concepts like process management rather than solely the primary objective of resource competition.",
+      "objective_type": "learning_object",
+      "objective_id": 287,
+      "objective_title": "Konkurentnost u multiprogramiranim sistemima"
+    },
+    {
+      "question_id": 141,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question addresses the concept of concurrency but includes options that discuss related concepts like resource sharing and unpredictability, making it ambiguous.",
+      "objective_type": "learning_object",
+      "objective_id": 288,
+      "objective_title": "Strukturirane korisničke aplikacije"
+    },
+    {
+      "question_id": 142,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be interpreted to relate to concurrency in OS implementation but also touches on broader concepts of process management.",
+      "objective_type": "learning_object",
+      "objective_id": 289,
+      "objective_title": "Operativni sistem i konkurentnost"
+    },
+    {
+      "question_id": 143,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be interpreted to measure broader concepts beyond the specific learning objective.",
+      "objective_type": "learning_object",
+      "objective_id": 290,
+      "objective_title": "Deljenje globalnih resursa"
+    },
+    {
+      "question_id": 144,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be related to the objective but also touches on concurrent execution and competition concepts.",
+      "objective_type": "learning_object",
+      "objective_id": 291,
+      "objective_title": "Svugde gde se vrši preplitanje različitih procesa"
+    },
+    {
+      "question_id": 145,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be interpreted to measure multiple concepts related to system processes and resources.",
+      "objective_type": "learning_object",
+      "objective_id": 292,
+      "objective_title": "Višestruke aplikacije"
+    },
+    {
+      "question_id": 146,
+      "available": true,
+      "rating": -1,
+      "reasoning": "The question is about shared global resources in a competitive environment, but the correct answer and options are focused on concurrent processes accessing the same variable, which does not clearly relate to the division of global resources or harmful overlap as stated in the objective.",
+      "objective_type": "learning_object",
+      "objective_id": 293,
+      "objective_title": "Problemi koje konkurentnost donosi"
+    },
+    {
+      "question_id": 147,
+      "available": true,
+      "rating": 1,
+      "reasoning": "The question directly addresses the concept of harmful interference when two processes use the same global variable.",
+      "objective_type": "learning_object",
+      "objective_id": 294,
+      "objective_title": "Deljenje globalnih resursa"
+    },
+    {
+      "question_id": 148,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it does not clearly measure the objective of resource allocation complications.",
+      "objective_type": "learning_object",
+      "objective_id": 295,
+      "objective_title": "Komplikovanija dodela resursa"
+    },
+    {
+      "question_id": 149,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches on the detection of errors but includes options that are not directly related to the specified objective.",
+      "objective_type": "learning_object",
+      "objective_id": 296,
+      "objective_title": "Detekcija grešaka"
+    },
+    {
+      "question_id": 150,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question addresses the objective but also touches on other potential issues related to concurrent access.",
+      "objective_type": "learning_object",
+      "objective_id": 297,
+      "objective_title": "Štetno preplitanje"
+    },
+    {
+      "question_id": 151,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question addresses the concept but includes distractors that relate to resource management rather than the core objective of indeterminate execution order and results in concurrent processes.",
+      "objective_type": "learning_object",
+      "objective_id": 298,
+      "objective_title": "Neodređen redosled izvršavanja i rezultata operacija"
+    },
+    {
+      "question_id": 152,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches on the objective but also could be interpreted as measuring resource allocation complexity or communication between processes.",
+      "objective_type": "learning_object",
+      "objective_id": 299,
+      "objective_title": "Međusobna blokiranje procesa"
+    },
+    {
+      "question_id": 153,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches on the concept but options B, C, and D introduce unrelated concepts, making it ambiguous.",
+      "objective_type": "learning_object",
+      "objective_id": 300,
+      "objective_title": "Međusobna isključivost"
+    },
+    {
+      "question_id": 154,
+      "available": true,
+      "rating": -1,
+      "reasoning": "The question tests the concept of mutual exclusivity rather than synchronization of processes.",
+      "objective_type": "learning_object",
+      "objective_id": 301,
+      "objective_title": "Sinhronizacija procesa"
+    },
+    {
+      "question_id": 155,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question does not clearly specify the context of 'štetno preplitanje' and could be interpreted as testing basic programming syntax instead of shared resource impact.",
+      "objective_type": "learning_object",
+      "objective_id": 302,
+      "objective_title": "Štetni preplitanje"
+    },
+    {
+      "question_id": 156,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be interpreted to measure data race but also touches on concepts related to concurrency and process execution sequence.",
+      "objective_type": "learning_object",
+      "objective_id": 303,
+      "objective_title": "Data race"
+    },
+    {
+      "question_id": 157,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it does not clearly specify the context of 'primer štetnog preplitanja' and what constitutes a 'deljeni resurs' in that specific scenario.",
+      "objective_type": "learning_object",
+      "objective_id": 305,
+      "objective_title": "Primer štetnog preplitanja"
+    },
+    {
+      "question_id": 158,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be related to both data races and broader concurrency issues, not clearly specifying the objective of dependency on scenario preemption.",
+      "objective_type": "learning_object",
+      "objective_id": 306,
+      "objective_title": "Data race vs determinizam"
+    },
+    {
+      "question_id": 159,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be interpreted to ask about shared resources in general rather than specifically focusing on variable x.",
+      "objective_type": "learning_object",
+      "objective_id": 307,
+      "objective_title": "Primer štetnog preplitanja"
+    },
+    {
+      "question_id": 160,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be interpreted to measure the given objective but also touches on related concepts like concurrency issues, making the primary focus unclear.",
+      "objective_type": "learning_object",
+      "objective_id": 308,
+      "objective_title": "Data race"
+    },
+    {
+      "question_id": 161,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches on the concept of data race but also includes elements that could be interpreted as depending on process interference, making it ambiguous.",
+      "objective_type": "learning_object",
+      "objective_id": 310,
+      "objective_title": "Data race"
+    },
+    {
+      "question_id": 162,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be interpreted in multiple ways and does not clearly align with the specified learning objective.",
+      "objective_type": "learning_object",
+      "objective_id": 311,
+      "objective_title": "Determinističko ponašanje"
+    },
+    {
+      "question_id": 163,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question asks about the concept of contention but the options and correct answer focus more on shared resources rather than specifically addressing the interaction or conflict between processes.",
+      "objective_type": "learning_object",
+      "objective_id": 312,
+      "objective_title": "Uzajamno delovanje procesa"
+    },
+    {
+      "question_id": 164,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches on data race but primarily tests the understanding of instruction execution order rather than defining characteristics of a data race.",
+      "objective_type": "learning_object",
+      "objective_id": 313,
+      "objective_title": "Data race -primer"
+    },
+    {
+      "question_id": 165,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could relate to synchronization but also to conflict resolution or partitioning processes.",
+      "objective_type": "learning_object",
+      "objective_id": 314,
+      "objective_title": "Uzajamno delovanje procesa"
+    },
+    {
+      "question_id": 166,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches on the objective but includes options that diverge from it, making the connection unclear.",
+      "objective_type": "learning_object",
+      "objective_id": 315,
+      "objective_title": "Nadmetanje procesa za resurse"
+    },
+    {
+      "question_id": 167,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be interpreted to relate to resource management concepts beyond mutual exclusion.",
+      "objective_type": "learning_object",
+      "objective_id": 316,
+      "objective_title": "Uzajamna isključivost"
+    },
+    {
+      "question_id": 168,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question asks about problems caused by concurrency but the options are mixed with concepts from multiple pages, making it ambiguous whether it primarily measures the specific objective of 'Problemi koje konkurentnost donosi' (problems due to concurrency).",
+      "objective_type": "section",
+      "objective_id": 63,
+      "objective_title": "Sinhronizacija"
+    },
+    {
+      "question_id": 169,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question addresses concurrency but does not clearly focus on the specific concept of međusobno nezavisne niti (mutually independent threads).",
+      "objective_type": "section",
+      "objective_id": 64,
+      "objective_title": "Međusobno nezavisne niti"
+    },
+    {
+      "question_id": 170,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question addresses concurrency but also touches on related concepts like multiprogramming and multiprocessing which are not the primary focus of the given objective.",
+      "objective_type": "section",
+      "objective_id": 65,
+      "objective_title": "Međusobno zavisne niti –deljenje resursa"
+    },
+    {
+      "question_id": 171,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches on the concept of concurrency but its primary focus is not clearly aligned with the specific learning objective of 'međusobno zavisne niti –sinhronizacija'.",
+      "objective_type": "section",
+      "objective_id": 66,
+      "objective_title": "Međusobno zavisne niti –sinhronizacija"
+    },
+    {
+      "question_id": 172,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question addresses elements of concurrency but also incorporates aspects like multiprogramming and distributed processing, making it ambiguous.",
+      "objective_type": "section",
+      "objective_id": 67,
+      "objective_title": "Upravljanje procesima"
+    },
+    {
+      "question_id": 173,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question covers multiple aspects but does not clearly focus on a single specific objective.",
+      "objective_type": "section",
+      "objective_id": 68,
+      "objective_title": "Gde se javlja konkurentnost?"
+    },
+    {
+      "question_id": 174,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question addresses issues related to the objective but also includes elements that are not directly aligned with it.",
+      "objective_type": "section",
+      "objective_id": 69,
+      "objective_title": "Problemi koje konkurentnost donosi"
+    },
+    {
+      "question_id": 175,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question and options touch on mutual exclusion but also include elements related to data races and synchronization.",
+      "objective_type": "section",
+      "objective_id": 70,
+      "objective_title": "Kako se problemi rešavaju"
+    },
+    {
+      "question_id": 176,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches on the concept of data race but introduces ambiguity with options that cover tangential aspects like 'brzina procesa' and 'izvršavanje metode', making it unclear if it primarily measures the objective.",
+      "objective_type": "section",
+      "objective_id": 71,
+      "objective_title": "Primer štetnog preplitanja"
+    },
+    {
+      "question_id": 177,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches on the concept of data race but also encompasses aspects related to concurrent execution and mutual interference between processes.",
+      "objective_type": "section",
+      "objective_id": 72,
+      "objective_title": "Data race vs determinizam"
+    },
+    {
+      "question_id": 178,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches on the objective but includes both independent and cooperative processes, making it ambiguous.",
+      "objective_type": "section",
+      "objective_id": 73,
+      "objective_title": "Data race -primer"
+    },
+    {
+      "question_id": 179,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches on the objective but could also be interpreted as measuring unrelated aspects of process interaction.",
+      "objective_type": "section",
+      "objective_id": 74,
+      "objective_title": "Uzajamno delovanje procesa"
+    },
+    {
+      "question_id": 180,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be related to both busy waiting and process blocking scenarios described in the learning objective.",
+      "objective_type": "section",
+      "objective_id": 75,
+      "objective_title": "Ulazak u kritičnu sekciju"
+    },
+    {
+      "question_id": 181,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it could be interpreted to relate to busy waiting but also touches on concepts like mutex, which are more relevant to the second variant.",
+      "objective_type": "section",
+      "objective_id": 76,
+      "objective_title": "Prva varijanta –busy waiting"
+    },
+    {
+      "question_id": 182,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches the objective but includes options that measure unrelated concepts.",
+      "objective_type": "section",
+      "objective_id": 77,
+      "objective_title": "Druga varijanta –blokiranje procesa"
+    },
+    {
+      "question_id": 183,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches the objective but also includes aspects of process behavior that are not clearly specified in the given content.",
+      "objective_type": "section",
+      "objective_id": 78,
+      "objective_title": "Propusnica"
+    },
+    {
+      "question_id": 184,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches on the objective but also introduces an aspect (dual-checking of lock availability) not explicitly covered in the learning content.",
+      "objective_type": "section",
+      "objective_id": 79,
+      "objective_title": "Kako se implementira zauzimanje"
+    },
+    {
+      "question_id": 185,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question asks about methods of the mutex class for locking and unlocking but does not specify unique_lock, which is also part of the learning objective.",
+      "objective_type": "section",
+      "objective_id": 80,
+      "objective_title": "Kritična sekcija u C++11 standardu"
+    },
+    {
+      "question_id": 186,
+      "available": true,
+      "rating": 1,
+      "reasoning": "The question directly asks about the key components for managing mutex locking and unlocking in C++11, which aligns precisely with the learning objective on unique_lock usage.",
+      "objective_type": "section",
+      "objective_id": 81,
+      "objective_title": "Primer korišćenja klase mutex"
+    },
+    {
+      "question_id": 187,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches on the objective but also includes unrelated concepts like mutex copy prevention.",
+      "objective_type": "section",
+      "objective_id": 82,
+      "objective_title": "Primer –unique_lock"
+    },
+    {
+      "question_id": 188,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question is ambiguous as it touches on the concept of mutex copying but also introduces the unrelated topic of deadlock, which is not directly covered in the given learning objective.",
+      "objective_type": "section",
+      "objective_id": 83,
+      "objective_title": "Kopiranje mutex objekta"
+    },
+    {
+      "question_id": 189,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question asks about definitions of deadlock, livelock, and starvation but the correct answer focuses only on deadlock.",
+      "objective_type": "section",
+      "objective_id": 84,
+      "objective_title": "Nadmetanje procesa za resurse"
+    },
+    {
+      "question_id": 190,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question asks about three conditions for mutual exclusivity but the correct answer focuses on entry without delay and exiting in finite time, which is not clearly aligned with all aspects of the learning objective.",
+      "objective_type": "section",
+      "objective_id": 85,
+      "objective_title": "Zahtevi za međusobnu isključivost"
+    },
+    {
+      "question_id": 191,
+      "available": true,
+      "rating": 1,
+      "reasoning": "The question directly asks about the two main operations of a semaphore which are semWait() and semSignal(), aligning perfectly with the learning objective.",
+      "objective_type": "section",
+      "objective_id": 86,
+      "objective_title": "Semafori"
+    },
+    {
+      "question_id": 192,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches on the objective but also includes tangential options that do not directly measure the specific learning objective.",
+      "objective_type": "section",
+      "objective_id": 87,
+      "objective_title": "Uslovne promenljive"
+    },
+    {
+      "question_id": 193,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question asks about types of semaphores based on the counter, but it does not clearly specify 'brojački' (counter) and 'binarni' (binary) as the primary focus described in the learning objective.",
+      "objective_type": "section",
+      "objective_id": 88,
+      "objective_title": "Brojač semafora"
+    },
+    {
+      "question_id": 194,
+      "available": true,
+      "rating": 0,
+      "reasoning": "The question touches on the objective but also introduces concepts of concurrency and synchronization which could be interpreted in multiple ways.",
+      "objective_type": "section",
+      "objective_id": 63,
+      "objective_title": "Sinhronizacija"
+    }
+  ],
+  "ioc_model": "qwen2.5:14b-instruct-q4_K_M"
+}

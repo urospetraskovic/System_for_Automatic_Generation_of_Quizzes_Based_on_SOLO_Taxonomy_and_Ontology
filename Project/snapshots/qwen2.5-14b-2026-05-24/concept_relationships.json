@@ -1,0 +1,410 @@
+[
+  {
+    "id": 1,
+    "source_id": 1,
+    "target_id": 2,
+    "relationship_type": "relates_to",
+    "description": "Operativni sistemi procesi su ključni deo koji omogućava upravljanje programima u izvršenju, što je tematski povezano s pojam procesa kao izvršavanja programa.",
+    "created_at": "2026-05-18 02:45:19.083255"
+  },
+  {
+    "id": 2,
+    "source_id": 47,
+    "target_id": 48,
+    "relationship_type": "prerequisite",
+    "description": "Understanding how the OS creates processes is necessary before understanding what indicators it uses to determine when a process should end.",
+    "created_at": "2026-05-18 02:45:19.083257"
+  },
+  {
+    "id": 3,
+    "source_id": 48,
+    "target_id": 49,
+    "relationship_type": "prerequisite",
+    "description": "Knowing the indicators used to determine when a process should end is necessary before understanding how resources are freed up.",
+    "created_at": "2026-05-18 02:45:19.083259"
+  },
+  {
+    "id": 4,
+    "source_id": 49,
+    "target_id": 52,
+    "relationship_type": "prerequisite",
+    "description": "Understanding how resources are freed up when a process ends is necessary before learning about the state transitions of a process.",
+    "created_at": "2026-05-18 02:45:19.083260"
+  },
+  {
+    "id": 5,
+    "source_id": 52,
+    "target_id": 51,
+    "relationship_type": "prerequisite",
+    "description": "Understanding the state transitions of a process is necessary before understanding the mechanism for terminating a process.",
+    "created_at": "2026-05-18 02:45:19.083261"
+  },
+  {
+    "id": 6,
+    "source_id": 52,
+    "target_id": 54,
+    "relationship_type": "prerequisite",
+    "description": "Understanding the state transitions of a process is necessary before understanding the transition from Running to Ready.",
+    "created_at": "2026-05-18 02:45:19.083262"
+  },
+  {
+    "id": 7,
+    "source_id": 52,
+    "target_id": 55,
+    "relationship_type": "prerequisite",
+    "description": "Understanding the state transitions of a process is necessary before understanding the transition from Running to Blocked.",
+    "created_at": "2026-05-18 02:45:19.083263"
+  },
+  {
+    "id": 8,
+    "source_id": 47,
+    "target_id": 51,
+    "relationship_type": "relates_to",
+    "description": "Both concepts are about the lifecycle management of processes.",
+    "created_at": "2026-05-18 02:45:19.083264"
+  },
+  {
+    "id": 9,
+    "source_id": 48,
+    "target_id": 49,
+    "relationship_type": "relates_to",
+    "description": "Both are crucial steps in managing a process's lifecycle.",
+    "created_at": "2026-05-18 02:45:19.083265"
+  },
+  {
+    "id": 10,
+    "source_id": 62,
+    "target_id": 65,
+    "relationship_type": "relates_to",
+    "description": "Both are related to maintaining process state information.",
+    "created_at": "2026-05-18 02:45:19.083266"
+  },
+  {
+    "id": 11,
+    "source_id": 75,
+    "target_id": 80,
+    "relationship_type": "relates_to",
+    "description": "Both are about process management and scheduling.",
+    "created_at": "2026-05-18 02:45:19.083267"
+  },
+  {
+    "id": 12,
+    "source_id": 90,
+    "target_id": 91,
+    "relationship_type": "relates_to",
+    "description": "Both are part of the process creation and initialization sequence.",
+    "created_at": "2026-05-18 02:45:19.083267"
+  },
+  {
+    "id": 13,
+    "source_id": 125,
+    "target_id": 126,
+    "relationship_type": "prerequisite",
+    "description": "An understanding of shared memory is necessary before delving into message passing.",
+    "created_at": "2026-05-18 02:45:19.083268"
+  },
+  {
+    "id": 14,
+    "source_id": 93,
+    "target_id": 94,
+    "relationship_type": "relates_to",
+    "description": "Both are types of events that can cause a context switch in an operating system.",
+    "created_at": "2026-05-18 02:45:19.083269"
+  },
+  {
+    "id": 15,
+    "source_id": 95,
+    "target_id": 97,
+    "relationship_type": "relates_to",
+    "description": "Both represent scenarios where the OS intervenes to manage exceptions during program execution.",
+    "created_at": "2026-05-18 02:45:19.083270"
+  },
+  {
+    "id": 16,
+    "source_id": 126,
+    "target_id": 120,
+    "relationship_type": "relates_to",
+    "description": "Both are mechanisms for inter-process communication through message exchange.",
+    "created_at": "2026-05-18 02:45:19.083271"
+  },
+  {
+    "id": 17,
+    "source_id": 111,
+    "target_id": 125,
+    "relationship_type": "relates_to",
+    "description": "Shared memory is a method used for inter-process communication.",
+    "created_at": "2026-05-18 02:45:19.083272"
+  },
+  {
+    "id": 18,
+    "source_id": 128,
+    "target_id": 131,
+    "relationship_type": "relates_to",
+    "description": "Both discuss different types of inter-process communication methods.",
+    "created_at": "2026-05-18 02:45:19.083273"
+  },
+  {
+    "id": 19,
+    "source_id": 128,
+    "target_id": 132,
+    "relationship_type": "relates_to",
+    "description": "Both provide examples and usage of inter-process communication through pipes.",
+    "created_at": "2026-05-18 02:45:19.083274"
+  },
+  {
+    "id": 20,
+    "source_id": 104,
+    "target_id": 106,
+    "relationship_type": "relates_to",
+    "description": "Međusobno zavisni procesi moraju komunicirati radi deljenja informacija i ubrzanja izračunavanja.",
+    "created_at": "2026-05-18 02:45:19.083275"
+  },
+  {
+    "id": 21,
+    "source_id": 125,
+    "target_id": 126,
+    "relationship_type": "relates_to",
+    "description": "Obe metode su određene savremenim OS i koriste se u različitim situacijama.",
+    "created_at": "2026-05-18 02:45:19.083276"
+  },
+  {
+    "id": 22,
+    "source_id": 146,
+    "target_id": 137,
+    "relationship_type": "part_of",
+    "description": "OS se izvršava izvan bilo kog procesa",
+    "created_at": "2026-05-18 02:45:19.083277"
+  },
+  {
+    "id": 23,
+    "source_id": 137,
+    "target_id": 146,
+    "relationship_type": "relates_to",
+    "description": "Both sections discuss the older models of operating systems where the core system runs outside user processes.",
+    "created_at": "2026-05-18 02:45:19.083278"
+  },
+  {
+    "id": 24,
+    "source_id": 150,
+    "target_id": 152,
+    "relationship_type": "prerequisite",
+    "description": "Understanding processes as units of execution is necessary before understanding the states a process can be in.",
+    "created_at": "2026-05-18 08:15:47.827343"
+  },
+  {
+    "id": 25,
+    "source_id": 150,
+    "target_id": 152,
+    "relationship_type": "relates_to",
+    "description": "Procesi imaju različite stanje u toku izvršavanja: izvršavanje, spreman, blokira.",
+    "created_at": "2026-05-18 08:15:47.827346"
+  },
+  {
+    "id": 26,
+    "source_id": 152,
+    "target_id": 153,
+    "relationship_type": "relates_to",
+    "description": "Proces u tom stanju je OS uklonio iz reda spremnih procesa jer je završio rad.",
+    "created_at": "2026-05-18 08:15:47.827348"
+  },
+  {
+    "id": 27,
+    "source_id": 152,
+    "target_id": 157,
+    "relationship_type": "relates_to",
+    "description": "Koncept koji opisuje sposobnost OS da podrži više konkurentnih putanja izvršavan.",
+    "created_at": "2026-05-18 08:15:47.827350"
+  },
+  {
+    "id": 28,
+    "source_id": 157,
+    "target_id": 158,
+    "relationship_type": "relates_to",
+    "description": "Objekt klase thread koristi se za instanciranje nove niti u C++ 11 standardu.",
+    "created_at": "2026-05-18 08:15:47.827351"
+  },
+  {
+    "id": 29,
+    "source_id": 158,
+    "target_id": 159,
+    "relationship_type": "relates_to",
+    "description": "Metoda join() koristi se za kontrolu izvršavanja i komunikaciju između niti stva.",
+    "created_at": "2026-05-18 08:15:47.827352"
+  },
+  {
+    "id": 30,
+    "source_id": 159,
+    "target_id": 160,
+    "relationship_type": "relates_to",
+    "description": "Primjeri višenitnih aplikacija pokazivaju kako se pravi i kontrolira više niti u.",
+    "created_at": "2026-05-18 08:15:47.827354"
+  },
+  {
+    "id": 31,
+    "source_id": 180,
+    "target_id": 181,
+    "relationship_type": "relates_to",
+    "description": "Primjer programa koji poslat dva zahteva udaljenom serveru koristeći samo jednu n.",
+    "created_at": "2026-05-18 08:15:47.827355"
+  },
+  {
+    "id": 32,
+    "source_id": 181,
+    "target_id": 182,
+    "relationship_type": "relates_to",
+    "description": "Pozadinski poslovi se mogu izvršavati u posebnoj niti, čime je interakcija sa ko.",
+    "created_at": "2026-05-18 08:15:47.827356"
+  },
+  {
+    "id": 33,
+    "source_id": 182,
+    "target_id": 183,
+    "relationship_type": "relates_to",
+    "description": "Koncept koji opisuje sposobnost OS da podrži više konkurentnih putanja izvršavan.",
+    "created_at": "2026-05-18 08:15:47.827357"
+  },
+  {
+    "id": 34,
+    "source_id": 164,
+    "target_id": 160,
+    "relationship_type": "relates_to",
+    "description": "Instanciranje novih nitiju pomoću objekta klase thread u C++ 11 standardu pokazuje se u primjerima višenitnih aplikacija.",
+    "created_at": "2026-05-18 08:15:47.827358"
+  },
+  {
+    "id": 35,
+    "source_id": 181,
+    "target_id": 182,
+    "relationship_type": "prerequisite",
+    "description": "Understanding the example of a single-thread variant is necessary before applying the principles of multi-threaded processing.",
+    "created_at": "2026-05-18 08:15:47.827359"
+  },
+  {
+    "id": 36,
+    "source_id": 191,
+    "target_id": 192,
+    "relationship_type": "relates_to",
+    "description": "The concept of thread execution speed being unaffected when one thread is blocked relates to the idea that threads within an application share memory and communicate faster than those between different applications.",
+    "created_at": "2026-05-18 08:15:47.827361"
+  },
+  {
+    "id": 37,
+    "source_id": 191,
+    "target_id": 186,
+    "relationship_type": "relates_to",
+    "description": "The concept of thread execution speed discusses how, in the case where one thread is blocked, other threads do not need to be blocked and can continue executing.",
+    "created_at": "2026-05-18 08:15:47.827362"
+  },
+  {
+    "id": 38,
+    "source_id": 200,
+    "target_id": 197,
+    "relationship_type": "relates_to",
+    "description": "The concept of a thread in a multithreaded process, where each process can have multiple threads with their own state and context, ties into the idea of the characteristic of a process being a unit for resource allocation and protection.",
+    "created_at": "2026-05-18 08:15:47.827363"
+  },
+  {
+    "id": 39,
+    "source_id": 192,
+    "target_id": 191,
+    "relationship_type": "relates_to",
+    "description": "The concept of resource sharing within an application implies faster communication between threads, which directly connects to the speed at which threads can execute without blocking.",
+    "created_at": "2026-05-18 08:15:47.827364"
+  },
+  {
+    "id": 40,
+    "source_id": 199,
+    "target_id": 205,
+    "relationship_type": "relates_to",
+    "description": "Both concepts are related to the security and management of resources in a multi-threaded environment.",
+    "created_at": "2026-05-18 08:15:47.827365"
+  },
+  {
+    "id": 41,
+    "source_id": 200,
+    "target_id": 201,
+    "relationship_type": "relates_to",
+    "description": "These concepts are closely related, as they both pertain to the operation of threads within a multi-threaded environment.",
+    "created_at": "2026-05-18 08:15:47.827366"
+  },
+  {
+    "id": 42,
+    "source_id": 202,
+    "target_id": 207,
+    "relationship_type": "relates_to",
+    "description": "Both concepts are integral to the understanding of how a thread operates and maintains its execution state.",
+    "created_at": "2026-05-18 08:15:47.827367"
+  },
+  {
+    "id": 43,
+    "source_id": 218,
+    "target_id": 219,
+    "relationship_type": "relates_to",
+    "description": "Both concepts deal with the scheduling and execution state management of threads by the operating system.",
+    "created_at": "2026-05-18 08:15:47.827369"
+  },
+  {
+    "id": 44,
+    "source_id": 198,
+    "target_id": 232,
+    "relationship_type": "relates_to",
+    "description": "Određivanje virtuelnog adresnog prostora za sliku procesa može uticati na stanja niti.",
+    "created_at": "2026-05-18 08:15:47.827370"
+  },
+  {
+    "id": 45,
+    "source_id": 232,
+    "target_id": 236,
+    "relationship_type": "prerequisite",
+    "description": "The concept of thread states is necessary before understanding different types of threads.",
+    "created_at": "2026-05-18 08:15:47.827371"
+  },
+  {
+    "id": 46,
+    "source_id": 236,
+    "target_id": 239,
+    "relationship_type": "builds_upon",
+    "description": "Different types of threads are further elaborated in the context of thread scheduling at user level.",
+    "created_at": "2026-05-18 08:15:47.827372"
+  },
+  {
+    "id": 47,
+    "source_id": 234,
+    "target_id": 235,
+    "relationship_type": "relates_to",
+    "description": "Ova dva koncepta su povezani, jer nerazumljivo ponašanje sistema može nastati bez sinhronizovanog pristupa deljenih resursa, što je često rezultat akcija koje menjaju stanje niti.",
+    "created_at": "2026-05-18 08:15:47.827373"
+  },
+  {
+    "id": 48,
+    "source_id": 240,
+    "target_id": 245,
+    "relationship_type": "relates_to",
+    "description": "Ova dva koncepta su povezani, jer se oba odnose na stanje ili status procesa koji koristi niti.",
+    "created_at": "2026-05-18 08:15:47.827374"
+  },
+  {
+    "id": 49,
+    "source_id": 232,
+    "target_id": 236,
+    "relationship_type": "relates_to",
+    "description": "Bez sinhronizacije povezuje nerazumljivo ponašanje sistema sa deljenjem stanja niti.",
+    "created_at": "2026-05-18 08:15:47.827375"
+  },
+  {
+    "id": 50,
+    "source_id": 232,
+    "target_id": 239,
+    "relationship_type": "relates_to",
+    "description": "Akcije kojima se menja stanje niti su relevantne za upravljanje stanjem niti u procesu.",
+    "created_at": "2026-05-18 08:15:47.827376"
+  },
+  {
+    "id": 51,
+    "source_id": 236,
+    "target_id": 239,
+    "relationship_type": "relates_to",
+    "description": "Nitinivoa kernela je ključan za razumijevanje KLT i njihovog upravljanja.",
+    "created_at": "2026-05-18 08:15:47.827378"
+  }
+]

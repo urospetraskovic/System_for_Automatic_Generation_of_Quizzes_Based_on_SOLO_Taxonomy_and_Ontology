@@ -1,0 +1,3089 @@
+{
+  "total_questions": 194,
+  "evaluated_questions": 194,
+  "verdict_distribution": {
+    "homogeneous": 128,
+    "single_outlier": 35,
+    "mixed": 31
+  },
+  "homogeneous_rate": 66.0,
+  "correct_outlier_count": 31,
+  "reports": [
+    {
+      "question_id": 1,
+      "available": true,
+      "option_types": [
+        "named_entity",
+        "named_entity",
+        "named_entity",
+        "named_entity"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 2,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 3,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 4,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "verb_phrase"
+      ],
+      "distinct_types": 2,
+      "verdict": "single_outlier",
+      "outlier_indices": [
+        3
+      ],
+      "correct_is_outlier": false,
+      "homogeneous": false
+    },
+    {
+      "question_id": 5,
+      "available": true,
+      "option_types": [
+        "verb_phrase",
+        "verb_phrase",
+        "verb_phrase",
+        "verb_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 6,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "definition_clause"
+      ],
+      "distinct_types": 2,
+      "verdict": "single_outlier",
+      "outlier_indices": [
+        3
+      ],
+      "correct_is_outlier": false,
+      "homogeneous": false
+    },
+    {
+      "question_id": 7,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "definition_clause",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 2,
+      "verdict": "single_outlier",
+      "outlier_indices": [
+        1
+      ],
+      "correct_is_outlier": true,
+      "homogeneous": false
+    },
+    {
+      "question_id": 8,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 9,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 10,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 11,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 12,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 13,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 14,
+      "available": true,
+      "option_types": [
+        "other",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 2,
+      "verdict": "single_outlier",
+      "outlier_indices": [
+        0
+      ],
+      "correct_is_outlier": true,
+      "homogeneous": false
+    },
+    {
+      "question_id": 15,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 16,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 17,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 18,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "verb_phrase"
+      ],
+      "distinct_types": 2,
+      "verdict": "single_outlier",
+      "outlier_indices": [
+        3
+      ],
+      "correct_is_outlier": false,
+      "homogeneous": false
+    },
+    {
+      "question_id": 19,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 20,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 21,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "full_sentence",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 2,
+      "verdict": "single_outlier",
+      "outlier_indices": [
+        1
+      ],
+      "correct_is_outlier": false,
+      "homogeneous": false
+    },
+    {
+      "question_id": 22,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 23,
+      "available": true,
+      "option_types": [
+        "other",
+        "other",
+        "other",
+        "other"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 24,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "verb_phrase"
+      ],
+      "distinct_types": 2,
+      "verdict": "single_outlier",
+      "outlier_indices": [
+        3
+      ],
+      "correct_is_outlier": true,
+      "homogeneous": false
+    },
+    {
+      "question_id": 25,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 26,
+      "available": true,
+      "option_types": [
+        "verb_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 2,
+      "verdict": "single_outlier",
+      "outlier_indices": [
+        0
+      ],
+      "correct_is_outlier": true,
+      "homogeneous": false
+    },
+    {
+      "question_id": 27,
+      "available": true,
+      "option_types": [
+        "other",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 2,
+      "verdict": "single_outlier",
+      "outlier_indices": [
+        0
+      ],
+      "correct_is_outlier": false,
+      "homogeneous": false
+    },
+    {
+      "question_id": 28,
+      "available": true,
+      "option_types": [
+        "other",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 2,
+      "verdict": "single_outlier",
+      "outlier_indices": [
+        0
+      ],
+      "correct_is_outlier": false,
+      "homogeneous": false
+    },
+    {
+      "question_id": 29,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 30,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 31,
+      "available": true,
+      "option_types": [
+        "named_entity",
+        "named_entity",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 2,
+      "verdict": "mixed",
+      "outlier_indices": [
+        2,
+        3
+      ],
+      "correct_is_outlier": false,
+      "homogeneous": false
+    },
+    {
+      "question_id": 32,
+      "available": true,
+      "option_types": [
+        "named_entity",
+        "named_entity",
+        "named_entity",
+        "noun_phrase"
+      ],
+      "distinct_types": 2,
+      "verdict": "single_outlier",
+      "outlier_indices": [
+        3
+      ],
+      "correct_is_outlier": false,
+      "homogeneous": false
+    },
+    {
+      "question_id": 33,
+      "available": true,
+      "option_types": [
+        "named_entity",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 2,
+      "verdict": "single_outlier",
+      "outlier_indices": [
+        0
+      ],
+      "correct_is_outlier": false,
+      "homogeneous": false
+    },
+    {
+      "question_id": 34,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 35,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 36,
+      "available": true,
+      "option_types": [
+        "full_sentence",
+        "full_sentence",
+        "full_sentence",
+        "full_sentence"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 37,
+      "available": true,
+      "option_types": [
+        "other",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 2,
+      "verdict": "single_outlier",
+      "outlier_indices": [
+        0
+      ],
+      "correct_is_outlier": false,
+      "homogeneous": false
+    },
+    {
+      "question_id": 38,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 39,
+      "available": true,
+      "option_types": [
+        "other",
+        "other",
+        "other",
+        "other"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 40,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "verb_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 2,
+      "verdict": "single_outlier",
+      "outlier_indices": [
+        1
+      ],
+      "correct_is_outlier": true,
+      "homogeneous": false
+    },
+    {
+      "question_id": 41,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 42,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "verb_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 2,
+      "verdict": "single_outlier",
+      "outlier_indices": [
+        2
+      ],
+      "correct_is_outlier": false,
+      "homogeneous": false
+    },
+    {
+      "question_id": 43,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 44,
+      "available": true,
+      "option_types": [
+        "other",
+        "other",
+        "other",
+        "other"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 45,
+      "available": true,
+      "option_types": [
+        "verb_phrase",
+        "verb_phrase",
+        "verb_phrase",
+        "verb_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 46,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 47,
+      "available": true,
+      "option_types": [
+        "verb_phrase",
+        "noun_phrase",
+        "full_sentence",
+        "verb_phrase"
+      ],
+      "distinct_types": 3,
+      "verdict": "mixed",
+      "outlier_indices": [
+        1,
+        2
+      ],
+      "correct_is_outlier": true,
+      "homogeneous": false
+    },
+    {
+      "question_id": 48,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 49,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 50,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 51,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 52,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 53,
+      "available": true,
+      "option_types": [
+        "other",
+        "other",
+        "other",
+        "noun_phrase"
+      ],
+      "distinct_types": 2,
+      "verdict": "single_outlier",
+      "outlier_indices": [
+        3
+      ],
+      "correct_is_outlier": false,
+      "homogeneous": false
+    },
+    {
+      "question_id": 54,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 55,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 56,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 57,
+      "available": true,
+      "option_types": [
+        "verb_phrase",
+        "full_sentence",
+        "full_sentence",
+        "verb_phrase"
+      ],
+      "distinct_types": 2,
+      "verdict": "mixed",
+      "outlier_indices": [
+        1,
+        2
+      ],
+      "correct_is_outlier": false,
+      "homogeneous": false
+    },
+    {
+      "question_id": 58,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 59,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 60,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 61,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 62,
+      "available": true,
+      "option_types": [
+        "full_sentence",
+        "full_sentence",
+        "full_sentence",
+        "full_sentence"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 63,
+      "available": true,
+      "option_types": [
+        "other",
+        "other",
+        "other",
+        "other"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 64,
+      "available": true,
+      "option_types": [
+        "full_sentence",
+        "full_sentence",
+        "full_sentence",
+        "full_sentence"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 65,
+      "available": true,
+      "option_types": [
+        "verb_phrase",
+        "verb_phrase",
+        "verb_phrase",
+        "verb_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 66,
+      "available": true,
+      "option_types": [
+        "verb_phrase",
+        "verb_phrase",
+        "verb_phrase",
+        "definition_clause"
+      ],
+      "distinct_types": 2,
+      "verdict": "single_outlier",
+      "outlier_indices": [
+        3
+      ],
+      "correct_is_outlier": true,
+      "homogeneous": false
+    },
+    {
+      "question_id": 67,
+      "available": true,
+      "option_types": [
+        "verb_phrase",
+        "full_sentence",
+        "full_sentence",
+        "verb_phrase"
+      ],
+      "distinct_types": 2,
+      "verdict": "mixed",
+      "outlier_indices": [
+        1,
+        2
+      ],
+      "correct_is_outlier": true,
+      "homogeneous": false
+    },
+    {
+      "question_id": 68,
+      "available": true,
+      "option_types": [
+        "full_sentence",
+        "full_sentence",
+        "full_sentence",
+        "full_sentence"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 69,
+      "available": true,
+      "option_types": [
+        "other",
+        "full_sentence",
+        "full_sentence",
+        "full_sentence"
+      ],
+      "distinct_types": 2,
+      "verdict": "single_outlier",
+      "outlier_indices": [
+        0
+      ],
+      "correct_is_outlier": true,
+      "homogeneous": false
+    },
+    {
+      "question_id": 70,
+      "available": true,
+      "option_types": [
+        "full_sentence",
+        "full_sentence",
+        "full_sentence",
+        "full_sentence"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 71,
+      "available": true,
+      "option_types": [
+        "full_sentence",
+        "full_sentence",
+        "full_sentence",
+        "noun_phrase"
+      ],
+      "distinct_types": 2,
+      "verdict": "single_outlier",
+      "outlier_indices": [
+        3
+      ],
+      "correct_is_outlier": false,
+      "homogeneous": false
+    },
+    {
+      "question_id": 72,
+      "available": true,
+      "option_types": [
+        "full_sentence",
+        "full_sentence",
+        "full_sentence",
+        "full_sentence"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 73,
+      "available": true,
+      "option_types": [
+        "full_sentence",
+        "full_sentence",
+        "full_sentence",
+        "full_sentence"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 74,
+      "available": true,
+      "option_types": [
+        "full_sentence",
+        "full_sentence",
+        "full_sentence",
+        "full_sentence"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 75,
+      "available": true,
+      "option_types": [
+        "full_sentence",
+        "full_sentence",
+        "full_sentence",
+        "full_sentence"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 76,
+      "available": true,
+      "option_types": [
+        "verb_phrase",
+        "verb_phrase",
+        "verb_phrase",
+        "full_sentence"
+      ],
+      "distinct_types": 2,
+      "verdict": "single_outlier",
+      "outlier_indices": [
+        3
+      ],
+      "correct_is_outlier": true,
+      "homogeneous": false
+    },
+    {
+      "question_id": 77,
+      "available": true,
+      "option_types": [
+        "verb_phrase",
+        "verb_phrase",
+        "verb_phrase",
+        "full_sentence"
+      ],
+      "distinct_types": 2,
+      "verdict": "single_outlier",
+      "outlier_indices": [
+        3
+      ],
+      "correct_is_outlier": true,
+      "homogeneous": false
+    },
+    {
+      "question_id": 78,
+      "available": true,
+      "option_types": [
+        "verb_phrase",
+        "verb_phrase",
+        "verb_phrase",
+        "verb_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 79,
+      "available": true,
+      "option_types": [
+        "full_sentence",
+        "full_sentence",
+        "full_sentence",
+        "full_sentence"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 80,
+      "available": true,
+      "option_types": [
+        "full_sentence",
+        "full_sentence",
+        "full_sentence",
+        "full_sentence"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 81,
+      "available": true,
+      "option_types": [
+        "other",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 2,
+      "verdict": "single_outlier",
+      "outlier_indices": [
+        0
+      ],
+      "correct_is_outlier": true,
+      "homogeneous": false
+    },
+    {
+      "question_id": 82,
+      "available": true,
+      "option_types": [
+        "named_entity",
+        "noun_phrase",
+        "adjective_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 3,
+      "verdict": "mixed",
+      "outlier_indices": [
+        0,
+        2
+      ],
+      "correct_is_outlier": false,
+      "homogeneous": false
+    },
+    {
+      "question_id": 83,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 84,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "verb_phrase"
+      ],
+      "distinct_types": 2,
+      "verdict": "single_outlier",
+      "outlier_indices": [
+        3
+      ],
+      "correct_is_outlier": false,
+      "homogeneous": false
+    },
+    {
+      "question_id": 85,
+      "available": true,
+      "option_types": [
+        "other",
+        "named_entity",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 3,
+      "verdict": "mixed",
+      "outlier_indices": [
+        0,
+        1
+      ],
+      "correct_is_outlier": true,
+      "homogeneous": false
+    },
+    {
+      "question_id": 86,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "verb_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 2,
+      "verdict": "single_outlier",
+      "outlier_indices": [
+        2
+      ],
+      "correct_is_outlier": false,
+      "homogeneous": false
+    },
+    {
+      "question_id": 87,
+      "available": true,
+      "option_types": [
+        "other",
+        "other",
+        "other",
+        "other"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 88,
+      "available": true,
+      "option_types": [
+        "verb_phrase",
+        "noun_phrase",
+        "named_entity",
+        "definition_clause"
+      ],
+      "distinct_types": 4,
+      "verdict": "mixed",
+      "outlier_indices": [
+        1,
+        2,
+        3
+      ],
+      "correct_is_outlier": true,
+      "homogeneous": false
+    },
+    {
+      "question_id": 89,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 90,
+      "available": true,
+      "option_types": [
+        "other",
+        "noun_phrase",
+        "named_entity",
+        "noun_phrase"
+      ],
+      "distinct_types": 3,
+      "verdict": "mixed",
+      "outlier_indices": [
+        0,
+        2
+      ],
+      "correct_is_outlier": true,
+      "homogeneous": false
+    },
+    {
+      "question_id": 91,
+      "available": true,
+      "option_types": [
+        "verb_phrase",
+        "verb_phrase",
+        "noun_phrase",
+        "verb_phrase"
+      ],
+      "distinct_types": 2,
+      "verdict": "single_outlier",
+      "outlier_indices": [
+        2
+      ],
+      "correct_is_outlier": true,
+      "homogeneous": false
+    },
+    {
+      "question_id": 92,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "definition_clause"
+      ],
+      "distinct_types": 2,
+      "verdict": "single_outlier",
+      "outlier_indices": [
+        3
+      ],
+      "correct_is_outlier": true,
+      "homogeneous": false
+    },
+    {
+      "question_id": 93,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 94,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "named_entity"
+      ],
+      "distinct_types": 2,
+      "verdict": "single_outlier",
+      "outlier_indices": [
+        3
+      ],
+      "correct_is_outlier": false,
+      "homogeneous": false
+    },
+    {
+      "question_id": 95,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 96,
+      "available": true,
+      "option_types": [
+        "verb_phrase",
+        "adjective_phrase",
+        "verb_phrase",
+        "full_sentence"
+      ],
+      "distinct_types": 3,
+      "verdict": "mixed",
+      "outlier_indices": [
+        1,
+        3
+      ],
+      "correct_is_outlier": true,
+      "homogeneous": false
+    },
+    {
+      "question_id": 97,
+      "available": true,
+      "option_types": [
+        "full_sentence",
+        "definition_clause",
+        "definition_clause",
+        "full_sentence"
+      ],
+      "distinct_types": 2,
+      "verdict": "mixed",
+      "outlier_indices": [
+        1,
+        2
+      ],
+      "correct_is_outlier": false,
+      "homogeneous": false
+    },
+    {
+      "question_id": 98,
+      "available": true,
+      "option_types": [
+        "named_entity",
+        "named_entity",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 2,
+      "verdict": "mixed",
+      "outlier_indices": [
+        2,
+        3
+      ],
+      "correct_is_outlier": true,
+      "homogeneous": false
+    },
+    {
+      "question_id": 99,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 100,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 101,
+      "available": true,
+      "option_types": [
+        "other",
+        "noun_phrase",
+        "verb_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 3,
+      "verdict": "mixed",
+      "outlier_indices": [
+        0,
+        2
+      ],
+      "correct_is_outlier": true,
+      "homogeneous": false
+    },
+    {
+      "question_id": 102,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 103,
+      "available": true,
+      "option_types": [
+        "other",
+        "noun_phrase",
+        "definition_clause",
+        "noun_phrase"
+      ],
+      "distinct_types": 3,
+      "verdict": "mixed",
+      "outlier_indices": [
+        0,
+        2
+      ],
+      "correct_is_outlier": false,
+      "homogeneous": false
+    },
+    {
+      "question_id": 104,
+      "available": true,
+      "option_types": [
+        "other",
+        "noun_phrase",
+        "adjective_phrase",
+        "adjective_phrase"
+      ],
+      "distinct_types": 3,
+      "verdict": "mixed",
+      "outlier_indices": [
+        0,
+        1
+      ],
+      "correct_is_outlier": false,
+      "homogeneous": false
+    },
+    {
+      "question_id": 105,
+      "available": true,
+      "option_types": [
+        "full_sentence",
+        "full_sentence",
+        "full_sentence",
+        "full_sentence"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 106,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 107,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 108,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 109,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 110,
+      "available": true,
+      "option_types": [
+        "named_entity",
+        "named_entity",
+        "named_entity",
+        "named_entity"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 111,
+      "available": true,
+      "option_types": [
+        "other",
+        "other",
+        "other",
+        "other"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 112,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 113,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 114,
+      "available": true,
+      "option_types": [
+        "full_sentence",
+        "full_sentence",
+        "full_sentence",
+        "full_sentence"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 115,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 116,
+      "available": true,
+      "option_types": [
+        "other",
+        "other",
+        "other",
+        "other"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 117,
+      "available": true,
+      "option_types": [
+        "full_sentence",
+        "full_sentence",
+        "full_sentence",
+        "full_sentence"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 118,
+      "available": true,
+      "option_types": [
+        "verb_phrase",
+        "verb_phrase",
+        "verb_phrase",
+        "verb_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 119,
+      "available": true,
+      "option_types": [
+        "full_sentence",
+        "full_sentence",
+        "full_sentence",
+        "full_sentence"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 120,
+      "available": true,
+      "option_types": [
+        "full_sentence",
+        "full_sentence",
+        "full_sentence",
+        "full_sentence"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 121,
+      "available": true,
+      "option_types": [
+        "full_sentence",
+        "full_sentence",
+        "full_sentence",
+        "full_sentence"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 122,
+      "available": true,
+      "option_types": [
+        "full_sentence",
+        "full_sentence",
+        "full_sentence",
+        "full_sentence"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 123,
+      "available": true,
+      "option_types": [
+        "full_sentence",
+        "full_sentence",
+        "full_sentence",
+        "full_sentence"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 124,
+      "available": true,
+      "option_types": [
+        "full_sentence",
+        "full_sentence",
+        "full_sentence",
+        "full_sentence"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 125,
+      "available": true,
+      "option_types": [
+        "full_sentence",
+        "full_sentence",
+        "full_sentence",
+        "full_sentence"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 126,
+      "available": true,
+      "option_types": [
+        "other",
+        "verb_phrase",
+        "verb_phrase",
+        "verb_phrase"
+      ],
+      "distinct_types": 2,
+      "verdict": "single_outlier",
+      "outlier_indices": [
+        0
+      ],
+      "correct_is_outlier": false,
+      "homogeneous": false
+    },
+    {
+      "question_id": 127,
+      "available": true,
+      "option_types": [
+        "verb_phrase",
+        "verb_phrase",
+        "verb_phrase",
+        "verb_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 128,
+      "available": true,
+      "option_types": [
+        "full_sentence",
+        "definition_clause",
+        "full_sentence",
+        "full_sentence"
+      ],
+      "distinct_types": 2,
+      "verdict": "single_outlier",
+      "outlier_indices": [
+        1
+      ],
+      "correct_is_outlier": false,
+      "homogeneous": false
+    },
+    {
+      "question_id": 129,
+      "available": true,
+      "option_types": [
+        "full_sentence",
+        "full_sentence",
+        "full_sentence",
+        "full_sentence"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 130,
+      "available": true,
+      "option_types": [
+        "full_sentence",
+        "full_sentence",
+        "full_sentence",
+        "full_sentence"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 131,
+      "available": true,
+      "option_types": [
+        "full_sentence",
+        "full_sentence",
+        "full_sentence",
+        "full_sentence"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 132,
+      "available": true,
+      "option_types": [
+        "full_sentence",
+        "full_sentence",
+        "full_sentence",
+        "full_sentence"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 133,
+      "available": true,
+      "option_types": [
+        "full_sentence",
+        "full_sentence",
+        "full_sentence",
+        "full_sentence"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 134,
+      "available": true,
+      "option_types": [
+        "full_sentence",
+        "full_sentence",
+        "full_sentence",
+        "full_sentence"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 135,
+      "available": true,
+      "option_types": [
+        "full_sentence",
+        "full_sentence",
+        "full_sentence",
+        "full_sentence"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 136,
+      "available": true,
+      "option_types": [
+        "named_entity",
+        "noun_phrase",
+        "noun_phrase",
+        "verb_phrase"
+      ],
+      "distinct_types": 3,
+      "verdict": "mixed",
+      "outlier_indices": [
+        0,
+        3
+      ],
+      "correct_is_outlier": false,
+      "homogeneous": false
+    },
+    {
+      "question_id": 137,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 138,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 139,
+      "available": true,
+      "option_types": [
+        "named_entity",
+        "named_entity",
+        "named_entity",
+        "named_entity"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 140,
+      "available": true,
+      "option_types": [
+        "full_sentence",
+        "full_sentence",
+        "full_sentence",
+        "noun_phrase"
+      ],
+      "distinct_types": 2,
+      "verdict": "single_outlier",
+      "outlier_indices": [
+        3
+      ],
+      "correct_is_outlier": false,
+      "homogeneous": false
+    },
+    {
+      "question_id": 141,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "full_sentence",
+        "adjective_phrase",
+        "definition_clause"
+      ],
+      "distinct_types": 4,
+      "verdict": "mixed",
+      "outlier_indices": [
+        1,
+        2,
+        3
+      ],
+      "correct_is_outlier": true,
+      "homogeneous": false
+    },
+    {
+      "question_id": 142,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "verb_phrase",
+        "verb_phrase"
+      ],
+      "distinct_types": 2,
+      "verdict": "mixed",
+      "outlier_indices": [
+        2,
+        3
+      ],
+      "correct_is_outlier": false,
+      "homogeneous": false
+    },
+    {
+      "question_id": 143,
+      "available": true,
+      "option_types": [
+        "adjective_phrase",
+        "adjective_phrase",
+        "adjective_phrase",
+        "adjective_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 144,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 145,
+      "available": true,
+      "option_types": [
+        "full_sentence",
+        "full_sentence",
+        "full_sentence",
+        "full_sentence"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 146,
+      "available": true,
+      "option_types": [
+        "full_sentence",
+        "full_sentence",
+        "full_sentence",
+        "full_sentence"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 147,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 148,
+      "available": true,
+      "option_types": [
+        "full_sentence",
+        "adjective_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 3,
+      "verdict": "mixed",
+      "outlier_indices": [
+        0,
+        1
+      ],
+      "correct_is_outlier": true,
+      "homogeneous": false
+    },
+    {
+      "question_id": 149,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "verb_phrase",
+        "verb_phrase"
+      ],
+      "distinct_types": 2,
+      "verdict": "mixed",
+      "outlier_indices": [
+        2,
+        3
+      ],
+      "correct_is_outlier": false,
+      "homogeneous": false
+    },
+    {
+      "question_id": 150,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 151,
+      "available": true,
+      "option_types": [
+        "full_sentence",
+        "noun_phrase",
+        "noun_phrase",
+        "adjective_phrase"
+      ],
+      "distinct_types": 3,
+      "verdict": "mixed",
+      "outlier_indices": [
+        0,
+        3
+      ],
+      "correct_is_outlier": true,
+      "homogeneous": false
+    },
+    {
+      "question_id": 152,
+      "available": true,
+      "option_types": [
+        "verb_phrase",
+        "verb_phrase",
+        "verb_phrase",
+        "verb_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 153,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "full_sentence",
+        "noun_phrase",
+        "verb_phrase"
+      ],
+      "distinct_types": 3,
+      "verdict": "mixed",
+      "outlier_indices": [
+        1,
+        3
+      ],
+      "correct_is_outlier": false,
+      "homogeneous": false
+    },
+    {
+      "question_id": 154,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 155,
+      "available": true,
+      "option_types": [
+        "other",
+        "other",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 2,
+      "verdict": "mixed",
+      "outlier_indices": [
+        2,
+        3
+      ],
+      "correct_is_outlier": true,
+      "homogeneous": false
+    },
+    {
+      "question_id": 156,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "adjective_phrase",
+        "verb_phrase",
+        "adjective_phrase"
+      ],
+      "distinct_types": 3,
+      "verdict": "mixed",
+      "outlier_indices": [
+        0,
+        2
+      ],
+      "correct_is_outlier": false,
+      "homogeneous": false
+    },
+    {
+      "question_id": 157,
+      "available": true,
+      "option_types": [
+        "other",
+        "named_entity",
+        "other",
+        "noun_phrase"
+      ],
+      "distinct_types": 3,
+      "verdict": "mixed",
+      "outlier_indices": [
+        1,
+        3
+      ],
+      "correct_is_outlier": true,
+      "homogeneous": false
+    },
+    {
+      "question_id": 158,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 159,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "named_entity"
+      ],
+      "distinct_types": 2,
+      "verdict": "single_outlier",
+      "outlier_indices": [
+        3
+      ],
+      "correct_is_outlier": false,
+      "homogeneous": false
+    },
+    {
+      "question_id": 160,
+      "available": true,
+      "option_types": [
+        "full_sentence",
+        "noun_phrase",
+        "noun_phrase",
+        "definition_clause"
+      ],
+      "distinct_types": 3,
+      "verdict": "mixed",
+      "outlier_indices": [
+        0,
+        3
+      ],
+      "correct_is_outlier": true,
+      "homogeneous": false
+    },
+    {
+      "question_id": 161,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "adjective_phrase",
+        "noun_phrase",
+        "adjective_phrase"
+      ],
+      "distinct_types": 2,
+      "verdict": "mixed",
+      "outlier_indices": [
+        1,
+        3
+      ],
+      "correct_is_outlier": false,
+      "homogeneous": false
+    },
+    {
+      "question_id": 162,
+      "available": true,
+      "option_types": [
+        "full_sentence",
+        "full_sentence",
+        "full_sentence",
+        "full_sentence"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 163,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "verb_phrase"
+      ],
+      "distinct_types": 2,
+      "verdict": "single_outlier",
+      "outlier_indices": [
+        3
+      ],
+      "correct_is_outlier": true,
+      "homogeneous": false
+    },
+    {
+      "question_id": 164,
+      "available": true,
+      "option_types": [
+        "full_sentence",
+        "full_sentence",
+        "full_sentence",
+        "full_sentence"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 165,
+      "available": true,
+      "option_types": [
+        "named_entity",
+        "named_entity",
+        "named_entity",
+        "named_entity"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 166,
+      "available": true,
+      "option_types": [
+        "full_sentence",
+        "full_sentence",
+        "full_sentence",
+        "full_sentence"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 167,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "full_sentence",
+        "full_sentence",
+        "noun_phrase"
+      ],
+      "distinct_types": 2,
+      "verdict": "mixed",
+      "outlier_indices": [
+        1,
+        2
+      ],
+      "correct_is_outlier": true,
+      "homogeneous": false
+    },
+    {
+      "question_id": 168,
+      "available": true,
+      "option_types": [
+        "other",
+        "other",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 2,
+      "verdict": "mixed",
+      "outlier_indices": [
+        2,
+        3
+      ],
+      "correct_is_outlier": false,
+      "homogeneous": false
+    },
+    {
+      "question_id": 169,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 170,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 171,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 172,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 173,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 174,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 175,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "definition_clause"
+      ],
+      "distinct_types": 2,
+      "verdict": "single_outlier",
+      "outlier_indices": [
+        3
+      ],
+      "correct_is_outlier": true,
+      "homogeneous": false
+    },
+    {
+      "question_id": 176,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 177,
+      "available": true,
+      "option_types": [
+        "full_sentence",
+        "full_sentence",
+        "full_sentence",
+        "full_sentence"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 178,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 179,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 180,
+      "available": true,
+      "option_types": [
+        "full_sentence",
+        "full_sentence",
+        "full_sentence",
+        "full_sentence"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 181,
+      "available": true,
+      "option_types": [
+        "other",
+        "other",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 2,
+      "verdict": "mixed",
+      "outlier_indices": [
+        2,
+        3
+      ],
+      "correct_is_outlier": true,
+      "homogeneous": false
+    },
+    {
+      "question_id": 182,
+      "available": true,
+      "option_types": [
+        "full_sentence",
+        "full_sentence",
+        "full_sentence",
+        "full_sentence"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 183,
+      "available": true,
+      "option_types": [
+        "verb_phrase",
+        "verb_phrase",
+        "verb_phrase",
+        "verb_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 184,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "verb_phrase",
+        "full_sentence",
+        "verb_phrase"
+      ],
+      "distinct_types": 3,
+      "verdict": "mixed",
+      "outlier_indices": [
+        0,
+        2
+      ],
+      "correct_is_outlier": true,
+      "homogeneous": false
+    },
+    {
+      "question_id": 185,
+      "available": true,
+      "option_types": [
+        "other",
+        "other",
+        "other",
+        "other"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 186,
+      "available": true,
+      "option_types": [
+        "other",
+        "other",
+        "other",
+        "other"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 187,
+      "available": true,
+      "option_types": [
+        "other",
+        "other",
+        "other",
+        "other"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 188,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 189,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "full_sentence"
+      ],
+      "distinct_types": 2,
+      "verdict": "single_outlier",
+      "outlier_indices": [
+        3
+      ],
+      "correct_is_outlier": false,
+      "homogeneous": false
+    },
+    {
+      "question_id": 190,
+      "available": true,
+      "option_types": [
+        "full_sentence",
+        "full_sentence",
+        "full_sentence",
+        "other"
+      ],
+      "distinct_types": 2,
+      "verdict": "single_outlier",
+      "outlier_indices": [
+        3
+      ],
+      "correct_is_outlier": false,
+      "homogeneous": false
+    },
+    {
+      "question_id": 191,
+      "available": true,
+      "option_types": [
+        "other",
+        "other",
+        "other",
+        "other"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 192,
+      "available": true,
+      "option_types": [
+        "other",
+        "noun_phrase",
+        "adjective_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 3,
+      "verdict": "mixed",
+      "outlier_indices": [
+        0,
+        2
+      ],
+      "correct_is_outlier": false,
+      "homogeneous": false
+    },
+    {
+      "question_id": 193,
+      "available": true,
+      "option_types": [
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase",
+        "noun_phrase"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    },
+    {
+      "question_id": 194,
+      "available": true,
+      "option_types": [
+        "full_sentence",
+        "full_sentence",
+        "full_sentence",
+        "full_sentence"
+      ],
+      "distinct_types": 1,
+      "verdict": "homogeneous",
+      "outlier_indices": [],
+      "correct_is_outlier": false,
+      "homogeneous": true
+    }
+  ],
+  "grammar_model": "qwen2.5:14b-instruct-q4_K_M"
+}

@@ -1,0 +1,1376 @@
+{
+  "total_questions": 194,
+  "evaluated_questions": 98,
+  "h4_pass_rate": 0.0,
+  "mean_similarity": null,
+  "verdict_distribution": {
+    "passes": 0,
+    "partial": 0,
+    "fails": 0,
+    "unable": 98
+  },
+  "reports": [
+    {
+      "question_id": 1,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 2,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 3,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 4,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 5,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 6,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 7,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 8,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 9,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 10,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 11,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 12,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 13,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 14,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 15,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 16,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 17,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 18,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 19,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 20,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 21,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 22,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 23,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 24,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 25,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 26,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 27,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 28,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 29,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 30,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 31,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 32,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 33,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 34,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 35,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 36,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 37,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 38,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 39,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 40,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 41,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 42,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 43,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 44,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 45,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 46,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 47,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 48,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 49,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 50,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 51,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 52,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 53,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 54,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 55,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 56,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 57,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 58,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 59,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 60,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 61,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 62,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 63,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 64,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 65,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 66,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 67,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 68,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 69,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 70,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 71,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 72,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 73,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 74,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 75,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 76,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 77,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 78,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 79,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 80,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 81,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 82,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 83,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 84,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 85,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 86,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 87,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 88,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 89,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 90,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 91,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 92,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 93,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 94,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 95,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 96,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 97,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 98,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 99,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 100,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 101,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 102,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 103,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 104,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 105,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 106,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 107,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 108,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 109,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 110,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 111,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 112,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 113,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 114,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 115,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 116,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 117,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 118,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 119,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 120,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 121,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 122,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 123,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 124,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 125,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 126,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 127,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 128,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 129,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 130,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 131,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 132,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 133,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 134,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 135,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 136,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 137,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 138,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 139,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 140,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 141,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 142,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 143,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 144,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 145,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 146,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 147,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 148,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 149,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 150,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 151,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 152,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 153,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 154,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 155,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 156,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 157,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 158,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 159,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 160,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 161,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 162,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 163,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 164,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 165,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 166,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 167,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 168,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 169,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 170,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 171,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 172,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 173,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 174,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 175,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 176,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 177,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 178,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 179,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 180,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 181,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 182,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 183,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 184,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 185,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 186,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 187,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 188,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 189,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 190,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 191,
+      "available": false,
+      "reason": "Embedding model unavailable; cannot compare answers."
+    },
+    {
+      "question_id": 192,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 193,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    },
+    {
+      "question_id": 194,
+      "available": true,
+      "free_answer": null,
+      "similarity": null,
+      "verdict": "unable",
+      "h4_passes": false,
+      "reasoning": "LLM could not answer the stem alone — options likely carry critical context."
+    }
+  ]
+}
