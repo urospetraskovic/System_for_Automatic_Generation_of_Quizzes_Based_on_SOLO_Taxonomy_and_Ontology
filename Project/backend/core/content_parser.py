@@ -132,8 +132,10 @@ class ContentParser:
         self.ollama_model = OLLAMA_MODEL
         self.provider = "ollama"
         
-        print(f"[ContentParser] Initialized with Ollama (14B model)")
-        print(f"[ContentParser] Mode: MAXIMUM QUALITY - multi-pass extraction")
+        # Actual call routing goes through core.llm_provider.call_llm, which
+        # picks Ollama or Anthropic per request based on the X-LLM-Provider
+        # header. So we just announce readiness, not a fixed provider.
+        print(f"[ContentParser] Ready - multi-pass extraction (provider chosen per call)")
         
         # Test connection
         if not self._test_ollama_connection():
@@ -150,58 +152,29 @@ class ContentParser:
             return False
     
     def _call_ollama(self, prompt: str, timeout: int = 300, use_cache: bool = True) -> Optional[str]:
-        """
-        Call Ollama with SQLite-backed response caching.
+        """Route the parser's LLM call through the provider abstraction.
 
-        Parsing is deterministic-friendly (same PDF, same prompt -> same
-        output is fine), so caching is on by default. Pass use_cache=False
-        to force a fresh extraction.
+        Despite the historical name, this dispatches to whichever provider
+        is active (Ollama or Anthropic). The parser does NOT use JSON mode
+        because it sometimes wants arrays, objects, or prose.
         """
-        from core import llm_cache
+        from core.llm_provider import call_llm
 
         temperature = 0.7
-        # ContentParser never uses Ollama's JSON-format mode (it sometimes
-        # wants arrays, sometimes objects, sometimes prose).
-        json_mode = False
-        if use_cache:
-            cached = llm_cache.get(self.ollama_model, prompt, temperature, json_mode)
-            if cached is not None:
-                print(f"[ContentParser] Cache HIT ({len(cached)} chars)")
-                return cached
+        print(f"[ContentParser] Dispatching LLM call ({len(prompt)} chars prompt)...")
+        result = call_llm(
+            prompt, role="parser",
+            temperature=temperature, json_mode=False,
+            use_cache=use_cache, timeout=timeout,
+        )
+        if result is None:
+            print(f"[ContentParser] LLM call returned None")
+        else:
+            print(f"[ContentParser] LLM returned {len(result)} chars")
+            if len(result) < 50:
+                print(f"[ContentParser] WARNING: Very short response: {result}")
+        return result
 
-        try:
-            url = f"{self.ollama_base_url}/api/generate"
-            payload = {
-                "model": self.ollama_model,
-                "prompt": prompt,
-                "stream": False,
-                "temperature": temperature,
-            }
-
-            print(f"[ContentParser] Calling Ollama ({len(prompt)} chars prompt)...")
-            response = requests.post(url, json=payload, timeout=timeout)
-
-            if response.status_code == 200:
-                data = response.json()
-                result = data.get("response", "")
-                print(f"[ContentParser] Ollama returned {len(result)} chars")
-                if len(result) < 50:
-                    print(f"[ContentParser] WARNING: Very short response: {result}")
-                if result and use_cache:
-                    llm_cache.put(self.ollama_model, prompt, temperature, json_mode, result)
-                return result
-            else:
-                print(f"[ContentParser] Ollama error: {response.status_code}")
-                print(f"[ContentParser] Response: {response.text[:200]}")
-                return None
-                
-        except requests.Timeout:
-            print(f"[ContentParser] Ollama request timed out after {timeout}s")
-            return None
-        except Exception as e:
-            print(f"[ContentParser] Ollama error: {e}")
-            return None
-    
     def _extract_pages(self, pdf_reader) -> Dict[str, Any]:
         """Build full_text + per-page offset/char-count metadata from a PdfReader."""
         text_parts = []

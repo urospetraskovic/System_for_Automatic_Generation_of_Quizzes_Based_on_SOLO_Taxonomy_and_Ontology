@@ -88,6 +88,10 @@ export const questionApi = {
   delete: (questionId) => apiClient.delete(`/questions/${questionId}`),
   lint: (questionId) => apiClient.get(`/questions/${questionId}/lint`),
   lintLesson: (lessonId) => apiClient.get(`/lessons/${lessonId}/lint`),
+  // Bulk hydration of every cached lesson-scoped validation report. Returns
+  // {} when nothing is cached yet.
+  qualityCache: (lessonId) => apiClient.get(`/lessons/${lessonId}/quality-cache`),
+  clearQualityCache: (lessonId) => apiClient.delete(`/lessons/${lessonId}/quality-cache`),
   soloJudge: (questionId) => apiClient.get(`/questions/${questionId}/solo-judge`),
   soloJudgeLesson: (lessonId) => apiClient.get(`/lessons/${lessonId}/solo-judge`),
   cove: (questionId) => apiClient.get(`/questions/${questionId}/cove`),
@@ -217,6 +221,15 @@ export const translationApi = {
 export const adminApi = {
   cacheStats: () => apiClient.get('/admin/llm-cache/stats'),
   clearCache: () => apiClient.delete('/admin/llm-cache'),
+};
+
+// ==================== LLM PROVIDER ENDPOINTS ====================
+
+export const llmApi = {
+  providers: () => apiClient.get('/llm/providers'),
+  spend: () => apiClient.get('/llm/spend'),
+  resetSpend: (providerName) =>
+    apiClient.delete(`/llm/spend${providerName ? `?provider=${providerName}` : ''}`),
 };
 
 // ==================== ERROR HANDLING ====================

@@ -89,30 +89,12 @@ OUTPUT — strict JSON, no other text:
 
 
 def _call_ioc_llm(prompt: str, *, use_cache: bool = True, timeout: int = 60) -> Optional[str]:
-    if use_cache:
-        cached = llm_cache.get(IOC_MODEL, prompt, IOC_TEMPERATURE, json_mode=True)
-        if cached is not None:
-            return cached
-    try:
-        resp = requests.post(
-            f"{OLLAMA_BASE_URL}/api/generate",
-            json={
-                "model": IOC_MODEL,
-                "prompt": prompt,
-                "stream": False,
-                "temperature": IOC_TEMPERATURE,
-                "format": "json",
-            },
-            timeout=timeout,
-        )
-        if resp.status_code != 200:
-            return None
-        result = resp.json().get("response", "")
-        if result and use_cache:
-            llm_cache.put(IOC_MODEL, prompt, IOC_TEMPERATURE, True, result)
-        return result
-    except Exception:
-        return None
+    from core.llm_provider import call_llm
+    return call_llm(
+        prompt, role="ioc",
+        temperature=IOC_TEMPERATURE, json_mode=True,
+        use_cache=use_cache, timeout=timeout,
+    )
 
 
 def _parse_rating(raw: str) -> Optional[Dict[str, Any]]:
@@ -214,7 +196,8 @@ def rate_question(question: Dict[str, Any], *, objective: Optional[Dict[str, str
 def ioc_report(questions: List[Dict[str, Any]], *, llm_caller=None) -> Dict[str, Any]:
     """Batch IOC report. Returns per-question ratings and the aggregate IOC index."""
     total = len(questions)
-    print(f'[IOC] Starting Item-Objective Congruence rating on {total} question(s) — model={IOC_MODEL}', flush=True)
+    from core.llm_provider import describe_active_model
+    print(f'[IOC] Starting Item-Objective Congruence rating on {total} question(s) — model={describe_active_model("ioc")}', flush=True)
     reports = []
     for i, q in enumerate(questions, start=1):
         r = rate_question(q, llm_caller=llm_caller)

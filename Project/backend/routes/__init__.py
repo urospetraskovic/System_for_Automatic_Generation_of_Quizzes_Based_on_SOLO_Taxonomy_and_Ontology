@@ -16,6 +16,7 @@ from .translations import translations_bp
 from .chat import chat_bp
 from .admin import admin_bp
 from .jobs import jobs_bp
+from .llm import llm_bp
 from .errors import register_error_handlers
 
 
@@ -33,6 +34,7 @@ ALL_BLUEPRINTS = [
     chat_bp,
     admin_bp,
     jobs_bp,
+    llm_bp,
 ]
 
 

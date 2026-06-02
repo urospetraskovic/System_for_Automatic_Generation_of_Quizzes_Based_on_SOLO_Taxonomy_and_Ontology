@@ -711,24 +711,18 @@ This is the actual content structure from your uploaded materials."""
         return "I'm in offline mode. I can help with basic questions. For detailed explanations, please ensure Ollama is running. What would you like to know?"
 
     def _get_response_from_ollama(self, prompt: str) -> Optional[str]:
-        """Get response from Ollama"""
+        """Get response from the active LLM provider (Ollama or Anthropic)."""
+        from core.llm_provider import call_llm
         try:
-            response = requests.post(
-                f"{self.ollama_url}/api/generate",
-                json={
-                    "model": self.ollama_model,
-                    "prompt": prompt,
-                    "stream": False,
-                    "temperature": 0.7,
-                },
-                timeout=120
+            result = call_llm(
+                prompt, role="chatbot",
+                temperature=0.7, json_mode=False,
+                use_cache=False, timeout=120,
             )
-            if response.status_code == 200:
-                data = response.json()
-                return data.get("response", "").strip()
+            return result.strip() if result else None
         except Exception as e:
-            print(f"[ChatbotService] Ollama error: {e}")
-        return None
+            print(f"[ChatbotService] LLM error: {e}")
+            return None
 
     def _get_relevant_context(self, user_message: str, course_id: Optional[int] = None) -> str:
         """

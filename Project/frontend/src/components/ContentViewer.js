@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { lessonApi, sectionApi, learningObjectApi, ontologyApi } from '../api';
+import { lessonApi, sectionApi, learningObjectApi, ontologyApi, questionApi } from '../api';
 import TranslationViewer from './TranslationViewer';
 import CoveragePanel from './CoveragePanel';
 import MCQLintPanel from './MCQLintPanel';
@@ -7,6 +7,34 @@ import SoloJudgePanel from './SoloJudgePanel';
 import AdvancedQualityPanel from './AdvancedQualityPanel';
 import ExtendedValidityPanel from './ExtendedValidityPanel';
 import QualityOverviewPanel from './QualityOverviewPanel';
+
+// Backend metric_key (as written by backend/services/validation_cache.put())
+// → frontend short key (as read by buildHeadline + sub-panel props). The
+// names diverged historically: backend uses descriptive snake_case, FE uses
+// short labels. Translating once at the cache fetch boundary keeps the rest
+// of the FE consistent and fixes silent headline drops on lesson reload.
+const BACKEND_TO_FE_KEY = {
+  lint: 'lint',
+  solo_judge: 'judge',
+  cove: 'cove',
+  solvability: 'solv',
+  stem_only: 'stem',
+  ioc: 'ioc',
+  readability: 'readability',
+  ambiguity: 'ambiguity',
+  misconception_mining: 'misc',
+  grammar_homogeneity: 'grammar',
+  face_validity: 'face',
+};
+
+function translateCachedQuality(payload) {
+  const out = {};
+  for (const [k, v] of Object.entries(payload || {})) {
+    const feKey = BACKEND_TO_FE_KEY[k] || k;
+    out[feKey] = v;
+  }
+  return out;
+}
 
 function ContentViewer({ lesson, onBack, onSuccess, onError, onLessonUpdate }) {
   const [sections, setSections] = useState([]);
@@ -22,7 +50,41 @@ function ContentViewer({ lesson, onBack, onSuccess, onError, onLessonUpdate }) {
   // Run, it pushes the per-check data here; the sub-panels (SOLO judge, CoVe,
   // Solvability, Extended A–H) read their slice from this and display it
   // without forcing the user to click Run again on each sub-panel.
+  //
+  // On lesson mount we also hit the server-side validation_cache via
+  // /api/lessons/<id>/quality-cache to rehydrate whatever was previously
+  // run — without this, headlines disappear after every page reload.
+  //
+  // Key translation: the backend stores cached reports under metric keys like
+  // "solo_judge", "grammar_homogeneity", "face_validity", but every React
+  // panel here reads short FE keys ("judge", "grammar", "face", …). Without
+  // mapping at this boundary, the headline dashboard silently misses ~half
+  // its tiles on lesson reload, even though the data is sitting in cache.
   const [qualityResults, setQualityResults] = useState({});
+
+  useEffect(() => {
+    let cancelled = false;
+    if (!lesson?.id) {
+      setQualityResults({});
+      return;
+    }
+    // Fetch both the persistent validation_cache (LLM-backed metrics) and
+    // the live coverage report (cheap, no LLM, never cached) in parallel.
+    // Merging both into qualityResults means the headline dashboard renders
+    // all 12 tiles on lesson open without forcing the user to click Run.
+    Promise.all([
+      questionApi.qualityCache(lesson.id).catch(() => ({ data: {} })),
+      lessonApi.getCoverage(lesson.id).catch(() => null),
+    ]).then(([cacheRes, covRes]) => {
+      if (cancelled) return;
+      const next = translateCachedQuality(cacheRes?.data || {});
+      if (covRes?.data) {
+        next.coverage = covRes.data;
+      }
+      setQualityResults(next);
+    });
+    return () => { cancelled = true; };
+  }, [lesson?.id]);
   const [showTranslationViewer, setShowTranslationViewer] = useState(false);
   const [viewingTranslationId, setViewingTranslationId] = useState(null);
   const [viewingTranslationType, setViewingTranslationType] = useState('section');

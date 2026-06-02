@@ -40,6 +40,7 @@ from .cloze_distractor import (
 )
 from .grammar_homogeneity import check_homogeneity, homogeneity_report
 from .face_validity import assess_face_validity, face_validity_report
+from . import validation_cache
 
 __all__ = [
     'LessonService',

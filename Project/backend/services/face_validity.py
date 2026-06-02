@@ -80,30 +80,12 @@ OUTPUT — strict JSON, no other text. Use the option letter (A/B/C/...) as the 
 
 
 def _call_llm(prompt: str, *, use_cache: bool = True, timeout: int = 60) -> Optional[str]:
-    if use_cache:
-        cached = llm_cache.get(FACE_MODEL, prompt, FACE_TEMPERATURE, json_mode=True)
-        if cached is not None:
-            return cached
-    try:
-        resp = requests.post(
-            f"{OLLAMA_BASE_URL}/api/generate",
-            json={
-                "model": FACE_MODEL,
-                "prompt": prompt,
-                "stream": False,
-                "temperature": FACE_TEMPERATURE,
-                "format": "json",
-            },
-            timeout=timeout,
-        )
-        if resp.status_code != 200:
-            return None
-        result = resp.json().get("response", "")
-        if result and use_cache:
-            llm_cache.put(FACE_MODEL, prompt, FACE_TEMPERATURE, True, result)
-        return result
-    except Exception:
-        return None
+    from core.llm_provider import call_llm
+    return call_llm(
+        prompt, role="face",
+        temperature=FACE_TEMPERATURE, json_mode=True,
+        use_cache=use_cache, timeout=timeout,
+    )
 
 
 _CRITERIA = ('plausibility', 'representativeness', 'no_giveaways', 'clarity')
@@ -197,7 +179,8 @@ def assess_face_validity(question: Dict[str, Any], *, llm_caller=None) -> Dict[s
 
 def face_validity_report(questions: List[Dict[str, Any]], *, llm_caller=None) -> Dict[str, Any]:
     total = len(questions)
-    print(f'[FaceValidity] Starting distractor face-validity scoring on {total} question(s) — model={FACE_MODEL}', flush=True)
+    from core.llm_provider import describe_active_model
+    print(f'[FaceValidity] Starting distractor face-validity scoring on {total} question(s) — model={describe_active_model("face")}', flush=True)
     reports = []
     for i, q in enumerate(questions, start=1):
         r = assess_face_validity(q, llm_caller=llm_caller)

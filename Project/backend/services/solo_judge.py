@@ -92,31 +92,14 @@ OUTPUT — strict JSON, no other text:
 # --------------------------------------------------------------------------
 
 def _call_judge_llm(prompt: str, *, use_cache: bool = True, timeout: int = 60) -> Optional[str]:
-    """POST to Ollama; cache hits skip the network entirely."""
-    if use_cache:
-        cached = llm_cache.get(JUDGE_MODEL, prompt, JUDGE_TEMPERATURE, json_mode=True)
-        if cached is not None:
-            return cached
-    try:
-        resp = requests.post(
-            f"{OLLAMA_BASE_URL}/api/generate",
-            json={
-                "model": JUDGE_MODEL,
-                "prompt": prompt,
-                "stream": False,
-                "temperature": JUDGE_TEMPERATURE,
-                "format": "json",
-            },
-            timeout=timeout,
-        )
-        if resp.status_code != 200:
-            return None
-        result = resp.json().get("response", "")
-        if result and use_cache:
-            llm_cache.put(JUDGE_MODEL, prompt, JUDGE_TEMPERATURE, True, result)
-        return result
-    except Exception:
-        return None
+    """Route through the active LLM provider (Ollama or Anthropic).
+    The provider abstraction handles cache + network + cost tracking."""
+    from core.llm_provider import call_llm
+    return call_llm(
+        prompt, role="judge",
+        temperature=JUDGE_TEMPERATURE, json_mode=True,
+        use_cache=use_cache, timeout=timeout,
+    )
 
 
 def _parse_judge_response(raw: str) -> Optional[Dict[str, Any]]:
@@ -219,7 +202,8 @@ def judge_questions(
 ) -> Dict[str, Any]:
     """Classify every question in `questions` and return aggregate stats."""
     total = len(questions)
-    print(f'[SOLO-Judge] Starting SOLO classification on {total} question(s) — model={JUDGE_MODEL}', flush=True)
+    from core.llm_provider import describe_active_model
+    print(f'[SOLO-Judge] Starting SOLO classification on {total} question(s) — model={describe_active_model("judge")}', flush=True)
     reports = []
     for i, q in enumerate(questions, start=1):
         r = classify_question(q, llm_caller=llm_caller)
@@ -244,5 +228,5 @@ def judge_questions(
                         if _cohen_kappa(reports) is not None else None),
         "confusion_matrix": _confusion_matrix(reports),
         "reports": reports,
-        "judge_model": JUDGE_MODEL,
+        "judge_model": describe_active_model("judge"),
     }

@@ -114,30 +114,12 @@ OUTPUT — strict JSON, no other text:
 # --------------------------------------------------------------------------
 
 def _call_llm(prompt: str, *, use_cache: bool = True, timeout: int = 60) -> Optional[str]:
-    if use_cache:
-        cached = llm_cache.get(COVE_MODEL, prompt, COVE_TEMPERATURE, json_mode=True)
-        if cached is not None:
-            return cached
-    try:
-        resp = requests.post(
-            f"{OLLAMA_BASE_URL}/api/generate",
-            json={
-                "model": COVE_MODEL,
-                "prompt": prompt,
-                "stream": False,
-                "temperature": COVE_TEMPERATURE,
-                "format": "json",
-            },
-            timeout=timeout,
-        )
-        if resp.status_code != 200:
-            return None
-        result = resp.json().get("response", "")
-        if result and use_cache:
-            llm_cache.put(COVE_MODEL, prompt, COVE_TEMPERATURE, True, result)
-        return result
-    except Exception:
-        return None
+    from core.llm_provider import call_llm
+    return call_llm(
+        prompt, role="cove",
+        temperature=COVE_TEMPERATURE, json_mode=True,
+        use_cache=use_cache, timeout=timeout,
+    )
 
 
 def _parse_json(raw: str) -> Optional[Dict[str, Any]]:
@@ -235,7 +217,8 @@ def verify_questions(
 ) -> Dict[str, Any]:
     """Batch CoVe. Returns aggregate stats + per-question reports."""
     total = len(questions)
-    print(f'[CoVe] Starting Chain-of-Verification on {total} question(s) — model={COVE_MODEL} (4 LLM calls per question)', flush=True)
+    from core.llm_provider import describe_active_model
+    print(f'[CoVe] Starting Chain-of-Verification on {total} question(s) — model={describe_active_model("cove")} (4 LLM calls per question)', flush=True)
     reports = []
     for i, q in enumerate(questions, start=1):
         r = verify_question(q, llm_caller=llm_caller)

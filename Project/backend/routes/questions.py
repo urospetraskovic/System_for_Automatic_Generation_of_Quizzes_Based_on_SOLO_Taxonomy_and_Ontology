@@ -21,7 +21,29 @@ from services import (
     check_homogeneity, homogeneity_report,
     assess_face_validity, face_validity_report,
 )
+from services import validation_cache
 from schemas import GenerateQuestionsRequest
+
+
+def _wants_fresh() -> bool:
+    """Treat ?fresh=true as a cache bypass."""
+    return request.args.get('fresh', '').lower() in ('1', 'true', 'yes')
+
+
+def _cached_or_compute(lesson_id: int, metric_key: str, compute_fn):
+    """Read the cached lesson-level report; if missing or ?fresh=true,
+    compute it now, write it back, and return."""
+    if not _wants_fresh():
+        cached = validation_cache.get(metric_key, lesson_id)
+        if cached is not None:
+            return cached
+    payload = compute_fn()
+    try:
+        validation_cache.put(metric_key, lesson_id, payload)
+    except Exception:
+        # Cache write failure should never break the response.
+        traceback.print_exc()
+    return payload
 
 questions_bp = Blueprint('questions', __name__, url_prefix='/api')
 
@@ -140,6 +162,12 @@ def update_question(question_id):
         if not updated_q:
             return jsonify({'error': 'Question not found'}), 404
 
+        # Editing a question invalidates any lesson-scoped cached metrics.
+        try:
+            validation_cache.invalidate_question(question_id)
+        except Exception:
+            traceback.print_exc()
+
         return jsonify({'question': updated_q}), 200
     except Exception as e:
         return jsonify({'error': str(e)}), 500
@@ -149,6 +177,11 @@ def update_question(question_id):
 def delete_question(question_id):
     """Delete a question."""
     try:
+        # Capture affected lessons BEFORE deletion (after deletion the FK lookup fails).
+        try:
+            validation_cache.invalidate_question(question_id)
+        except Exception:
+            traceback.print_exc()
         success = db.delete_question(question_id)
         if success:
             return jsonify({'message': 'Question deleted'}), 200
@@ -178,8 +211,11 @@ def lint_single_question(question_id):
 def lint_lesson_questions(lesson_id):
     """Run lint over all questions for a lesson; returns aggregate + per-item reports."""
     try:
-        questions = db.get_questions_by_lesson(lesson_id)
-        return jsonify(lint_questions(questions)), 200
+        payload = _cached_or_compute(
+            lesson_id, 'lint',
+            lambda: lint_questions(db.get_questions_by_lesson(lesson_id)),
+        )
+        return jsonify(payload), 200
     except Exception as e:
         traceback.print_exc()
         return jsonify({'error': str(e)}), 500
@@ -206,8 +242,11 @@ def solo_judge_single(question_id):
 def solo_judge_lesson(lesson_id):
     """Run SOLO LLM-judge over a lesson; returns agreement, Cohen's kappa, confusion matrix."""
     try:
-        questions = db.get_questions_by_lesson(lesson_id)
-        return jsonify(judge_questions(questions)), 200
+        payload = _cached_or_compute(
+            lesson_id, 'solo_judge',
+            lambda: judge_questions(db.get_questions_by_lesson(lesson_id)),
+        )
+        return jsonify(payload), 200
     except Exception as e:
         traceback.print_exc()
         return jsonify({'error': str(e)}), 500
@@ -234,8 +273,11 @@ def cove_single(question_id):
 def cove_lesson(lesson_id):
     """Chain-of-Verification across a lesson's questions; flags ones needing review."""
     try:
-        questions = db.get_questions_by_lesson(lesson_id)
-        return jsonify(verify_questions(questions)), 200
+        payload = _cached_or_compute(
+            lesson_id, 'cove',
+            lambda: verify_questions(db.get_questions_by_lesson(lesson_id)),
+        )
+        return jsonify(payload), 200
     except Exception as e:
         traceback.print_exc()
         return jsonify({'error': str(e)}), 500
@@ -261,11 +303,44 @@ def solvability_single(question_id):
 
 @questions_bp.route('/lessons/<int:lesson_id>/solvability', methods=['GET'])
 def solvability_lesson(lesson_id):
-    """LLM-blind solver across a lesson's questions; gives synthetic p-values."""
+    """LLM-blind solver across a lesson's questions; gives synthetic p-values.
+
+    Solvability is the slowest check in the suite (n_trials × question_count
+    LLM calls). To stop interrupted runs from wiping all completed work, we
+    bypass the standard _cached_or_compute helper here and instead:
+      1. Return a FULL cached payload as-is (no recompute).
+      2. Return a PARTIAL cached payload only when the client explicitly
+         opts in via ?accept_partial=true (the UI can use this to show
+         progress without forcing a recompute).
+      3. Otherwise recompute, and ask solvability_report to checkpoint
+         partial aggregates into validation_cache every few questions so
+         that an abort mid-run still leaves a usable partial snapshot.
+    """
     try:
-        questions = db.get_questions_by_lesson(lesson_id)
         n_trials = int(request.args.get('n_trials', 5))
-        return jsonify(solvability_report(questions, n_trials=n_trials)), 200
+        accept_partial = request.args.get('accept_partial', '').lower() in ('1', 'true', 'yes')
+
+        if not _wants_fresh():
+            cached = validation_cache.get('solvability', lesson_id)
+            if cached is not None and (accept_partial or not cached.get('partial')):
+                return jsonify(cached), 200
+
+        def _checkpoint(partial_payload):
+            try:
+                validation_cache.put('solvability', lesson_id, partial_payload)
+            except Exception:
+                traceback.print_exc()
+
+        payload = solvability_report(
+            db.get_questions_by_lesson(lesson_id),
+            n_trials=n_trials,
+            progress_cache_fn=_checkpoint,
+        )
+        try:
+            validation_cache.put('solvability', lesson_id, payload)
+        except Exception:
+            traceback.print_exc()
+        return jsonify(payload), 200
     except Exception as e:
         traceback.print_exc()
         return jsonify({'error': str(e)}), 500
@@ -279,8 +354,12 @@ def solvability_lesson(lesson_id):
 def stem_only_solvability_lesson(lesson_id):
     """Haladyna H4: stem must be answerable without options."""
     try:
-        questions = db.get_questions_by_lesson(lesson_id)
-        return jsonify(stem_only_solvability_report(questions)), 200
+        payload = _cached_or_compute(
+            lesson_id, 'stem_only',
+            lambda: stem_only_solvability_report(
+                db.get_questions_by_lesson(lesson_id)),
+        )
+        return jsonify(payload), 200
     except Exception as e:
         traceback.print_exc()
         return jsonify({'error': str(e)}), 500
@@ -307,8 +386,11 @@ def ioc_single(question_id):
 def ioc_lesson(lesson_id):
     """Lesson-wide IOC index + per-question ratings."""
     try:
-        questions = db.get_questions_by_lesson(lesson_id)
-        return jsonify(ioc_report(questions)), 200
+        payload = _cached_or_compute(
+            lesson_id, 'ioc',
+            lambda: ioc_report(db.get_questions_by_lesson(lesson_id)),
+        )
+        return jsonify(payload), 200
     except Exception as e:
         traceback.print_exc()
         return jsonify({'error': str(e)}), 500
@@ -335,8 +417,11 @@ def readability_single(question_id):
 def readability_lesson(lesson_id):
     """Batch readability report across a lesson's questions."""
     try:
-        questions = db.get_questions_by_lesson(lesson_id)
-        return jsonify(readability_report(questions)), 200
+        payload = _cached_or_compute(
+            lesson_id, 'readability',
+            lambda: readability_report(db.get_questions_by_lesson(lesson_id)),
+        )
+        return jsonify(payload), 200
     except Exception as e:
         traceback.print_exc()
         return jsonify({'error': str(e)}), 500
@@ -363,8 +448,11 @@ def ambiguity_single(question_id):
 def ambiguity_lesson(lesson_id):
     """Lesson-wide ambiguity rate + per-question reports."""
     try:
-        questions = db.get_questions_by_lesson(lesson_id)
-        return jsonify(ambiguity_report(questions)), 200
+        payload = _cached_or_compute(
+            lesson_id, 'ambiguity',
+            lambda: ambiguity_report(db.get_questions_by_lesson(lesson_id)),
+        )
+        return jsonify(payload), 200
     except Exception as e:
         traceback.print_exc()
         return jsonify({'error': str(e)}), 500
@@ -374,7 +462,11 @@ def ambiguity_lesson(lesson_id):
 def misconception_mining_lesson(lesson_id):
     """Sadler 1998: extract real misconceptions from a lesson's source PDF."""
     try:
-        return jsonify(mine_lesson_misconceptions(lesson_id)), 200
+        payload = _cached_or_compute(
+            lesson_id, 'misconception_mining',
+            lambda: mine_lesson_misconceptions(lesson_id),
+        )
+        return jsonify(payload), 200
     except Exception as e:
         traceback.print_exc()
         return jsonify({'error': str(e)}), 500
@@ -401,8 +493,11 @@ def grammar_homogeneity_single(question_id):
 def grammar_homogeneity_lesson(lesson_id):
     """Lesson-wide grammatical homogeneity check across all options."""
     try:
-        questions = db.get_questions_by_lesson(lesson_id)
-        return jsonify(homogeneity_report(questions)), 200
+        payload = _cached_or_compute(
+            lesson_id, 'grammar_homogeneity',
+            lambda: homogeneity_report(db.get_questions_by_lesson(lesson_id)),
+        )
+        return jsonify(payload), 200
     except Exception as e:
         traceback.print_exc()
         return jsonify({'error': str(e)}), 500
@@ -429,8 +524,43 @@ def face_validity_single(question_id):
 def face_validity_lesson(lesson_id):
     """Lesson-wide face-validity score + per-criterion means."""
     try:
-        questions = db.get_questions_by_lesson(lesson_id)
-        return jsonify(face_validity_report(questions)), 200
+        payload = _cached_or_compute(
+            lesson_id, 'face_validity',
+            lambda: face_validity_report(db.get_questions_by_lesson(lesson_id)),
+        )
+        return jsonify(payload), 200
+    except Exception as e:
+        traceback.print_exc()
+        return jsonify({'error': str(e)}), 500
+
+
+# --------------------------------------------------------------------------
+# Bulk quality cache — used by ContentViewer to hydrate every sub-panel in
+# one shot on mount. Returns whatever lesson-scoped validation reports are
+# already cached, plus _cached_at timestamps. Sub-panels that have no cache
+# entry yet simply receive nothing and fall back to their "Run" button.
+# --------------------------------------------------------------------------
+
+@questions_bp.route('/lessons/<int:lesson_id>/quality-cache', methods=['GET'])
+def quality_cache_for_lesson(lesson_id):
+    """Return every cached validation report for this lesson, keyed by metric.
+    Empty object if nothing has been cached yet — the panels then render their
+    'Run' buttons. Used to rehydrate the Quality Overview after a page reload."""
+    try:
+        return jsonify(validation_cache.get_all_for_lesson(lesson_id)), 200
+    except Exception as e:
+        traceback.print_exc()
+        return jsonify({'error': str(e)}), 500
+
+
+@questions_bp.route('/lessons/<int:lesson_id>/quality-cache', methods=['DELETE'])
+def clear_quality_cache_for_lesson(lesson_id):
+    """Drop every cached validation report for a lesson. The next GET on any
+    metric will recompute (slow LLM calls). Useful after manual question edits
+    or before a model swap."""
+    try:
+        n = validation_cache.invalidate_lesson(lesson_id)
+        return jsonify({'cleared': n}), 200
     except Exception as e:
         traceback.print_exc()
         return jsonify({'error': str(e)}), 500

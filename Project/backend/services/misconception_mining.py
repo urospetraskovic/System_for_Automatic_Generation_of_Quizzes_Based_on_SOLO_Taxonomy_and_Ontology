@@ -133,30 +133,14 @@ OUTPUT — strict JSON, no other text:
 
 
 def _call_llm(prompt: str, *, use_cache: bool = True, timeout: int = 60) -> Optional[str]:
-    if use_cache:
-        cached = llm_cache.get(MINER_MODEL, prompt, MINER_TEMPERATURE, json_mode=True)
-        if cached is not None:
-            return cached
-    try:
-        resp = requests.post(
-            f"{OLLAMA_BASE_URL}/api/generate",
-            json={
-                "model": MINER_MODEL,
-                "prompt": prompt,
-                "stream": False,
-                "temperature": MINER_TEMPERATURE,
-                "format": "json",
-            },
-            timeout=timeout,
-        )
-        if resp.status_code != 200:
-            return None
-        result = resp.json().get("response", "")
-        if result and use_cache:
-            llm_cache.put(MINER_MODEL, prompt, MINER_TEMPERATURE, True, result)
-        return result
-    except Exception:
-        return None
+    from core.llm_provider import call_llm
+    return call_llm(
+        prompt, role="miner",
+        temperature=MINER_TEMPERATURE, json_mode=True,
+        use_cache=use_cache, timeout=timeout,
+    )
+
+
 
 
 def _parse_misconceptions(raw: str) -> List[Dict[str, str]]:

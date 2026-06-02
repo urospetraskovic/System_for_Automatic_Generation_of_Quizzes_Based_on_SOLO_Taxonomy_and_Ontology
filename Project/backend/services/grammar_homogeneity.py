@@ -78,30 +78,12 @@ OUTPUT — strict JSON, no other text:
 
 
 def _call_llm(prompt: str, *, use_cache: bool = True, timeout: int = 60) -> Optional[str]:
-    if use_cache:
-        cached = llm_cache.get(GRAMMAR_MODEL, prompt, GRAMMAR_TEMPERATURE, json_mode=True)
-        if cached is not None:
-            return cached
-    try:
-        resp = requests.post(
-            f"{OLLAMA_BASE_URL}/api/generate",
-            json={
-                "model": GRAMMAR_MODEL,
-                "prompt": prompt,
-                "stream": False,
-                "temperature": GRAMMAR_TEMPERATURE,
-                "format": "json",
-            },
-            timeout=timeout,
-        )
-        if resp.status_code != 200:
-            return None
-        result = resp.json().get("response", "")
-        if result and use_cache:
-            llm_cache.put(GRAMMAR_MODEL, prompt, GRAMMAR_TEMPERATURE, True, result)
-        return result
-    except Exception:
-        return None
+    from core.llm_provider import call_llm
+    return call_llm(
+        prompt, role="grammar",
+        temperature=GRAMMAR_TEMPERATURE, json_mode=True,
+        use_cache=use_cache, timeout=timeout,
+    )
 
 
 def _parse_types(raw: str, num_options: int) -> Optional[List[str]]:
@@ -194,7 +176,8 @@ def check_homogeneity(question: Dict[str, Any], *, llm_caller=None) -> Dict[str,
 
 def homogeneity_report(questions: List[Dict[str, Any]], *, llm_caller=None) -> Dict[str, Any]:
     total = len(questions)
-    print(f'[Grammar] Starting grammatical-homogeneity check on {total} question(s) — model={GRAMMAR_MODEL}', flush=True)
+    from core.llm_provider import describe_active_model
+    print(f'[Grammar] Starting grammatical-homogeneity check on {total} question(s) — model={describe_active_model("grammar")}', flush=True)
     reports = []
     for i, q in enumerate(questions, start=1):
         r = check_homogeneity(q, llm_caller=llm_caller)

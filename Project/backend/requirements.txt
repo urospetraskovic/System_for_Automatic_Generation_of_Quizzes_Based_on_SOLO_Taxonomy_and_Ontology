@@ -7,4 +7,5 @@ PyPDF2==3.0.1
 SQLAlchemy==2.0.36
 rdflib==7.0.0
 pydantic>=2.0
+anthropic>=0.40.0     # Claude API (Haiku 4.5 used by AnthropicProvider)
 pytest>=7.0  # dev: run `pytest` from backend/ to execute backend/tests/

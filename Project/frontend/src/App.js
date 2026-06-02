@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import './App.css';
 
 import { LanguageProvider } from './context/LanguageContext';
+import { LLMProviderProvider } from './context/LLMProviderContext';
 import useAppData from './hooks/useAppData';
 
 import Sidebar from './components/layout/Sidebar';
@@ -115,9 +116,11 @@ function App() {
 
 function AppWithProvider() {
   return (
-    <LanguageProvider>
-      <App />
-    </LanguageProvider>
+    <LLMProviderProvider>
+      <LanguageProvider>
+        <App />
+      </LanguageProvider>
+    </LLMProviderProvider>
   );
 }
 

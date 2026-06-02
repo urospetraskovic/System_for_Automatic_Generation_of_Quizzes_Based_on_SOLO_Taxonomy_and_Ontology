@@ -38,8 +38,10 @@ class SoloQuizGeneratorLocal:
         self.ollama_model = OLLAMA_MODEL
         self.provider = "ollama_local"
         
-        print(f"[QuizGenerator-Local] Initialized with Ollama (14B model)")
-        print(f"[QuizGenerator-Local] Mode: MAXIMUM QUALITY (no API cost concerns)")
+        # Class name is historical — actual call routing goes through
+        # core.llm_provider.call_llm, which picks Ollama or Anthropic per
+        # request. So we just announce readiness, not a fixed provider.
+        print(f"[QuizGenerator] Ready (provider chosen per call via LLM provider abstraction)")
         
         # Test connection
         if not self._test_ollama_connection():
@@ -129,53 +131,27 @@ class SoloQuizGeneratorLocal:
         json_mode: bool = True,
         use_cache: bool = True,
     ) -> Optional[str]:
-        """
-        Call Ollama API with the 14B model, with SQLite-backed response caching.
+        """Route the generator's LLM call through the provider abstraction.
 
-        Cache key: (model, prompt, temperature, json_mode). A cache hit skips
-        the network call entirely. Pass use_cache=False to force a fresh call
-        (e.g. when the user explicitly wants question variety).
+        Despite the historical name `_call_ollama`, this now dispatches to
+        whichever provider is active for the current request (Ollama or
+        Anthropic). The function name is kept so existing call sites don't
+        have to change.
         """
-        from core import llm_cache
+        from core.llm_provider import call_llm
 
         temperature = 0.7
-        if use_cache:
-            cached = llm_cache.get(self.ollama_model, prompt, temperature, json_mode)
-            if cached is not None:
-                print(f"[QuizGenerator-Local] Cache HIT ({len(cached)} chars)")
-                return cached
-
-        try:
-            url = f"{self.ollama_base_url}/api/generate"
-            payload = {
-                "model": self.ollama_model,
-                "prompt": prompt,
-                "stream": False,
-                "temperature": temperature,
-            }
-            if json_mode:
-                payload["format"] = "json"
-
-            print(f"[QuizGenerator-Local] Calling Ollama ({len(prompt)} chars prompt, json_mode={json_mode})...")
-            response = requests.post(url, json=payload, timeout=timeout)
-
-            if response.status_code == 200:
-                data = response.json()
-                result = data.get("response", "")
-                print(f"[QuizGenerator-Local] Ollama returned {len(result)} chars")
-                if result and use_cache:
-                    llm_cache.put(self.ollama_model, prompt, temperature, json_mode, result)
-                return result
-            else:
-                print(f"[QuizGenerator-Local] Ollama error: {response.status_code}")
-                return None
-                
-        except requests.Timeout:
-            print(f"[QuizGenerator-Local] Ollama request timed out after {timeout}s")
-            return None
-        except Exception as e:
-            print(f"[QuizGenerator-Local] Ollama error: {e}")
-            return None
+        print(f"[Generator] Dispatching LLM call ({len(prompt)} chars prompt, json_mode={json_mode})...")
+        result = call_llm(
+            prompt, role="generator",
+            temperature=temperature, json_mode=json_mode,
+            use_cache=use_cache, timeout=timeout,
+        )
+        if result is None:
+            print(f"[Generator] LLM call returned None (provider error or timeout)")
+        else:
+            print(f"[Generator] LLM returned {len(result)} chars")
+        return result
     
     def generate_solo_questions(
         self,

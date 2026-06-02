@@ -54,8 +54,34 @@ function QualityOverviewPanel({ lessonId, onResultsChange, initialResults }) {
   const [expanded, setExpanded] = useState(true);
   const [results, setResults] = useState(initialResults || {});  // {key: data}
 
-  // Whenever local results change, surface them to the parent so the
-  // detail-panels below the hub can show the same data without re-running.
+  // Sync DOWN: when the parent loads new cache data (e.g. after lesson
+  // change or after the server-side validation_cache responds), reflect it
+  // here so the sub-panel hydration works correctly.
+  //
+  // Idempotent: bail out without changing state if every incoming key
+  // already maps to the same reference. Without this, the sync UP roundtrip
+  // (results → onResultsChange → parent setQualityResults → new
+  // initialResults reference → here again) created a render loop that
+  // inflated the "completed" counter past CHECKS.length (the "15 / 12"
+  // bug the user saw).
+  useEffect(() => {
+    if (!initialResults || Object.keys(initialResults).length === 0) return;
+    setResults((prev) => {
+      let changed = false;
+      const next = { ...prev };
+      for (const [k, v] of Object.entries(initialResults)) {
+        if (next[k] !== v) {
+          next[k] = v;
+          changed = true;
+        }
+      }
+      return changed ? next : prev;
+    });
+  }, [initialResults]);
+
+  // Sync UP: whenever local results change (e.g. after a Run All), surface
+  // them to the parent so the detail-panels below the hub can show the
+  // same data without re-running.
   useEffect(() => {
     if (onResultsChange) onResultsChange(results);
   }, [results, onResultsChange]);
@@ -87,7 +113,11 @@ function QualityOverviewPanel({ lessonId, onResultsChange, initialResults }) {
 
   const runChecks = async (checksList, mode) => {
     abortFlagRef.current = false;
-    setResults({});
+    // Don't preemptively clear results: keep showing the prior tiles while
+    // the run is in progress, and let each completed check overwrite its
+    // own key when its result lands. This stops the visible dashboard from
+    // flashing empty during a Quick re-run and preserves any metrics not
+    // in the current checksList (e.g. running Quick after a Full).
     setErrors({});
     setProgress({
       idx: 0,
@@ -127,7 +157,11 @@ function QualityOverviewPanel({ lessonId, onResultsChange, initialResults }) {
     abortFlagRef.current = true;
   };
 
-  const completed = Object.keys(results).length;
+  // Count completed checks against the CHECKS whitelist so the counter is
+  // strictly bounded by CHECKS.length. Previously a raw Object.keys count
+  // could overshoot (e.g. "15 / 12") whenever stale or extra keys leaked
+  // into the results dict.
+  const completed = CHECKS.filter((c) => results[c.key] != null).length;
   const inProgress = progress != null;
   const headline = buildHeadline(results);
 
@@ -433,10 +467,19 @@ function buildHeadline(r) {
   }
 
   if (r.solv?.mean_p_value != null) {
+    // Solvability is the slowest check and is now progressively cached.
+    // A `partial: true` payload means an earlier run was interrupted and
+    // the dashboard is showing what completed so far — flag that visibly
+    // so the user knows the number is provisional.
+    const isPartial = r.solv.partial === true;
+    const done = r.solv.completed_questions;
+    const total = r.solv.total_questions;
     out.push({
       label: 'Solver mean p',
       value: r.solv.mean_p_value.toFixed(2),
-      sub: 'LLM-blind difficulty',
+      sub: isPartial && done != null && total != null
+        ? `partial — ${done}/${total} solved`
+        : 'LLM-blind difficulty',
       color: r.solv.mean_p_value <= 0.9 && r.solv.mean_p_value >= 0.5 ? '#16a34a' : '#ca8a04',
     });
   }

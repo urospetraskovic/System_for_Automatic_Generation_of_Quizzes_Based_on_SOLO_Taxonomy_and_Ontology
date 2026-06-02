@@ -73,30 +73,12 @@ def _call_solver_llm(prompt: str, *, use_cache: bool = False, timeout: int = 60)
     one. If you want deterministic runs (e.g. for the research write-up),
     set use_cache=True.
     """
-    if use_cache:
-        cached = llm_cache.get(SOLVER_MODEL, prompt, SOLVER_TEMPERATURE, json_mode=True)
-        if cached is not None:
-            return cached
-    try:
-        resp = requests.post(
-            f"{OLLAMA_BASE_URL}/api/generate",
-            json={
-                "model": SOLVER_MODEL,
-                "prompt": prompt,
-                "stream": False,
-                "temperature": SOLVER_TEMPERATURE,
-                "format": "json",
-            },
-            timeout=timeout,
-        )
-        if resp.status_code != 200:
-            return None
-        result = resp.json().get("response", "")
-        if result and use_cache:
-            llm_cache.put(SOLVER_MODEL, prompt, SOLVER_TEMPERATURE, True, result)
-        return result
-    except Exception:
-        return None
+    from core.llm_provider import call_llm
+    return call_llm(
+        prompt, role="solver",
+        temperature=SOLVER_TEMPERATURE, json_mode=True,
+        use_cache=use_cache, timeout=timeout,
+    )
 
 
 def _parse_choice(raw: str, num_options: int) -> Optional[int]:
@@ -272,30 +254,12 @@ def _parse_free_answer(raw: str) -> Optional[str]:
 
 
 def _call_stem_only_llm(prompt: str, *, use_cache: bool = True, timeout: int = 60) -> Optional[str]:
-    if use_cache:
-        cached = llm_cache.get(SOLVER_MODEL, prompt, STEM_ONLY_TEMPERATURE, json_mode=True)
-        if cached is not None:
-            return cached
-    try:
-        resp = requests.post(
-            f"{OLLAMA_BASE_URL}/api/generate",
-            json={
-                "model": SOLVER_MODEL,
-                "prompt": prompt,
-                "stream": False,
-                "temperature": STEM_ONLY_TEMPERATURE,
-                "format": "json",
-            },
-            timeout=timeout,
-        )
-        if resp.status_code != 200:
-            return None
-        result = resp.json().get("response", "")
-        if result and use_cache:
-            llm_cache.put(SOLVER_MODEL, prompt, STEM_ONLY_TEMPERATURE, True, result)
-        return result
-    except Exception:
-        return None
+    from core.llm_provider import call_llm
+    return call_llm(
+        prompt, role="solver",
+        temperature=STEM_ONLY_TEMPERATURE, json_mode=True,
+        use_cache=use_cache, timeout=timeout,
+    )
 
 
 # Cosine thresholds for the verdict label. Calibrated for the default
@@ -304,14 +268,94 @@ _H4_PASS_THRESHOLD = 0.55  # ≥ this → stem-self-contained
 _H4_PARTIAL_THRESHOLD = 0.35  # ≥ this but below pass → partial
 
 
+# ---------------------------------------------------------------------------
+# LLM-judge fallback for stem-only equivalence
+# ---------------------------------------------------------------------------
+# The original H4 implementation embedded both the LLM's free-text guess and
+# the real correct answer, then took cosine similarity. That requires an
+# embedding model. If the user has no embedding model installed (typical for
+# Serbian-language users — the only one we ship hooks for is the English-
+# centric nomic-embed-text via Ollama), every question gets "unavail" and the
+# H4 pass rate drops to 0% — not because the items fail H4 but because we
+# can't measure them at all.
+#
+# This LLM-judge fallback uses the active LLM provider (Haiku in the user's
+# current setup) to make a binary equivalence call. The result is also
+# stronger on Serbian than embedding cosine because:
+#   * Haiku handles synonyms and paraphrases natively
+#   * It correctly resolves negation ("ne dozvoljava" ≠ "dozvoljava")
+#   * It tolerates Serbian's free word order
+#   * It is the same model already used by SOLO Judge, IOC, Ambiguity, etc.,
+#     so the H4 metric becomes methodologically consistent with the rest.
+
+JUDGE_TEMPERATURE = 0.0  # near-deterministic for reproducible judging
+
+
+def build_stem_only_judge_prompt(stem: str, free_answer: str, correct: str) -> str:
+    """Ask the active LLM whether two candidate answers are semantically
+    equivalent for a given stem. Returns a strict-JSON yes/no with reasoning."""
+    return f"""You will judge whether two short answers to the same question mean the same thing.
+
+If the two answers convey the same idea (even with different wording, synonyms, paraphrasing, or word order) → equivalent: true.
+If they describe genuinely different things, contradict each other, or one is much more specific than the other → equivalent: false.
+
+QUESTION:
+{stem}
+
+ANSWER A (LLM's guess from stem alone):
+{free_answer}
+
+ANSWER B (the actual correct answer):
+{correct}
+
+OUTPUT — strict JSON, no other text:
+{{"equivalent": true|false, "reasoning": "<one short sentence>"}}"""
+
+
+def _parse_judge_verdict(raw: str) -> Optional[Dict[str, Any]]:
+    """Parse {'equivalent': bool, 'reasoning': str}. Returns None on bad JSON."""
+    if not raw:
+        return None
+    m = re.search(r'\{[\s\S]*\}', raw)
+    if not m:
+        return None
+    try:
+        data = json.loads(m.group(0))
+    except json.JSONDecodeError:
+        return None
+    if not isinstance(data, dict) or 'equivalent' not in data:
+        return None
+    return {
+        'equivalent': bool(data.get('equivalent')),
+        'reasoning': str(data.get('reasoning') or '').strip(),
+    }
+
+
+def _call_h4_judge_llm(prompt: str, *, use_cache: bool = True, timeout: int = 60) -> Optional[str]:
+    from core.llm_provider import call_llm
+    return call_llm(
+        prompt, role="judge",
+        temperature=JUDGE_TEMPERATURE, json_mode=True,
+        use_cache=use_cache, timeout=timeout,
+    )
+
+
 def assess_stem_only_solvability(
     question: Dict[str, Any],
     *,
     llm_caller=None,
     embedder=None,
     cosine=None,
+    judge_caller=None,
 ) -> Dict[str, Any]:
-    """Show LLM only the stem; cosine-compare its answer to the real key."""
+    """Show LLM only the stem; compare its answer to the real key.
+
+    Comparison strategy (in order):
+      1. Embedding cosine similarity, if the embedder is available.
+      2. LLM-judge binary equivalence as a fallback, so installs without
+         an embedding model still produce a usable H4 pass rate instead
+         of "unavail" on every question.
+    """
     call = llm_caller or _call_stem_only_llm
     if embedder is None or cosine is None:
         from .embedding_service import embed_text, cosine_similarity
@@ -342,34 +386,44 @@ def assess_stem_only_solvability(
 
     v1 = embedder(free_answer)
     v2 = embedder(correct)
-    if v1 is None or v2 is None:
+    sim = cosine(v1, v2) if (v1 is not None and v2 is not None) else None
+    if sim is not None:
+        if sim >= _H4_PASS_THRESHOLD:
+            verdict = 'passes'
+        elif sim >= _H4_PARTIAL_THRESHOLD:
+            verdict = 'partial'
+        else:
+            verdict = 'fails'
+        return {
+            'question_id': question.get('id'),
+            'available': True,
+            'free_answer': free_answer,
+            'similarity': round(sim, 3),
+            'verdict': verdict,
+            'h4_passes': verdict == 'passes',
+            'judge': 'cosine',
+        }
+
+    # Fallback: ask the active LLM whether the two answers are equivalent.
+    judge = judge_caller or _call_h4_judge_llm
+    raw_judge = judge(build_stem_only_judge_prompt(stem, free_answer, correct))
+    parsed = _parse_judge_verdict(raw_judge or '')
+    if parsed is None:
         return {
             'question_id': question.get('id'),
             'available': False,
-            'reason': 'Embedding model unavailable; cannot compare answers.',
+            'reason': 'No embedder available and LLM-judge returned an unparseable verdict.',
         }
-    sim = cosine(v1, v2)
-    if sim is None:
-        return {
-            'question_id': question.get('id'),
-            'available': False,
-            'reason': 'Cosine similarity computation failed.',
-        }
-
-    if sim >= _H4_PASS_THRESHOLD:
-        verdict = 'passes'
-    elif sim >= _H4_PARTIAL_THRESHOLD:
-        verdict = 'partial'
-    else:
-        verdict = 'fails'
-
+    verdict = 'passes' if parsed['equivalent'] else 'fails'
     return {
         'question_id': question.get('id'),
         'available': True,
         'free_answer': free_answer,
-        'similarity': round(sim, 3),
+        'similarity': None,
         'verdict': verdict,
-        'h4_passes': verdict == 'passes',
+        'h4_passes': parsed['equivalent'],
+        'reasoning': parsed['reasoning'],
+        'judge': 'llm',
     }
 
 
@@ -382,7 +436,8 @@ def stem_only_solvability_report(
 ) -> Dict[str, Any]:
     """Batch stem-only solvability report (H4 conformance across a lesson)."""
     total = len(questions)
-    print(f'[StemOnly] Starting Haladyna H4 stem-only check on {total} question(s) — model={SOLVER_MODEL}', flush=True)
+    from core.llm_provider import describe_active_model
+    print(f'[StemOnly] Starting Haladyna H4 stem-only check on {total} question(s) — model={describe_active_model("solver")}', flush=True)
     reports = []
     for i, q in enumerate(questions, start=1):
         r = assess_stem_only_solvability(q, llm_caller=llm_caller, embedder=embedder, cosine=cosine)
@@ -411,36 +466,20 @@ def stem_only_solvability_report(
     }
 
 
-def solvability_report(
-    questions: List[Dict[str, Any]],
-    *,
-    n_trials: int = DEFAULT_TRIALS,
-    shuffle: bool = True,
-    llm_caller=None,
-) -> Dict[str, Any]:
-    """Batch solvability report for a list of questions."""
-    total = len(questions)
-    expected_calls = total * n_trials
-    print(f'[Solvability] Starting LLM-blind solver on {total} question(s) — model={SOLVER_MODEL}, n_trials={n_trials}', flush=True)
-    print(f'[Solvability]   This will make up to {expected_calls} LLM calls total. With local Ollama this can take HOURS.', flush=True)
-    reports = []
-    for i, q in enumerate(questions, start=1):
-        r = assess_solvability(q, n_trials=n_trials, shuffle=shuffle, llm_caller=llm_caller)
-        reports.append(r)
-        # Solvability is the slowest — log every question.
-        p = r.get('p_value') if r.get('available') else 'unavail'
-        label = r.get('difficulty_label', '')
-        print(f'[Solvability] {i}/{total} — Q#{q.get("id")} → p={p} ({label})', flush=True)
+def _aggregate_solvability(reports: List[Dict[str, Any]], *, total: int,
+                           partial: bool) -> Dict[str, Any]:
+    """Build the aggregate report dict from a (possibly incomplete) list of
+    per-question reports. Used both for the final result and for checkpoints
+    written mid-run so an interruption preserves what was already computed."""
     usable = [r for r in reports if r.get('available') and r.get('p_value') is not None]
-
     distribution = {'trivially_easy': 0, 'appropriate': 0, 'hard': 0, 'too_hard_or_misframed': 0}
     for r in usable:
         lbl = r.get('difficulty_label')
         if lbl in distribution:
             distribution[lbl] += 1
-
     return {
-        'total_questions': len(reports),
+        'total_questions': total,
+        'completed_questions': len(reports),
         'solvable_questions': len(usable),
         'mean_p_value': (
             round(sum(r['p_value'] for r in usable) / len(usable), 3) if usable else None
@@ -448,4 +487,115 @@ def solvability_report(
         'difficulty_distribution': distribution,
         'reports': reports,
         'solver_model': SOLVER_MODEL,
+        'partial': partial,
     }
+
+
+# Checkpoint cadence for solvability's progressive cache: every N questions.
+# Tuned to be frequent enough that an abort loses at most ~5 questions of
+# work, but infrequent enough that the SQLite writes don't dominate.
+_SOLVABILITY_CHECKPOINT_EVERY = 5
+
+# Metric key used for per-question validation_cache entries. Keeping it
+# distinct from the lesson-level "solvability" key lets both coexist:
+# the lesson aggregate is the partial/full report, while each question's
+# raw per-question result is keyed under this so a re-run can true-resume
+# instead of recomputing already-solved questions.
+_PER_QUESTION_METRIC_KEY = "solvability_q"
+
+
+def _per_question_cache_get(question_id, n_trials):
+    """Return the cached per-question solvability result, or None on
+    miss / n_trials mismatch / DB error. n_trials must match because a
+    cached p_value at n_trials=5 is not interchangeable with one at n=3."""
+    if question_id is None:
+        return None
+    try:
+        from services import validation_cache
+        cached = validation_cache.get(
+            _PER_QUESTION_METRIC_KEY, question_id, scope_type='question'
+        )
+    except Exception:
+        return None
+    if not cached or cached.get('n_trials_used') != n_trials:
+        return None
+    return cached
+
+
+def _per_question_cache_put(question_id, payload):
+    if question_id is None:
+        return
+    try:
+        from services import validation_cache
+        validation_cache.put(
+            _PER_QUESTION_METRIC_KEY, question_id, payload, scope_type='question'
+        )
+    except Exception:
+        pass
+
+
+def solvability_report(
+    questions: List[Dict[str, Any]],
+    *,
+    n_trials: int = DEFAULT_TRIALS,
+    shuffle: bool = True,
+    llm_caller=None,
+    progress_cache_fn=None,
+    use_question_cache: bool = True,
+) -> Dict[str, Any]:
+    """Batch solvability report for a list of questions.
+
+    progress_cache_fn, if provided, receives a partial aggregate every
+    _SOLVABILITY_CHECKPOINT_EVERY questions. The route uses this to write
+    intermediate state to validation_cache so an interrupted run survives.
+
+    use_question_cache (default True) makes each question's result persist
+    individually under metric_key=solvability_q, scope_type=question. On a
+    re-run the function checks this cache before calling the LLM, so any
+    questions completed in a previous (possibly interrupted) run are
+    skipped instantly. This is the real "resume" behaviour: even if the
+    aggregate checkpoint missed a question, that question's per-question
+    cache survives. Tests set this to False to keep them hermetic.
+    """
+    total = len(questions)
+    expected_calls = total * n_trials
+    from core.llm_provider import describe_active_model
+    print(f'[Solvability] Starting LLM-blind solver on {total} question(s) — model={describe_active_model("solver")}, n_trials={n_trials}', flush=True)
+    print(f'[Solvability]   This will make up to {expected_calls} LLM calls total. With local Ollama this can take HOURS.', flush=True)
+    reports = []
+    cache_hits = 0
+    for i, q in enumerate(questions, start=1):
+        q_id = q.get('id')
+
+        # Resume path: a per-question cached result with matching n_trials
+        # short-circuits the LLM call entirely. This is what makes a
+        # second "Run all" finish in seconds instead of minutes.
+        cached_q = _per_question_cache_get(q_id, n_trials) if use_question_cache else None
+        if cached_q is not None:
+            reports.append(cached_q)
+            cache_hits += 1
+            print(f'[Solvability] {i}/{total} — Q#{q_id} → cached (resume)', flush=True)
+        else:
+            r = assess_solvability(q, n_trials=n_trials, shuffle=shuffle, llm_caller=llm_caller)
+            # Annotate so future cache reads can detect n_trials mismatch.
+            r['n_trials_used'] = n_trials
+            reports.append(r)
+            if use_question_cache:
+                _per_question_cache_put(q_id, r)
+            p = r.get('p_value') if r.get('available') else 'unavail'
+            label = r.get('difficulty_label', '')
+            print(f'[Solvability] {i}/{total} — Q#{q_id} → p={p} ({label})', flush=True)
+
+        # Progressive checkpoint: persist partial aggregate every N questions
+        # so an interruption (server restart, user closes tab, network blip)
+        # doesn't throw away the work we already did.
+        if progress_cache_fn is not None and i < total and i % _SOLVABILITY_CHECKPOINT_EVERY == 0:
+            try:
+                progress_cache_fn(_aggregate_solvability(reports, total=total, partial=True))
+            except Exception:
+                # Checkpoint failure should never abort the actual run.
+                pass
+
+    if cache_hits:
+        print(f'[Solvability] Resumed: {cache_hits}/{total} question(s) loaded from per-question cache.', flush=True)
+    return _aggregate_solvability(reports, total=total, partial=False)
