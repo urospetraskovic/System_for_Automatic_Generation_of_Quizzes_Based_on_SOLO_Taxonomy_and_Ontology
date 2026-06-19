@@ -232,6 +232,16 @@ export const llmApi = {
     apiClient.delete(`/llm/spend${providerName ? `?provider=${providerName}` : ''}`),
 };
 
+// ==================== EDUQG BENCHMARK ENDPOINTS ====================
+
+export const eduqgApi = {
+  benchmark: () => apiClient.get('/eduqg/benchmark'),
+  overview: () => apiClient.get('/eduqg/overview'),
+  questions: (book, offset = 0, limit = 25) =>
+    apiClient.get('/eduqg/questions', { params: { book, offset, limit } }),
+  evaluate: (eduqgId) => apiClient.post('/eduqg/evaluate', { eduqg_id: eduqgId }, { timeout: 60000 }),
+};
+
 // ==================== ERROR HANDLING ====================
 
 apiClient.interceptors.response.use(

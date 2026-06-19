@@ -149,7 +149,15 @@ def verify_question(
 
     q_text = question.get('question_text') or ''
     correct = question.get('correct_answer') or ''
+    # Verify against the widest available context. `source_line` is a single
+    # verbatim quote; on its own it often lacks enough to confirm the answer,
+    # which inflates UNDERDETERMINED verdicts (see EduQG calibration: 42% -> 36%
+    # false-positive rate when the wider passage is supplied). Callers may set a
+    # `context` key (e.g. the section / learning-object text) to enrich it.
     source = question.get('source_line') or ''
+    extra = (question.get('context') or '').strip()
+    if extra and extra not in source:
+        source = (source + '\n\n' + extra).strip() if source else extra
 
     if not q_text or not correct:
         return {

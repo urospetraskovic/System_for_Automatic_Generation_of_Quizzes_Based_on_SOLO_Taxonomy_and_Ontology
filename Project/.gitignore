@@ -47,3 +47,10 @@ Thumbs.db
 # Project specific
 uploads/
 .cache/
+
+# EduQG external dataset (downloaded from github.com/hadifar/question-generation)
+question-generation-main/
+
+# EduQG evaluation artifacts
+backend/eval/*.json
+backend/eval/*.log

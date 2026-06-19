@@ -10,6 +10,7 @@ import QuizBuilder from '../QuizBuilder';
 import QuizSolver from '../QuizSolver';
 import TranslationManager from '../TranslationManager';
 import SPARQLQueryTool from '../SPARQLQueryTool';
+import EduQGBenchmark from '../EduQGBenchmark';
 
 function MissingSelection({ message, target, onGoTo }) {
   return (
@@ -165,6 +166,9 @@ function TabContent({
 
     case 'sparql':
       return <SPARQLQueryTool />;
+
+    case 'eduqg':
+      return <EduQGBenchmark />;
 
     default:
       return null;

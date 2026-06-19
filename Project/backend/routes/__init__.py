@@ -11,6 +11,7 @@ from .ontology import ontology_bp
 from .sections import sections_bp
 from .learning_objects import learning_objects_bp
 from .questions import questions_bp
+from .eduqg import eduqg_bp
 from .quizzes import quizzes_bp
 from .translations import translations_bp
 from .chat import chat_bp
@@ -29,6 +30,7 @@ ALL_BLUEPRINTS = [
     sections_bp,
     learning_objects_bp,
     questions_bp,
+    eduqg_bp,
     quizzes_bp,
     translations_bp,
     chat_bp,

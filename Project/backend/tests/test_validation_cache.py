@@ -1,21 +1,35 @@
 """
 Tests for services.validation_cache.
 
-The cache writes to the production SQLite DB by design (so panels see
-exactly what the live backend sees), so we clear it before/after each test
-to avoid leaking state into other tests.
+IMPORTANT: in production the cache writes to the real SQLite DB. These tests
+must NOT touch it, otherwise running the suite would wipe the user's cached
+Quality Overview metrics. So we point the cache module at a throwaway temp DB
+for the duration of each test and restore the real engine afterwards.
 """
 
+import os
+import tempfile
+
 import pytest
+from sqlalchemy import create_engine
 
 from services import validation_cache
 
 
 @pytest.fixture(autouse=True)
-def _isolate_cache():
-    validation_cache.clear_all()
+def _isolate_cache(monkeypatch):
+    fd, path = tempfile.mkstemp(suffix='_valcache_test.db')
+    os.close(fd)
+    test_engine = create_engine(f'sqlite:///{path}')
+    monkeypatch.setattr(validation_cache, 'engine', test_engine)
+    validation_cache._TABLE_READY = False
     yield
-    validation_cache.clear_all()
+    test_engine.dispose()
+    validation_cache._TABLE_READY = False
+    try:
+        os.remove(path)
+    except OSError:
+        pass
 
 
 def test_get_returns_none_when_missing():

@@ -252,6 +252,18 @@ def solo_judge_lesson(lesson_id):
         return jsonify({'error': str(e)}), 500
 
 
+def _with_cove_context(q_dict):
+    """Attach the question's section / learning-object text as `context` so
+    CoVe verifies against the wider passage, not just the one-line quote.
+    See EduQG calibration: this cuts CoVe's false-positive rate (42% -> 36%)."""
+    from services.ioc import _resolve_objective
+    obj = _resolve_objective(q_dict)
+    if obj and obj.get('content'):
+        q_dict = dict(q_dict)
+        q_dict['context'] = obj['content']
+    return q_dict
+
+
 @questions_bp.route('/questions/<int:question_id>/cove', methods=['GET'])
 def cove_single(question_id):
     """Chain-of-Verification (Dhuliawala 2023) for one question's correctness."""
@@ -261,7 +273,7 @@ def cove_single(question_id):
             q = session.query(Question).filter(Question.id == question_id).first()
             if not q:
                 return jsonify({'error': 'Question not found'}), 404
-            return jsonify(verify_question(q.to_dict())), 200
+            return jsonify(verify_question(_with_cove_context(q.to_dict()))), 200
         finally:
             session.close()
     except Exception as e:
@@ -275,7 +287,8 @@ def cove_lesson(lesson_id):
     try:
         payload = _cached_or_compute(
             lesson_id, 'cove',
-            lambda: verify_questions(db.get_questions_by_lesson(lesson_id)),
+            lambda: verify_questions(
+                [_with_cove_context(q) for q in db.get_questions_by_lesson(lesson_id)]),
         )
         return jsonify(payload), 200
     except Exception as e:

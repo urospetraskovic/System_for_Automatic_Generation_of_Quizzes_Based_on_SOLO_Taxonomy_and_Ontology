@@ -284,7 +284,12 @@ OPTION_RULES = (
     "phrase too. Structurally-outlier options give the answer away.\n"
     "  O8 (linguistic quality) Write in natural, grammatical Serbian (or English). Avoid "
     "torturous constructions ('Koji je odgovorni za upravljanje resursima …'). If a phrase "
-    "sounds awkward when read aloud, rewrite it."
+    "sounds awkward when read aloud, rewrite it.\n"
+    "  O9 (distractor ≠ key) No distractor may be a paraphrase, a reordering, or a sub/"
+    "superset of the CORRECT answer. A distractor that means the same thing as the key — "
+    "the key with an added qualifier, or the same terms in a different order — is NOT a "
+    "distractor, because it is also correct. Every distractor must be substantively and "
+    "defensibly WRONG."
 )
 
 

@@ -209,6 +209,24 @@ def _check_options(
             positions=[i, j],
         ))
 
+    # H_DISTRACTOR_EQUALS_KEY: a distractor that is just the correct answer
+    # reordered or duplicated is not a distractor at all — the "wrong" option is
+    # actually correct. Token-multiset equality is precise (catches permutations
+    # like "a, b, c, d" vs "b, a, d, c") without flagging legitimate siblings
+    # that merely share a word with the key.
+    if correct_index is not None and 0 <= correct_index < len(texts):
+        key_tokens = sorted(re.findall(r'\w+', (texts[correct_index] or '').lower()))
+        if key_tokens:
+            for i, t in enumerate(texts):
+                if i == correct_index or not t:
+                    continue
+                if sorted(re.findall(r'\w+', t.lower())) == key_tokens:
+                    flags.append(_flag(
+                        'H_DISTRACTOR_EQUALS_KEY', SEVERITY_ERROR,
+                        f'Opcija {i} je preuređena/duplirana verzija tačnog odgovora — nije distraktor. / Distractor is a reordering/duplicate of the correct answer.',
+                        position=i,
+                    ))
+
     # H24, H27: length parity + correct-answer-longest length clue.
     lengths = [len(t) for t in texts if t]
     if len(lengths) >= 2:

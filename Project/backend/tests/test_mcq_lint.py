@@ -149,6 +149,31 @@ def test_option_overlap_flagged():
     assert 'H22_OPTION_OVERLAP' in _codes(r)
 
 
+def test_distractor_equals_key_permutation_flagged():
+    # A distractor that is just the correct answer with its terms reordered is
+    # not a distractor — it is also correct.
+    r = lint_question(_q(
+        options=[
+            'izlaganje, prianjanje, invazija, infekcija',
+            'prianjanje, izlaganje, infekcija, invazija',  # permutation of key
+            'groznica, kašalj, osip, umor',
+            'rođenje, rast, opadanje, smrt',
+        ],
+        correct_index=0,
+    ))
+    assert 'H_DISTRACTOR_EQUALS_KEY' in _codes(r)
+
+
+def test_distractor_sharing_a_word_with_key_not_flagged():
+    # A legitimate sibling that merely shares a token with the key must NOT trip
+    # the key-duplicate rule (no false positive).
+    r = lint_question(_q(
+        options=['ATP sintaza', 'ATP', 'adenilat kinaza', 'heksokinaza'],
+        correct_index=0,
+    ))
+    assert 'H_DISTRACTOR_EQUALS_KEY' not in _codes(r)
+
+
 def test_correct_answer_longest_is_length_clue():
     r = lint_question(_q(
         options=[
