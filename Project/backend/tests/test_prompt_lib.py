@@ -154,7 +154,7 @@ def test_extended_abstract_pass2_carries_question_and_answer():
 
 # -----------------------------------------------------------------------------
 # Haladyna item-writing rules — must be explicit in every generation prompt.
-# Rule codes mirror services.mcq_lint so prevention (prompt) and detection
+# Rule codes mirror services.quality.mcq_lint so prevention (prompt) and detection
 # (lint) share a vocabulary. If a code below disappears from the prompt,
 # the LLM will regress on that lint check.
 # -----------------------------------------------------------------------------

@@ -37,23 +37,23 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='replace')
 
 from core import llm_cache  # noqa: E402
-from services.ambiguity import (  # noqa: E402
+from services.quality.ambiguity import (  # noqa: E402
     AMBIGUITY_MODEL, AMBIGUITY_TEMPERATURE,
     assess_ambiguity, build_ambiguity_prompt,
 )
-from services.grammar_homogeneity import (  # noqa: E402
+from services.quality.grammar_homogeneity import (  # noqa: E402
     GRAMMAR_MODEL, GRAMMAR_TEMPERATURE,
     check_homogeneity, build_grammar_prompt,
 )
-from services.ioc import (  # noqa: E402
+from services.quality.ioc import (  # noqa: E402
     IOC_MODEL, IOC_TEMPERATURE,
     rate_question as ioc_rate_question, build_ioc_prompt, _resolve_objective,
 )
-from services.cove import (  # noqa: E402
+from services.quality.cove import (  # noqa: E402
     COVE_MODEL, COVE_TEMPERATURE,
     verify_question, build_plan_prompt,
 )
-from services.mcq_lint import lint_question  # noqa: E402
+from services.quality.mcq_lint import lint_question  # noqa: E402
 
 
 def _cache_only_llm(model, temperature):

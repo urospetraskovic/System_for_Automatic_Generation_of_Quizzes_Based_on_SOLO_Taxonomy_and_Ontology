@@ -1,5 +1,5 @@
 """
-Tests for services.solvability — LLM-blind solver as a-priori item difficulty
+Tests for services.quality.solvability — LLM-blind solver as a-priori item difficulty
 calibration.
 
 The solver makes N LLM calls per question. We mock the LLM with a scripted
@@ -9,7 +9,7 @@ caller, plus a deterministic RNG so shuffled-option mappings are predictable.
 import json
 import random
 
-from services.solvability import (
+from services.quality.solvability import (
     _difficulty_label,
     _parse_choice,
     build_solver_prompt,
@@ -169,7 +169,7 @@ def test_solvability_progress_cache_fn_fires_at_checkpoints():
     the function's return value already carries the full payload and the
     route writes it to cache itself — checkpointing one question before
     the route would be a redundant write."""
-    from services.solvability import _SOLVABILITY_CHECKPOINT_EVERY
+    from services.quality.solvability import _SOLVABILITY_CHECKPOINT_EVERY
     cadence = _SOLVABILITY_CHECKPOINT_EVERY
     # 2× the cadence + 1 extra question, so we expect checkpoints at
     # i=cadence and i=2×cadence, but NOT at the final i (= 2×cadence + 1).
@@ -214,7 +214,7 @@ def test_solvability_resume_skips_cached_questions(monkeypatch):
     were already cached and only call the LLM for new ones. This is the
     actual user-facing behaviour: Re-run all on a partially-completed
     Solvability finishes in seconds instead of minutes."""
-    import services.solvability as solv_mod
+    import services.quality.solvability as solv_mod
     fake_store = {}
 
     def _fake_get(q_id, n_trials):
@@ -257,7 +257,7 @@ def test_solvability_resume_recomputes_on_n_trials_mismatch(monkeypatch):
     """If the cached entry was for n_trials=5 but the caller asks for n=3,
     the cache must miss — different n_trials gives statistically different
     p-values and shouldn't be silently reused."""
-    import services.solvability as solv_mod
+    import services.quality.solvability as solv_mod
     fake_store = {}
 
     def _fake_get(q_id, n_trials):
@@ -298,7 +298,7 @@ def test_solvability_resume_recomputes_on_n_trials_mismatch(monkeypatch):
 # Stem-only solvability (Haladyna H4) — uses an embedding stub.
 # -----------------------------------------------------------------------------
 
-from services.solvability import (
+from services.quality.solvability import (
     _parse_free_answer,
     assess_stem_only_solvability,
     build_stem_only_prompt,
@@ -320,7 +320,7 @@ def _embed_factory(answer_vec, correct_vec):
 
 
 def _real_cosine(a, b):
-    from services.embedding_service import cosine_similarity
+    from services.quality.embedding_service import cosine_similarity
     return cosine_similarity(a, b)
 
 

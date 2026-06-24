@@ -1,12 +1,12 @@
 """
-Tests for services.ambiguity — linguistic ambiguity detection.
+Tests for services.quality.ambiguity — linguistic ambiguity detection.
 
 Mocks the LLM via an injected llm_caller.
 """
 
 import json
 
-from services.ambiguity import (
+from services.quality.ambiguity import (
     VALID_AMBIGUITY_TYPES,
     _parse,
     ambiguity_report,

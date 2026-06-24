@@ -1,5 +1,5 @@
 """
-Tests for the concept-coverage helpers in services.coverage_service.
+Tests for the concept-coverage helpers in services.quality.coverage_service.
 
 These helpers operate on plain ORM-shaped objects (anything with the right
 attributes), so we use lightweight stand-ins instead of a real DB session —
@@ -8,7 +8,7 @@ keeping tests fast and isolated from SQLite state.
 
 from types import SimpleNamespace
 
-from services.coverage_service import (
+from services.quality.coverage_service import (
     _compute_concept_coverage,
     _compute_concept_weights,
     _concept_mentions,

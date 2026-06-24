@@ -135,19 +135,19 @@ def _run_validation(db_path, snapshot_dir, skip_validation, include_solvability)
         print('[snapshot] --no-validation set — skipping validation dump.')
         return {}
 
-    from services.coverage_service import CoverageService
-    from services.mcq_lint import lint_questions
-    from services.solo_judge import judge_questions
-    from services.cove import verify_questions
-    from services.solvability import (
+    from services.quality.coverage_service import CoverageService
+    from services.quality.mcq_lint import lint_questions
+    from services.quality.solo_judge import judge_questions
+    from services.quality.cove import verify_questions
+    from services.quality.solvability import (
         solvability_report, stem_only_solvability_report,
     )
-    from services.ioc import ioc_report
-    from services.ambiguity import ambiguity_report
-    from services.readability import readability_report
-    from services.misconception_mining import mine_lesson_misconceptions
-    from services.grammar_homogeneity import homogeneity_report
-    from services.face_validity import face_validity_report
+    from services.quality.ioc import ioc_report
+    from services.quality.ambiguity import ambiguity_report
+    from services.quality.readability import readability_report
+    from services.quality.misconception_mining import mine_lesson_misconceptions
+    from services.quality.grammar_homogeneity import homogeneity_report
+    from services.quality.face_validity import face_validity_report
 
     val_dir = os.path.join(snapshot_dir, 'validation')
     questions = _load_question_dicts(db_path)

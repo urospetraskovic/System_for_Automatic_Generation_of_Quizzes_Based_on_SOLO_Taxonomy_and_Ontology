@@ -14,7 +14,7 @@ from flask import Blueprint, jsonify, request
 from pydantic import ValidationError
 
 from services import QuestionService
-from services.jobs import submit, get as get_job, list_recent
+from services.domain.jobs import submit, get as get_job, list_recent
 from schemas import GenerateQuestionsRequest
 
 

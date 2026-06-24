@@ -233,7 +233,7 @@ BANNED_OPENERS = (
 # Explicit Haladyna, Downing & Rodriguez (2002) item-writing rules. These
 # duplicate the COT_SCAFFOLD verify-step in plain language because LLMs respect
 # rules better when they are stated as numbered constraints than when buried
-# in a checklist. Rule codes match services.mcq_lint so the prevention layer
+# in a checklist. Rule codes match services.quality.mcq_lint so the prevention layer
 # and the detection layer use the same vocabulary.
 #
 # Empirical calibration (May 2026): the local-Ollama qwen2.5:14b corpus showed

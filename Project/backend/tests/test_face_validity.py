@@ -1,12 +1,12 @@
 """
-Tests for services.face_validity — Considine 2005 / Tarrant 2008 rubric.
+Tests for services.quality.face_validity — Considine 2005 / Tarrant 2008 rubric.
 
 LLM rubric scoring is mocked.
 """
 
 import json
 
-from services.face_validity import (
+from services.quality.face_validity import (
     _CRITERIA,
     _parse_face_ratings,
     assess_face_validity,

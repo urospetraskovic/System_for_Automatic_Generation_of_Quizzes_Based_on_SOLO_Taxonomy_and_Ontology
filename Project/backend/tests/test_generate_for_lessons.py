@@ -12,7 +12,7 @@ from unittest.mock import patch
 
 import pytest
 
-from services.question_service import QuestionService
+from services.domain.question_service import QuestionService
 
 
 def _lesson(id_, title, n_sections=4, n_los=20):
@@ -54,7 +54,7 @@ def test_rejects_only_invalid_lesson_ids():
 
 def test_deduplicates_lesson_ids_preserving_order():
     """Same ID listed twice → only one plan, kept in first-seen order."""
-    with patch('services.question_service.db') as mock_db:
+    with patch('services.domain.question_service.db') as mock_db:
         mock_db.get_lesson_with_sections.side_effect = lambda lid: _lesson(lid, f'L{lid}')
         with patch.object(QuestionService, 'generate_questions',
                           side_effect=lambda **kw: _ok_result(kw['solo_levels'][0], kw['questions_per_level'])):
@@ -73,7 +73,7 @@ def test_skips_unparsed_lessons():
             return {'id': 2, 'title': 'Unparsed', 'sections': []}
         return None
 
-    with patch('services.question_service.db') as mock_db:
+    with patch('services.domain.question_service.db') as mock_db:
         mock_db.get_lesson_with_sections.side_effect = _fake_lookup
         with patch.object(QuestionService, 'generate_questions',
                           side_effect=lambda **kw: _ok_result(kw['solo_levels'][0], kw['questions_per_level'])):
@@ -82,7 +82,7 @@ def test_skips_unparsed_lessons():
 
 
 def test_returns_error_when_no_parseable_lessons():
-    with patch('services.question_service.db') as mock_db:
+    with patch('services.domain.question_service.db') as mock_db:
         mock_db.get_lesson_with_sections.return_value = None
         r = QuestionService.generate_for_lessons(lesson_ids=[42])
     assert r['status'] == 400
@@ -96,7 +96,7 @@ def test_single_lesson_skips_extended_abstract():
         calls.append(kw['solo_levels'][0])
         return _ok_result(kw['solo_levels'][0], 1)
 
-    with patch('services.question_service.db') as mock_db:
+    with patch('services.domain.question_service.db') as mock_db:
         mock_db.get_lesson_with_sections.side_effect = lambda lid: _lesson(lid, f'L{lid}')
         with patch.object(QuestionService, 'generate_questions', side_effect=_capture):
             QuestionService.generate_for_lessons(lesson_ids=[1])
@@ -111,7 +111,7 @@ def test_two_lessons_attempt_ea_pair():
         calls.append((tuple(kw['lesson_ids']), kw['solo_levels'][0]))
         return _ok_result(kw['solo_levels'][0], 1)
 
-    with patch('services.question_service.db') as mock_db:
+    with patch('services.domain.question_service.db') as mock_db:
         mock_db.get_lesson_with_sections.side_effect = lambda lid: _lesson(lid, f'L{lid}')
         with patch.object(QuestionService, 'generate_questions', side_effect=_capture):
             QuestionService.generate_for_lessons(lesson_ids=[10, 11])
@@ -126,7 +126,7 @@ def test_progress_callback_receives_messages():
     def cb(message, current=None, total=None):
         received.append({'message': message, 'current': current, 'total': total})
 
-    with patch('services.question_service.db') as mock_db:
+    with patch('services.domain.question_service.db') as mock_db:
         mock_db.get_lesson_with_sections.side_effect = lambda lid: _lesson(lid, f'L{lid}')
         with patch.object(QuestionService, 'generate_questions',
                           side_effect=lambda **kw: _ok_result(kw['solo_levels'][0], 1)):

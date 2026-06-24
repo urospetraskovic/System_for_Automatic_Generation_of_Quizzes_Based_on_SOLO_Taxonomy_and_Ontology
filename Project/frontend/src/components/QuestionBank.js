@@ -1,8 +1,14 @@
 import React, { useState } from 'react';
 import { questionApi } from '../api';
 import TranslationViewer from './TranslationViewer';
+import useQuestionLint from '../hooks/useQuestionLint';
+import useQuestionQuality from '../hooks/useQuestionQuality';
+import { QuestionLintBadge, QuestionLintFlags } from './QuestionLintBadge';
+import { QuestionQualityBadges, QuestionQualityDetails } from './QuestionQualityBadges';
 
 function QuestionBank({ questions, courseId, onRefresh, onSuccess, onError }) {
+  const lintByQuestionId = useQuestionLint(questions);
+  const qualityByQuestionId = useQuestionQuality(questions);
   const [filter, setFilter] = useState('all');
   const [lessonFilter, setLessonFilter] = useState('all');
   const [searchTerm, setSearchTerm] = useState('');
@@ -377,6 +383,9 @@ function QuestionBank({ questions, courseId, onRefresh, onSuccess, onError }) {
                     <span className={`question-status-badge ${question.human_modified ? 'human-modified' : question.is_ai_generated ? 'ai-generated' : 'human-created'}`}>
                       {question.human_modified ? 'Human Modified' : question.is_ai_generated ? 'AI Generated' : 'Human Created'}
                     </span>
+
+                    <QuestionLintBadge report={lintByQuestionId[question.id]} />
+                    <QuestionQualityBadges quality={qualityByQuestionId[question.id]} />
                   </div>
                   
                   <p className="question-text">{question.question_text}</p>
@@ -396,6 +405,9 @@ function QuestionBank({ questions, courseId, onRefresh, onSuccess, onError }) {
 
                   {expandedQuestion === question.id && (
                     <div className="question-details">
+                      <QuestionLintFlags report={lintByQuestionId[question.id]} />
+                      <QuestionQualityDetails quality={qualityByQuestionId[question.id]} />
+
                       {question.options && (
                         <div className="options-list">
                           {question.options.map((opt, i) => (

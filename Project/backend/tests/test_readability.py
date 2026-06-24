@@ -1,10 +1,10 @@
 """
-Tests for services.readability — Flesch / Flesch-Kincaid.
+Tests for services.quality.readability — Flesch / Flesch-Kincaid.
 
 Pure-Python module, no LLM dependency.
 """
 
-from services.readability import (
+from services.quality.readability import (
     SOLO_GRADE_TARGETS,
     _bucket,
     _count_sentences,

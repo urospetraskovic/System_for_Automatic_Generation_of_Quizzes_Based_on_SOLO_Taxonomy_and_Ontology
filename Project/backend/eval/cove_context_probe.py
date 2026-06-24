@@ -21,7 +21,7 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='repla
 
 from eval.eduqg import load_eduqg, sample_pilot  # noqa: E402
 from core.llm_provider import set_thread_provider  # noqa: E402
-from services.cove import verify_question  # noqa: E402
+from services.quality.cove import verify_question  # noqa: E402
 
 
 def _rate(verdicts):

@@ -6,7 +6,7 @@ from flask import Blueprint, request, jsonify
 
 from repository import db
 from models import Course, Lesson, Section
-from services.chatbot_service import chatbot_service
+from services.domain.chatbot_service import chatbot_service
 
 chat_bp = Blueprint('chat', __name__, url_prefix='/api/chat')
 

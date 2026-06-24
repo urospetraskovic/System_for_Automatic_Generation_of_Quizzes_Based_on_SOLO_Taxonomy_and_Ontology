@@ -15,8 +15,8 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='repla
 import app as _app_module  # noqa: E402,F401  (inicijalizuje bazu i servise)
 from core.llm_provider import set_thread_provider  # noqa: E402
 from repository import db  # noqa: E402
-from services.solvability import solvability_report  # noqa: E402
-from services.cove import verify_question  # noqa: E402
+from services.quality.solvability import solvability_report  # noqa: E402
+from services.quality.cove import verify_question  # noqa: E402
 from services import validation_cache  # noqa: E402
 from eval.eduqg import load_eduqg  # noqa: E402
 

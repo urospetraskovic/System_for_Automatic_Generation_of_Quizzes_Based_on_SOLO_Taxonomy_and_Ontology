@@ -1,5 +1,5 @@
 """
-Tests for services.solo_judge.
+Tests for services.quality.solo_judge.
 
 The judge calls an LLM, so we inject a fake `llm_caller` instead of hitting
 Ollama. This keeps tests fast, deterministic, and offline.
@@ -7,7 +7,7 @@ Ollama. This keeps tests fast, deterministic, and offline.
 
 import json
 
-from services.solo_judge import (
+from services.quality.solo_judge import (
     SOLO_LEVELS,
     _cohen_kappa,
     _confusion_matrix,

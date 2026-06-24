@@ -391,7 +391,7 @@ class QuestionService:
         This is the natural follow-up to `generate_for_course` to fill
         the remaining 10-15% coverage gap.
         """
-        from services.coverage_service import CoverageService
+        from services.quality.coverage_service import CoverageService
 
         course = db.get_course(course_id)
         if not course:

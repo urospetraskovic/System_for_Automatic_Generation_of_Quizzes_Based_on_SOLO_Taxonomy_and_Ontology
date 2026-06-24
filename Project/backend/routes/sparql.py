@@ -2,7 +2,7 @@
 
 from flask import Blueprint, request, jsonify
 
-from services.sparql_service import sparql_service
+from services.domain.sparql_service import sparql_service
 
 sparql_bp = Blueprint('sparql', __name__, url_prefix='/api/sparql')
 

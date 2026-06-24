@@ -25,7 +25,7 @@ ARCHITECTURE:
 └─────────────────────────────────────────────────────────────────┘
 
 USAGE:
-    from services.ontology_manager import OntologyManager
+    from services.domain.ontology_manager import OntologyManager
     
     manager = OntologyManager()
     

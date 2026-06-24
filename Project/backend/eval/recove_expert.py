@@ -13,7 +13,7 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='repla
 
 from core.llm_provider import set_thread_provider  # noqa: E402
 from eval.eduqg import load_eduqg  # noqa: E402
-from services.cove import verify_question  # noqa: E402
+from services.quality.cove import verify_question  # noqa: E402
 
 STORE = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'eduqg_calibration.json')
 

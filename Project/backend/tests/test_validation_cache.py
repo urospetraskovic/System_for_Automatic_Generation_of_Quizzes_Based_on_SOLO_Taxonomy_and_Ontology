@@ -1,5 +1,5 @@
 """
-Tests for services.validation_cache.
+Tests for services.quality.validation_cache.
 
 IMPORTANT: in production the cache writes to the real SQLite DB. These tests
 must NOT touch it, otherwise running the suite would wipe the user's cached

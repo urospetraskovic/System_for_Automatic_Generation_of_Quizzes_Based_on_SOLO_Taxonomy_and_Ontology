@@ -2,9 +2,15 @@ import React, { useState } from 'react';
 import { quizApi } from '../api';
 import { useLanguage } from '../context/LanguageContext';
 import TranslationViewer from './TranslationViewer';
+import useQuestionLint from '../hooks/useQuestionLint';
+import useQuestionQuality from '../hooks/useQuestionQuality';
+import { QuestionLintBadge, QuestionLintFlags } from './QuestionLintBadge';
+import { QuestionQualityBadges, QuestionQualityDetails } from './QuestionQualityBadges';
 
 function QuizBuilder({ questions, course, onSuccess, onError }) {
   const { selectedLanguage } = useLanguage();
+  const lintByQuestionId = useQuestionLint(questions);
+  const qualityByQuestionId = useQuestionQuality(questions);
   const [quizTitle, setQuizTitle] = useState('');
   const [quizDescription, setQuizDescription] = useState('');
   const [selectedQuestionIds, setSelectedQuestionIds] = useState([]);
@@ -229,6 +235,8 @@ function QuizBuilder({ questions, course, onSuccess, onError }) {
                       {question.solo_level === 'extended_abstract' && (
                         <span className="cross-topic-badge-mini">Cross-Topic</span>
                       )}
+                      <QuestionLintBadge report={lintByQuestionId[question.id]} />
+                      <QuestionQualityBadges quality={qualityByQuestionId[question.id]} />
                       <button
                         className="btn-translate"
                         onClick={(e) => {
@@ -242,6 +250,8 @@ function QuizBuilder({ questions, course, onSuccess, onError }) {
                       </button>
                     </div>
                     <p className="full-question-text">{question.question_text}</p>
+                    <QuestionLintFlags report={lintByQuestionId[question.id]} />
+                    <QuestionQualityDetails quality={qualityByQuestionId[question.id]} />
                     {/* Lesson Source */}
                     {getLessonSourceDisplay(question) && (
                       <div className={`lesson-source ${question.solo_level === 'extended_abstract' ? 'extended-source' : ''}`}>

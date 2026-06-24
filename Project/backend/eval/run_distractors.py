@@ -28,8 +28,8 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='repla
 
 from eval.eduqg import load_eduqg, sample_pilot  # noqa: E402
 from core.llm_provider import set_thread_provider, call_llm  # noqa: E402
-from services.face_validity import assess_face_validity  # noqa: E402
-from services.embedding_service import embed_text, cosine_similarity  # noqa: E402
+from services.quality.face_validity import assess_face_validity  # noqa: E402
+from services.quality.embedding_service import embed_text, cosine_similarity  # noqa: E402
 
 
 def build_distractor_prompt(context, question, correct):

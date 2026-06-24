@@ -1,5 +1,5 @@
 """
-Tests for services.mcq_lint — the Haladyna-rule MCQ quality linter.
+Tests for services.quality.mcq_lint — the Haladyna-rule MCQ quality linter.
 
 Each test isolates one rule so a regression makes the failure obvious.
 
@@ -8,8 +8,8 @@ disabled by default in these tests so they don't depend on Ollama. A dedicated
 section below uses a fake embedder to exercise those checks.
 """
 
-from services import mcq_lint as _ml
-from services.mcq_lint import lint_question as _lint_question_real, lint_questions as _lint_questions_real
+from services.quality import mcq_lint as _ml
+from services.quality.mcq_lint import lint_question as _lint_question_real, lint_questions as _lint_questions_real
 
 
 def lint_question(q):
@@ -284,7 +284,7 @@ def _fake_embedder(text):
 
 
 def _real_cosine(a, b):
-    from services.embedding_service import cosine_similarity
+    from services.quality.embedding_service import cosine_similarity
     return cosine_similarity(a, b)
 
 

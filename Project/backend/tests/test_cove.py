@@ -1,5 +1,5 @@
 """
-Tests for services.cove — Chain-of-Verification for MCQ correctness.
+Tests for services.quality.cove — Chain-of-Verification for MCQ correctness.
 
 CoVe orchestrates 3 LLM calls per question (plan → verify ×N → judge).
 We mock the LLM caller so tests are fast and deterministic.
@@ -7,7 +7,7 @@ We mock the LLM caller so tests are fast and deterministic.
 
 import json
 
-from services.cove import (
+from services.quality.cove import (
     _parse_json,
     build_judge_prompt,
     build_plan_prompt,

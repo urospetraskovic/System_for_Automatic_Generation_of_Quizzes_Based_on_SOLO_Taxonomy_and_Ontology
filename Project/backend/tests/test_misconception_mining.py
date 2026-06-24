@@ -1,5 +1,5 @@
 """
-Tests for services.misconception_mining — Sadler 1998 implementation.
+Tests for services.quality.misconception_mining — Sadler 1998 implementation.
 
 The miner has two stages: (1) regex cue-window finding (pure Python),
 (2) LLM extraction of misconception/correction pairs (we mock).
@@ -7,7 +7,7 @@ The miner has two stages: (1) regex cue-window finding (pure Python),
 
 import json
 
-from services.misconception_mining import (
+from services.quality.misconception_mining import (
     _parse_misconceptions,
     find_cue_windows,
     mine_misconceptions,

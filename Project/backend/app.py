@@ -12,8 +12,8 @@ import config
 from repository import init_database
 from models import Session
 from core import SoloQuizGeneratorLocal as SoloQuizGenerator
-from services.sparql_service import sparql_service
-from services.chatbot_service import chatbot_service
+from services.domain.sparql_service import sparql_service
+from services.domain.chatbot_service import chatbot_service
 from routes import register_routes
 
 

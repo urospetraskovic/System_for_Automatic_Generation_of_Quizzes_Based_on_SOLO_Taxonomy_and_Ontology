@@ -1,12 +1,12 @@
 """
-Tests for services.grammar_homogeneity — Haladyna O7 / Tarrant 2009.
+Tests for services.quality.grammar_homogeneity — Haladyna O7 / Tarrant 2009.
 
 LLM classification is mocked.
 """
 
 import json
 
-from services.grammar_homogeneity import (
+from services.quality.grammar_homogeneity import (
     STRUCTURAL_TYPES,
     _parse_types,
     build_grammar_prompt,

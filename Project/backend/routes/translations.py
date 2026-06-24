@@ -15,7 +15,7 @@ from models import (
 )
 from models.models import Quiz, QuizQuestion, QuestionTranslation
 from services import get_translation_service
-from services.translation_service import SUPPORTED_LANGUAGES
+from services.domain.translation_service import SUPPORTED_LANGUAGES
 
 translations_bp = Blueprint('translations', __name__, url_prefix='/api')
 

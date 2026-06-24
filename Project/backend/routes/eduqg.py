@@ -203,13 +203,13 @@ def _expert_agg(store):
 # ---------------------------------------------------------------- jedno pitanje
 def _evaluate_one(q, trials=3):
     """Pokrene bateriju nad jednim EduQG pitanjem i vrati zapis u shemi store-a."""
-    from services.mcq_lint import lint_question
-    from services.readability import assess_question_readability
-    from services.ambiguity import assess_ambiguity
-    from services.grammar_homogeneity import check_homogeneity
-    from services.face_validity import assess_face_validity
-    from services.cove import verify_question
-    from services.solvability import assess_solvability
+    from services.quality.mcq_lint import lint_question
+    from services.quality.readability import assess_question_readability
+    from services.quality.ambiguity import assess_ambiguity
+    from services.quality.grammar_homogeneity import check_homogeneity
+    from services.quality.face_validity import assess_face_validity
+    from services.quality.cove import verify_question
+    from services.quality.solvability import assess_solvability
 
     lint = lint_question(q, use_embeddings=False)
     read = assess_question_readability(q)

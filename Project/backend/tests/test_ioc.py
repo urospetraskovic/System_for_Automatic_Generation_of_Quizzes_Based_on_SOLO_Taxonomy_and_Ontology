@@ -1,12 +1,12 @@
 """
-Tests for services.ioc — Item-Objective Congruence (Rovinelli & Hambleton 1977).
+Tests for services.quality.ioc — Item-Objective Congruence (Rovinelli & Hambleton 1977).
 
 Uses an injected llm_caller so tests don't need Ollama. We also inject the
 objective directly to avoid DB lookups.
 """
 
 import json
-from services.ioc import (
+from services.quality.ioc import (
     _parse_rating,
     build_ioc_prompt,
     ioc_report,
@@ -91,7 +91,7 @@ def test_rate_question_marks_unparseable_response():
 def test_ioc_index_strong():
     qs = [_q(1), _q(2), _q(3), _q(4)]
     # Inject objective via monkey patch on _resolve_objective.
-    import services.ioc as ioc_mod
+    import services.quality.ioc as ioc_mod
     ioc_mod._resolve_objective = lambda q: _objective()
     try:
         r = ioc_report(qs, llm_caller=_scripted(1, 1, 1, 1))
@@ -105,7 +105,7 @@ def test_ioc_index_strong():
 
 def test_ioc_index_weak_with_zeros():
     qs = [_q(1), _q(2), _q(3), _q(4)]
-    import services.ioc as ioc_mod
+    import services.quality.ioc as ioc_mod
     ioc_mod._resolve_objective = lambda q: _objective()
     r = ioc_report(qs, llm_caller=_scripted(0, 0, 1, 0))
     assert r['ioc_index'] == 0.25
@@ -114,7 +114,7 @@ def test_ioc_index_weak_with_zeros():
 
 def test_ioc_index_misaligned():
     qs = [_q(1), _q(2)]
-    import services.ioc as ioc_mod
+    import services.quality.ioc as ioc_mod
     ioc_mod._resolve_objective = lambda q: _objective()
     r = ioc_report(qs, llm_caller=_scripted(-1, -1))
     assert r['ioc_index'] == -1.0
@@ -123,7 +123,7 @@ def test_ioc_index_misaligned():
 
 def test_ioc_report_handles_no_anchored_questions():
     qs = [_q(1)]
-    import services.ioc as ioc_mod
+    import services.quality.ioc as ioc_mod
     ioc_mod._resolve_objective = lambda q: None
     r = ioc_report(qs, llm_caller=_scripted(1))
     assert r['rated_questions'] == 0

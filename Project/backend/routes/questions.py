@@ -256,7 +256,7 @@ def _with_cove_context(q_dict):
     """Attach the question's section / learning-object text as `context` so
     CoVe verifies against the wider passage, not just the one-line quote.
     See EduQG calibration: this cuts CoVe's false-positive rate (42% -> 36%)."""
-    from services.ioc import _resolve_objective
+    from services.quality.ioc import _resolve_objective
     obj = _resolve_objective(q_dict)
     if obj and obj.get('content'):
         q_dict = dict(q_dict)

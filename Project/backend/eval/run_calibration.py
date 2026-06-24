@@ -32,13 +32,13 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8', errors='repla
 
 from eval.eduqg import load_eduqg, sample_pilot  # noqa: E402
 from core.llm_provider import set_thread_provider  # noqa: E402
-from services.mcq_lint import lint_question  # noqa: E402
-from services.ambiguity import assess_ambiguity  # noqa: E402
-from services.grammar_homogeneity import check_homogeneity  # noqa: E402
-from services.cove import verify_question  # noqa: E402
-from services.face_validity import assess_face_validity  # noqa: E402
-from services.solvability import assess_solvability  # noqa: E402
-from services.readability import assess_question_readability  # noqa: E402
+from services.quality.mcq_lint import lint_question  # noqa: E402
+from services.quality.ambiguity import assess_ambiguity  # noqa: E402
+from services.quality.grammar_homogeneity import check_homogeneity  # noqa: E402
+from services.quality.cove import verify_question  # noqa: E402
+from services.quality.face_validity import assess_face_validity  # noqa: E402
+from services.quality.solvability import assess_solvability  # noqa: E402
+from services.quality.readability import assess_question_readability  # noqa: E402
 
 SEVERITY_ERROR = 'error'
 
