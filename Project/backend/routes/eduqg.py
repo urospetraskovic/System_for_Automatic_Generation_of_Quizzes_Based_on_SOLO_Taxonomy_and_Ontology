@@ -64,10 +64,11 @@ METRICS = [
              'Raspon je od minus 1 do 1, gde se vrednosti oko 0,6 i više smatraju prihvatljivim. '
              'EduQG pitanja nemaju vezane ishode učenja, pa ova mera za njih ne postoji.'},
     {'key': 'stem_only', 'name': 'Rešivost iz teksta pitanja', 'fmt': 'pct',
-     'higher': True, 'comparable': False,
+     'higher': True, 'comparable': True,
      'expl': 'Model pokušava da odgovori na pitanje bez ponuđenih opcija, pa se odgovor poredi sa '
-             'tačnim. Pravilo kaže da tekst pitanja mora da nosi glavnu misao. Ova provera se za '
-             'sada računa samo nad našim pitanjima.'},
+             'tačnim. Pravilo (Haladyna H4) kaže da tekst pitanja mora da nosi glavnu misao. '
+             'Prikazuje se udeo pitanja koja se mogu rešiti samo iz teksta. Poredimo naša i '
+             'ekspertska pitanja.'},
     {'key': 'cove_supported', 'name': 'Lanac provere (potvrđeni odgovori)', 'fmt': 'pct',
      'higher': True, 'comparable': True,
      'expl': 'Nezavisna verifikaciona pitanja proveravaju da li je tačan odgovor zaista '
@@ -197,6 +198,7 @@ def _expert_agg(store):
         'solvability': _mean([r.get('p_value') for r in recs]),
         'lint': _mean([r.get('lint_score') for r in recs]),
         'readability': _mean([r.get('fk_grade') for r in recs]),
+        'stem_only': rate(lambda r: r.get('stem_only_pass')),
     }
 
 
@@ -209,7 +211,7 @@ def _evaluate_one(q, trials=3):
     from services.quality.grammar_homogeneity import check_homogeneity
     from services.quality.face_validity import assess_face_validity
     from services.quality.cove import verify_question
-    from services.quality.solvability import assess_solvability
+    from services.quality.solvability import assess_solvability, assess_stem_only_solvability
 
     lint = lint_question(q, use_embeddings=False)
     read = assess_question_readability(q)
@@ -218,6 +220,7 @@ def _evaluate_one(q, trials=3):
     face = assess_face_validity(q)
     cove = verify_question(q)
     solv = assess_solvability(q, n_trials=trials)
+    stem = assess_stem_only_solvability(q)
     return {
         'eduqg_id': q['eduqg_id'], 'book': q['book'], 'bloom': q.get('bloom_name'),
         'lint_score': lint['score'],
@@ -230,6 +233,8 @@ def _evaluate_one(q, trials=3):
         'face_score': face.get('face_validity_score') if face.get('available') else None,
         'cove_verdict': cove.get('verdict'),
         'p_value': solv.get('p_value') if solv.get('available') else None,
+        'stem_only_pass': stem.get('h4_passes') if stem.get('available') else None,
+        'stem_only_verdict': stem.get('verdict'),
     }
 
 
@@ -253,6 +258,7 @@ def _question_view(qid, q, store):
             'cove': {'verdict': rec.get('cove_verdict')},
             'solvability': {'p_value': rec.get('p_value')},
             'readability': {'fk_grade': rec.get('fk_grade')},
+            'stem_only': {'pass': rec.get('stem_only_pass'), 'verdict': rec.get('stem_only_verdict')},
         } if rec else None,
     }
 
