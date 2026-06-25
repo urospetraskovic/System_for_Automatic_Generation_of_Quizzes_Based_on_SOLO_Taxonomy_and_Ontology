@@ -32,16 +32,19 @@ if not exist "%ROOT%frontend\node_modules" (
     exit /b 1
 )
 
-if not exist "%ROOT%ollama.ps1" (
-    echo [ERROR] ollama.ps1 not found in %ROOT%
-    pause
-    exit /b 1
-)
+REM Ollama is optional: only needed for local LLM generation. Detect it; skip if absent.
+set "OLLAMA_EXE="
+if exist "%USERPROFILE%\AppData\Local\Programs\Ollama\ollama.exe" set "OLLAMA_EXE=1"
+if exist "%ProgramFiles%\Ollama\ollama.exe" set "OLLAMA_EXE=1"
 
 REM --- Launch services in their own console windows ---
 
-echo [1/3] Starting Ollama (port 11435)...
-start "Ollama"  powershell.exe -NoExit -NoProfile -ExecutionPolicy Bypass -File "%ROOT%ollama.ps1" serve
+if defined OLLAMA_EXE (
+    echo [1/3] Starting Ollama on port 11435...
+    start "Ollama"  powershell.exe -NoExit -NoProfile -ExecutionPolicy Bypass -File "%ROOT%ollama.ps1" serve
+) else (
+    echo [1/3] Ollama not installed - skipping. Local generation disabled; rest of the app runs normally.
+)
 
 echo [2/3] Starting backend (Flask API on :5000)...
 start "Backend" cmd /k "cd /d "%ROOT%backend" && "%ROOT%backend\venv\Scripts\python.exe" app.py"
