@@ -12,11 +12,12 @@ su naši validatori dobro podešeni. Ova grupa ruta nudi:
   * /eduqg/evaluate   pokretanje evaluacije jednog ekspertskog pitanja uživo
 """
 
+import io
 import json
 import os
 import sqlite3
 
-from flask import Blueprint, jsonify, request, g
+from flask import Blueprint, jsonify, request, g, send_file
 
 eduqg_bp = Blueprint('eduqg', __name__, url_prefix='/api')
 
@@ -321,6 +322,104 @@ def eduqg_questions():
         'book': book, 'total': total, 'offset': offset, 'limit': limit,
         'questions': [_question_view(qid, ds[qid], store) for qid in page],
     }), 200
+
+
+# ---------------------------------------------------------- izvorni materijal
+
+# fpdf2 core fonts speak Latin-1; map the few typographic chars that appear in
+# the OpenStax prose down to ASCII so generation gets clean input and the PDF
+# never errors on an out-of-range glyph.
+_TYPO_MAP = {
+    '“': '"', '”': '"', '‘': "'", '’': "'",
+    '–': '-', '—': '-', '…': '...', '•': '-',
+    ' ': ' ', '−': '-', 'ﬁ': 'fi', 'ﬂ': 'fl',
+}
+
+
+def _latinize(text):
+    if not text:
+        return ''
+    for k, v in _TYPO_MAP.items():
+        text = text.replace(k, v)
+    # Whatever still falls outside Latin-1 becomes '?' rather than crashing fpdf.
+    return text.encode('latin-1', 'replace').decode('latin-1')
+
+
+def _chapter_sort_key(ch):
+    try:
+        return (0, int(ch))
+    except (TypeError, ValueError):
+        return (1, str(ch))
+
+
+def _build_pilot_source_pdf():
+    """Assemble the source passages of the evaluated pilot set into one PDF,
+    grouped book -> chapter, with each distinct passage written once. Headings
+    give the lesson parser natural section boundaries."""
+    from collections import defaultdict
+    from fpdf import FPDF
+
+    store = _load_store()
+    ds = _dataset()
+
+    by_book = defaultdict(lambda: defaultdict(list))
+    seen = set()
+    n_passages = 0
+    for qid in store:
+        it = ds.get(qid)
+        if not it:
+            continue
+        ctx = (it.get('context') or '').strip()
+        if not ctx or ctx in seen:
+            continue
+        seen.add(ctx)
+        by_book[it['book']][it['chapter']].append(ctx)
+        n_passages += 1
+
+    pdf = FPDF()
+    pdf.set_auto_page_break(True, margin=15)
+    pdf.set_title('EduQG pilot - izvorni materijal')
+
+    pdf.add_page()
+    pdf.set_font('Helvetica', 'B', 18)
+    pdf.multi_cell(0, 10, 'EduQG pilot - izvorni materijal')
+    pdf.ln(2)
+    pdf.set_font('Helvetica', '', 11)
+    pdf.multi_cell(0, 6, _latinize(
+        f'Izvorni pasusi (hl_context) iz kojih su izvedena ekspertska pitanja '
+        f'evaluiranog pilot skupa. {n_passages} jedinstvenih pasusa iz '
+        f'{len(by_book)} OpenStax udzbenika. Sluzi kao ulaz za generisanje '
+        f'sopstvenih pitanja i poredjenje sa EduQG pitanjima.'
+    ))
+
+    for book in sorted(by_book):
+        pdf.add_page()
+        pdf.set_font('Helvetica', 'B', 15)
+        pdf.multi_cell(0, 9, _latinize(book.replace('_', ' ')))
+        pdf.ln(1)
+        for chapter in sorted(by_book[book], key=_chapter_sort_key):
+            pdf.set_font('Helvetica', 'B', 12)
+            pdf.multi_cell(0, 7, _latinize(f'Poglavlje {chapter}'))
+            pdf.ln(1)
+            pdf.set_font('Helvetica', '', 11)
+            for ctx in by_book[book][chapter]:
+                pdf.multi_cell(0, 6, _latinize(ctx))
+                pdf.ln(3)
+
+    return bytes(pdf.output()), n_passages, len(by_book)
+
+
+@eduqg_bp.route('/eduqg/pilot-source-pdf', methods=['GET'])
+def eduqg_pilot_source_pdf():
+    """Download the evaluated pilot set's source material as a single PDF,
+    ready to upload back into the lesson pipeline for question generation."""
+    pdf_bytes, _n, _b = _build_pilot_source_pdf()
+    buf = io.BytesIO(pdf_bytes)
+    buf.seek(0)
+    return send_file(
+        buf, mimetype='application/pdf', as_attachment=True,
+        download_name='eduqg_pilot_source.pdf',
+    )
 
 
 @eduqg_bp.route('/eduqg/evaluate', methods=['POST'])

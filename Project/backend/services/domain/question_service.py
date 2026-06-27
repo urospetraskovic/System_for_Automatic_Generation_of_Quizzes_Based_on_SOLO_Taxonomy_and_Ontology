@@ -35,14 +35,11 @@ class QuestionService:
         
         # Ensure lesson_ids are integers
         lesson_ids = [int(lid) for lid in lesson_ids]
-        
-        # Check for extended_abstract - requires 2 lessons
-        if 'extended_abstract' in solo_levels and len(lesson_ids) < 2:
-            return {
-                'error': 'Extended abstract questions require at least 2 lessons',
-                'status': 400
-            }
-        
+
+        # Extended abstract works with a single lesson (synthesis is anchored on
+        # within-lesson ontology relationships) and benefits from a second lesson
+        # when one is supplied (cross-topic transfer). No 2-lesson requirement.
+
         try:
             # Get lesson content
             lessons_data = []

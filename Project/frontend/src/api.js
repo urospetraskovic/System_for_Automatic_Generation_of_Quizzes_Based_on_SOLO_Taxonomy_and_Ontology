@@ -240,6 +240,7 @@ export const eduqgApi = {
   questions: (book, offset = 0, limit = 25) =>
     apiClient.get('/eduqg/questions', { params: { book, offset, limit } }),
   evaluate: (eduqgId) => apiClient.post('/eduqg/evaluate', { eduqg_id: eduqgId }, { timeout: 60000 }),
+  pilotSourcePdfUrl: () => `${API_URL}/eduqg/pilot-source-pdf`,
 };
 
 // ==================== ERROR HANDLING ====================

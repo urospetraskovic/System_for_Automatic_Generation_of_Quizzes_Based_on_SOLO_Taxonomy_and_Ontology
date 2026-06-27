@@ -28,33 +28,15 @@ function QuestionGenerator({ course, onQuestionsGenerated, onSuccess, onError })
   }, [course]);
 
   const handleLessonToggle = (lessonId) => {
-    setSelectedLessons(prev => {
-      if (prev.includes(lessonId)) {
-        return prev.filter(id => id !== lessonId);
-      } else {
-        // For extended abstract, allow max 2 lessons
-        if (prev.length >= 2 && soloLevels.extended_abstract) {
-          onError('For Extended Abstract questions, select exactly 2 lessons');
-          return prev;
-        }
-        return [...prev, lessonId];
-      }
-    });
+    setSelectedLessons(prev => (
+      prev.includes(lessonId)
+        ? prev.filter(id => id !== lessonId)
+        : [...prev, lessonId]
+    ));
   };
 
   const handleSoloLevelToggle = (level) => {
-    setSoloLevels(prev => {
-      const newState = { ...prev, [level]: !prev[level] };
-      
-      // If enabling extended_abstract, ensure 2 lessons are selected
-      if (level === 'extended_abstract' && !prev[level]) {
-        if (selectedLessons.length < 2) {
-          onError('Extended Abstract requires 2 lessons. Please select another lesson.');
-        }
-      }
-      
-      return newState;
-    });
+    setSoloLevels(prev => ({ ...prev, [level]: !prev[level] }));
   };
 
   // Shared poll-until-done helper used by all three generation modes.
@@ -107,11 +89,6 @@ function QuestionGenerator({ course, onQuestionsGenerated, onSuccess, onError })
 
     if (activeLevels.length === 0) {
       onError('Please select at least one SOLO level');
-      return;
-    }
-
-    if (soloLevels.extended_abstract && selectedLessons.length < 2) {
-      onError('Extended Abstract questions require 2 lessons selected');
       return;
     }
 
@@ -216,7 +193,7 @@ function QuestionGenerator({ course, onQuestionsGenerated, onSuccess, onError })
       unistructural: 'From Learning Objects - identify, name, define single facts',
       multistructural: 'From Sections - list, describe, enumerate multiple facts',
       relational: 'From Sections + Learning Objects - compare, explain, relate',
-      extended_abstract: 'From 2 Lessons combined - generalize, create, hypothesize'
+      extended_abstract: 'From 1 lesson (within-topic synthesis) or 2 lessons combined - generalize, create, hypothesize'
     };
     return descriptions[level] || '';
   };
@@ -261,7 +238,7 @@ function QuestionGenerator({ course, onQuestionsGenerated, onSuccess, onError })
             <p className="selection-info">
               {selectedLessons.length} lesson(s) selected
               {soloLevels.extended_abstract && selectedLessons.length === 2 && (
-                <span className="good"> - Ready for Extended Abstract</span>
+                <span className="good"> - cross-topic Extended Abstract enabled</span>
               )}
             </p>
           )}
@@ -280,7 +257,7 @@ function QuestionGenerator({ course, onQuestionsGenerated, onSuccess, onError })
             {Object.entries(soloLevels).map(([level, active]) => (
               <div
                 key={level}
-                className={`solo-level-card ${active ? 'active' : ''} ${level === 'extended_abstract' && selectedLessons.length < 2 ? 'disabled' : ''}`}
+                className={`solo-level-card ${active ? 'active' : ''}`}
                 onClick={() => handleSoloLevelToggle(level)}
               >
                 <div className="solo-header">
@@ -289,7 +266,7 @@ function QuestionGenerator({ course, onQuestionsGenerated, onSuccess, onError })
                 </div>
                 <p className="solo-desc">{getSoloLevelDescription(level)}</p>
                 {level === 'extended_abstract' && (
-                  <span className="solo-note">Requires 2 lessons</span>
+                  <span className="solo-note">2 lessons = cross-topic (optional)</span>
                 )}
               </div>
             ))}

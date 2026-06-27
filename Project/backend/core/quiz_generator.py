@@ -57,7 +57,11 @@ class SoloQuizGeneratorLocal:
         # which catches "different wording, same anchor + same answer".
         self._generated_question_hashes: Set[str] = set()
         self._generated_answer_keys: Set[str] = set()
-    
+        # Token sets of long stems already generated, for near-duplicate
+        # detection (scenario questions worded slightly differently). Only
+        # applied to long stems to avoid false positives on short MCQ items.
+        self._generated_stem_tokens: List[Set[str]] = []
+
     def _test_ollama_connection(self) -> bool:
         """Test if Ollama server is responding"""
         try:
@@ -113,6 +117,19 @@ class SoloQuizGeneratorLocal:
             print(f"[QuizGenerator-Local] Duplicate question detected (same anchor + correct answer): {key}")
             return False
 
+        # Near-duplicate scenario check: long stems that share most of their
+        # vocabulary are variations of the same item even when the anchor and
+        # correct answer differ (the EA failure mode). Guarded to long stems so
+        # short factual questions don't trip it.
+        tokens = self._stem_tokens(text)
+        if len(tokens) >= 12:
+            for seen in self._generated_stem_tokens:
+                inter = len(tokens & seen)
+                union = len(tokens | seen) or 1
+                if inter / union >= 0.7:
+                    print(f"[QuizGenerator-Local] Near-duplicate question detected (stem overlap)")
+                    return False
+
         return True
 
     def _register_question(self, question: Dict[str, Any]) -> None:
@@ -123,6 +140,14 @@ class SoloQuizGeneratorLocal:
         key = self._answer_key(question)
         if key:
             self._generated_answer_keys.add(key)
+        tokens = self._stem_tokens(text)
+        if len(tokens) >= 12:
+            self._generated_stem_tokens.append(tokens)
+
+    @staticmethod
+    def _stem_tokens(text: str) -> Set[str]:
+        """Normalized word-token set of a question stem for overlap comparison."""
+        return set(re.findall(r'\w+', (text or '').lower()))
     
     def _call_ollama(
         self,
@@ -205,6 +230,7 @@ class SoloQuizGeneratorLocal:
         # Reset question tracking for this generation session
         self._generated_question_hashes.clear()
         self._generated_answer_keys.clear()
+        self._generated_stem_tokens.clear()
         
         generated_questions = []
         primary_lesson = lessons_data[0] if lessons_data else None
@@ -704,37 +730,10 @@ TARGET CONCEPT:
         
         lesson_title = lesson.get('title', 'Lesson')
         
-        # Get key concepts + source excerpts from primary lesson
-        concepts_primary = []
-        primary_excerpts = []
-        for section in lesson.get('sections', []):
-            for lo in section.get('learning_objects', [])[:4]:
-                concepts_primary.append(f"- {lo.get('title', '')}: {lo.get('description', '')[:150]}")
-            if section.get('content'):
-                primary_excerpts.append(section.get('content', '')[:600])
-
-        concepts_text = "\n".join(concepts_primary[:15])
-        primary_source = "\n\n".join(primary_excerpts)[:2000]
-
-        # Get concepts from secondary lesson if provided
-        concepts_secondary_text = ""
-        secondary_title = ""
-        secondary_source = ""
-        if secondary_lesson:
-            secondary_title = secondary_lesson.get('title', 'Lesson 2')
-            concepts_secondary = []
-            secondary_excerpts = []
-            for section in secondary_lesson.get('sections', []):
-                for lo in section.get('learning_objects', [])[:4]:
-                    concepts_secondary.append(f"- {lo.get('title', '')}: {lo.get('description', '')[:150]}")
-                if section.get('content'):
-                    secondary_excerpts.append(section.get('content', '')[:600])
-            secondary_concepts = "\n".join(concepts_secondary[:15])
-            concepts_secondary_text = f"\n\nSECONDARY TOPIC ({secondary_title}) CONCEPTS:\n{secondary_concepts}"
-            secondary_source = "\n\n".join(secondary_excerpts)[:2000]
-        
-        # Pick a relationship to anchor the synthesis on. Prefer one that spans both lessons.
         all_lessons = [lesson] + ([secondary_lesson] if secondary_lesson else [])
+
+        # Build the relationship pools up front: both focus-section selection and
+        # anchor choice depend on them.
         primary_titles = {
             lo.get('title')
             for s in lesson.get('sections', [])
@@ -754,15 +753,86 @@ TARGET CONCEPT:
             r for r in (self.ontology_relationships or [])
             if r.get('source_title') in primary_titles and r.get('target_title') in primary_titles
         ]
-        rel_pool = cross_rels or within_rels
+
+        # Rotate the focus section by lo_offset so consecutive attempts cover
+        # DIFFERENT topics instead of always drawing from the first sections of
+        # the lesson (which is what made every EA question come out identical).
+        primary_sections = [s for s in lesson.get('sections', []) if s.get('learning_objects')] \
+            or lesson.get('sections', [])
+        focus_section = primary_sections[lo_offset % len(primary_sections)] if primary_sections else None
+        focus_titles = {
+            lo.get('title')
+            for lo in (focus_section.get('learning_objects', []) if focus_section else [])
+        }
+
+        # Anchor selection: a cross-lesson spanning relationship when a second
+        # lesson is present; otherwise a within-lesson relationship that actually
+        # INVOLVES the focus section, so the stated anchor matches the content.
+        if cross_rels:
+            rel_pool = cross_rels
+        else:
+            focus_rels = [
+                r for r in within_rels
+                if r.get('source_title') in focus_titles or r.get('target_title') in focus_titles
+            ]
+            rel_pool = focus_rels or within_rels
         ea_rel = rel_pool[lo_offset % len(rel_pool)] if rel_pool else None
+
+        # Assemble primary content from the focus section plus the section(s) the
+        # anchor points to, giving the model cohesive, on-topic material.
+        content_sections: List[Dict[str, Any]] = []
+        seen_section_ids = set()
+
+        def _add_section(sec):
+            if sec and sec.get('id') not in seen_section_ids:
+                seen_section_ids.add(sec.get('id'))
+                content_sections.append(sec)
+
+        _add_section(focus_section)
+        if ea_rel:
+            for t in (ea_rel.get('source_title', ''), ea_rel.get('target_title', '')):
+                info = self._find_lo_by_title(all_lessons, t)
+                if info and info.get('section'):
+                    _add_section(info['section'])
+        for s in primary_sections:  # ensure 2+ sections for synthesis breadth
+            if len(content_sections) >= 2:
+                break
+            _add_section(s)
+
+        concepts_primary = []
+        primary_excerpts = []
+        for section in content_sections:
+            for lo in section.get('learning_objects', [])[:5]:
+                concepts_primary.append(f"- {lo.get('title', '')}: {lo.get('description', '')[:150]}")
+            if section.get('content'):
+                primary_excerpts.append(section.get('content', '')[:600])
+        concepts_text = "\n".join(concepts_primary[:15])
+        primary_source = "\n\n".join(primary_excerpts)[:2000]
+
+        # Get concepts from secondary lesson if provided
+        concepts_secondary_text = ""
+        secondary_title = ""
+        secondary_source = ""
+        if secondary_lesson:
+            secondary_title = secondary_lesson.get('title', 'Lesson 2')
+            concepts_secondary = []
+            secondary_excerpts = []
+            for section in secondary_lesson.get('sections', []):
+                for lo in section.get('learning_objects', [])[:4]:
+                    concepts_secondary.append(f"- {lo.get('title', '')}: {lo.get('description', '')[:150]}")
+                if section.get('content'):
+                    secondary_excerpts.append(section.get('content', '')[:600])
+            secondary_concepts = "\n".join(concepts_secondary[:15])
+            concepts_secondary_text = f"\n\nSECONDARY TOPIC ({secondary_title}) CONCEPTS:\n{secondary_concepts}"
+            secondary_source = "\n\n".join(secondary_excerpts)[:2000]
+
+        # Build the anchor metadata + prompt block from the chosen relationship.
         ea_rel_tags = None
         ea_anchor_section_id = None
         ea_anchor_lo_id = None
         ea_rel_block = ""
         if ea_rel:
             src_info = self._find_lo_by_title(all_lessons, ea_rel.get('source_title', ''))
-            tgt_info = self._find_lo_by_title(all_lessons, ea_rel.get('target_title', ''))
             ea_anchor_lo_id = (src_info or {}).get('lo', {}).get('id')
             ea_anchor_section_id = (src_info or {}).get('section', {}).get('id')
             ea_rel_block = (

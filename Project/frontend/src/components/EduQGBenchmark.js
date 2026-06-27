@@ -304,6 +304,28 @@ function EduQGBenchmark() {
         </p>
       </div>
 
+      {/* round-trip: generisanje iz istog izvornog materijala */}
+      <div style={{ background: '#fbf7f0', border: `1px solid ${GOLD}55`, borderRadius: 12, padding: 16, marginBottom: 20 }}>
+        <div style={{ fontWeight: 700, color: '#7a5b3a', marginBottom: 6 }}>
+          Generiši svoja pitanja iz istog materijala
+        </div>
+        <p style={{ fontSize: '0.9rem', color: 'var(--neutral-700)', margin: '0 0 10px', lineHeight: 1.55 }}>
+          Preuzmi izvorne pasuse (hl_context) iz kojih su izvedena ekspertska pitanja evaluiranog
+          pilot skupa, spojene u jedan PDF i grupisane po udžbeniku i poglavlju. Otpremi taj PDF kao
+          lekciju, parsiraj ga u sekcije i ishode učenja, pa generiši sopstvena pitanja — tako možeš
+          direktno uporediti svoja pitanja sa EduQG ekspertskim za isti izvorni tekst.
+        </p>
+        <a
+          href={eduqgApi.pilotSourcePdfUrl()}
+          style={{
+            display: 'inline-block', background: GOLD, color: '#fff', textDecoration: 'none',
+            padding: '8px 16px', borderRadius: 8, fontSize: '0.88rem', fontWeight: 600,
+          }}
+        >
+          Preuzmi izvorni materijal (PDF)
+        </a>
+      </div>
+
       {/* uporedive metrike */}
       <h3 style={{ fontSize: '1rem', color: 'var(--neutral-700)', margin: '0 0 6px' }}>
         Uporedive metrike: naša pitanja vs ekspertska
