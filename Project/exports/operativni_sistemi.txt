@@ -1,0 +1,2460 @@
+//pitanja za test iz Operativnih sistema
+*1
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je proces u operativnom sistemu?
++Aktivna instanca programa u izvršavanju
+-Skup instrukcija napisanih u programskom jeziku
+-Fizička memorija računara namenjena programima
+-Algoritam za upravljanje datotekama na disku
+.
+
+*2
+//kognitivni nivo: 2 (unistructural)
+/t
+Koja je glavna tema sadržaja naslova '03 - Procesi' u okviru Principi organizacije i dizajna OS?
+-Arhitektura procesorskog jezgra
++Upravljanje procesima u operativnom sistemu
+-Upravljanje memorijom i keš memorijom
+-Dizajn ulazno-izlaznih operacija
+.
+
+*3
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je proces prema definiciji iz materijala o upravljanju aplikacijama?
+-Fizička komponenta procesora koja omogućava paralelno izvršavanje više aplikacija
+-Skup naredbi koje računar izvršava sekvencijalno bez prekida
+-Memorijska lokacija gde OS čuva podatke o svim aktivnim aplikacijama
++Primerak programa koji se izvršava u računaru sa tekućim stanjem i dodeljenim resursima
+.
+
+*4
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je proces u kontekstu savremenih operativnih sistema?
+-Skup naredbi koje se izvršavaju sekvencijalno bez prekida
+-Hardverska komponenta zadužena za upravljanje resursima
+-Memorijska lokacija gde se čuvaju podaci aplikacije
++Primerak programa koji se izvršava u računaru i entitet koji se može dodeliti procesoru
+.
+
+*5
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je proces prema definiciji iz lekcije?
+-Program koji je instaliran na računaru
+-Memorijska lokacija gde se čuvaju podaci
+-Skup naredbi koje čeka na izvršavanje
++Primerak programa koji se izvršava u računaru
+.
+
+*6
+//kognitivni nivo: 2 (unistructural)
+/t
+Definiši proces kao jedinicu aktivnosti u računaru.
++Jedinica aktivnosti koju karakterišu naredbe za izvršavanje, tekuće stanje i dodeljeni sistemski resursi
+-Memorijska lokacija gde se čuvaju sve aplikacije
+-Program koji je pohranjen na disku i čeka pokretanje
+-Skup instrukcija koje procesor izvršava u jednoj sekundi
+.
+
+*7
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je proces prema definiciji u operativnom sistemu?
++Entitet koji se može dodeliti i izvršavati u procesoru
+-Uređaj za obradu podataka
+-Program pohranjen na disk memoriji
+-Skup naredbi koje korisnik unosi
+.
+
+*8
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je proces prema definiciji iz izvora?
+-Program koji se nalazi na disku i čeka da bude pokrenut
++Primerak programa koji se izvršava u računaru
+-Memorijska lokacija gde se čuvaju podaci aplikacije
+-Skup instrukcija koje procesor izvršava sekvencijalno
+.
+
+*9
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je proces prema definiciji u lekciji?
+-Skup naredbi pohranjen na hard disku
++Primerak programa koji se izvršava u računaru
+-Program koji je trajno instaliran na računaru
+-Komponenta procesora zadužena za izvršavanje
+.
+
+*10
+//kognitivni nivo: 2 (unistructural)
+/t
+Navedi četiri zahteva koje operativni sistem mora zadovoljiti pri upravljanju procesima.
+-Keširanje podataka, virtualizacija, load balancing, upravljanje baterijom
+-Kompiliranje koda, optimizacija memorije, mrežna komunikacija, logovanje grešaka
++Preplitanje izvršavanja, dodela resursa, deljenje informacija, sinhronizacija
+-Upravljanje fajlovima, kontrola pristupa, raspodela CPU-a, obrada prekida
+.
+
+*11
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je programski kod kao element procesa?
+-Jedinica aktivnosti koja se deli između korisnika
+-Tekuće stanje izvršavanja u procesoru
+-Skup sistemskih resursa dodeljenih procesu
++Naredbe koje definiše šta proces treba da uradi
+.
+
+*12
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta karakteriše tekuće stanje u procesu?
+-Naredbe za upravljanje memorijom računara
+-Skup sistemskih resursa dodeljenih procesu
+-Programski kod koji proces treba da izvrši
++Deo elemenata procesa koji označava trenutno stanje izvršavanja
+.
+
+*13
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta čini jedinicu aktivnosti u procesu prema definiciji iz izvora?
++Naredbe za izvršavanje, tekuće stanje i dodeljeni skup sistemskih resursa
+-Samo programski kod koji se izvršava
+-Memorija i procesorsko vreme dodelјeni od OS
+-Redosled izvršavanja instrukcija u procesoru
+.
+
+*14
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta proces treba da uradi prema definiciji elemenata procesa?
+-Preplitanje izvršavanja
+-Tekuće stanje
+-Dodeljeni skup sistemskih resursa
++Programski kod
+.
+
+*15
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je proces u računaru?
+-Program koji se čuva na disku i čeka da bude pokrenut
+-Skup instrukcija koje procesor čuva u memoriji za budnu upotrebu
+-Operativni sistem koji upravlja svim resursima računara
++Primerak programa koji se izvršava u računaru i entitet dodeljen procesoru
+.
+
+*16
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta sadrži Upravljački blok procesa (UBP)?
+-Listu dostupnih sistemskih resursa
+-Samo programski kod koji se izvršava
+-Samo vrednosti procesorskih registara
++Atribute procesa koje OS upravlja
+.
+
+*17
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je programski brojač u kontekstu atributa procesa?
+-Identifikator koji jednoznačno označava proces u sistemu
++Adresa sledeće instrukcije u programskom kodu
+-Skup podataka koji proces koristi tokom izvršavanja
+-Prioritet dodeljen procesu od strane operativnog sistema
+.
+
+*18
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je Upravljački blok procesa (UBP)?
+-Skup instrukcija koje procesor izvršava tokom rada procesa
++Struktura koja sadrži atribute procesa koje upravlja OS
+-Memorijski prostor namenjen samo za programski kod
+-Uređaj zadužen za deljenje resursa između procesa
+.
+
+*19
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta predstavlja trag procesa?
++Niz instrukcija koje proces izvršava čime je predstavljeno ponašanje procesa
+-Identifikator koji OS dodeljuje svakom procesu
+-Skup atributa koji opisuju stanje procesa
+-Memorijski blok namenjen čuvanju podataka procesa
+.
+
+*20
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je jedan od zahteva OS pri upravljanju procesima?
+-Sprečavanje pristupa operativnom sistemu korisnicima
+-Automatsko brisanje svih procesa nakon izvršavanja
+-Povećanje brzine procesora tokom izvršavanja
++Deljenje i razmena informacija između procesa
+.
+
+*21
+//kognitivni nivo: 2 (unistructural)
+/t
+Navedi jedan od osnovnih zahteva koje operativni sistem mora zadovoljiti pri upravljanju procesima.
++Preplitanje izvršavanja više procesa
+-Isključivanje pristupa mrežnim resursima
+-Brisanje podataka procesa
+-Kompajliranje programskog koda
+.
+
+*22
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta proces treba da uradi prema definiciji programskog koda kao elementa procesa?
+-Opisuje stanje procesa tokom izvršavanja
+-Upravlja dodelom resursa između više procesa
++Definiše šta proces treba da uradi
+-Čuva dodatne informacije za upravljanje
+.
+
+*23
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta atributi procesa opisuju?
+-Zahteve OS pri upravljanju procesima
+-Programski kod koji proces izvršava
+-Skup podataka nad kojima se posao izvršava
++Trenutno stanje procesa
+.
+
+*24
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je preplitanje izvršavanja više procesa?
+-Dodela resursa procesima i zaštita od nekontrolisanog pristupa
+-Sinhronizacija između procesa tokom njihovog rada
++Zahtev OS da omogući izvršavanje više procesa u naizmeničnom redosledu
+-Deljenje i razmena informacija između procesa
+.
+
+*25
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je jedan od zahteva OS pri upravljanju procesima koji se odnosi na razmenu podataka između više procesa?
+-Preplitanje izvršavanja samo jednog procesa
+-Dodela memorije bez zaštite od pristupa
++Deljenje i razmena informacija između procesa
+-Isključivanje komunikacije između procesa
+.
+
+*26
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta programski kod procesa može biti?
++Deljen između više instanci istog procesa
+-Pohranjen samo u keš memoriji
+-Modifikovan tokom izvršavanja procesa
+-Izvršavan isključivo sekvencijalno
+.
+
+*27
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta predstavlja skup podataka nad kojima se posao procesa izvršava?
+-Atributi koji opisuju stanje procesa
++Radna memorija i informacije koje proces koristi tokom izvršavanja
+-Identifikator i prioritet dodeljen procesu
+-Programski kod koji definiše šta proces treba da uradi
+.
+
+*28
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta od sledećeg predstavlja identifikator, stanje i prioritet u kontekstu atributa procesa?
+-Neobrađeni zahtevi i dodeljeni U/I uređaji
++Specifični atributi koji opisuju stanje procesa
+-Pokazivači na memorijske blokove vezane za proces
+-Elementi programskog koda koji se deli između instanci
+.
+
+*29
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta sadrži programski brojač kao atribut procesa?
+-Identifikator procesa i njegovu prioritetnost
++Adresu sledeće instrukcije u programskom kodu
+-Pokazivače na memorijske blokove i registre
+-Informacije o neobrađenim U/I zahtevima
+.
+
+*30
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta su kontekstni podaci prema atributima procesa?
+-Identifikatori koji jedinstveno označavaju svaki proces u sistemu
+-Pokazivači na memorijske blokove gde se čuva kod i podaci procesa
++Podaci iz registara procesora vezani za trenutno stanje procesa
+-Neobrađeni U/I zahtevi i lista fajlova koje proces koristi
+.
+
+*31
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je identifikator u kontekstu atributa procesa?
+-Informacija o stanju procesora vezana za proces
++Atribut koji jedinstveno označava proces
+-Atribut koji određuje redosled izvršavanja procesa
+-Skup podataka nad kojima se posao izvršava
+.
+
+*32
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta od sledećeg predstavlja atribute koji opisuju stanje procesa?
+-Programski kod koji proces treba da uradi
+-Dodatne instrukcije za rad procesora
+-Skup podataka nad kojima se posao izvršava
++Identifikator, stanje, prioritet i programski brojač
+.
+
+*33
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta su pokazivači na memorijske blokove prema atributima procesa?
++Pokazivači na kod i podatke vezane za proces
+-Adresa sledeće instrukcije u programskom kodu
+-Podaci iz registara procesora vezani za trenutno stanje
+-Neobrađeni U/I zahtevi i dodeljeni U/I uređaji
+.
+
+*34
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta U/I statusne informacije sadrže prema atributima procesa?
+-Adresu sledeće instrukcije u programskom kodu
++Neobrađene U/I zahteve, dodeljene U/I uređaje i listu fajlova
+-Identifikator procesa i njegovu prioritetnost
+-Podatke iz registara procesora vezane za stanje procesa
+.
+
+*35
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je programski brojač kao atribut procesa?
+-Brojač koji prati koliko puta je proces bio prekinut
+-Broj dostupnih procesorskih jezgara za izvršavanje procesa
+-Informacija o broju izvršenih instrukcija tokom životnog ciklusa procesa
++Adresa sledeće instrukcije u programskom kodu
+.
+
+*36
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta su kontekstni podaci u upravljačkom bloku procesa?
+-Pokazivači na memorijske blokove koda i podataka procesa
++Podaci iz registara procesora vezani za trenutno stanje procesa
+-Neobrađeni U/I zahtevi i lista fajlova koje proces koristi
+-Identifikatori i prioriteti procesa dodelјeni od strane OS-a
+.
+
+*37
+//kognitivni nivo: 2 (unistructural)
+/t
+Koje informacije čuvaju U/I statusne informacije kao atributi procesa?
+-Korišćeno procesorsko vreme i vremenska ograničenja
++Neobrađene U/I zahteve, dodeljene U/I uređaje i listu fajlova
+-Podatke iz registara procesora vezane za stanje procesa
+-Adresu sledeće instrukcije i pokazivače na memorijske blokove
+.
+
+*38
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je identifikator procesa?
++Jedinstveni identifikator procesa
+-Podaci iz registara procesora
+-Pokazivač na memorijske blokove
+-Adresa sledeće instrukcije u programskom kodu
+.
+
+*39
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je stanje procesa?
++Trenutno stanje procesa
+-Adresa sledeće instrukcije u programskom kodu
+-Prioritet dodeljen procesu od strane operativnog sistema
+-Identifikator koji jedinstveno određuje proces u sistemu
+.
+
+*40
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je prioritet procesa?
+-Adresa sledeće instrukcije u programskom kodu
+-Neobrađeni U/I zahtevi dodeljeni procesu
+-Pokazivač na memorijske blokove vezane za proces
++Atribut procesa koji određuje redosled izvršavanja
+.
+
+*41
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri nezavisna ključna svojstva koja karakterišu proces u operativnom sistemu.
+-Arhitektura sistema, principi organizacije, upravljanje konkurentnim pristupima
+-Aktivna instanca programa, arhitektura sistema, principi dizajna
+-Memorijska alokacija, prioritet izvršavanja, komunikacija između programa
++Aktivna instanca programa, osnovna jedinica izvršavanja, upravljanje resursima
+.
+
+*42
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri ključne komponente koje karakterišu proces.
+-Naredbe za izvršavanje, memorijska lokacija i procesorska brzina
++Naredbe za izvršavanje, tekuće stanje i dodeljeni skup sistemskih resursa
+-Tekuće stanje, broj aplikacija i efikasnost procesora
+-Dodeljeni resursi, prioritet procesa i vreme izvršavanja
+.
+
+*43
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri nezavisna elementa koja karakterišu proces u izvršavanju.
+-Tekuće stanje, naredbe za izvršavanje i broja otvorenih datoteka
++Programski kod, tekuće stanje i dodeljeni skup sistemskih resursa
+-Dodeljeni resursi, prioritet procesa i redosled izvršavanja
+-Programski kod, memorijska adresa i brzina procesora
+.
+
+*44
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri elementa koja čine proces.
++Programski kod, skup podataka i atributi procesa
+-Upravljački blok procesa, raspoređivač i stanje
+-Memorijski blokovi, U/I uređaji i kontekstni podaci
+-Identifikator, prioritet i programski brojač
+.
+
+*45
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri ključna elementa od kojih se proces sastoji prema zahtevima OS pri upravljanju procesima.
+-Atributi stanja, deljenje resursa, sinhronizacioni mehanizmi
+-Skup podataka, redosled izvršavanja, privilegije pristupa
+-Programski kod, memorijska adresa, identifikator procesa
++Programski kod, skup podataka, atributi koji opisuju stanje procesa
+.
+
+*46
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri atributa procesa koji se čuvaju u operativnom sistemu za upravljanje procesom.
+-Stanje, U/I statusne informacije i registri
+-Kontekstni podaci, pokazivači na kod i procesor
+-Skup podataka, programski kod i memorija
++Programski brojač, identifikator i prioritet
+.
+
+*47
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri atributa procesa koji se čuvaju u upravljačkom bloku procesa (UBP)?
++Identifikator, programski brojač i U/I statusne informacije
+-Stanje, prioritet i računovodstvene informacije
+-Identifikator, stanje i prioritet
+-Programski brojač, prioritet i pokazivači na memorijske blokove
+.
+
+*48
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri komponente koje Upravljački blok procesa (UBP) omogućuje da se čuvaju i upravljaju tokom rada operativnog sistema.
+-Informacije za prekid, procesorske instrukcije, i periferijske uređaje
+-Vrednosti registara, cache memoriju, i prioritete procesa
++Atribute procesa, vrednosti procesorskih registara, i informacije za prekid i nastavak procesa
+-Atribute procesa, memorijske adrese, i redosled instrukcija
+.
+
+*49
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri nezavisna elementa koja se koriste pri praćenju izvršavanja procesa.
+-Ponašanje procesa, stanja procesa i memorijski blok
++Trag procesa, isprepleteni prikaz tragova i raspoređivač
+-Memorijska lokacija, procesorsko vreme i redosled instrukcija
+-Raspoređivač, glavna memorija i programski kod
+.
+
+*50
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri stanja iz modela procesa sa pet stanja koja opisuju različite situacije tijekom životnog ciklusa procesa.
+-Izvršavanje, Blokiran, Izlaz
+-Spreman, Novi, Aktivno
++Izvršavanje, Spreman, Blokiran
+-Novi, Spreman, Izlaz
+.
+
+*51
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri elementa koja OS kreira i koristi pri dodavanju novog procesa.
+-Strukture podataka za upravljanje, greške u programu, i instrukcije roditeljskog procesa
+-Strukture podataka za upravljanje, učitavanje u radnu memoriju, i hijerarhijski odnos sa roditeljskim procesom
+-Učitavanje u radnu memoriju, indikatore za završavanje, i korisničke akcije
++Strukture podataka za upravljanje, učitavanje u radnu memoriju, i mehanizam za završavanje
+.
+
+*52
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri indikatora na osnovu kojih OS može da završi proces.
++Korisnička akcija, greška u programu, instrukcija roditeljskog procesa
+-Memorijska potrošnja, brzina procesora, broj aktivnih procesa
+-Prelazak iz Null stanja, dostizanje Spreman stanja, raspoređivanje
+-Oslobađanje resursa, prihvatanje procesa, kreiranje novog procesa
+.
+
+*53
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri događaja koji izazivaju prelaz procesa iz stanja Izvršavanja u Spreman.
+-Prekidom od strane roditelja, završetkom izvršavanja, pojavom spremnijeg procesa
++Istekom kvantuma, pojavom spremnijeg procesa višeg prioriteta, dobrovoljnim prepuštanjem procesora
+-Zahtevom za U/I operaciju, čekanjem podataka od drugog procesa, istekom kvantuma
+-Istekom kvantuma, čekanjem na događaj, dobrovoljnim prepuštanjem procesora
+.
+
+*54
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri komponente memorije procesa koje se koriste tokom izvršavanja?
+-Upravljački blok procesa, instrukcije i registri procesora
+-Identifikatori procesa, stack i heap memorija
++Programski kod, globalne promenljive i dinamički alocirana memorija
+-Informacije o stanju procesora, privremeni podaci i lokalne promenljive
+.
+
+*55
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri ključna identifikatora procesa koji jednoznačno određuju proces.
+-Jedinstveni identifikator procesa, memorijska lokacija i identifikator roditeljskog procesa
++Jedinstveni identifikator procesa, identifikator roditeljskog procesa i korisnički identifikator
+-Identifikator roditeljskog procesa, programski brojač i korisnički identifikator
+-Jedinstveni identifikator procesa, prioritet i stanje procesa
+.
+
+*56
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri vrste informacija koje upravljački blok procesa čuva o procesu.
+-Privilegije procesa, vremenske žigove i istoriju pristupa memoriji
+-Memorijske segmente, kôd programa i rezultate izvršavanja
++Identifikatore procesa, informacije o stanju procesora i informacije za upravljanje procesom
+-Lokaciju slike procesa, algoritme raspoređivanja i korisnički interfejs
+.
+
+*57
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri nezavisna elementa koja čine identifikatore procesa.
++Jedinstveni identifikator procesa, identifikator roditeljskog procesa i korisnički identifikator
+-Glavna memorija, sekundarna memorija i keš memorija
+-Identifikator procesa, adresa memorije i prioritet procesa
+-Stranice procesa, fizička memorija i virtualna memorija
+.
+
+*58
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri nezavisne informacije koje se koriste za upravljanje procesom prema materijalima o informacijama za raspoređivanje i strukturiranju podataka?
+-Markeri, privilegije i vlasništvo nad resursima
+-Virtuelna memorija, korisnički identifikator i signali
++Stanje procesa, prioritet procesa i red čekanja procesa
+-Tabela stranica, događaji i kontrola resursa
+.
+
+*59
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri nezavisne komponente koje struktura task_struct sadrži za reprezentaciju procesa u Linuxu.
+-sched_entity, privilegije, signali
++state, sched_entity, parent
+-state, children, memorija
+-parent, tabela stranica, markeri
+.
+
+*60
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri komponente koje su sadržane u strukturi task_struct u Linuxu.
+-parent, address space, CPU mode
+-sched_entity, children, kernel
++state, sched_entity, parent
+-state, files, mm_struct
+.
+
+*61
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri karakteristike koje se odnose na režime izvršenja procesora i njihove funkcije.
++Korisnički režim ima manje privilegija, režim kernela omogućava privilegovane instrukcije, sistemski poziv prelazi u režim kernela
+-Korisnički režim omogućava sve instrukcije, režim kernela je samo za OS, sistemski poziv ne menja režim
+-Korisnički režim ima više privilegija, režim kernela je namenjen korisničkim programima, bit u statusnom registru je nepotreban
+-Režim kernela ima manje privilegija, korisnički režim omogućava potpunu kontrolu, promena režima se ne može aktivirati
+.
+
+*62
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri događaja koji pokrenuli komutiranje procesa.
+-Prekid generatora takta, greška memorije i greška u izvršavanju
++Prekid generatora takta, U/I prekid i greška memorije
+-Prekid generatora takta, U/I prekid i čuvanje stanja procesa
+-U/I prekid, greška memorije i čuvanje sadržaja procesora
+.
+
+*63
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri elementa koja OS čuva pri komutaciji procesa?
+-Vrednosti registara, time slice i stanje memorije
+-Programski brojač, vrednosti registara i memorijska adresa
+-Programski brojač, cache memorija i status procesa
++Programski brojač, vrednosti registara i upravljački blok procesa
+.
+
+*64
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi sve korake koji se izvršavaju tokom promene stanja procesa prema redosledu navedenom u lekciji.
+-Ažuriranje upravljačkog bloka, čuvanje sadržaja procesora, prebacivanje u red, izbor procesa, postavljanje registara
++Čuvanje sadržaja procesora, ažuriranje upravljačkog bloka, prebacivanje u red, izbor narednog procesa, ažuriranje izabranog procesa, postavljanje registara
+-Izbor narednog procesa, čuvanje sadržaja procesora, ažuriranje upravljačkog bloka, prebacivanje u red, postavljanje registara
+-Čuvanje sadržaja procesora, prebacivanje u red, ažuriranje upravljačkog bloka, izbor procesa, postavljanje registara
+.
+
+*65
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri karakteristike koje su neophodne za međusobno zavisne procese.
+-Izvršavaju se nezavisno, dele memoriju, ubrzavaju izračunavanje
+-Komuniciraju samo kroz fajlove, ne dele podatke, izvršavaju se paralelno
++Dele podatke, utiču jedni drugima na izvršavanje, sarađuju putem međuprocesne komunikacije
+-Dele podatke, ne utiču jedni drugima, koriste iste registre procesora
+.
+
+*66
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri nezavisna razloga za međuprocesnu komunikaciju između procesa.
+-Modularnost, deljena memorija i logički tokovi izvršavanja
+-Ubrzanje izračunavanja, adresni prostor i razmena poruka
+-Deljenje informacija, sinhronizacija i isključivost
++Deljenje informacija, ubrzanje izračunavanja i modularnost
+.
+
+*67
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri karakteristike koje razlikuju dva osnovna načina međuprocesne komunikacije.
++Deljena memorija koristi adresni prostor, razmena poruka koristi send() i receive() operacije, i deljena memorija zahteva sinhronizaciju
+-Razmena poruka zahteva adresni prostor, deljena memorija koristi send() operacije, i oba koriste identičan format podataka
+-Razmena poruka je brža, deljena memorija je sigurnija, i oba načina koriste istu memorijsku lokaciju
+-Deljena memorija ne zahteva kreiranje regiona, razmena poruka koristi eksplicitnu memoriju, i oba su jednako jednostavna
+.
+
+*68
+//kognitivni nivo: 4 (relational)
+/t
+Kako deljenje procesora između aplikacija doprinosi osnovnoj funkciji operativnog sistema u upravljanju izvršavanjem aplikacija?
++Omogućava da resursi budu dostupni za više aplikacija i da se procesor i U/I uređaji koriste efikasno
+-Povećava brzinu izvršavanja svake aplikacije jer ona koristi ceo kapacitet procesora u svakom trenutku
+-Omogućava da procesor izvršava samo jednu aplikaciju istovremeno, čime se izbegavaju konflikti između aplikacija
+-Sprečava da operativni sistem upravlja memorijom, što je zadatak koji pripada samim aplikacijama
+.
+
+*69
+//kognitivni nivo: 4 (relational)
+/t
+Kako stanje procesa funkcioniše kao atribut koji OS koristi pri upravljanju procesom?
+-Stanje procesa čuva programski kod koji proces treba da izvrši
+-Stanje procesa sadrži pokazivače na memorijske blokove dodeljene procesu
+-Stanje procesa određuje identitet procesa i omogućava OS da ga jedinstveno identifikuje
++Stanje procesa pokazuje gde se proces nalazi u izvršavanju i omogućava OS da prati njegov napredak
+.
+
+*70
+//kognitivni nivo: 4 (relational)
+/t
+Kako pokazivači na memorijske blokove doprinose funkcionalnosti atributa procesa?
+-Omogućavaju OS-u da određuje prioritet izvršavanja procesa
++Omogućavaju OS-u da locira kod i podatke vezane za proces koji se izvršava
+-Omogućavaju OS-u da prati sledeću instrukciju koju proces treba da izvrši
+-Omogućavaju OS-u da sprečava neovlašćeni pristup resursima drugih procesa
+.
+
+*71
+//kognitivni nivo: 4 (relational)
+/t
+Zašto je razumevanje osnovnog koncepta procesa kao aktivne instance programa neophodna osnova za formalnu definiciju procesa u operativnom sistemu?
+-Jer se formalna definicija temelji na karakteristikama koje proizilaze iz koncepta programa u izvršavanju
+-Jer procesor može dodeliti resurse samo onim entitetima koji su prvo razumevani kao aktivne instance
++Jer formalnu definiciju čine naredbe za izvršavanje, tekuće stanje i dodeljeni sistemski resursi koji se mogu razumeti samo ako se zna šta je aktivna instanca
+-Jer upravljanje resursima zahteva da se procesi prvo definišu kao konkurentne jedinice izvršavanja
+.
+
+*72
+//kognitivni nivo: 4 (relational)
+/t
+Zašto savremeni operativni sistemi koriste model procesa umesto da direktno izvršavaju aplikacije?
+-Jer je model procesa stariji pristup koji je OS zadržao iz istorijskih razloga
+-Jer procesi sprečavaju da aplikacije koriste memoriju i ulazno-izlazne uređaje
+-Jer se procesor automatski zaustavlja kad se izvršava više od jedne aplikacije istovremeno
++Jer omogućava da se resursi dostave više aplikacijama i da se procesor deli između njih na strukturiran način
+.
+
+*73
+//kognitivni nivo: 4 (relational)
+/t
+Kako model procesa u savremenim operativnim sistemima omogućava da se proces definiše kao entitet dodeliv procesoru?
+-Jer model procesa zahteva da svaka aplikacija ima tačno jedan proces sa sopstvenim naredbama za izvršavanje
+-Jer model procesa omogućava efikasno korišćenje procesora kroz deljenje između više aplikacija bez definisanja jedinica izvršavanja
++Jer model procesa utvrđuje da izvršavanje aplikacije odgovara postojanju jednog ili više procesa koje procesor može dodeliti i izvršavati
+-Jer model procesa direktno određuje tekuće stanje i dodeljeni skup sistemskih resursa svakog programa
+.
+
+*74
+//kognitivni nivo: 4 (relational)
+/t
+Zašto je neophodno prvo razumeti da je proces primerak programa u izvršavanju pre nego što se proučavaju njegove tri ključne karakteristike?
+-Jer tekuće stanje procesa zavisi od broja dostupnih resursa u sistemu
++Jer se karakteristike procesa mogu razumeti samo ako znamo šta je proces kao entitet koji se izvršava u procesoru
+-Jer procesor ne može dodeliti resurse procesima koji nisu definirani kao programi
+-Jer naredbe za izvršavanje postoje samo u programima koji se izvršavaju istovremeno
+.
+
+*75
+//kognitivni nivo: 4 (relational)
+/t
+Kako deljenje procesora između više aplikacija utiče na efikasnu upotrebu sistemskih resursa?
++Deljenje procesora omogućava da procesor i U/I uređaji budu korišćeni efikasno umesto da ostanu neiskorišćeni
+-Deljenje procesora povećava efikasnost jer više aplikacija može istovremeno pristupiti procesoru bez čekanja
+-Deljenje procesora omogućava da svaka aplikacija dobije potpunu kontrolu nad resursima tokom svog izvršavanja
+-Deljenje procesora smanjuje broj dostupnih resursa jer se procesor mora deliti između konkurentnih procesa
+.
+
+*76
+//kognitivni nivo: 4 (relational)
+/t
+Zašto je razumevanje definicije i karakteristika procesa neophodan preduslov za razumevanje zahteva OS pri upravljanju procesima?
+-Jer karakteristike procesa određuju brzinu izvršavanja programa u računaru
++Jer se zahtevi OS mogu primenjivati samo na entitete koji su karakterisani naredbama za izvršavanje, stanjem i dodeljenim resursima
+-Jer OS zahtevi za dodelu resursa zavise od toga što se proces deli između različitih aplikacija
+-Jer preplitanje izvršavanja zahteva da procesor bude dovoljan za sve procese
+.
+
+*77
+//kognitivni nivo: 4 (relational)
+/t
+Kako zahtev OS-a za deljenje i razmenu informacija između procesa utiče na strukturu elemenata procesa?
+-Dodela resursa čini programski kod specifičnim za svaki proces
+-Zaštita resursa sprečava deljenje programskog koda između procesa
+-Tekuće stanje procesa postaje nepotrebno jer se sve informacije dele
++Programski kod mora biti deljen između procesa jer OS zahteva razmenu informacija
+.
+
+*78
+//kognitivni nivo: 4 (relational)
+/t
+Kako deljenje procesora između više aplikacija doprinosi efikasnoj upotrebi resursa u operativnom sistemu?
+-Povećava brzinu izvršavanja svake pojedinačne aplikacije
+-Sprečava da memorija bude dodeljena različitim procesima istovremeno
++Omogućava da procesor i U/I uređaji budu korišćeni efikasno umesto da ostanu neiskorišćeni dok čeka jedna aplikacija
+-Smanjuje broj procesa koji se mogu izvršavati na računaru
+.
+
+*79
+//kognitivni nivo: 4 (relational)
+/t
+Kako deljenje procesora između više aplikacija omogućava da resursi budu dostupni svim aplikacijama istovremeno?
+-Jer procesor fizički duplira resurse za svaku aplikaciju
+-Jer aplikacije same odlučuju kada će koristiti procesor
++Jer OS naizmenično dodeljuje vremenske intervale procesora različitim aplikacijama
+-Jer dostupnost resursa sprečava potrebu za deljenjem procesora
+.
+
+*80
+//kognitivni nivo: 4 (relational)
+/t
+Kako deljenje i razmena informacija između procesa povezuje sa zahtevima OS pri upravljanju procesima?
+-Deljenje informacija je posledica dodele resursa, a ne odvojen zahtev OS
+-OS zahteva deljenje informacija samo kada su procesi iz iste aplikacije
+-Deljenje informacija je opciono i ne utiče na zahteve OS
++Deljenje informacija je jedan od ključnih zahteva OS koji omogućava procesima da razmenjuju podatke
+.
+
+*81
+//kognitivni nivo: 4 (relational)
+/t
+Kako pokazivači na memorijske blokove omogućavaju procesu da koristi dodeljeni skup sistemskih resursa?
+-Pokazivači sprečavaju da drugi procesi pristupe resursima dodeljenim procesu
++Pokazivači referenciraju kod i podatke koji su dodeljeni procesu za njegovu aktivnost
+-Pokazivači direktno dodeljuju procesor procesu bez pristupa memoriji
+-Pokazivači čuvaju informacije o prioritetu i stanju procesa u memoriji
+.
+
+*82
+//kognitivni nivo: 4 (relational)
+/t
+Kako tri ključne komponente karakteristika procesa — naredbe za izvršavanje, tekuće stanje i dodeljeni sistemski resursi — zajedno određuju strukturu procesa?
++Naredbe za izvršavanje definiše šta proces radi, tekuće stanje pokazuje gde se proces nalazi u izvršavanju, a dodeljeni resursi omogućavaju njegovu aktivnost
+-Naredbe za izvršavanje i tekuće stanje su deljivi elementi, dok dodeljeni resursi sprečavaju pristup drugim procesima
+-Dodeljeni sistemski resursi određuju koje naredbe se mogu izvršiti, tekuće stanje se automatski generiše, a naredbe se dele između procesa
+-Tekuće stanje i dodeljeni resursi definiše šta proces radi, dok naredbe za izvršavanje prate napredak procesa
+.
+
+*83
+//kognitivni nivo: 4 (relational)
+/t
+Kako definicija procesa kao primerak programa u izvršavanju povezuje sa karakteristikama koje taj proces mora da poseduje?
+-Karakteristike procesa su samo dodatne informacije koje ne utiču na to kako se proces definiše u operativnom sistemu
+-Definicija i karakteristike procesa su nezavisne jer se proces definiše samo kao entitet dodeliv procesoru
+-Karakteristike procesa određuju kako se proces definiše, jer naredbe i stanje moraju biti poznati pre nego što se proces pravi
++Definicija procesa određuje da se proces izvršava, što zahteva da proces poseduje naredbe za izvršavanje, tekuće stanje i dodeljene sistemske resurse
+.
+
+*84
+//kognitivni nivo: 4 (relational)
+/t
+Kako se karakteristike procesa — naredbe za izvršavanje, tekuće stanje i dodeljeni resursi — povezuju sa mogućnošću OS-a da upravlja izvršavanjem više aplikacija istovremeno?
+-Karakteristike procesa sprečavaju aplikacije da međusobno pristupaju resursima, što čini konkurentno izvršavanje nepotrebnim
+-Karakteristike procesa su povezane sa arhitekturom procesora, a ne sa upravljanjem aplikacijama
+-Karakteristike procesa omogućavaju da OS bez intervencije automatski deli sve raspoložive resurse između aplikacija
++Karakteristike procesa omogućavaju OS-u da prati i kontroliše svaki proces kao zasebnu jedinicu, čime se obezbeđuje deljenje procesora i resursa između više aplikacija
+.
+
+*85
+//kognitivni nivo: 4 (relational)
+/t
+Kako se princip dostupnosti resursa za više aplikacija ostvaruje u savremenim operativnim sistemima?
+-Memorija se automatski povećava kako bi se zadovoljile potrebe svih aplikacija
++Dodeljuju se sistemski resursi svakom procesu kako bi se osiguralo da svaka aplikacija može da se izvršava
+-Procesor se fizički deli između aplikacija bez dodele specifičnih resursa procesima
+-Sve aplikacije dele identičan skup resursa istovremeno bez separacije
+.
+
+*86
+//kognitivni nivo: 5 (extended_abstract)
+/t
+Operativni sistem dodeljuje procesu vlasništvo nad memorijom i U/I resursima. Kako ova dodela resursa omogućava da se više procesa izvršava istovremeno bez konflikta?
+-Svaki proces može pristupiti samo resursima koji su mu dodeljeni jer OS čuva listu svih resursa dostupnih u sistemu i dinamički je ažurira tokom izvršavanja, čime se sprečavaju svi mogući konflikti između procesa.
++Svaki proces sadrži virtuelni adresni prostor u koji je smeštena slika procesa, čime OS štiti dodeljene resurse od nekontrolisanog pristupa drugih procesa.
+-OS omogućava konflikt-slobodno izvršavanje tako što sinhronizuje pristup procesima kroz mehanizme kao što su semafori i mutex, čime se osigurava redosled pristupa deljenim resursima.
+-OS raspoređuje procese tako što im dodeljuje vremenske intervale na procesoru, čime se sprečava da jedan proces monopolizuje resurse i omogućava se istovremeno izvršavanje više procesa.
+.
+
+*87
+//kognitivni nivo: 5 (extended_abstract)
+/t
+Operativni sistem omogućava da više niti izvršava kod konkurentno unutar jednog procesa. Kako ova sposobnost višenitne obrade utiče na zahtev OS-a da obezbedi sinhronizaciju između procesa?
++Sinhronizacija između niti postaje kritična jer one dele isti virtuelni adresni prostor i resurse procesa, što zahteva koordinaciju pristupa deljenim podacima.
+-Sinhronizacija između niti postaje kritična jer OS mora da obezbedi koordinaciju pristupa svim memorijskim lokacijama i resursima u računaru, bez obzira da li se dele ili ne.
+-Sinhronizacija između niti postaje kritična jer različiti procesi moraju da koordinuju pristup deljenim sistemskim resursima kao što su U/I uređaji i memorija.
+-Sinhronizacija između niti postaje kritična jer OS mora da kontroliše dodelu procesora između konkurentnih procesa, što zahteva koordinaciju vremenske raspodele.
+.
+
+*88
+//kognitivni nivo: 5 (extended_abstract)
+/t
+Operativni sistem dodeljuje procesu vlasništvo nad memorijom i U/I resursima. Kako ova dodela resursa omogućava da se više procesa izvršava konkurentno bez konflikta pri pristupu istim resursima?
+-OS koristi sinhronizaciju između procesa kako bi koordinovao njihove aktivnosti, što sprečava da procesi pristupaju istim resursima u isto vreme i izazivaju konflikt.
+-OS dodeljuje svakom procesu ekskluzivno vlasništvo nad svim sistemskim resursima uključujući memoriju, U/I uređaje i fajlove, što apsolutno sprečava bilo kakav konflikt između procesa.
+-OS omogućava konkurentno izvršavanje procesa kroz preplitanje instrukcija više procesa na procesoru, što znači da svaki proces dobija vremenski interval za izvršavanje bez potrebe za zaštitom resursa.
++OS koristi upravljački blok procesa (UBP) da čuva atribute svakog procesa, uključujući pokazivače na memoriju i dodeljene resurse, što omogućava zaštitu dodeljenih resursa od nekontrolisanog pristupa drugih procesa.
+.
+
+*89
+//kognitivni nivo: 5 (extended_abstract)
+/t
+Operativni sistem upravlja izvršavanjem više aplikacija istovremeno tako što svaku aplikaciju predstavlja kao jedan ili više procesa. Ako se aplikacija tokom izvršavanja nalazi u stanju gde čeka na završetak ulazno-izlazne operacije, kako OS može da nastavi sa efikasnim korišćenjem procesora?
+-OS može da nastavi sa efikasnim korišćenjem procesora tako što će blokiranom procesu dodeliti dodatne sistemske resurse kako bi brže završio U/I operaciju.
++OS može da prebaci procesor na drugi proces koji je u stanju "spreman", jer proces koji čeka na U/I operaciju prelazi u stanje "blokiran" i ne koristi CPU resurse.
+-OS može da nastavi sa efikasnim korišćenjem procesora tako što će sve blokirane procese prebaciti u novo stanje 'suspenzija' kako bi se smanjio broj procesa u memoriji.
+-OS može da nastavi sa efikasnim korišćenjem procesora tako što će sinhronizovati blokiran proces sa drugim procesima kako bi se izbeglo konkurentno korišćenje U/I uređaja.
+.
+
+*90
+//kognitivni nivo: 5 (extended_abstract)
+/t
+Operativni sistem mora da čuva vrednosti procesorskih registara i atribute svakog procesa kako bi mogao da prebacuje procesor sa jednog procesa na drugi. Ako se proces nalazi u stanju izvršavanja, a OS ga prebaci u stanje spreman, šta od sledećeg omogućava OS-u da kasnije nastavi izvršavanje tog procesa od tačke prekida?
+-Red spremnih procesa koji sadrži sve procese koji čekaju na dodelu procesorskog vremena
++Upravljački blok procesa (UBP) koji sadrži sve atribute procesa uključujući trenutno stanje izvršavanja
+-Virtuelni adresni prostor koji je dodeljen procesu i sadrži sliku procesa sa svim instrukcijama
+-Svi atributi procesa zajedno sa vrednostima procesorskih registara, memorijskom alokacijom i statusom U/I operacija
+.
+
+*91
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta predstavlja proces prema definiciji iz operativnog sistema?
+-Memorijska lokacija gde se čuvaju podaci programa
+-Skup instrukcija koje procesor nikada ne izvršava
+-Program koji je pohranjen na disku i čeka da se učita
++Program koji se aktivno izvršava na procesoru
+.
+
+*92
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je proces kao jedinica raspoređivanja u operativnom sistemu?
+-Skup instrukcija koje procesor izvršava bez prekida od drugih procesa
+-Deo memorije namenjen za skladištenje podataka tokom izvršavanja
++Program u izvršavanju koji operativni sistem raspoređuje na procesoru
+-Program koji se nalazi na disku i čeka da bude učitan u memoriju
+.
+
+*93
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta proces sadrži u virtuelnom adresnom prostoru?
+-Raspored instrukcija koje procesor izvršava
++Sliku procesa
+-Vlasništvo nad memorijskim resursima
+-Listu ostalih procesa u sistemu
+.
+
+*94
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta procesor izvršava isprepleteno sa izvršavanjem drugih procesa?
++Instrukcije procesa
+-Vlasništvo nad memorijom
+-Raspoređivanje resursa
+-Virtuelni adresni prostor
+.
+
+*95
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta se može dodeliti procesu kao vlasništvo prema njegovoj ulozi kao jedinici kojoj se dodeljuje resurs?
+-Samo procesorsko vreme
++Memorija, U/I resurs ili fajl
+-Samo virtuelni adresni prostor
+-Samo slika procesa
+.
+
+*96
+//kognitivni nivo: 2 (unistructural)
+/t
+Koje stanje opisuje proces čije instrukcije procesor trenutno izvršava?
+-Spreman
++Izvršavanje
+-Blokiran
+-Novo
+.
+
+*97
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je izvršavanje kao stanje procesa?
+-Stanje u kojem procesor čeka da se završi neka U/I operacija
+-Stanje u kojem je proces spreman, ali procesor ga ne izvršava
+-Stanje u kojem je proces upravo stvoren, ali OS ga još nije prihvatio
++Stanje u kojem procesor trenutno izvršava instrukcije procesa
+.
+
+*98
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je spreman proces?
++Proces koji je spreman za izvršavanje, ali procesor trenutno ne izvršava njegove instrukcije
+-Proces koji je upravo stvoren, ali ga OS još nije prihvatio
+-Proces koji se ne može izvršavati dok se ne pojavi neki događaj
+-Proces čije instrukcije procesor trenutno izvršava
+.
+
+*99
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je blokiran proces?
+-Proces koji je spreman za izvršavanje, ali procesor ne izvršava njegove instrukcije
+-Proces koji je upravo stvoren, ali OS još nije prihvatio u red spremnih procesa
++Proces koji se ne može izvršavati dok se ne pojavi neki događaj
+-Proces čije instrukcije procesor trenutno izvršava
+.
+
+*100
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je stanje Novi u životnom ciklusu procesa?
+-Proces koji se ne može izvršavati dok se ne pojavi neki događaj
+-Proces čije instrukcije procesor trenutno izvršava
++Proces koji je upravo stvoren, ali ga OS još nije prihvatio u red spremnih procesa
+-Proces koji je OS uklonio iz reda spremnih procesa
+.
+
+*101
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je nit u kontekstu višenitne obrade?
+-Proces koji čeka na završetak U/I operacije
+-Red spremnih procesa u operacijskom sustavu
+-Instrukcija koju procesor trenutno izvršava
++Jedan tok izvršavanja unutar procesa
+.
+
+*102
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je Blokiran (U čekanju) proces?
++Proces koji se ne može izvršavati dok se ne pojavi neki događaj
+-Proces koji je spreman za izvršavanje, ali procesor ga ne izvršava
+-Proces čije instrukcije procesor trenutno izvršava
+-Proces koji je upravo stvoren, ali ga OS još nije prihvatio
+.
+
+*103
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je nit prema definiciji iz materijala o višenitnoj obradi?
++Jedan tok izvršavan
+-Proces koji je spreman za izvršavanje ali se čeka
+-Konkurentna putanja izvršavanja više procesa
+-Proces čije instrukcije procesor trenutno izvršava
+.
+
+*104
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je nit u kontekstu izvršavanja programa?
+-Memorijski prostor namenjen za čuvanje podataka
++Jedan tok izvršavanja u okviru procesa
+-Funkcija koja se poziva iz main funkcije
+-Proces koji se izvršava nezavisno od drugih procesa
+.
+
+*105
+//kognitivni nivo: 2 (unistructural)
+/t
+Iz kojeg zaglavlja se koristi klasa thread u C++ 11 standardu?
+-<threads>
+-<threading>
+-<concurrent>
++<thread>
+.
+
+*106
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je telo niti u C++ 11 standardu?
+-Klasa thread iz zaglavlja <thread>
++Funkcija koju nit izvršava
+-Ulazna tačka programa main funkcija
+-Metoda join() koja čeka završetak niti
+.
+
+*107
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je nit u kontekstu izvršavanja procesa?
+-Glavna funkcija programa koja se uvek izvršava prva
++Jedan tok izvršavanja u okviru procesa
+-Proces koji se izvršava nezavisno od drugih procesa
+-Mehanizam za komunikaciju između različitih procesa
+.
+
+*108
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je nit u kontekstu procesa?
+-Skup podataka koji se deli između više procesa
+-Fizička komponenta procesora namenjena paralelizmu
++Jedan tok izvršavanja u okviru procesa
+-Mehanizam sinhronizacije između konkurentnih procesa
+.
+
+*109
+//kognitivni nivo: 2 (unistructural)
+/t
+Iz kojeg zaglavlja se predstavljaju niti u C++ 11 standardu?
+-<parallel>
+-<thread.h>
++<thread>
+-<threads>
+.
+
+*110
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta omogućava metoda join() klase thread?
+-Prekidanje izvršavanja glavne niti
++Čekanje da stvorena nit završi rad
+-Deljenje memorije između više niti
+-Stvaranje nove niti iz postojeće niti
+.
+
+*111
+//kognitivni nivo: 2 (unistructural)
+/t
+Koja metoda klase thread omogućava stvaraocu da čeka završetak stvorene niti?
+-wait()
+-sleep()
+-yield()
++join()
+.
+
+*112
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta se dešava kada se instancira objekat klase thread?
+-Postojeća nit se zaustavlja
++Kreira se nova nit koja postaje spremna
+-Nit odmah počinje sa izvršavanjem
+-Main funkcija se završava
+.
+
+*113
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je parametar konstruktora klase thread?
+-Zaglavlje koje sadrži definiciju niti
++Funkcija koju nit izvršava
+-Objekat koji predstavlja glavnu nit programa
+-Metoda za čekanje da nit završi rad
+.
+
+*114
+//kognitivni nivo: 2 (unistructural)
+/t
+Koja je glavna karakteristika metode join() klase thread?
+-Kreira novu nit koja postaje spremna za izvršavanje
+-Omogućava stvaraocu da nastavi sa radom bez čekanja
++Metoda je blokirajuća i čeka da stvorena nit završi rad
+-Definiše funkciju koju nit treba da izvrši
+.
+
+*115
+//kognitivni nivo: 2 (unistructural)
+/t
+Iz kojeg zaglavlja se predstavlja klasa thread u C++ 11 standardu?
++<thread>
+-<threads>
+-<concurrent>
+-<niti>
+.
+
+*116
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je ulazna tačka programa u C++?
+-Metoda join() klase thread
+-Zaglavlje <thread> koje se uključuje
+-Funkcija thread koju definiše programer
++Funkcija main
+.
+
+*117
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je metoda join() klase thread?
+-Metoda koja razdvaja stvaraoca od stvorene niti
+-Metoda koja dozvoljava stvaraocu da završi rad bez čekanja
+-Metoda koja prenosi parametre u telo niti
++Blokirajuća metoda koja čeka da stvorena nit završi rad
+.
+
+*118
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta metoda detach() klase thread omogućava stvaraocu niti?
+-Da prenese parametre u nit
++Da završi rad bez obzira na rad stvorene niti
+-Da čeka da stvorena nit završi rad
+-Da spoji dva toka izvršavanja
+.
+
+*119
+//kognitivni nivo: 2 (unistructural)
+/t
+Kako se parametri tela niti prenose u konstruktor klase thread?
+-Kao argumenti metode join()
++Kao parametri konstruktora nakon naziva funkcije
+-Kroz globalne promenljive niti
+-Kao povratne vrednosti funkcije
+.
+
+*120
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta metoda join() klase thread čini sa stvaraocem niti?
+-Prenosi parametre u novu nit
+-Razdvaja stvaraoca od stvorene niti
++Čini da stvaralac čeka da stvorena nit završi rad
+-Dozvoljava stvaraocu da nastavi rad bez čekanja
+.
+
+*121
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je karakteristika metode join() klase thread?
+-Dozvoljava stvaraocu da završi rad bez obzira na rad stvorene niti
+-Razdvaja stvaraoca od stvorene niti
+-Prenosi parametre u telo niti kroz konstruktor
++Metoda je blokirajuća i stvaralac će biti blokiran dok stvorena nit ne završi rad
+.
+
+*122
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri nezavisna aspekta koji definišu proces u operativnom sistemu.
+-Slika procesa, vlasništvo nad resursima, stanja procesa
++Program u izvršavanju, jedinica raspoređivanja, jedinica dodele resursa
+-Virtuelni adresni prostor, memorija, procesor
+-Instrukcije procesa, U/I resursi, redosled izvršavanja
+.
+
+*123
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri stanja kroz koja proces prolazi tijekom svog životnog ciklusa.
+-Novi, Spreman, Završen
+-Spreman, Blokiran, Suspendovan
++Izvršavanje, Spreman, Blokiran
+-Izvršavanje, Čekanje, Izlaz
+.
+
+*124
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri karakteristike niti u C++ 11 standardu.
+-Predstavljene su strukturom thread iz <thread> zaglavlja, instanciranje kreira novu nit, parametar konstruktora je glavna funkcija
+-Predstavljene su klasom thread iz <iostream> zaglavlja, instanciranje kreira novu nit, parametar konstruktora je objekat procesa
+-Predstavljene su klasom thread iz <thread> zaglavlja, instanciranje kreira novi proces, parametar konstruktora je objekat niti
++Predstavljene su klasom thread iz <thread> zaglavlja, instanciranje kreira novu nit, parametar konstruktora je funkcija koju nit izvršava
+.
+
+*125
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri nezavisna elementa koja su deo niti u C++ 11 standardu.
++Klasa thread, zaglavlje <thread>, parametar konstruktora kao funkcija
+-Klasa thread, metoda printf(), ulazna tačka main funkcija
+-Zaglavlje <thread>, telo niti, metoda delete()
+-Parametar konstruktora, završetak programa, biblioteka <iostream>
+.
+
+*126
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri nezavisne karakteristike klase thread iz C++ 11 standarda.
+-Nalazi se u zaglavlju <thread>, instanciranje objekta kreira novu nit, main funkcija je telo niti
++Nalazi se u zaglavlju <thread>, instanciranje objekta kreira novu nit, parametar konstruktora je funkcija
+-Nalazi se u zaglavlju <thread>, instanciranje objekta briše staru nit, parametar konstruktora je pokazivač
+-Nalazi se u zaglavlju <memory>, instanciranje objekta kreira novu nit, metoda join() je neblokrajuća
+.
+
+*127
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri karakteristike koje se odnose na metodu join(), metodu detach() i prenos parametara u nit.
+-Metoda join() prenosi parametre, metoda detach() omogućava sinhronizaciju, parametri se čuvaju u konstruktoru
+-Metoda join() razdvaja stvaraoca od niti, metoda detach() blokira stvaraoca, parametri se prenose kroz povratnu vrednost
+-Metoda join() dozvoljava nezavisan završetak, metoda detach() čeka završetak niti, parametri se zanemaruju
++Metoda join() blokira stvaraoca, metoda detach() razdvaja stvaraoca od niti, parametri se prenose kao argumenti konstruktora
+.
+
+*128
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri nezavisna svojstva koja karakterišu metodu join(), metodu detach() i prenos parametara u nit.
+-Metoda join() čeka završetak niti, metoda detach() blokira stvaraoca, parametri se prenose kao globalne promenljive
++Metoda join() je blokirajuća, metoda detach() razdvaja stvaraoca od niti, parametri se prenose kao argumenti konstruktora
+-Metoda join() razdvaja niti, metoda detach() spaja tokove izvršavanja, povratna vrednost se prosleđuje dalje
+-Metoda join() spaja tokove izvršavanja, metoda detach() omogućava nezavisan rad, povratna vrednost se čuva
+.
+
+*129
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri nezavisna elementa koja se koriste pri prenošenju parametara u nit.
++Parametri konstruktora thread klase, zanemarivanje povratne vrednosti, eksplicitni prenos reference funkcijom ref()
+-Zanemarivanje povratne vrednosti, sinhronizacija niti, korišćenje mutex objekata
+-Parametri konstruktora thread klase, povratna vrednost funkcije, dinamička alokacija memorije
+-Eksplicitni prenos reference, povratna vrednost funkcije, lokalne promenljive niti
+.
+
+*130
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri karakteristike koje omogućavaju pozadinski posao u višenitnoj obradi.
+-Sekvencijalna obrada zahteva, upis u log fajl, blokiranje sve niti
++Dugačke operacije se izvršavaju u posebnoj niti, interakcija sa korisnikom nije blokirana, blokiranje jedne niti ne blokira drugu nit
+-Posebna nit za svaki zahtev, sinhronizacija niti, blokiranje korisničkog interfejsa
+-Dugačke operacije se izvršavaju u glavnoj niti, interakcija sa korisnikom je blokirana, paralelizacija zahteva
+.
+
+*131
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri nezavisna elementa koja se razlikuju između varijante sa jednom niti i varijante sa dve niti pri slanju zahteva udaljenom serveru.
++Sekvencijalna obrada, paralelna obrada, i blokiranje jedne niti ne blokira drugu
+-Brzina procesora, memorijska kapaciteta, i mrežna konekcija
+-Blokiranje jedne niti, blokiranje druge niti, i sekvencijalna obrada
+-Sekvencijalna obrada, paralelna obrada, i brzina interneta
+.
+
+*132
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri odvojena koristi od višenitne obrade koja su navedena u lekciji.
+-Blokiranje niti, komutiranje između procesa, i jednostavna implementacija
+-Brže pravljenje niti, spora komunikacija između procesa, i modularna struktura
+-Iskorišćenje procesora, dugačke operacije, i brže kreiranje procesa
++Pozadinski posao, asinhrona obrada, i deljenje resursa unutar aplikacije
+.
+
+*133
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri aspekta zaštite resursa koje proces obezbeđuje u višenitnoj obradi.
+-Zaštićen pristup procesoru, upravljanje niti, kontrola virtuelnog adresnog prostora
++Zaštićen pristup procesoru, zaštita od drugih procesa, zaštita fajlova i U/I resursa
+-Zaštićen pristup procesoru, virtuelni adresni prostor, dodela memorije
+-Zaštita od drugih procesa, dodela virtuelnog adresnog prostora, raspoređivanje niti
+.
+
+*134
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri komponente koje svaka nit u višenitnoj obradi mora da poseduje.
+-zaštićen pristup, međuprocesna komunikacija, U/I resursi
+-virtuelni adresni prostor, procesor, memorija
+-stanje izvršavanja, procesor, fajlovi
++stanje izvršavanja, kontekst niti, stek izvršavanja
+.
+
+*135
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri karakteristike koje svaka nit u višenitnoj obradi mora da poseduje.
+-Stek izvršavanja, kernel-level upravljanje i sopstvenu memorijsku stranicu
++Stanje izvršavanja, kontekst niti sa procesorskim registrima i stek izvršavanja niti
+-Stanje izvršavanja, sopstveni adresni prostor i独独nu memoriju za podatke
+-Kontekst niti, upravljački blok procesa i deljeni procesorski registri
+.
+
+*136
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri ključne komponente koje svaka nit ima u višenitnoj obradi.
+-Upravljački blok, memorijska adresa, prioritet izvršavanja
+-Stanje izvršavanja, deljeni resursi, kontekst procesa
++Stanje izvršavanja, kontekst niti, stek izvršavanja
+-Stek izvršavanja, kontekst niti, upravljački proces
+.
+
+*137
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri nezavisne komponente koje svaka nit ima u modelu procesa sa višenitnom obradom.
+-Upravljački blok, memorija i procesor
+-Upravljački blok, stek i sopstveni adresni prostor
++Upravljački blok, stek i pristup deljenom adresnom prostoru
+-Stek, kontekst i sopstveni procesor
+.
+
+*138
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri stanja u kojima se nit može nalaziti tokom svog životnog ciklusa.
+-Izvršavanje, čekanje, završena
+-Spreman, izvršena, obustavljena
+-Aktivna, pasivna, suspenzovana
++Izvršavanje, spreman, blokiran
+.
+
+*139
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri glavna stanja kroz koja nit prolazi tokom svog životnog ciklusa.
+-Kreiranje, izvršavanje, završavanje
+-Inicijalizacija, aktivno, neaktivno
+-Spreman, blokiran, deblokiran
++Izvršavanje, spreman, blokiran
+.
+
+*140
+//kognitivni nivo: 4 (relational)
+/t
+Kako je nit kao tok izvršavanja povezana sa procesom u kojem se nit izvršava?
+-Nit je nezavisna jedinica raspoređivanja koju OS upravlja odvojeno od procesa
++Nit je jedan tok izvršavanja unutar procesa koji može sadržavati više konkurentnih niti
+-Nit zamenjuje proces kao osnovnu jedinicu izvršavanja u modernim operativnim sistemima
+-Nit je vanjski događaj koji uzrokuje promenu stanja procesa iz spremanog u izvršavanje
+.
+
+*141
+//kognitivni nivo: 4 (relational)
+/t
+Kako ulazna tačka programa - main funkcija - kontroliše životni ciklus višenitne aplikacije u C++ 11?
+-Main funkcija samo inicijalizuje niti, a njihov životni ciklus je nezavisan od main-a
+-Main funkcija kreira sve niti i direktno kontroliše njihovo izvršavanje do kraja
+-Main funkcija kontroliše samo glavnu nit, dok ostale niti kontroliše operativni sistem
++Main funkcija je ulazna tačka gde se niti kreiraju, a završetak aplikacije se dešava kad se main završi
+.
+
+*142
+//kognitivni nivo: 4 (relational)
+/t
+Kako razumevanje procesa kao programa u izvršavanju omogućava operativnom sistemu da ga efikasno raspoređuje na procesoru?
+-Jer proces sadrži virtuelni adresni prostor u koji je smeštena slika procesa, omogućavajući OS da dodeli resurse
++Jer procesor može da izvršava instrukcije procesa isprepleteno sa instrukcijama drugih procesa, što OS koristi za upravljanje redosledom izvršavanja
+-Jer proces prolazi kroz različita stanja tokom svog životnog ciklusa, što omogućava OS da ga suspenzuje
+-Jer procesor može da izvršava samo jedan proces istovremeno, što zahteva OS da upravlja redosledom
+.
+
+*143
+//kognitivni nivo: 4 (relational)
+/t
+Zašto operativni sistem prvo mora rasporediti proces na procesoru pre nego što mu dodeli resurse kao što su memorija i ulazno-izlazni resursi?
+-Jer dodela resursa i raspoređivanje procesa su istovremene operacije koje se ne mogu odvajati
++Jer raspoređivanje procesa određuje redosled i vreme izvršavanja koji su preduslov za dodelu resursa
+-Jer OS ne može pratiti virtuelni adresni prostor procesa ako proces nije raspoređen
+-Jer memorija i ulazno-izlazni resursi postaju dostupni tek nakon što je proces u stanju izvršavanja
+.
+
+*144
+//kognitivni nivo: 4 (relational)
+/t
+Kako dodela resursa procesu omogućava postavljanje virtuelnog adresnog prostora?
++Dodela resursa omogućava OS-u da kreira virtuelni adresni prostor u koji se smeštena slika procesa
+-Dodela resursa i virtuelni adresni prostor su nezavisni procesi koji se izvršavaju paralelno
+-Virtuelni adresni prostor se kreira pre nego što OS počne da dodeljuje memoriju i U/I resurse
+-Virtuelni adresni prostor je preduslov za dodelu resursa, jer OS prvo mora da odredi gde će resurs biti smešten
+.
+
+*145
+//kognitivni nivo: 4 (relational)
+/t
+Zašto operativni sistem mora prvo uspostaviti proces kao jedinicu dodele resursa pre nego što procesu može dodeliti vlasništvo nad memorijom ili U/I resursima?
+-Jer vlasništvo nad resursima omogućava procesu da se nalazi u redu spremnih procesa
++Jer proces mora sadržati virtuelni adresni prostor u koji se smeštaju resursi kojima će biti vlasnik
+-Jer OS prvo mora kontrolisati prijelaze između stanja izvršavanja
+-Jer procesor ne može izvršavati instrukcije bez prethodne dodele resursa
+.
+
+*146
+//kognitivni nivo: 4 (relational)
+/t
+Zašto je razumevanje procesa kao programa u izvršavanju neophodan preduslov za razumevanje stanja procesa?
++Jer se stanja procesa definišu na osnovu toga da li procesor aktivno izvršava instrukcije procesa ili proces čeka na događaj
+-Jer OS može rasporediti proces na procesor samo ako procesor izvršava njegove instrukcije
+-Jer OS upravlja redosledom izvršavanja procesa pre nego što proces uđe u novo stanje
+-Jer virtuelni adresni prostor procesa određuje koja stanja mogu biti dostignuta tokom životnog ciklusa
+.
+
+*147
+//kognitivni nivo: 4 (relational)
+/t
+Kako razumevanje različitih stanja procesa tokom njegovog životnog ciklusa omogućava operativnom sistemu da pravilno upravi stanjem izvršavanja?
+-Jer stanje izvršavanja automatski zamenjuje sva ostala stanja i čini ih nepotrebnim
+-Jer OS može pratiti samo procese koji su u stanju izvršavanja, dok ostala stanja ignoriše
+-Jer različita stanja procesa određuju koje ulazno-izlazne operacije mogu biti izvršene
++Jer OS kontrolira prijelaze između stanja kako bi optimalno koristio procesorske resurse, što uključuje upravljanje stanjem izvršavanja
+.
+
+*148
+//kognitivni nivo: 4 (relational)
+/t
+Zašto je opšte razumevanje stanja procesa neophodno za razumevanje blokirnog stanja?
+-Jer procesor izvršava instrukcije procesa isprepleteno sa drugim procesima samo u blokirnom stanju
+-Jer operativni sistem može kontrolisati prelaze između stanja samo kada je proces blokiran
++Jer blokirano stanje predstavlja jedno od mogućih stanja kroz koja proces prolazi tokom svog životnog ciklusa
+-Jer je blokirano stanje jedino stanje u kojem proces čeka na događaj
+.
+
+*149
+//kognitivni nivo: 4 (relational)
+/t
+Zašto je razumevanje opštih stanja procesa neophodna osnova za razlikovanje Novog i Izlaznog stanja?
+-Jer Novo i Izlazno stanje određuju kako OS kontrolira prijelaze između svih ostalih stanja procesa
+-Jer Novo i Izlazno stanje određuju dostupnost procesorskog vremena za sve procese
++Jer Novo i Izlazno stanje predstavljaju krajnje tačke životnog ciklusa procesa unutar skupa mogućih stanja
+-Jer su Novo i Izlazno stanje aktivna stanja u kojima procesor izvršava instrukcije procesa
+.
+
+*150
+//kognitivni nivo: 4 (relational)
+/t
+Kako razumevanje procesa kao jedinice raspoređivanja omogućava implementaciju višenitne obrade u operativnom sistemu?
+-Jer procesi mogu biti samo u jednom stanju, što sprečava konkurentno izvršavanje više putanja
+-Jer OS prvo mora završiti izvršavanje jednog procesa pre nego što može pokrenuti drugi proces
++Jer OS može raspoređivati niti kao nezavisne jedinice izvršavanja, koristeći isti mehanizam vremenskog deljenja koji koristi za procese
+-Jer niti zahtevaju odvojen virtuelni adresni prostor za svaku konkurentnu putanju izvršavanja
+.
+
+*151
+//kognitivni nivo: 4 (relational)
+/t
+Kako sposobnost operacijskog sustava da podrži više konkurentnih putanja izvršavanja omogućava bolje razumevanje strukture niti?
+-Jer nit upravlja redosledom izvršavanja konkurentnih putanja
++Jer nit predstavlja jednu od konkurentnih putanja izvršavanja unutar jednog procesa
+-Jer konkurentne putanje sprečavaju niti da se izvršavaju paralelno
+-Jer nit je odgovorna za stvaranje konkurentnih putanja u procesu
+.
+
+*152
+//kognitivni nivo: 5 (extended_abstract)
+/t
+U C++ 11 programu sa više niti koje dele zajedničku globalnu promenljivu, nit se blokira čekajući na završetak U/I operacije. Kako se ovo blokiranje niti uklapa u širi kontekst konkurentnosti i deljenja resursa?
+-Blokiranje niti omogućava globalnoj promenljivoj da se sigurno deli između više niti jer OS čuva njenu vrednost dok nit čeka, sprečavajući izmene tokom blokiranja.
++Blokiranje niti je deo konkurentnog upravljanja gde nit koja čeka na vanjski događaj prelazi u blokirano stanje, omogućavajući OS-u da rasporedi druge niti, što je ključno pri deljenju resursa između zavisnih niti.
+-Blokiranje niti je opšti mehanizam konkurentnosti koji se primenjuje svaki put kada nit pristupa deljenom resursu, omogućavajući svim nitima da čekaju i koordinovano pristupe resursima bez obzira na tip događaja.
+-Blokiranje niti je mehanizam koji sprečava pristup deljenim resursima tako što nit čeka na bravu (mutex), čime se osigurava međusobna isključivost i sprečavaju konflikti pri pisanju u globalnu promenljivu.
+.
+
+*153
+//kognitivni nivo: 5 (extended_abstract)
+/t
+Kada nit iz C++ 11 programa čeka na završetak ulazno-izlazne operacije, u kojem stanju se nalazi i kako to utiče na konkurentno izvršavanje ostalih niti u istom procesu?
+-Nit je u blokiranom stanju, što omogućava OS-u da rasporedi procesor svim ostalim procesima u sistemu, bez obzira da li dele iste resurse.
+-Nit je u blokiranom stanju, što sprečava OS da rasporedi procesor ostalim nitima jer one čekaju istu U/I operaciju.
++Nit je u blokiranom stanju, što omogućava OS-u da rasporedi procesor ostalim spremnim nitima istog procesa, čime se ostvaruje konkurentnost kroz deljenje resursa.
+-Nit je u spreman stanju, što omogućava OS-u da je odmah rasporedi na procesor umesto čekanja na završetak U/I operacije.
+.
+
+*154
+//kognitivni nivo: 5 (extended_abstract)
+/t
+Nit koja čeka na završetak U/I operacije u konkurentnom okruženju sa deljenim resursima mora biti sinhronizovana sa ostalim nitima. Kako operativni sistem tretira stanje te niti i zašto je sinhronizacija neophodna u ovoj situaciji?
+-Nit ulazi u stanje blokirana jer se ne može izvršavati dok se ne pojavi događaj. Sinhronizacija je neophodna kako bi se osiguralo da samo osnovna nit pristupa deljenim resursima dok su ostale niti blokirane.
++Nit ulazi u stanje blokirana (U čekanju) jer se ne može izvršavati dok se ne pojavi događaj (završetak U/I operacije). Sinhronizacija je neophodna jer više niti može pristupati istim deljenim resursima, a bez koordinacije dolazi do štetnog preplitanja i neodređenog redosleda izvršavanja.
+-Nit ulazi u stanje spreman jer čeka da procesor postane slobodan. Sinhronizacija je neophodna jer OS mora da rasporedi procesor između više niti koje su spremne za izvršavanje.
+-Nit ulazi u stanje blokirana jer se ne može izvršavati dok se ne pojavi događaj. Sinhronizacija je neophodna jer sprečava da bilo koja dva procesa ili niti ikada pristupe istom resursu istovremeno, u svim konkurentnim okruženjima.
+.
+
+*155
+//kognitivni nivo: 5 (extended_abstract)
+/t
+Pretpostavite da ste razvili program sa tri niti koje dele zajedničku promenljivu brojača. Svaka nit inkrementira brojač 1000 puta. Bez sinhronizacije, rezultat je nepredvidiv. Zašto je sinhronizacija između zavisnih niti neophodna za ispravno upravljanje konkurentnim pristupom deljenim resursima?
+-Sinhronizacija sprečava da niti budu u stanju 'Blokiran' ili 'Spreman', jer koordinira samo virtuelne adresne prostore gde se nalaze slike procesa.
++Sinhronizacija osigurava da niti pristupaju deljenim resursima na kontrolisan način, sprečavajući štetno preplitanje i data race situacije koje dovode do neodređenog redosleda izvršavanja.
+-Sinhronizacija između niti je neophodna za sve vrste konkurentnog pristupa resursima, uključujući i potpuno nezavisne niti koje ne dele nikakve resurse.
+-Sinhronizacija omogućava OS da rasporedi niti u redosled spremnih procesa, čime se osigurava da sve niti budu izvršavane sekvencijalno bez preklapanja.
+.
+
+*156
+//kognitivni nivo: 5 (extended_abstract)
+/t
+Operativni sistem koristi multiprogramiranje na jednoprocesorskom računaru gde više niti iz različitih procesa dele zajedničku memorijsku lokaciju. Zašto je sinhronizacija neophodna u ovoj situaciji, a ne bi bila potrebna da se isti procesi izvršavaju na multiprocesoru sa dodelom po jedne niti po procesoru?
+-Jer multiprogramiranje prepleta izvršavanje niti na istom procesoru što zahteva sinhronizaciju memorije, dok multiprocesiranje omogućava paralelno izvršavanje bez potrebe za sinhronizacijom jer se svaka nit izvršava na odvojenoj mašini sa sopstvenim operativnim sistemom.
+-Jer multiprogramiranje omogućava deljenje virtuelnog adresnog prostora između procesa, što zahteva sinhronizaciju kako bi se sprečilo da različiti procesi pristupe istoj memorijskoj lokaciji, dok multiprocesiranje dodelom po jedne niti po procesoru čini virtuelne adresne prostore potpuno odvojenim.
++Jer multiprogramiranje prepleta izvršavanje niti na istom procesoru, što može dovesti do štetnog preplitanja i data race-a pri pristupu deljenim resursima, dok multiprocesiranje omogućava paralelno izvršavanje bez potrebe za sinhronizacijom ako niti nisu međusobno zavisne.
+-Jer multiprogramiranje prepleta izvršavanje niti na istom procesoru što može dovesti do štetnog preplitanja pri pristupu deljenim resursima, dok multiprocesiranje omogućava paralelno izvršavanje bez bilo kakve potrebe za sinhronizacijom u svim situacijama jer su procesi potpuno izolovani na različitim procesorima.
+.
+
+*157
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je karakteristika međusobno nezavisnih niti?
+-Niti moraju da dele memoriju i koordinuju pristup podacima
+-Niti zahtevaju međusobnu isključivost za pristup zajedničkim resursima
++Niti se izvršavaju bez deljenja resursa i bez potrebe za sinhronizacijom
+-Niti se izvršavaju sekvencijalno jedna za drugom
+.
+
+*158
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta karakteriše međusobno zavisne niti u kontekstu konkurentnosti?
+-Niti koje se izvršavaju nezavisno bez pristupa zajedničkim resursima
+-Niti koje se izvršavaju sekvencijalno jedna za drugom
+-Niti koje nemaju nikakvu komunikaciju između sebe
++Niti koje se izvršavaju konkurentno i dele zajedničke resurse
+.
+
+*159
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je sinhronizacija u konkurentnom izvršavanju?
++Mehanizam koordinacije između zavisnih niti koje dele resurse
+-Tehnika za povećanje brzine izvršavanja independentnih niti
+-Mehanizam koji omogući više procesa na distribuiranim računarima
+-Proces koji omogući multiprogramiranje u jednoprocesorskom sistemu
+.
+
+*160
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta OS omogućava kada upravlja procesima na multiprocesoru?
+-Više procesa na distribuiranim računarima
+-Više procesa sa deljenim resursima
+-Više procesa u jednoprocesorskom sistemu
++Više procesa unutar multiprocesora
+.
+
+*161
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je multiprogramiranje?
++Više procesa unutar jednoprocesorskog sistema
+-Upravljanje nezavisnim nitima bez deljenja resursa
+-Više procesa na više distribuiranih računara
+-Više procesa unutar multiprocesora
+.
+
+*162
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je multiprocesiranje prema OS-u?
+-Više procesa na više distribuiranih računara
+-Više procesa unutar jednoprocesorskog sistema
++Više procesa unutar multiprocesora
+-Više niti koje dele iste resurse
+.
+
+*163
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta OS omogućava pri upravljanju procesima kada se radi o više procesa na više distribuiranih računara?
++Distribuiranu obradu
+-Sinhronizaciju niti
+-Multiprogramiranje
+-Multiprocesiranje
+.
+
+*164
+//kognitivni nivo: 2 (unistructural)
+/t
+Gde se javlja konkurentnost u operativnim sistemima?
+-Samo kada OS upravljanju procesima bez deljenja resursa
+-Isključivo u distribuiranoj obradi na više računara
+-Samo u multiprocesiranju sa više procesorskih jezgara
++Svugde gde se vrši preplitanje različitih procesa
+.
+
+*165
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je štetno preplitanje u kontekstu konkurentnosti procesa?
++Situacija gde dva procesa vrše upis i čitanje nad istom globalnom promenljivom
+-Situacija gde dva procesa čitaju iz različitih globalnih promenljivih
+-Mehanizam sinhronizacije koji sprečava pristup resursima
+-Proces gde OS dodeljuje resurse različitim procesima sekvencijalno
+.
+
+*166
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je konkurentnost u kontekstu upravljanja procesima?
+-Mehanizam koji sprečava sve procese da pristupe istim resursima
+-Tehnika za smanjenje broja procesa u operativnom sistemu
++Važan aspekt pri upravljanju višestrukim procesima koji se bavi međusobnom interakcijom i zavisnosti procesa
+-Sposobnost procesora da izvršava samo jedan proces u jednom trenutku
+.
+
+*167
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je sinhronizacija procesa?
+-Deljenje memorije između konkurentnih niti
+-Raspodela procesorskog vremena između aplikacija
++Usklađivanje ponašanja procesa sa aktivnošću drugih procesa
+-Povećanje brzine izvršavanja procesa na multiprocesoru
+.
+
+*168
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta se dešava kada dva procesa vrše upis/čitanje nad istom globalnom promenljivom?
++Javlja se štetno preplitanje sa neodređenim redosledom izvršavanja
+-Procesi se međusobno blokiraju bez mogućnosti nastavka
+-Resurs se dodeljuje procesu koji ga ne koristi
+-Operativni sistem automatski zaustavlja sve procese
+.
+
+*169
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je konkurentnost pri upravljanju procesima?
++Važan aspekt pri upravljanju višestrukim procesima i pitanja međusobne interakcije procesa
+-Tehnika za sprečavanje pristupa resursima različitim procesima
+-Metoda za brže izvršavanje aplikacija na jednom računaru
+-Sposobnost procesora da izvršava samo jedan proces istovremeno
+.
+
+*170
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je konkurentnost prema materijalu o upravljanju procesima?
+-Tehnika za izvršavanje samo jednog procesa odjednom
+-Deljenje resursa između niti u sistemu
+-Mogućnost da OS omogući više procesa u istom sistemu
++Važan aspekt pri upravljanju višestrukim procesima
+.
+
+*171
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je konkurentnost u upravljanju procesima?
+-Mehanizam koji sprečava deljenje resursa između niti
++Važan aspekt pri upravljanju višestrukim procesima
+-Sposobnost procesora da izvršava samo jedan proces istovremeno
+-Tehnika za povećanje brzine procesora
+.
+
+*172
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta omogućava konkurentnost u upravljanju procesima?
++Multiprogramiranje, multiprocesiranje i distribuiranu obradu
+-Sprečavanje interakcije između procesa
+-Samo izvršavanje jednog procesa po računaru
+-Fizičko odvajanje procesora na različitim računarima
+.
+
+*173
+//kognitivni nivo: 2 (unistructural)
+/t
+Gde se javlja konkurentnost u upravljanju procesima?
+-Samo pri deljenju memorije između procesa
+-Samo u multiprocesiranju na više računara
++Svugde gde se vrši preplitanje različitih procesa
+-Isključivo u jednoprocesorskim sistemima
+.
+
+*174
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je konkurentnost prema upravljanju procesima?
+-Mehanizam sinhronizacije niti kroz deljenje resursa
+-Tehnika izvršavanja više procesa unutar jednoprocesorskog sistema
+-Mogućnost pokretanja više procesa na distribuiranim računarima
++Važan aspekt pri upravljanju višestrukim procesima koji se tiče međusobne interakcije i zavisnosti procesa
+.
+
+*175
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je multiprocesiranje?
+-Mogućnost operativnog sistema da omogući više procesa unutar jednoprocesorskog sistema
+-Mogućnost operativnog sistema da sinhronizuje međusobno zavisne niti
+-Mogućnost operativnog sistema da omogući više procesa na distribuiranim računarima
++Mogućnost operativnog sistema da omogući više procesa unutar multiprocesora
+.
+
+*176
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je karakteristika konkurentnih sistema prema principu nepredvidivosti preplitanja procesa?
+-Scenario preplitanja je predvidiv, ali vremenski trenutak nije
+-Konkurentni sistemi imaju potpuno kontrolisano preplitanje procesa
++Vremenski trenutak i scenario preplitanja su u pravilu nepredvidivi
+-Vremenski trenutak preplitanja je uvek precizno planiran
+.
+
+*177
+//kognitivni nivo: 2 (unistructural)
+/t
+Gde se javlja konkurentnost prema prikazanom materijalu?
++Svugde gde se vrši preplitanje različitih procesa
+-Isključivo u distribuiranoj obradi na više računara
+-Samo pri upravljanju jednim procesom u sistemu
+-Samo u multiprocesiranju na više procesora
+.
+
+*178
+//kognitivni nivo: 2 (unistructural)
+/t
+Gde se javlja konkurentnost prema materijalu?
+-Samo u jednoprocesorskim multiprogramiranim sistemima
+-Samo u multiprocesiranju sa više procesora
++Svugde gde se vrši preplitanje različitih procesa
+-Isključivo u distribuiranoj obradi na mrežama
+.
+
+*179
+//kognitivni nivo: 2 (unistructural)
+/t
+Gde se konkurentnost javlja u sistemima upravljanja procesima?
+-Samo u distribuiranoj obradi na više računara
+-Samo u multiprogramiranim sistemima sa jednim procesorom
+-Samo u sistemima sa više procesora
++Svugde gde se vrši preplitanje različitih procesa
+.
+
+*180
+//kognitivni nivo: 2 (unistructural)
+/t
+Gde se javlja konkurentnost prema opisanom upravljanju procesima?
+-Samo u distribuiranoj obradi na više računara
+-Isključivo u monoprogramiranim sistemima
+-Samo u multiprocesiranju na više procesora
++Svugde gde se vrši preplitanje različitih procesa
+.
+
+*181
+//kognitivni nivo: 2 (unistructural)
+/t
+Gde se konkurentnost javlja u računarskim sistemima?
+-Samo u multiprogramiranim sistemima
++Svugde gde se vrši preplitanje različitih procesa
+-Samo unutar jedne aplikacije
+-Samo u operativnom sistemu
+.
+
+*182
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta se dešava kada dva procesa simultano vrše upis i čitanje nad istom globalnom promenljivom?
+-Operativni sistem automatski sinhronizuje pristup resursima
+-Procesori izvršavaju operacije u unapred određenom redosledu
+-Globalna promenljiva se automatski duplira za svaki proces
++Javlja se štetno preplitanje sa nepredvidivih rezultatima
+.
+
+*183
+//kognitivni nivo: 2 (unistructural)
+/t
+Gde se javlja konkurentnost u strukturiranim korisničkim aplikacijama?
+-Samo u operativnom sistemu
+-Isključivo između različitih aplikacija
+-Samo pri pristupu hardverskim resursima
++Kada jedna aplikacija sadrži više konkurentnih procesa ili niti
+.
+
+*184
+//kognitivni nivo: 2 (unistructural)
+/t
+Gde se prema materijalu javlja konkurentnost u operativnom sistemu?
+-Isključivo u jednoprocesorskim sistemima
+-Samo kada se dva procesa izvršavaju sekvencijalno
+-Samo u višestrukim aplikacijama koje dele memoriju
++Funkcije OS su implementirane kao više procesa/niti
+.
+
+*185
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je neodređen redosled izvršavanja u kontekstu konkurentnosti?
+-Tehnika za sinhronizaciju različitih procesa u sistemu
+-Proces koji omogućava kontrolu redosleda izvršavanja niti
+-Mehanizam koji sprečava pristup procesima zajedničkim resursima
++Situacija u kojoj se redosled operacija nad deljenim resursima ne može unapred predvideti
+.
+
+*186
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta se dešava kada dva procesa istovremeno vrše upis/čitanje nad istom globalnom promenljivom?
+-Operativni sistem automatski blokira jedan proces
+-Oba procesa se pauziraju dok se resurs ne oslobodi
+-Procesu sa većom prioritetom se dodeljuje ekskluzivni pristup
++Javlja se neodređen redosled izvršavanja i nepredvidivi rezultati
+.
+
+*187
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je međusobna isključivost u kontekstu konkurentnih procesa?
++Mogućnost procesa da obavi akciju bez negativnog uticaja drugih procesa
+-Usklađivanje ponašanja procesa sa aktivnošću drugih procesa
+-Sprečavanje detekcije grešaka u konkurentnim sistemima
+-Dodeljivanje resursa procesu koji ga trenutno ne koristi
+.
+
+*188
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je štetno preplitanje u kontekstu konkurentnosti?
+-Greška u operativnom sistemu koja sprečava dodelu resursa procesima
++Situacija gde dva procesa istovremeno pristupaju istoj globalnoj promenljivoj za upis ili čitanje
+-Mehanizam koji sprečava procesima da pristupe deljenim resursima
+-Proces sinhronizacije koji osigurava redosled izvršavanja operacija
+.
+
+*189
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je sinhronizacija procesa prema definiciji iz izvora?
++Usklađivanje ponašanja procesa sa aktivnošću drugih procesa
+-Kontrola memorije koju koriste različiti procesi
+-Mehanizam koji sprečava sve procese da pristupaju resursima
+-Tehnika za povećanje brzine izvršavanja konkurentnih procesa
+.
+
+*190
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta se dešava u problemu komplikovane dodele resursa prema tekstu?
+-Procesi nikada nisu međusobno blokirani
+-Resurs je uvek dodeljen procesu koji ga aktivno koristi
+-Svaki proces ima garantovanu dodelu resursa
++Resurs može biti dodeljen procesu koji ga ne koristi
+.
+
+*191
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je karakteristika detekcije grešaka u konkurentnim sistemima?
+-Detekcija grešaka je jednostavnija nego u sekvencijalnim programima
+-Greške se javljaju samo u jednoprocesnim sistemima
++Rezultati nisu deterministički i teško je reprodukovati neočekivano ponašanje
+-Rezultati su uvek deterministički i lako se greške reprodukuju
+.
+
+*192
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta se dešava kada dva procesa istovremeno vrše upis i čitanje nad istom globalnom promenljivom?
+-Program automatski detektuje grešku i zaustavlja se
++Nastaje neodređen redosled izvršavanja i nedeterminističko ponašanje
+-Resurs se dodeljivanja procesu koji ga ne koristi
+-Procesi se međusobno blokiraju i čekaju na resurse
+.
+
+*193
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta se dešava u situaciji komplikovane dodele resursa gde proces čeka na resurs koji je dodeljen drugom procesu?
+-Resurs se oslobađa iz memorije
+-Proces dobija pristup resursu odmah
+-Proces se automatski završava
++Procesi mogu biti međusobno blokirani
+.
+
+*194
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je karakteristika rezultata programa u konkurentnom okruženju zbog neodređenog redosleda izvršavanja?
+-Rezultati su deterministički ali zahtevaju više vremena
+-Rezultati zavise samo od brzine procesora
++Rezultati nisu deterministički i teško je reprodukovati neočekivano ponašanje
+-Rezultati su uvek identični bez obzira na redosled izvršavanja
+.
+
+*195
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta omogućava međusobna isključivost kao princip u rešavanju problema konkurentnosti?
+-Brže izvršavanje svih procesa istovremeno
+-Efikasniju dodelu memorije procesima
++Procesu da obavi akciju bez negativnog uticaja drugih
+-Bolju detekciju grešaka u programu
+.
+
+*196
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta se dešava kada dva procesa konkurentno vrše upis i čitanje nad istom globalnom promenljivom?
+-Globalna promenljiva se automatski štiti od pristupa
+-Procesi čekaju dok se ne završi dodela svih resursa
++Redosled izvršavanja i rezultati operacija su neodređeni
+-Operacije se izvršavaju u strogo određenom redosledu
+.
+
+*197
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri karakteristike koje opisuju upravljanje procesima u operativnom sistemu.
+-Sinhronizacija, zaštita memorije i upravljanje prioritetima
++Multiprogramiranje, multiprocesiranje i distribuirana obrada
+-Deljenje resursa, koordinacija niti i kontrolisani pristup
+-Nezavisne niti, zavisne niti i互usobna isključivost
+.
+
+*198
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri problema koja konkurentnost donosi pri upravljanju procesima.
+-Štetno preplitanje, povećana brzina izvršavanja, bolja iskorišćenost procesora
++Štetno preplitanje, komplikovanija dodela resursa, teža detekcija grešaka
+-Multiprogramiranje, multiprocesiranje, distribuirana obrada
+-Međusobna isključivost, sinhronizacija, upravljanje memorijom
+.
+
+*199
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri glavna oblika upravljanja procesima koje OS omogućava zavisno od dostupnih resursa?
+-Multiprogramiranje, sinhronizacija i race condition
+-Multiprocesiranje, deljenje resursa i koordinacija
+-Distribuirana obrada, multiprogramiranje i konkurentnost
++Multiprogramiranje, multiprocesiranje i distribuirana obrada
+.
+
+*200
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri glavna modela obrade više procesa koje operativni sistem može omogućiti pri upravljanju procesima.
+-Multiprogramiranje, konkurentnost i koordinacija niti
+-Multiprocesiranje, distribuirana obrada i preplitanje procesa
+-Multiprogramiranje, sinhronizacija i upravljanje memorijom
++Multiprogramiranje, multiprocesiranje i distribuirana obrada
+.
+
+*201
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri načina na kojima operativni sistem može omogućiti upravljanje konkurentnim procesima.
+-Distribuirana obrada, nepredvidivost i vremenski raspored
+-Multiprogramiranje, sinhronizacija i zavisnost procesa
++Multiprogramiranje, multiprocesiranje i distribuirana obrada
+-Multiprocesiranje, preplitanje i međusobna interakcija
+.
+
+*202
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri aspekta konkurentnosti u upravljanju procesima.
+-Multiprogramiranje, multiprocesiranje, distribuirana obrada
+-Preplitanje procesa, zavisnost procesora, sinhronizacija memorije
+-Efikasnije korišćenje procesora, paralelno izvršavanje, interakcija aplikacija
++Preplitanje različitih procesa, međusobna interakcija procesa, nepredvidivost vremenskog trenutka
+.
+
+*203
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri konteksta u kojima se konkurentnost javlja u računarskim sistemima.
+-Operativni sistem, baze podataka i mrežna komunikacija
++Višestruke aplikacije, strukturirane korisničke aplikacije i operativni sistem
+-Višestruke aplikacije, upravljanje memorijom i operativni sistem
+-Strukturirane korisničke aplikacije, cache memorija i multiprogramiranje
+.
+
+*204
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri glavna problema koje konkurentnost donosi u računarskim sistemima.
++Deljenje globalnih resursa, štetno preplitanje i komplikovanija dodela resursa
+-Deljenje globalnih resursa, sinhronizacija i međusobna isključivost
+-Komplikovanija dodela resursa, detekcija grešaka i brže izvršavanje koda
+-Štetno preplitanje, data race i determinističko ponašanje
+.
+
+*205
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri zasebna problema koja konkurentnost donosi u računarskim sistemima.
+-Međusobna isključivost, sinhronizacija procesa i upravljanje memorijom
+-Deljenje globalnih resursa, optimizacija performansi i kompajliranje koda
+-Štetno preplitanje, determinističko izvršavanje i balansiranje opterećenja
++Štetno preplitanje, komplikovanija dodela resursa i detekcija grešaka
+.
+
+*206
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri elementa koja se koriste za rešavanje problema konkurentnog pristupa deljenim resursima.
+-Deljeni resurs, echo metoda i data race problem
+-Preplitanje izvršavanja, neizvesnost rezultata i globalne promenljive
++Međusobna isključivost, sinhronizacija procesa i determinizam
+-Kontrola redosleda, sprečavanje konflikta i usklađivanje aktivnosti
+.
+
+*207
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri karakteristike koje razlikuju štetno preplitanje u konkurentnom kodu od determinističkog ponašanja programa.
+-Rezultat zavisi od redosleda instrukcija, rezultat nije predvidljiv, samo jedan proces može pristupiti kodu
+-Rad je nezavisan od brzine izvršavanja, isti rezultat pri svakom izvršavanju, promenljiva x je deljeni resurs
+-Neispravan rad nakon kritične naredbe, isti rezultat pri svakom izvršavanju, rad je nezavisan od brzine
++Rezultat zavisi od scenarija preplitanja, neispravan rad nakon kritične naredbe, ponovna izvršavanja daju različite rezultate
+.
+
+*208
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri karakteristike koje razlikuju data race od determinističkog ponašanja.
+-Rad je nezavisan od brzine izvršavanja, rezultat je nepredvidljiv, procesi se nadmeću za resurse
+-Ponovna izvršavanja daju iste rezultate, procesi nisu svesni drugih, rad je zavisan od redosleda
++Rezultat zavisi od scenarija preplitanja, ponovna izvršavanja daju različite rezultate, rad je nezavisan od relativne brzine
+-Rezultat zavisi od brzine procesora, procesi su svesni jedni drugih, pristupaju istim resursima
+.
+
+*209
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri karakteristike koje opisuju situaciju nadmetanja procesa za resurse.
+-Više procesa koristi isti resurs, procesi nisu svesni jedni drugih, potrebna je uzajamna isključivost
+-Procesi su svesni drugih procesa, rade zajedno na poslu, bez pristupa zajedničkim resursima
+-Procesi su nezavisni jedni od drugih, pristupaju različitim resursima, eksplicitna sinhronizacija aktivnosti
++Više procesa pristupa istom resursu, konkurencija između procesa, samo jedan proces može pristupiti u jednom trenutku
+.
+
+*210
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri nezavisna elementa koji karakterišu nadmetanje procesa za resurse.
++Više procesa koristi isti resurs, samo jedan proces pristupa u jednom trenutku, resurs je kritičan
+-Uzajamna isključivost, sinhronizacija aktivnosti, projektovanje procesa za zajedničko obavljanje
+-Procesi su svesni jedni drugih, eksplicitna sinhronizacija, zajednički obavljeni posao
+-Procesi nisu svesni drugih, pristupaju istim resursima, nadmeću se za njih
+.
+
+*211
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri karakteristike busy waiting mehanizma za ulazak u kritičnu sekciju.
+-Proces ostaje aktivan, periodički proverava uslov, štedi procesor
+-Koristi boolean zastavicu, postavlja je na false, vraća na true
++Proces ostaje aktivan, neprekidno proverava uslov, troši procesorsko vreme
+-Proces se suspenzuje, ne troši procesor, čeka signal
+.
+
+*212
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri karakteristike koje razlikuju busy waiting od blokiranje procesa.
+-Mutex koristi lock() operaciju, propusnica se oslobađa, proces čeka aktivno
+-Proces ide u blokirano stanje, sistem daje obaveštenje, nema trošenja vremena
++Proces ostaje aktivan, neprekidno proverava uslov, troši procesorsko vreme
+-Proces proverava propusnicu, međusobna isključivost, neprekidna provera
+.
+
+*213
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri komponente procedury koju proces sledi pri uzimanju propusnice u mehanizmu mutex zaštite?
+-Ulazi u kritičnu sekciju, čita deljeni objekat, izlazi
+-Zatraži zaključavanje, čeka obaveštenje, vraća propusnicu
+-Poziva m.lock(), pristupa resursu, poziva m.unlock()
++Proverava dostupnost, nastavlja izvršavanje, odlazi u stanje blokiran
+.
+
+*214
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri ključne komponente procesa zauzimanja propusnice za kritičnu sekciju.
++Provera slobodnosti, zauzimanje propusnice i stanje blokiran
+-Compare&Swap instrukcija, onemogućavanje prekida i lock mehanizam
+-Atomska izvršavanja, hardverska podrška i prekidi
+-Vraćanje propusnice, otključavanje objekta i stanje spreman
+.
+
+*215
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri karakteristike hardverskih mehanizama za obezbeđenje međusobne isključivosti koje se koriste umesto onemogućavanja prekida.
+-Razmenjuju vrednosti memorije, proveravaju prekide, zaključavaju resurse globalnom zastavom
+-Izvršavaju se atomski, onemogućavaju sve prekide, sprečavaju pristup kritičnoj sekciji
++Izvršavaju se atomski, omogućavaju zauzimanje propusnice bez preplitanja, rade na multiprocesorskim sistemima
+-Onemogućavaju prekide, sprečavaju preplitanje procesa, efikasni na jednoprocesorskim sistemima
+.
+
+*216
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri ključne metode klase mutex koje se koriste za upravljanje zaključavanjem.
+-unlock(), try_lock(), acquire()
+-lock(), wait(), try_lock()
++lock(), unlock(), try_lock()
+-lock(), unlock(), release()
+.
+
+*217
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri ključna svojstva klase unique_lock koja je opisana u lekciji o konkurentnosti.
++Upravlja zaključavanjem mutexa, automatski otključava mutex u destruktoru, propusnica se oslobađa kada objekat prestane da postoji
+-Prima mutex kao parametar, omogućava ručno otključavanje, koristi se umesto sinhronizacije niti
+-Zaključava pristup kritičnoj sekciji, automatski otključava mutex, sprečava deadlock situacije
+-Upravlja zaključavanjem mutexa, omogućava kopiranje mutex objekata, sprečava istovremeni pristup resursima
+.
+
+*218
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri nezavisna svojstva i karakteristike klase unique_lock koja su navedena u izvornom materijalu.
+-Koristi se umesto mutex klase, zabranjuje kopiranje mutexa, omogućava međusobno čekanje procesa
+-Upravlja zaključavanjem mutexa, sprečava deadlock, automatski otključava mutex u konstruktoru
+-Omogućava kopiranje mutex objekta, automatski otključava mutex u destruktoru, koristi se umesto mutex klase
++Upravlja zaključavanjem mutexa, automatski otključava mutex u destruktoru, propusnica se oslobađa automatski kada objekat prestane da postoji
+.
+
+*219
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri nezavisna razloga zašto objekti klase mutex nisu moguće kopirati po vrednosti.
+-Realizovano je eksplicitnom naredbom kompajleru, smanjuje se potrošnja memorije, i sprečava se deadlock
++Sprečava se kreiranje kopija propusnice, niti bi zaključavale različite kopije, i realizovano je eksplicitnom naredbom kompajleru
+-Niti bi zaključavale različite kopije, izbegava se nadmetanje procesa, i čuva se sinhronizacija
+-Sprečava se kreiranje kopija propusnice, izbegava se konkurencija niti, i čuva se integritet zaključavanja
+.
+
+*220
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri razloga zašto mutex objekat nije moguće kopirati po vrednosti i koje probleme bi to izazvalo.
+-Zaštita od kopiranja konstruktora, izbegavanje deadlock-a i sprečavanje pristupa resursima
+-Sprečavanje zaključavanja različitih kopija, izbegavanje race condition-a i smanjenje performansi
++Sprečavanje zaključavanja različitih kopija, izbegavanje deadlock-a i zaštita od nadmetanja procesa
+-Sprečavanje zaključavanja različitih kopija, izbegavanje problema sa propusnicom i kontrola pristupa niti
+.
+
+*221
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri karakteristike koje se javljaju u situacijama nadmetanja procesa za resurse (deadlock, livelock i gladovanje).
+-Procesi se međusobno čekaju, nijedan proces ne napreduje, svi resursi su zauzeti
+-Procesi su blokirani, čekaju međusobno na resurse, procesi menjaju stanja
++Procesi čekaju na resurse, procesi nisu blokirani, proces nema pristupa resursima
+-Svi procesi su blokirani, procesi menjaju stanja, proces ostaje aktivan
+.
+
+*222
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri karakteristike koje razlikuju uzajamno blokiranje (deadlock), livelock i gladovanje procesa.
++Svi procesi čekaju resurse, procesi nisu blokirani ali menjaju stanja, proces je spreman ali ne dobija procesor
+-Resursi se oslobađaju sporo, procesi se međusobno blokiraju, red spremnih procesa je prazan
+-Dva procesa čekaju, više procesa se aktivira, samo jedan proces je pogođen
+-Procesi drže resurse, procesi su aktivni ali ne napreduju, raspoređivač ignoriše proces
+.
+
+*223
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri karakteristike situacije u kojoj se javlja livelock između procesa.
+-Procesi su spreman, pristupaju resursu, i nikad ne dobijaju procesor
+-Procesi su blokirani, menjaju stanja, i ne napreduju u radu
+-Procesi menjaju stanja, pristupaju kritičnoj sekciji, i međusobno se blokiraju
++Procesi nisu blokirani, menjaju stanja, i ne napreduju u vršenju korisnog rada
+.
+
+*224
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri zahteva koja moraju biti zadovoljena pri implementaciji međusobne isključivosti u konkurentnim sistemima.
+-Proces mora brže da se izvršava, nijedan proces ne sme biti spreman, gladovanje je dozvoljeno
+-Kritična sekcija mora biti otvorena za sve procese, procesi mogu simultano pristupati resursu, nema potrebe za sinhronizacijom
+-Raspoređivač bira proces nasumično, proces može čekati beskonačno dugo, konkurencija resursa je izbegnuta
++Samo jedan proces u kritičnoj sekciji istovremeno, proces ne sme beskonačno dugo čekati, mora se izbići uzajamno blokiranje
+.
+
+*225
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri zahteva koji moraju biti ispunjeni pri sprovođenju međusobne isključivosti pri pristupu deljenim resursima.
+-Više procesa može pristupiti resursu istovremeno, proces čeka beskonačno dugo, i signalizacija je obavezna
+-Samo jedan proces pristupa resursu, gladovanje je dozvoljeno, i relativne brzine procesa se mogu pretpostavljati
++Samo jedan proces sme koristiti resurs istovremeno, ne sme se desiti uzajamno blokiranje, i proces mora izaći iz kritične sekcije u konačnom vremenu
+-Ulazak u kritičnu sekciju sa odlaganjem, sprečavanje uzajamnog blokiranja, i neograničeno čekanje je dozvoljeno
+.
+
+*226
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri karakteristike koje razlikuju jak semafor od slab semafora.
+-Binarni brojač, nema gladovanja, deterministički redosled
++FIFO red čekanja, garantovano nema gladovanja, prvo otišao prvo signaliziran
+-Proizvoljne vrednosti brojača, atomične operacije, red čekanja procesa
+-Atomične operacije, povećanje i smanjenje brojača, blokiranje procesa
+.
+
+*227
+//kognitivni nivo: 4 (relational)
+/t
+Kako konkurentnost u operativnom sistemu predstavlja primer konkurentnosti u računarskim sistemima?
+-Jer OS sprečava da se drugi procesi izvršavaju tokom rada sistemskih funkcija
+-Jer konkurentnost u OS postoji samo u multiprocesiranju, za razliku od ostalih sistema
+-Jer OS upravlja procesima nezavisno od ostalih komponenti računara
++Jer se funkcije OS implementiraju kao više procesa/niti gde se vrši preplitanje različitih procesa
+.
+
+*228
+//kognitivni nivo: 4 (relational)
+/t
+Kako razumevanje međusobno nezavisnih niti predstavlja osnovu za učenje o međusobno zavisnim nitima koje dele resurse?
++Nezavisne niti pokazuju kako se niti izvršavaju bez deljenja resursa, što je preduslov za razumevanje problema koji nastaju kada niti dele zajedničke resurse
+-Zavisne niti nastaju jer procesor automatski pretvara nezavisne niti u zavisne tokom izvršavanja programa
+-Nezavisne niti i zavisne niti su identični koncepti koji se koriste naizmenično u različitim operativnim sistemima
+-Zavisne niti su napredna verzija nezavisnih niti i ne zahtevaju nikakvo preliminarno znanje o njihovom funkcionisanju
+.
+
+*229
+//kognitivni nivo: 4 (relational)
+/t
+Zašto je sinhronizacija u konkurentnom izvršavanju neophodna kada niti dele zajedničke resurse?
++Jer omogućava procesu da obavi akciju bez negativnog uticaja drugih procesa koji pristupaju istim resursima
+-Jer sprečava da niti budu međusobno zavisne i dele resurse
+-Jer osigurava da se procesi izvršavaju potpuno nezavisno jedni od drugih
+-Jer omogućava OS-u da koristi samo multiprogramiranje umesto multiprocesiranja
+.
+
+*230
+//kognitivni nivo: 4 (relational)
+/t
+Zašto je razumevanje konkurentnosti u operativnim sistemima neophodno za prepoznavanje problema štetnog preplitanja i data race?
+-Jer konkurentnost opisuje kako dva ili više procesa istovremeno pristupaju istoj globalnoj promenljivoj, što direktno dovodi do neodređenog redosleda izvršavanja
+-Jer konkurentnost omogućava multiprogramiranje i multiprocesiranje, što sprečava da se data race problemi jave u sistemu
++Jer konkurentnost obuhvata preplitanje različitih procesa čija je vremenska interakcija nepredvidiva, što je preduslov za pojavu štetnog preplitanja kada procesi dele resurse
+-Jer konkurentnost zahteva sinhronizaciju procesa, a sinhronizacija automatski eliminiše sve scenarije štetnog preplitanja
+.
+
+*231
+//kognitivni nivo: 4 (relational)
+/t
+Zašto je razumevanje štetnog preplitanja i data race-a neophodno pre proučavanja međusobne isključivosti?
+-Jer su data race i međusobna isključivost dva različita naziva za isti fenomen u konkurentnom izvršavanju
++Jer data race predstavlja problem koji međusobna isključivost rešava kroz zaštitu deljenih resursa od istovremenog pristupa
+-Jer sinhronizacija procesa automatski sprečava štetno preplitanje bez potrebe za mehanizmima zaštite
+-Jer multiprogramiranje uvek prouzrokuje data race koji se može izbići primenom međusobne isključivosti
+.
+
+*232
+//kognitivni nivo: 4 (relational)
+/t
+Zašto je razumevanje problema štetnog preplitanja pri deljenju globalnih resursa neophodan preduslov za primenu međusobne isključivosti?
++Jer štetno preplitanje pri upisu i čitanju globalne promenljive pokazuje potrebu za zaštitom deljenih resursa od istovremenog pristupa
+-Jer međusobna isključivost sprečava negativan uticaj drugih procesa na izvršavanje jednog procesa
+-Jer koordinacija između niti automatski eliminiše sve greške u konkurentnom izvršavanju
+-Jer se problemi deljenja resursa javljaju samo kod multiprogramiranja, a ne kod multiprocesiranja
+.
+
+*233
+//kognitivni nivo: 4 (relational)
+/t
+Zašto je nepredvidivost vremenskog trenutka i scenarija preplitanja procesa neizbežna posledica samog preplitanja različitih procesa u konkurentnim sistemima?
+-Jer data race između procesa koji pristupaju istoj globalnoj promenljivoj sprečava sinhronizaciju
+-Jer multiprogramiranje omogućava više procesa na jednoprocesorskom sistemu bez obzira na redosled
+-Jer operativni sistem namerno randomizuje redosled izvršavanja procesa da bi testirao njihovu robusnost
++Jer se preplitanje različitih procesa javlja na nepredvidivim vremenskim trenutcima koje ne može kontrolisati ni OS ni programer
+.
+
+*234
+//kognitivni nivo: 4 (relational)
+/t
+Zašto neodređen redosled izvršavanja postaje problem u konkurentnim sistemima gde više procesa dele globalne resurse?
+-Jer različiti procesi koriste različite memorijske lokacije
+-Jer multiprogramiranje sprečava sinhronizaciju između procesa
++Jer dva procesa vrše upis i čitanje nad istom globalnom promenljivom u nepredvidivom redosledu
+-Jer operativni sistem ne može da prati sve procese istovremeno
+.
+
+*235
+//kognitivni nivo: 4 (relational)
+/t
+Koja je ključna razlika između multiprogramiranja i multiprocesiranja u odnosu na hardversku infrastrukturu?
++Multiprogramiranje koristi jedan procesor, dok multiprocesiranje distribuira procese na više procesora
+-Multiprogramiranje omogućava bolju sinhronizaciju jer koristi jedan procesor
+-Multiprogramiranje je brže jer sve procese izvršava jedan procesor bez prekida
+-Multiprocesiranje se koristi samo za međusobno nezavisne niti, dok multiprogramiranje podržava zavisne niti
+.
+
+*236
+//kognitivni nivo: 4 (relational)
+/t
+Koja je ključna razlika između multiprocesiranja i distribuirane obrade u upravljanju konkurentnim procesima?
+-Distribuirana obrada omogućava samo multiprogramiranje, dok multiprocesiranje omogućava multiprocesiranje
+-Multiprocesiranje koristi međusobnu isključivost, a distribuirana obrada koristi samo deljenje resursa
+-Distribuirana obrada zahteva sinhronizaciju između procesa, a multiprocesiranje je ne zahteva
++Multiprocesiranje izvršava procese na jednom računaru sa više procesora, dok distribuirana obrada raspoređuje procese na više odvojenih računara
+.
+
+*237
+//kognitivni nivo: 4 (relational)
+/t
+Zašto konkurentnost u operativnim sistemima neizbežno dovodi do rizika od štetnog preplitanja i data race?
++Jer nepredvidivo preplitanje različitih procesa omogućava istovremeni pristup istim globalnim promenljivama
+-Jer multiprogramiranje sprečava sinhronizaciju između procesa koji dele resurse
+-Jer međusobna isključivost automatski dovodi do konflikta između konkurentnih procesa
+-Jer operativni sistem ne može da izvršava više od dva procesa istovremeno
+.
+
+*238
+//kognitivni nivo: 4 (relational)
+/t
+Kako štetno preplitanje pri upisu i čitanju globalnih promenljivih direktno dovodi do problema konkurentnosti u operativnim sistemima?
++Jer nepredvidiv redosled izvršavanja procesa sprečava sinhronizaciju i dovodi do neodređenih rezultata
+-Jer OS ne može da dodeli resurse procesu koji ga koristi
+-Jer multiprogramiranje omogućava samo sekvencijalno izvršavanje procesa
+-Jer međusobno nezavisne niti zahtevaju deljenje resursa između procesa
+.
+
+*239
+//kognitivni nivo: 4 (relational)
+/t
+Kako se tri oblika upravljanja procesima (multiprogramiranje, multiprocesiranje i distribuirana obrada) razlikuju u pogledu na modele obrade više procesa?
++Razlikuju se po broju dostupnih procesorskih jedinica i fizičkoj lokaciji na kojima se procesi izvršavaju
+-Razlikuju se po tome što multiprocesiranje i distribuirana obrada zahtevaju sinhronizaciju, a multiprogramiranje ne
+-Razlikuju se po tome što samo multiprogramiranje omogućava konkurentnost između procesa
+-Razlikuju se po tome što multiprocesiranje omogućava više procesa nego multiprogramiranje
+.
+
+*240
+//kognitivni nivo: 4 (relational)
+/t
+Kako nepredvidivost vremenskog trenutka preplitanja procesa utiče na ponašanje konkurentnog sistema?
++Dovodi do toga da rezultat programa zavisi od nepredvidivog scenarija preplitanja
+-Sprečava da više procesa pristupa istim resursima simultano
+-Omogućava operativnom sistemu da savršeno sinhronizuje sve procese bez greške
+-Čini da je redosled izvršavanja procesa unapred poznat i lako predvidiv
+.
+
+*241
+//kognitivni nivo: 4 (relational)
+/t
+Kako preplitanje različitih procesa dovodi do konkurentnosti u operativnom sistemu?
+-Preplitanje procesa omogućava sinhronizaciju, što je suprotno od konkurentnosti
+-Preplitanje procesa sprečava deljenje resursa između niti, što eliminiše konkurentnost
+-Preplitanje procesa povećava brzinu izvršavanja, što automatski proizvodi konkurentnost
++Preplitanje procesa je mehanizam kroz koji se konkurentnost javlja, sa nepredvidivim vremenskim trenutcima izvršavanja
+.
+
+*242
+//kognitivni nivo: 4 (relational)
+/t
+Kako se konkurentnost kao opšti princip manifestuje u različitim modelima upravljanja procesima u operativnom sistemu?
++Konkurentnost se javlja svugde gde se vrši preplitanje različitih procesa, bez obzira na model upravljanja — multiprogramiranje, multiprocesiranje ili distribuirana obrada
+-Konkurentnost je svojstvo samo distribuirane obrade jer zahteva komunikaciju između više računara
+-Konkurentnost se javlja samo kod multiprogramiranja, dok multiprocesiranje i distribuirana obrada isključuju preplitanje procesa
+-Konkurentnost postoji u multiprocesiranju, ali ne u multiprogramiranju jer su procesi na istom procesoru
+.
+
+*243
+//kognitivni nivo: 4 (relational)
+/t
+Kako višestruke aplikacije koje se izvršavaju u multiprogramiranom sistemu dovode do konkurentnosti?
++Jer različiti procesi aplikacija vrše preplitanje i pristupaju istim resursima na nepredvidiv način
+-Jer više aplikacija povećava brzinu izvršavanja kroz paralelnu obradu bez zavisnosti
+-Jer svaka aplikacija zahteva vlastiti procesor umesto deljenja jednoprocesorskog sistema
+-Jer operativni sistem automatski sprečava komunikaciju između procesa različitih aplikacija
+.
+
+*244
+//kognitivni nivo: 4 (relational)
+/t
+Kako konkurentnost u strukturiranim aplikacijama (koje sadrže više konkurentnih procesa/niti) odgovara konkurentnosti u operativnom sistemu?
+-Konkurentnost u aplikacijama sprečava konkurentnost u operativnom sistemu kroz zaštitu resursa
++Obe se javaljaju zbog preplitanja različitih procesa gde je redosled izvršavanja nepredvidiv
+-Operativni sistem omogućava konkurentnost samo kroz multiprocesiranje, dok aplikacije koriste samo niti
+-Obe koriste identične mehanizme sinhronizacije bez obzira na nivo izvršavanja
+.
+
+*245
+//kognitivni nivo: 4 (relational)
+/t
+Kako deljenje globalnih resursa između više procesa dovodi do problema u konkurentnom izvršavanju?
++Jer dva ili više procesa vrše upis i čitanje nad istom globalnom promenljivom, što dovodi do neodređenog redosleda izvršavanja
+-Jer omogućava svakom procesu da obavi akciju bez negativnog uticaja drugih procesa
+-Jer sinhronizacija procesa usklađuje njihovo ponašanje sa aktivnošću drugih procesa
+-Jer OS primenjuje multiprogramiranje koje sprečava istovremeni pristup resursima
+.
+
+*246
+//kognitivni nivo: 4 (relational)
+/t
+Kako međusobna interakcija procesa u konkurentnom izvršavanju dovodi do zavisnosti između procesa?
+-Jer multiprogramiranje sprečava procese da se izvršavaju u istom vremenu
+-Jer svaki proces ima svoju memoriju i ne može pristupiti resursima drugih procesa
+-Jer operativni sistem automatski kreira nove procese kada se dva procesa sretnу
++Jer procesi dele zajedničke resurse i moraju pristupiti istim podacima na kontrolisan način
+.

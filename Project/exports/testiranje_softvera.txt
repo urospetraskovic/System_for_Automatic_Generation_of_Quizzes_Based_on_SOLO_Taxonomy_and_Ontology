@@ -1,0 +1,2480 @@
+//pitanja za test iz Testiranja softvera
+*1
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta dinamičko testiranje predstavlja?
+-Dokumentovanje greške pronađene tokom razvoja softvera
++Verifikaciju ponašanja test objekta putem izvršavanja njegovih funkcionalnosti
+-Planiranje test slučajeva pre nego što se test objekat napravi
+-Analizu koda bez izvršavanja programa
+.
+
+*2
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta predstavlja dinamičko testiranje?
+-Analizu koda bez izvršavanja programa
+-Dokumentovanje grešaka pronađenih u test okruženju
++Verifikaciju ponašanja test objekta putem izvršavanja njegovih funkcionalnosti
+-Planiranje testova pre nego što se objekat kreira
+.
+
+*3
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta predstavljaju ulazni podaci u kontekstu dinamičkog testiranja?
+-Rezultati koje dobijamo nakon verifikacije ponašanja test objekta
++Podaci koje šaljemo test objektu kako bi se izvršile programirane funkcionalnosti
+-Podaci koje test objekat automatski generiše tokom izvršavanja
+-Dokumentacija koja opisuje očekivano ponašanje test objekta
+.
+
+*4
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta mora biti zadovoljeno da bi se dinamičko testiranje moglo sprovesti?
+-Test objekat mora biti verzionisan
++Test objekat mora biti izvršiv
+-Test objekat mora biti dokumentovan
+-Test objekat mora biti optimizovan
+.
+
+*5
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta se naziva test bed, test harness ili test environment?
++Softversko i hardversko okruženje u kojem se izvršava test objekat
+-Proces simuliranja ponašanja objekata koji nisu implementirani
+-Alat koji pokreće kod koji se izvršava nad test objektom
+-Skup test slučajeva koji se koriste za validaciju koda
+.
+
+*6
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je test driver u kontekstu dinamičkog testiranja?
++Komponenta zadužena za pokretanje koda koji se izvršava nad test objektom
+-Tačka upravljanja koja inicira pojavu otkaza testiranog objekta
+-Softverska komponenta koja simulira ponašanje objekata koje test objekat koristi
+-Okruženje koje obezbeđuje softversko i hardversko okruženje za izvršavanje
+.
+
+*7
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je Point of Control (PoC) u dinamičkom testiranju?
+-Tačka kroz koju se posmatraju rezultati testiranja
+-Okruženje u kojem se izvršava test objekat
++Tačka kroz koju se upravlja test objektom
+-Proces definisanja preduslova testa
+.
+
+*8
+//kognitivni nivo: 2 (unistructural)
+/t
+Koja je prva komponenta dinamičkog testiranja koju čini tačka upravljanja?
++Point of Control (PoC)
+-Test driver (JUnit)
+-Test environment (test bed)
+-Point of Observation (PoO)
+.
+
+*9
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta su tačka upravljanja i tačka posmatranja u dinamičkom testiranju?
+-Nivoi testiranja sistema
+-Faze dizajna test slučaja
++Komponente dinamičkog testiranja
+-Vrste test okruženja
+.
+
+*10
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je test harness?
+-Alat koji pokreće kod koji se izvršava nad test objektom
++Alternativni naziv za test okruženje koje obezbeđuje softversko i hardversko okruženje
+-Tačka upravljanja u dinamičkom testiranju
+-Komponenta koja simulira ponašanje objekata koje test objekat koristi
+.
+
+*11
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je test bed u kontekstu izvršavanja test objekta?
+-Komponenta koja simulira samo ponašanje objekata
+-Alat za upravljanje test slučajevima
+-Softverski kod koji pokreće test objekta
++Test okruženje koje obezbeđuje softversko i hardversko okruženje
+.
+
+*12
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je Tačka upravljanja (Point of Control) u dinamičkom testiranju?
++Mesto gde se može uticati na testirani objekat tokom izvršavanja testa
+-Početna tačka od koje počinje izvršavanje test slučaja
+-Tačka u kodu gde se detektuju greške testiranog objekta
+-Mesto gde se posmatra ponašanje testiranog objekta tokom izvršavanja
+.
+
+*13
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je Tačka posmatranja (Point of Observation) u dinamičkom testiranju?
++Mesto gde se prikupljaju i analiziraju rezultati testiranja
+-Faza u kojoj se definišu preduslovi i ciljevi testa
+-Tip dinamičkog testiranja koji koristi samo izvor koda
+-Mehanizam za upravljanje tokom izvršavanja testiranog objekta
+.
+
+*14
+//kognitivni nivo: 2 (unistructural)
+/t
+Koja je prva komponenta dinamičkog testiranja navedena u definiciji?
+-Black-box testing
+-Dizajn test slučaja
+-Tačka posmatranja
++Tačka upravljanja
+.
+
+*15
+//kognitivni nivo: 2 (unistructural)
+/t
+Koja je prva faza u procesu dizajna test slučaja?
+-Određivanje redosleda izvršavanja slučaja
+-Definisanje i grupisanje test slučajeva
++Utvrđivanje preduslova i ciljeva testa
+-Implementacija test slučaja u programskom jeziku
+.
+
+*16
+//kognitivni nivo: 2 (unistructural)
+/t
+Koja su dva glavna tipa dinamičkog testiranja navedena u lekciji?
++Black-box testiranje i white-box testiranje
+-White-box testiranje i red-box testiranje
+-Statičko testiranje i dinamičko testiranje
+-Black-box testiranje i gray-box testiranje
+.
+
+*17
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je tačka upravljanja u komponentama dinamičkog testiranja?
+-Proces implementacije test slučaja u programskom jeziku
++Point of Control (PoC)
+-Mesto gde se definiše redosled izvršavanja test slučaja
+-Mesto gde se prate rezultati izvršavanja testa
+.
+
+*18
+//kognitivni nivo: 2 (unistructural)
+/t
+Koja su dva glavna cilja dinamičkog testiranja?
++Demonstracija funkcionalnosti i iniciranje pojave otkaza
+-Pronalaženje grešaka i dokumentovanje rezultata
+-Analiza performansi i merenje brzine izvršavanja
+-Planiranje test slučajeva i dizajn testova
+.
+
+*19
+//kognitivni nivo: 2 (unistructural)
+/t
+Navedi tri glavna tipa dinamičkog testiranja.
+-Black-box testing, White-box testing, testiranje performansi
+-Black-box testing, Gray-box testing, testiranje zasnovano na iskustvu
++Black-box testing, White-box testing, testiranje zasnovano na iskustvu
+-Statičko testiranje, dinamičko testiranje, testiranje sigurnosti
+.
+
+*20
+//kognitivni nivo: 2 (unistructural)
+/t
+Kako se test objekat posmatra u black-box testiranju?
++Kao crna kutija bez znanja o internoj implementaciji
+-Kao skup modula koji se testiraju odvojeno
+-Kao sistem čija se interna struktura detaljno analizira
+-Kao bela kutija sa vidljivim kodom i logikom
+.
+
+*21
+//kognitivni nivo: 2 (unistructural)
+/t
+Koja od sledećih opcija predstavlja jedan od tipova dinamičkog testiranja navedenih u izvornom materijalu?
+-Testiranje zasnovano na dokumentaciji
+-Testiranje zasnovano na sigurnosti
++Testiranje zasnovano na iskustvu
+-Testiranje zasnovano na performansama
+.
+
+*22
+//kognitivni nivo: 2 (unistructural)
+/t
+Na osnovu kog aspekta test objekta se dizajniraju testovi u white-box testiranju?
+-Spoljašnjeg posmatranja ulaza i izlaza
++Uvida u strukturu i programskog koda objekta
+-Iskustva i intuicije test inženjera
+-Specifikacije i očekivanog ponašanja objekta
+.
+
+*23
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je osnovna karakteristika testiranja zasnovanog na iskustvu?
+-Testiranje se bazira isključivo na analizi programskog koda
+-Test objekat se posmatra kao crna kutija bez uvida u strukturu
++Testovi se kreiraju na osnovu praktičnog iskustva i heurističkog pristupa
+-Testovi se kreiraju na osnovu formalnih specifikacija objekta
+.
+
+*24
+//kognitivni nivo: 2 (unistructural)
+/t
+Kako se test slučajevi kreiraju u black box testiranju?
+-Na osnovu strukture test objekta
+-Na osnovu analize programskog koda objekta
+-Na osnovu toka programa unutar objekta
++Na osnovu specifikacije objekta
+.
+
+*25
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je klasa ekvivalencije u metodi podele na klase ekvivalencije?
+-Kolekcija svih mogućih ulaznih parametara objekta
+-Grupa test slučajeva koji se izvršavaju sekvencijalno
++Skup vrednosti za koje se pretpostavlja da ih test objekat obrađuje na isti način
+-Metoda analize programskog koda test objekta
+.
+
+*26
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je tačka posmatranja u white box testiranju?
+-Izvan objekta koji se testira
+-U dokumentaciji test slučajeva
+-Na granici između koda i specifikacije
++Unutar objekta koji se testira
+.
+
+*27
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je dinamičko testiranje?
+-Testiranje koje se fokusira na unutrašnju strukturu programa
++Testiranje objekta kao crne kutije na osnovu specifikacije
+-Testiranje zasnovano isključivo na iskustvu i intuiciji
+-Testiranje koje analizira programski kod objekta
+.
+
+*28
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je black box testing?
+-Testiranje zasnovano na iskustvu i intuiciji učesnika u projektu
+-Testiranje koje kombinuje principe white box i black box testiranja
+-Testiranje koje analizira programski kod i strukturu objekta
++Testiranje gde se test objekat posmatra kao crna kutija i test slučajevi se kreiraju na osnovu specifikacije
+.
+
+*29
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je black box testiranje?
++Testiranje gde se test objekat posmatra kao crna kutija
+-Testiranje koje kombinuje principe white box i black box tehnika
+-Testiranje koje modifikuje objekat da bi se izvršio željeni tok
+-Testiranje koje analizira programski kod objekta
+.
+
+*30
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je karakteristika black box testiranja u pogledu analize objekta?
+-Analiza toka programa unutar objekta
+-Modifikovanje objekta za potrebe testiranja
++Posmatranje objekta kao crne kutije
+-Analiza programskog koda objekta
+.
+
+*31
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je dinamicko testiranje?
+-Testiranje zasnovano isključivo na iskustvu učesnika u projektu
+-Testiranje koje se izvršava analizom koda bez izvršavanja programa
++Testiranje koje se izvršava tokom izvršavanja programa
+-Testiranje koje se izvršava bez pokretanja programa
+.
+
+*32
+//kognitivni nivo: 2 (unistructural)
+/t
+Koja je glavna karakteristika gray box testiranja?
++Kombinuje principe white box i black box testiranja
+-Koristi samo analizu programskog koda bez spoljašnjeg testiranja
+-Primenjuje se isključivo u jediničnom testiranju
+-Koristi iskustvo i intuiciju učesnika u projektu
+.
+
+*33
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je karakteristika testiranja zasnovanog na iskustvu i intuiciji?
++Nije sistematična tehnika i oslanja se na znanje učesnika
+-Zahteva precizno definisane test slučajeve unapred
+-Fokusira se isključivo na strukturu test objekta
+-Koristi detaljnu analizu programskog koda objekta
+.
+
+*34
+//kognitivni nivo: 2 (unistructural)
+/t
+Na osnovu čega se testovi dizajniraju u white box testiranju?
+-Na osnovu zahteva krajnjeg korisnika bez poznavanja koda
++Na osnovu analize programskog koda i strukture objekta
+-Na osnovu ponašanja programa iz perspektive korisnika
+-Na osnovu iskustva i intuicije učesnika u projektu
+.
+
+*35
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta analizira dinamičko testiranje (white box testing) u test objektu?
+-Iskustvo i intuiciju učesnika u projektu
+-Samo spoljne funkcionalnosti bez pristupa kodu
+-Ponašanje sistema iz perspektive krajnjeg korisnika
++Tok programa unutar test objekta
+.
+
+*36
+//kognitivni nivo: 2 (unistructural)
+/t
+Gde se nalazi tačka posmatranja pri white box testiranju?
+-U interfejsu korisnika aplikacije
+-Izvan objekta koji se testira
+-U dokumentaciji test slučajeva
++Unutar objekta koji se testira
+.
+
+*37
+//kognitivni nivo: 2 (unistructural)
+/t
+Na kojim nivoima testiranja se primenjuje white box testiranje?
+-Samo na integracioni testovima
++Na jediničnim i integracioni testovima
+-Samo na e2e testovima
+-Na svim nivoima testiranja bez izuzetka
+.
+
+*38
+//kognitivni nivo: 2 (unistructural)
+/t
+Za koje testove se koristi black box testiranje?
+-Samo testovi baze podataka
++End-to-end testovi i integracioni testovi
+-Testovi korisničkog interfejsa bez verifikacije
+-Jedinični testovi i testovi nižeg nivoa
+.
+
+*39
+//kognitivni nivo: 2 (unistructural)
+/t
+Na kom nivou testiranja se koristi white box pristup?
+-Na end-to-end testiranju
+-Na testiranju zasnovanom na iskustvu
++Na testovima nižeg nivoa
+-Na integracijskim testiranjima
+.
+
+*40
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je dinamičko testiranje prema black box pristupu?
+-Testiranje nižeg nivoa koje se primenjuje na jedinične testove
+-Testiranje koje kombinuje principe white box i black box metoda
+-Testiranje koje koristi znanje o internoj strukturi koda
++Testiranje zasnovano na iskustvu i intuiciji učesnika u projektu
+.
+
+*41
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri ključna elementa koja su neophodna za sprovođenje dinamičkog testiranja.
++Verifikacija ponašanja, test objekat koji je izvršiv, i ulazni podaci
+-Test okruženje, dokumentacija koda, i tim testera
+-Jedinično testiranje, integracijsko testiranje, i sistem testiranja
+-Planiranje testova, analiza rizika, i izveštavanje grešaka
+.
+
+*42
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri ključna elementa koja dinamičko testiranje obuhvata.
+-Planiranje testova, dokumentovanje grešaka, i analiza rizika
++Verifikacija ponašanja, izvršavanje funkcionalnosti, i izvršivost test objekta
+-Dizajn test slučajeva, upravljanje verzijama, i revizija koda
+-Statička analiza, pronalaženje defekta, i optimizacija performansi
+.
+
+*43
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri samostalne komponente koje su potrebne za izvršavanje test objekta u dinamičkom testiranju.
++Test okruženje, test driver i tačke upravljanja/posmatranja
+-Preduslovi testa, ciljevi testa i test slučaj
+-Jedinično testiranje, integraciono testiranje i sistemsko testiranje
+-Test harness, simulator objekata i razvojni alat
+.
+
+*44
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri glavne komponente i cilja dinamičkog testiranja koji se pominju u kursu.
+-Black-box testiranje, white-box testiranje i kontrola ulaza
++Tačka upravljanja, tačka posmatranja i demonstracija zadovoljenja funkcionalnosti
+-Tačka upravljanja, tačka posmatranja i iniciranje otkaza
+-Utvrđivanje preduslova, definisanje slučaja i posmatranje ponašanja
+.
+
+*45
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri ključne faze koje obuhvata proces kreiranja test slučajeva u dinamičkom testiranju.
+-Analiza koda, izvršavanje testa, dokumentovanje rezultata
+-Planiranje, dizajn crne kutije, verifikacija funkcionalnosti
+-Identifikacija grešaka, testiranje bez znanja o kodu, grupiranje test slučajeva
++Utvrđivanje preduslova i ciljeva, definisanje test slučaja, implementacija u programskom jeziku
+.
+
+*46
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri nezavisna karakteristika koja razlikuju white-box testiranje i testiranje zasnovano na iskustvu.
+-Heuristički pristup, specifikacija objekta, uvid u ponašanje
+-Uvid u strukturu, iskustvo testera, analiza koda
+-Specifikacija objekta, praktično iskustvo, spoljašnje posmatranje
++Analiza koda, uvid u strukturu objekta, heuristički pristup
+.
+
+*47
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri karakteristike black box testiranja.
+-Testovi se dizajniraju na osnovu strukture objekta, analizira se programski kod, tačka posmatranja je unutar objekta
+-Kombinuje white box i black box principe, omogućava delimičan uvid u strukturu, deli domen vrednosti na klase
+-Test objekat se posmatra kao crna kutija, analizira se programski kod objekta, tačka upravljanja je unutar objekta
++Test objekat se posmatra kao crna kutija, test slučajevi se kreiraju na osnovu specifikacije, ponašanje se posmatra spolja
+.
+
+*48
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri nezavisna elementa na osnovu kojih se dizajniraju testovi u white box testiranju?
+-Iskustvo učesnika, intuicija, znanje o sistemu
+-End-to-end testovi, jedinični testovi, integracioni testovi
++Struktura test objekta, analiza programskog koda, tok programa
+-Principi white box, principi black box, hibridni pristup
+.
+
+*49
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri karakteristike koje razlikuju white box, black box i gray box testiranje.
++White box se koristi u testovima nižeg nivoa, black box za e2e testove, gray box kombinuje oba pristupa
+-White box ignoriše interni kod, black box poznaje kod detaljno, gray box ne koristi kod uopšte
+-White box se primenjuje samo na jedinične testove, black box samo na integracione, gray box na sve nivoe
+-White box koristi intuiciju, black box koristi sistematičnu analizu, gray box koristi samo iskustvo
+.
+
+*50
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri karakteristike testiranja zasnovanog na iskustvu i intuiciji.
+-Nije sistematična tehnika, kreira test na osnovu zahteva, verifikuje ponašanje objekta
+-Sistematična tehnika, koristi specifikaciju, ne bavi se unutrašnjom strukturom
++Nije sistematična tehnika, koristi iskustvo iz ranijih projekata, koristi znanje učesnika
+-Kreira test na osnovu specifikacije, oslanja se na iskustvo, bavi se dizajnom objekta
+.
+
+*51
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri nezavisna elementa koja se moraju utvrditi pri primeni tehnike podele na klase ekvivalencije.
+-Ulazne parametre, izlazne vrednosti i očekivane rezultate
+-Ispravne ulaze, analizu grešaka i logičke uslove
+-Reprezentativne vrednosti, graničnih vrednosti i test slučajeve
++Domen mogućih vrednosti, validne klase ekvivalencije i nevalidne klase ekvivalencije
+.
+
+*52
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri nezavisna elementa koja karakterišu validne klase ekvivalencije u primeru ocenjivanja studenata.
++Predstavljaju dozvoljene vrednosti parametra, za sve vrednosti u jednoj klasi sistem se ponaša identično, i sve vrednosti u klasi zadovoljavaju uslove sistema
+-Predstavljaju nedozvoljene vrednosti parametra, smanjuju broj test slučajeva, i koriste reprezentativne vrednosti iz svake klase
+-Predstavljaju dozvoljene vrednosti parametra, za sve vrednosti u jednoj klasi sistem se ponaša identično, i uključuju vrednosti ispod minimalnog opsega
+-Dele skup mogućih vrednosti na grupe, koriste reprezentativne vrednosti, i uključuju vrednosti iznad maksimalnog dozvoljenog opsega
+.
+
+*53
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri nezavisna koraka koja se primenjuju pri klasifikaciji izlaznih parametara u klase ekvivalencije.
++Identifikovanje mogućih vrednosti izlaza, klasifikovanje u klase ekvivalencije, i utvrđivanje kombinacija ulaza
+-Deljenje domena na ispravne i neispravne vrednosti, procesiranje programa, i dizajniranje test slučajeva
+-Klasifikovanje ulaznih parametara, deljenje klasa, i verifikacija rezultata
+-Utvrđivanje domena ispravnih vrednosti, procesiranje podataka, i identifikovanje grešaka
+.
+
+*54
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri ključna koraka u procesu dizajniranja test slučajeva prema metodi klasa ekvivalencije?
+-Deljenje na pozitivne i negativne test slučajeve, redukcija broja slučajeva, merenje pokrivanja
+-Izbor reprezentativnih vrednosti, kombinovanje sa graničnim slučajevima, eliminisanje duplikata
+-Kreiranje Dekartovog proizvoda svih parametara, analiza prioriteta, kombinovanje svih nevalidnih klasa
++Identifikovanje domena ispravnih i neispravnih vrednosti, izbor reprezentativnih vrednosti, utvrđivanje uslova i očekivanog rezultata
+.
+
+*55
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri elementa koja se testiraju pri analizi graničnih slučajeva za svaku klasu ekvivalencije?
+-Reprezentativna vrednost, minimalna vrednost, maksimalna vrednost
+-Granična vrednost, vrednost izvan domena, vrednost sa tolerancijom
+-Vrednost na granici, susedna vrednost, vrednost u sredini klase
++Vrednost na granici, najbliža vrednost izvan granice, najbliža vrednost unutar granice
+.
+
+*56
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri karakteristike koje definiše metoda klasa ekvivalencije prema prikazanom pregledu.
+-Sistematična tehnika, povećanje broja test slučajeva, analiza graničnih slučajeva
+-Smanjenje broja test slučajeva, ignorisanje međusobne zavisnosti parametara, kreiranje više test slučajeva po klasi
+-Identifikovanje ulaznih vrednosti, klasifikovanje svih parametara, kombinacija sa analizom graničnih slučajeva
++Sistematična tehnika, smanjenje broja test slučajeva, identifikovanje ulaznih vrednosti sa istim ponašanjem
+.
+
+*57
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri ključna elementa koja se koriste pri dizajnu test slučajeva u analizi graničnih slučajeva.
+-Granične vrednosti, testiranje svih mogućih kombinacija, minimalni broj test slučajeva
++Identifikovanje graničnih i susednih vrednosti, sve kombinacije vrednosti parametara, razuman izbor podskupa test slučajeva
+-Reprezentativne vrednosti, ekvivalentne klase, nasumični izbor test slučajeva
+-Identifikovanje graničnih vrednosti, izbor samo minimalnih vrednosti, automatizovano testiranje
+.
+
+*58
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri nezavisna elementa koja se identifikuju tokom dizajna test slučajeva prema metodi graničnih vrednosti.
+-Ekvivalentne klase, test slučajevi, i kriterijumi završetka
++Granične vrednosti, susedne vrednosti, i kombinacije vrednosti parametara
+-Redundantnost, pokrivanje, i smanjenje broja slučajeva
+-Parametri, vrednosti, i test scenariji
+.
+
+*59
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri karakteristike koje se koriste pri testiranju prelaza stanja.
++Praćenje istorije izvršavanja, verifikacija stanja test objekta i akcije koje iniciraju prelaze
+-Klase ekvivalencije, dijagram prelaza stanja i reprezentativne vrednosti
+-Analiza graničnih slučajeva, praćenje stanja i greške na granicama klase
+-Praćenje istorije izvršavanja, verifikacija stanja test objekta i analiza graničnih slučajeva
+.
+
+*60
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri ključne komponente koje se koriste u testiranju prelaza stanja?
+-Grafički interfejs, baze podataka, i mrežne konekcije
+-Dijagram prelaza, korisničke greške, i performanse sistema
+-Inicijalno stanje, krajnje stanje, i broj mogućih prelaza
++Stanja objekta, akcije koje iniciraju prelaze, i verifikacija praćenjem stanja
+.
+
+*61
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri faktora koja određuju ispravnost ponašanja test objekta pri dinamičkom testiranju prema dijagramu stanja.
+-Vrsta programskog jezika, grafički prikaz dijagrama, i dokumentacija test slučaja
+-Broj mogućih stanja, brzina izvršavanja operacije, i tip podataka koji se obrađuju
++Trenutno stanje objekta, dozvoljene operacije u tom stanju, i očekivani rezultat operacije
+-Kapacitet memorije, redosled operacija, i inicijalni kod objekta
+.
+
+*62
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri nezavisna elementa koja se moraju specificirati pri definisanju primer test slučaja.
+-Stanje sistema, inicijalizacija, push operacija
++Preduslov, ulazna operacija, očekivani rezultat operacije
+-Intenzitet testiranja, posledica, dozvoljene operacije
+-Kapacitet sistema, posledica nakon operacije, minimalno testiranje
+.
+
+*63
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri komponente koje stablo prelaza stanja mora da sadrži prema intenzitetu testiranja?
++Konačnu necikličnu sekvencu, sva moguća stanja i sve moguće prelaze
+-Dijagram prelaza, pravila kreiranja i operacije u svakom stanju
+-Inicijalno stanje, sve operacije i dijagram prelaza
+-Sve funkcije, negativne testove i minimalno testiranje
+.
+
+*64
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri elementa koja čine triplet u stablu prelaza.
+-Koren stabla, čvor, konačno stanje
++Prethodno stanje, naredno stanje, operacija
+-Inicijalno stanje, čvor, veza
+-Dijagram prelaza, čvor, veza
+.
+
+*65
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri nezavisna elementa koja se određuju tokom kreiranja test slučaja iz stabla prelaza.
+-Inicijalno stanje, čvor i veza u stablu
+-Koren stabla, konačno stanje i putanja
++Preduslov, operacija i očekivana reakcija sistema
+-Triplet, naredno stanje i dijagram prelaza
+.
+
+*66
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri elementa koja mora sadržati svaki test slučaj kreirani na osnovu stabla prelaza stanja.
+-Preduslov, operacija i očekivana reakcija
++Preduslov, operacija, očekivana reakcija i posledica
+-Samo operacija i očekivana posledica
+-Preduslov, stanje sistema i rezultat testiranja
+.
+
+*67
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri nezavisna elementa koja se koriste u tehnici parova podataka?
+-Tabela odlučivanja, uzroci i posledice
+-Uzročno-posledični graf, logičke veze i test slučajevi
++Klase ekvivalencije, tabela kombinacija i reprezentativne vrednosti
+-Parametri, domeni vrednosti i logičke operacije
+.
+
+*68
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri nezavisna elementa koja se pojavljuju u tabeli odlučivanja.
++Gornji redovi, donji redovi i kombinacije uzroka
+-Izlazi, ulazi i pravila transformacije
+-Uzroci, posledice i logičke veze
+-Uslovi, rezultati i parametri
+.
+
+*69
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri nezavisna elementa koja se nalaze u tabeli odlučivanja.
++Uzroci, posledice i kombinacije parametara
+-Uzroci, posledice i pravila kombinacija
+-Logičke veze, test slučajevi i očekivani izlazi
+-Ulazni parametri, stanja sistema i prelazi stanja
+.
+
+*70
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri nezavisna elementa koja tabela odlučivanja sadrži.
+-Uzročno-posledične grafove, validne kombinacije i nevalidne kombinacije
++Kombinacije ulaznih parametara, očekivane izlaze i informacije o pravilima
+-Kombinacije ulaznih parametara, očekivane izlaze i pravila transformacije
+-Gornje redove sa uzrocima, donje redove sa posledicama i test scenarije
+.
+
+*71
+//kognitivni nivo: 4 (relational)
+/t
+Zašto je izvršavanje test objekta neophodan korak u sprovođenju dinamičkog testiranja?
++Jer test objekat mora biti izvršiv kako bi se moglo sprovesti dinamičko testiranje
+-Jer dinamičko testiranje zahteva verifikaciju ponašanja test objekta putem izvršavanja njegovih funkcionalnosti
+-Jer izvršavanje omogućava slanje ulaznih podataka koji simuliraju ponašanje objekata
+-Jer test okruženje ne može biti postavljeno bez prethodnog izvršavanja koda
+.
+
+*72
+//kognitivni nivo: 4 (relational)
+/t
+Zašto je verifikacija ponašanja test objekta moguća samo kroz dinamičko testiranje?
++Jer dinamičko testiranje omogućava izvršavanje funkcionalnosti test objekta sa ulaznim podacima koje mu šaljemo
+-Jer verifikacija ponašanja zahteva samo analizu dokumentacije
+-Jer test okruženje automatski generiše sve ulazne podatke
+-Jer statičko testiranje ne može da detektuje greške u kodu
+.
+
+*73
+//kognitivni nivo: 4 (relational)
+/t
+Zašto test objekat mora biti izvršiv da bi se moglo sprovesti dinamičko testiranje?
+-Jer izvršivost zavisi od toga da li je test objekat prethodno verifikovan
++Jer je izvršivost test objekta neophodna da bi se proces izvršavanja mogao obezbediti
+-Jer samo izvršivi objekti mogu da simuliraju ponašanje drugih komponenti
+-Jer izvršivost omogućava pokretanje koda nad test objektom u test okruženju
+.
+
+*74
+//kognitivni nivo: 4 (relational)
+/t
+Zašto je test okruženje neophodno za izvršavanje test objekta u nižim nivoima testiranja?
++Jer obezbeđuje softversko i hardversko okruženje potrebno za izvršavanje test objekta
+-Jer simulira ponašanje objekata koje test objekat koristi tokom testiranja
+-Jer omogućava pokretanje koda test objekta nezavisno od glavne aplikacije
+-Jer omogućava verifikaciju ponašanja test objekta putem ulaznih podataka
+.
+
+*75
+//kognitivni nivo: 4 (relational)
+/t
+Zašto je razumevanje ciljeva dinamičkog testiranja preduslov za efikasan dizajn test slučaja?
+-Zato što izvršivost test objekta zavisi od prethodne definicije ciljeva u kodu
+-Zato što test driver automatski generiše test slučajeve na osnovu test okruženja
++Zato što ciljevi određuju koje ulazne podatke i očekivane rezultate test slučaj mora da proverava
+-Zato što test okruženje mora biti konfigurisano pre nego što se postave ciljevi testiranja
+.
+
+*76
+//kognitivni nivo: 4 (relational)
+/t
+Zašto je razumevanje ciljeva dinamičkog testiranja preduslov pre nego što se pristupa proučavanju različitih tipova dinamičkog testiranja?
+-Jer tipovi testiranja (black-box i white-box) direktno određuju koje ciljeve možemo postići
+-Jer ciljevi testiranja i tipovi testiranja predstavljaju identične koncepte u dinamičkom testiranju
+-Jer se tipovi dinamičkog testiranja razvijaju tokom izvršavanja test objekta u test okruženju
++Jer se ciljevi dinamičkog testiranja (dokazivanje funkcionalnosti i iniciranje otkaza) primenjuju kao osnova za izbor i primenu specifičnih tipova testiranja
+.
+
+*77
+//kognitivni nivo: 4 (relational)
+/t
+Zašto se implementacija test slučaja u programskom jeziku ne može izvršiti pre nego što se utvrde preduslovi i ciljevi testa?
+-Jer test driver automatski generiše kod na osnovu test okruženja
+-Jer test objekat mora biti već izvršiv pre nego što se napiše kod
+-Jer se verifikacija ponašanja dešava samo tokom izvršavanja u test bed-u
++Jer dizajn test slučaja koji obuhvata preduslove i ciljeve mora prethoditi implementaciji
+.
+
+*78
+//kognitivni nivo: 4 (relational)
+/t
+Kako dizajn test slučaja utiče na način izvršavanja tog slučaja u dinamičkom testiranju?
++Dizajn određuje redosled i grupisanje izvršavanja, što omogućava sistematsku verifikaciju ponašanja
+-Dizajn omogućava simulaciju ponašanja objekata koji nisu još implementirani
+-Dizajn određuje softversko i hardversko okruženje u kojem se test objekat izvršava
+-Dizajn direktno pokreće test driver koji izvršava kod nad test objektom
+.
+
+*79
+//kognitivni nivo: 4 (relational)
+/t
+Kako razumevanje black box testiranja omogućava primenu gray box testiranja?
++Black box testiranje postavlja osnovu za razumevanje posmatranja ponašanja objekta spolja, što gray box testiranje kombinuje sa delimičnim uvidom u strukturu
+-Gray box testiranje je moguće samo ako se prvo nauči kako se test objekat posmatra kao crna kutija bez ikakve analize
+-Black box testiranje i gray box testiranje koriste identične tačke upravljanja i posmatranja rezultata
+-Black box testiranje eliminiše potrebu za analizom strukture objekta u gray box pristupu
+.
+
+*80
+//kognitivni nivo: 4 (relational)
+/t
+Zašto je simulacija ponašanja objekata neophodna u test okruženju tokom jediničnog testiranja?
+-Jer test okruženje mora da obezbeđi softversko i hardversko okruženje
+-Jer verifikacija ponašanja zahteva izvršavanje funkcionalnosti sa ulaznim podacima
+-Jer omogućava test driveru da pokreće kod nezavisno od aplikacije
++Jer objekti koje test objekat koristi još nisu implementirani ili se želi izolovano testiranje
+.
+
+*81
+//kognitivni nivo: 4 (relational)
+/t
+Kako dizajn test slučaja utiče na implementaciju test slučaja u programskom jeziku?
++Dizajn određuje preduslove i ciljeve testa koji se zatim koriste za pisanje koda test slučaja
+-Implementacija test slučaja direktno determiniše koje preduslove i ciljeve testa treba da postavimo
+-Dizajn test slučaja i implementacija su nezavisni procesi koji se ne utiču međusobno
+-Implementacija test slučaja se izvršava pre nego što se dizajn test slučaja završi
+.
+
+*82
+//kognitivni nivo: 4 (relational)
+/t
+Kako izvršavanje test objekta omogućava verifikaciju ponašanja u dinamičkom testiranju?
+-Izvršavanje test objekta eliminiše potrebu za test okruženjem jer je objekat već implementiran
+-Izvršavanje test objekta smanjuje broj potrebnih test drajvera u jediničnom testiranju
+-Izvršavanje test objekta zamenjuje statičku analizu koda kao primarnu metodu testiranja
++Izvršavanje test objekta je sredstvo kroz koje se proverava da li test objekat izvršava programirane funkcionalnosti za date ulazne podatke
+.
+
+*83
+//kognitivni nivo: 4 (relational)
+/t
+Zašto je razumevanje klase ekvivalencije kao skupa vrednosti sa istim ponašanjem preduslov za pravilnu primenu validnih i nevalidnih klasa ekvivalencije?
+-Jer validne i nevalidne klase ekvivalencije zamenjuju potrebu za testiranjem graničnih vrednosti
+-Jer se validne i nevalidne klase ekvivalencije primenjuju samo na numeričke vrednosti
++Jer se validne i nevalidne klase ekvivalencije mogu definisati tek nakon što se razume kako se vrednosti iz iste klase tretiraju identično
+-Jer su validne i nevalidne klase ekvivalencije identične i razlika je samo u terminologiji
+.
+
+*84
+//kognitivni nivo: 4 (relational)
+/t
+Zašto je neophodno prvo razumeti klasu ekvivalencije pre nego što se izabere reprezentativna vrednost za testiranje?
+-Jer klasa ekvivalencije određuje redosled u kojem se vrednosti testiraju
++Jer klasa ekvivalencije definiše skup vrednosti koje se obrađuju na isti način, pa reprezentativna vrednost predstavlja celu klasu
+-Jer reprezentativna vrednost i klasa ekvivalencije su sinonimi i koriste se zamenjivo
+-Jer reprezentativna vrednost mora biti najmanja vrednost iz domena mogućih ulaza
+.
+
+*85
+//kognitivni nivo: 4 (relational)
+/t
+Zašto je neophodno prvo identifikovati parametar pre nego što se može sprovesti podela na klase ekvivalencije?
+-Jer klase ekvivalencije određuju koje ulazne parametre treba da testiram
+-Jer parametar predstavlja skup vrednosti za koje se pretpostavlja identično ponašanje test objekta
++Jer domen mogućih vrednosti za svaki ulazni parametar mora biti poznat kako bi se mogao podeliti na klase ekvivalencije
+-Jer parametar i klasa ekvivalencije su sinonimi u dinamičkom testiranju
+.
+
+*86
+//kognitivni nivo: 4 (relational)
+/t
+Zašto je razumevanje domena mogućih vrednosti neophodan preduslov za identifikovanje validnih i nevalidnih klasa ekvivalencije?
+-Jer domen mogućih vrednosti omogućava test drajveru da nezavisno pokreće kod nad test objektom
+-Jer domen mogućih vrednosti definiše koje će ulazne podatke test objekat primiti tokom izvršavanja
+-Jer validne i nevalidne klase ekvivalencije određuju strukturu test okruženja u kojem se test objekat izvršava
++Jer se domen mogućih vrednosti deli na klase ekvivalencije koje obuhvataju i ispravne i neispravne vrednosti
+.
+
+*87
+//kognitivni nivo: 4 (relational)
+/t
+Zašto je razumevanje reprezentativne vrednosti preduslov za efikasnu analizu graničnih slučajeva?
+-Jer reprezentativna vrednost direktno simulira ponašanje objekata koji nisu implementirani
+-Jer reprezentativna vrednost omogućava upravljanje test objektom tokom izvršavanja
+-Jer analiza graničnih slučajeva zahteva da prvo identifikujemo sve nevalidne klase ekvivalencije
++Jer prvo moramo znati koju vrednost iz klase ekvivalencije ćemo testirati pre nego što analiziramo ponašanje na granicama te klase
+.
+
+*88
+//kognitivni nivo: 4 (relational)
+/t
+Zašto je pretpostavka o jednakom ponašanju sistema za sve vrednosti u klasi ekvivalencije osnova za primenu analize graničnih slučajeva?
+-Jer analiza graničnih slučajeva eliminiše potrebu za kreiranjem klasa ekvivalencije
++Jer se upravo na granicama klasa često javlja odstupanje od pretpostavljenog jednakog ponašanja
+-Jer analiza graničnih slučajeva dokazuje da je pretpostavka o jednakom ponašanju uvek tačna
+-Jer se vrednosti na granicama klasa ponašaju identično kao sve druge vrednosti u klasi
+.
+
+*89
+//kognitivni nivo: 4 (relational)
+/t
+Zašto se metode za dizajn test slučajeva koriste u black box testiranju umesto testiranja svih mogućih kombinacija ulaznih podataka?
+-Jer specifikacija test objekta ne sadrži informacije o ulazima
+-Jer test objekat ne može da se izvršava u test okruženju
++Jer je testiranje svih mogućih ulaza praktično nemoguće realizovati
+-Jer black box testiranje ne proverava ponašanje test objekta
+.
+
+*90
+//kognitivni nivo: 4 (relational)
+/t
+Zašto je prepoznavanje česte greške pri klasifikaciji vrednosti kritično za uspešnu analizu graničnih slučajeva?
+-Jer greške u klasifikaciji dovode do toga da se graničnim vrednostima ne poklanja dovoljna pažnja tokom testiranja
+-Jer analiza graničnih slučajeva zamenjuje potrebu za kreiranjem klasa ekvivalencije
++Jer analiza graničnih slučajeva zahteva detaljnu pažnju na vrednosti koje mogu biti pogrešno klasifikovane u istu klasu ekvivalencije
+-Jer black box testing metoda ne može da detektuje vrednosti koje nisu pravilno identifikovane kao posebne klase
+.
+
+*91
+//kognitivni nivo: 5 (extended_abstract)
+/t
+Programer koristi graf toka programa da bi vizuelizovao tok izvršavanja koda, a zatim primenjuje analizu toka programa kako bi detektovao logičke greške. Šta je ključna prednost ovog kombinovanog pristupa koji povezuje statičku reprezentaciju sa dinamičkom verifikacijom?
+-Analiza toka programa omogućava detektovanje logičkih grešaka kroz pregled svake naredbe u izvornom kodu, što smanjuje potrebu za manuelnom evaluacijom celog dokumenta.
+-Graf toka programa omogućava detektovanje logičkih grešaka kroz dinamičko testiranje sa različitim test podacima, što omogućava brže otkrivanje nedostataka u odnosu na manuelnu analizu koda.
+-Kombinovani pristup grafa toka programa i analize toka omogućava detektovanje svih vrsta nedostataka u softveru, što čini dinamičko testiranje potpuno nepotrebnim.
++Graf toka programa omogućava detektovanje logičkih grešaka kroz analizu toka pre izvršavanja, što smanjuje broj nedostataka koji bi inače bili otkriveni tek dinamičkim testiranjem.
+.
+
+*92
+//kognitivni nivo: 5 (extended_abstract)
+/t
+Ako tim razvoja želi da detektuje logičke greške u toku programa pre nego što počne dinamičko testiranje, koju kombinaciju statičkog testiranja i analize izvornog koda bi trebalo da primeni?
+-Programsku statičku analizu koja gradi graf toka programa primenjenu na specifikaciju zahteva kombinovanu sa manuelnom evaluacijom zahteva kako bi se detektovale logičke greške.
+-Dinamičko testiranje sa test podacima kombinovano sa analizom specifikacije zahteva kako bi se logičke greške identifikovale tokom izvršavanja programa.
++Manuelnu evaluaciju koda kroz pregled kombinovanu sa programskom statičkom analizom koja gradi graf toka programa za detektovanje nepravilnosti u toku programa.
+-Sve tehnike manuelne evaluacije koje obuhvataju preglede, razgovore i procese verifikacije kombinovane sa bilo kojim softverskim alatom za analizu kako bi se logičke greške detektovale pre izvršavanja.
+.
+
+*93
+//kognitivni nivo: 5 (extended_abstract)
+/t
+Prilikom dinamičkog testiranja jedinične komponente, test inženjer koristi graf toka programa da identifikuje sve moguće putanje izvršavanja. Kako bi se taj graf toka programa efikasno koristio za otkrivanje logičkih grešaka kroz analizu toka programa?
+-Programski alat treba da izgradi graf toka programa, analizira sve čvorove i grane, i koristi tehnike testiranja naredbi, grana, uslova i putanja kako bi detektovao sve vrste nedostataka u kodu.
+-Programski alat treba da izvršava test objekat u test okruženju kako bi simulirao ponašanje objekata i otkrio logičke greške tokom dinamičkog testiranja.
+-Test inženjer treba ručno da analizira graf toka programa kako bi identifikovao sve moguće putanje i detektovao logičke greške bez korišćenja automatizovanih alata.
++Programski alat treba da izgradi graf toka programa kako bi utvrđio nepravilnosti u toku programa i detektovao logičke greške u kodu.
+.
+
+*94
+//kognitivni nivo: 5 (extended_abstract)
+/t
+Tokom white-box testiranja, analitičar gradi graf toka programa kako bi identifikovao sve moguće putanje izvršavanja. Koje od sledećih tvrdnji najbolje objašnjava kako graf toka programa omogućava pronalaženje nedostataka koje statička analiza ne može otkriti?
+-Graf toka programa omogućava manuelnu analizu dokumentacije jer predstavlja vizuelni prikaz naredbi, što dozvoljava recenzentima da identifikuju sintaksne greške i odstupanja od standarda bez potrebe za izvršavanjem koda.
++Graf toka programa omogućava dinamičko testiranje putanja jer predstavlja sve moguće tokove izvršavanja, dok statička analiza može detektovati samo sintaksne nedostatke i odstupanja od standarda, a većina logičkih nedostataka može biti otkrivena samo izvršavanjem programa.
+-Graf toka programa omogućava pronalaženje svih mogućih nedostataka jer omogućava analizu svake naredbe i grane izvršavanja, što znači da statička analiza postaje nepotrebna jer dinamičko testiranje pokriva sve scenarije.
+-Graf toka programa omogućava pronalaženje nedostataka kroz statičku analizu jer transformiše izvorni kod u čvorove i grane, što omogućava programskim alatima da detektuju sve vrste logičkih grešaka tokom pregleda dokumenta.
+.
+
+*95
+//kognitivni nivo: 5 (extended_abstract)
+/t
+Inženjer primenjuje white-box testiranje na modul koji sadrži više grananja i uslova. Tokom analize, kreira graf toka programa da bi identifikovao sve moguće putanje izvršavanja. Kako graf toka programa podržava proces analize toka programa u ovoj situaciji?
+-Graf toka programa omogućava detektovanje svih mogućih grešaka u sistemu kroz vizuelnu reprezentaciju, uključujući i probleme sa konkurentnim pristupom podacima.
++Graf toka programa omogućava detektovanje logičkih grešaka u kodu kroz vizuelnu reprezentaciju čvorova (naredbe) i grana (tok programa), što čini analizu toka programa sistematičnijom.
+-Graf toka programa omogućava detektovanje logičkih grešaka kroz analizu test podataka koji se prosleđuju čvorovima i granama tokom izvršavanja.
+-Graf toka programa omogućava automatsku korekciju koda kroz programsku statičku analizu, što čini proces razvoja brže i efikasnijom.
+.
+
+*96
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je statičko testiranje?
+-Verifikacija test objekta izvršavanjem programa sa određenim test podacima
+-Automatska analiza programa koriščenjem samo softverskih alata
++Verifikacija test objekta analizom njegovog sadržaja bez izvršavanja programa
+-Pronalaženje grešaka u programu tokom izvršavanja aplikacije
+.
+
+*97
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta statičko testiranje verifikuje analizom sadržaja test objekta?
+-Samo funkcionalnosti aplikacije
+-Samo dizajn arhitekture
+-Performanse tijekom izvršavanja
++Funkcionalnosti i dizajn aplikacije
+.
+
+*98
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta statičko testiranje podrazumeva u odnosu na verifikaciju test objekta?
+-Verifikaciju vrši pronalaženje grešaka tokom rada programa
+-Verifikaciju vrši samo manuelna analiza arhitekture aplikacije
+-Verifikaciju vrši izvršavanje test objekta sa određenim test podacima
++Verifikaciju vrši analiza sadržaja test objekta bez njegovog izvršavanja
+.
+
+*99
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta učesnici u projektu rade pri manuelnom statičkom testiranju?
+-Otkrivaju nedeterminističke probleme u konkurentnom kodu
+-Koriste softverske alate za analizu programa
+-Izvršavaju test objekat sa određenim test podacima
++Vrše analizu programa
+.
+
+*100
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta su softverski alati u kontekstu automatskog statičkog testiranja?
+-Programi koje koriste testeri za pisanje test slučajeva
+-Instrumenti za izvršavanje test podataka tokom dinamičkog testiranja
++Alati koji vrše analizu programa u automatskom statičkom testiranju
+-Sistemi za upravljanje defektima pronađenim tokom testiranja
+.
+
+*101
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta podrazumeva statičko testiranje?
+-Pronalaženje grešaka samo u fazi razvoja koda
+-Verifikaciju test objekta izvršavanjem sa test podacima
+-Testiranje aplikacije samo automatskim alatima
++Verifikaciju test objekta analizom njegovog sadržaja
+.
+
+*102
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je manuelna evaluacija prema opisanom materijalu?
++Analiziranje dokumenata u projektu od strane učesnika
+-Brzo testiranje koje ne zahteva učešće više ljudi
+-Automatizovano testiranje koda pomoću softverskih alata
+-Pronalaženje grešaka samo u specifikaciji zahteva
+.
+
+*103
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je pregled (review) u kontekstu statičkog testiranja?
+-Automatizovana analiza koda pomoću softverskih alata
+-Testiranje samo specifikacije zahteva bez učešća više ljudi
+-Dinamičko testiranje koda tokom izvršavanja programa
++Generalni termin za sve tehnike manuelnog statičkog testiranja
+.
+
+*104
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta se prema izvoru odnosi na analiziranje dokumenata u projektu od strane učesnika pri manuelnoj evaluaciji?
+-Automatizovana provera koda pomoću alata
++Analiziranje dokumenata od strane učesnika
+-Testiranje softvera u produkcijskom okruženju
+-Kompajliranje i linkovanje izvornog koda
+.
+
+*105
+//kognitivni nivo: 2 (unistructural)
+/t
+Koja je osnovna priroda mogućih problema koji se javljaju tokom pregleda koda?
+-Tehnička priroda vezana za infrastrukturu i alate
+-Ekonomska priroda vezana za troškove razvoja
++Psihološka priroda gde autor može imati utisak da je predmet kritike on sam
+-Organizaciona priroda vezana za raspored vremena učesnika
+.
+
+*106
+//kognitivni nivo: 2 (unistructural)
+/t
+Koja je glavna priroda mogućih problema koji se javljaju u pregledu koda?
+-Logička priroda vezana za greške u specifikaciji zahteva
+-Organizacione prirode vezane za raspored resursa
++Psihološke prirode gde autor može imati utisak da je predmet kritike on i njegov rad
+-Tehnička priroda vezana za performanse sistema
+.
+
+*107
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je pregled u kontekstu statičkog testiranja?
++Generalni termin za sve tehnike manuelnog statičkog testiranja
+-Dinamička analiza koda tokom izvršavanja programa
+-Automatizovana provera sintaksnih grešaka u dokumentima
+-Proces testiranja koji se obavlja bez učešća više ljudi
+.
+
+*108
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je manuelna evaluacija?
+-Automatizovano testiranje koda korišćenjem softverskih alata
++Analiziranje dokumenata u projektu od strane učesnika
+-Pisanje jediničnih testova za sve funkcije
+-Merenje performansi sistema tokom izvršavanja
+.
+
+*109
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je manuelna evaluacija prema prikazanom materijalu?
++Analiziranje dokumenata u projektu od strane učesnika
+-Automatizovano testiranje koda korišćenjem softverskih alata
+-Proveravanja performansi sistema tokom izvršavanja
+-Merenje kvaliteta koda kroz statističke metode
+.
+
+*110
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je prema izvoru generalni termin koji se koristi za sve tehnike manuelnog statičkog testiranja?
+-Evaluacija
+-Inspekcija
+-Analiza
++Pregled
+.
+
+*111
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je pregled kao tehnika statičkog testiranja?
++Generalni termin za sve tehnike manuelnog statičkog testiranja
+-Proces izvršavanja koda u kontrolisanom okruženju
+-Automatizovano testiranje koda pomoću alata
+-Testiranje samo od strane jednog stručnjaka
+.
+
+*112
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je review u kontekstu statičkog testiranja?
++Generalni termin za sve tehnike manuelnog statičkog testiranja
+-Dinamičko testiranje koje se izvršava tokom razvoja
+-Tehnika koja se koristi samo za pronalaženje sigurnosnih propusta
+-Proces automatskog pronalaženja grešaka u kodu
+.
+
+*113
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta otkrivanje nedostataka kroz pregled poboljšava u procesu razvoja?
++Poboljšava dalji proces razvoja
+-Smanjuje broj učesnika uključenih u razvoj
+-Eliminiše potrebu za dokumentovanjem
+-Ubrzava završetak projekta
+.
+
+*114
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta autor mora da uradi pri formalizaciji i dokumentovanju rešenja tokom pregleda koda?
+-Da prosledi rešenje bez dodatnih objašnjenja kolegama
+-Da dokumentuje samo greške koje su pronađene
++Da iznese rešenje čitljivo i razumljivo, i da obrazloži donete odluke
+-Samo da napiše tehnički opis bez obrazloženja
+.
+
+*115
+//kognitivni nivo: 2 (unistructural)
+/t
+Na koga se raspoređuje odgovornost tokom pregleda rešenja?
+-Samo na autora rešenja
+-Samo na vođu pregleda
++Na sve učesnike uključene u pregled
+-Na rukovodioca projekta
+.
+
+*116
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta pregled značajno smanjuje u razvoju softvera?
+-Broj učesnika u timu razvoja
++Broj kasnijih nedostataka i troškove otklanjanja
+-Količinu resursa dostupnih za razvoj
+-Vreme potrebno za dokumentovanje rešenja
+.
+
+*117
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta se dešava kada se nedostaci utvrde ranije u procesu razvoja rešenja?
+-Autor mora sam da ispravlja sve otkrivene greške
++Dobija se kvalitetnije rešenje jer je uključeno više ljudi
+-Povećavaju se troškovi otklanjanja nedostataka
+-Smanjuje se broj učesnika uključenih u razvoj
+.
+
+*118
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je jedan od načina na koji učesnici uče tokom procesa pregleda?
+-Učesnici prate samo greške autora
+-Učesnici rade nezavisno bez interakcije
++Učesnici uče jedni od drugih
+-Učesnici čitaju samo dokumentaciju
+.
+
+*119
+//kognitivni nivo: 2 (unistructural)
+/t
+Na nivou jednog pregleda, šta je neophodno pripremiti pre održavanja sastanka?
+-Samo listu učesnika i vreme sastanka
+-Samo temu i cilj pregleda u pisanoj formi
+-Samo finansijski izveštaj i budžet pregleda
++Dokumente koji su predmet pregleda i izabrane učesnike
+.
+
+*120
+//kognitivni nivo: 2 (unistructural)
+/t
+Kako se prema izvornom materijalu može realizovati informisanje učesnika o pregledu?
+-Samo kratkim grupnim sastankom
+-Samo pisanim pozivom
++Pisanim pozivom ili kratkim grupnim sastankom
+-Elektronskom porukom ili telefonom
+.
+
+*121
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta bi trebalo da pripremi svaki učesnik tokom samostalne pripreme za pregled?
++Komentare, zamerke i pitanja za druge učesnike
+-Samo spisak dokumenata koji će biti pregledani
+-Plan za vođenje sastanka pregleda
+-Detaljni izveštaj o greškama u dokumentu
+.
+
+*122
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je centralna aktivnost u pregledu dokumenta?
++Sastanak gde se diskutuje o dokumentima
+-Pisani poziv učesnicima sa temom pregleda
+-Odabir učesnika i određivanje vremena pregleda
+-Samostalna priprema učesnika kroz analizu dokumenata
+.
+
+*123
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta se prema materijalu o ispravkama najčešće dešava nakon sastanka pregleda dokumenta?
++Autor je odgovoran da izvrši dogovorene izmene u dokumentu
+-Sve izmene se automatski primenjuju bez dodatne analize
+-Autor dokumenta piše detaljni izveštaj o svim greškama
+-Učesnici pregleda sami izvršavaju sve izmene u dokumentu
+.
+
+*124
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je važno da jedna osoba uradi tokom sastanka u pregledu?
+-Donosi sve odluke bez konsultovanja ostalih učesnika
+-Priprema dokumente koji su tema pregleda
+-Vodi bilješke o svim učesnicima i njihovim licima
++Obezbeđuje da sastanak ne odstupi od cilja i da komunikacija bude konstruktivna
+.
+
+*125
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je centralna aktivnost u pregledu prema procesu evaluacije pregleda?
+-Samostalna priprema učesnika
++Sastanak učesnika pregleda
+-Planiranje vremena i troškova pregleda
+-Informisanje učesnika o temi
+.
+
+*126
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri samostalna elementa koja statičko testiranje može utvrditi kao probleme u aplikaciji?
++Neproširiva arhitektura, nepoštovanje specifikacije zahteva, neusklađenost sa standardima
+-Neusklađenost sa standardima, sporo izvršavanje koda, greške u logici programa
+-Nedeterminističko ponašanje, konkurentni problemi, neproširiva arhitektura
+-Nepoštovanje specifikacije zahteva, loša dokumentacija, nedostaci u interfejsu
+.
+
+*127
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri nezavisne karakteristike po kojima se različite tehnike analize dokumenata razlikuju tokom statičkog testiranja.
++Intenzitet, formalnost i potrebni resursi
+-Cilj pregleda, vrsta greške i nivo detaljnosti
+-Brzina izvršavanja, broj učesnika i vrsta dokumenta
+-Dokumentovanje, odgovornost i psihološki problemi
+.
+
+*128
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri elementa po kojima se tehnike analize dokumenata razlikuju tokom manuelne evaluacije?
+-Potrebni resursi, trajanje i vrsta koda
+-Intenzitet, brzina i dostupnost alata
++Intenzitet, formalnost i potrebni resursi
+-Formalnost, broj učesnika i vrsta dokumenta
+.
+
+*129
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri karakteristike pregleda kao tehnike statičkog testiranja.
+-Ručno testiranje bez izvršavanja koda, peer review, testiranje u produkciji
+-Izvršavanje koda u test okruženju, učešće više učesnika, formalizacija rešenja
+-Automatizovano testiranje koda, učešće jednog eksperta, dokumentovanje rezultata
++Ručno testiranje bez izvršavanja koda, učešće više učesnika, ranije otkrivanje nedostataka
+.
+
+*130
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri nezavisne prednosti koje pregled kao oblik testiranja donosi procesu razvoja softvera.
+-Eliminacija svih grešaka, skraćenje vremenskog roka, zamena ručnog testiranja
+-Poboljšanje kvaliteta, učenje učesnika jednih od drugih, povećanje budžeta projekta
++Ranije utvrđivanje nedostataka, formalizacija i dokumentovanje rešenja, raspoređivanje odgovornosti među učesnicima
+-Brže pisanje koda, smanjenje broja programera, automatizacija testiranja
+.
+
+*131
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri ključna elementa koja se moraju uključiti pri planiranju pregleda na nivou projekta.
+-Analiza dokumenata, priprema komentara i voćenje sastanka
+-Obaveštavanje učesnika, pristup dokumentima i dodatne informacije
+-Izbor učesnika, priprema dokumenata i određivanje vremena sastanka
++Odluka o dokumentima, uključivanje dinamike i troškova pregleda
+.
+
+*132
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri aktivnosti koje se moraju obaviti na nivou pojedinačnog pregleda tokom planiranja pregleda?
+-Obavestiti učesnike, objasniti temu cilja i obezbediti pristup dokumentima
+-Analizirati dokumente, pripremiti komentare i voditi beleške tokom sastanka
+-Obaviti novi pregled, fokusirati se na modifikovane delove i doneti odluku
++Pripremiti dokumente, izabrati učesnike i odrediti mesto i vreme sastanka
+.
+
+*133
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri komponente koje se moraju odrediti tokom faze planiranja pregleda na nivou pojedinačnog pregleda.
++Dokumente za pregled, učesnike i mesto/vreme sastanka
+-Učesnike, dinamiku troškova i odluke o ispravkama
+-Dokumente za pregled, komentare učesnika i zaključke
+-Temu pregleda, beleške i odluku o prihvatanju dokumenta
+.
+
+*134
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri ključne aktivnosti koje se moraju izvršiti tokom faze planiranja pregleda na nivou jednog pregleda.
++Pripremiti dokumente, izabrati učesnike i odrediti mesto i vreme sastanka
+-Obezbed pristup dokumentima, pripremiti komentare i limitirati vreme
+-Obavestiti učesnike, analizirati dokumente i voditi beleške
+-Doneti odluke kroz diskusiju, ispraviti dokumente i izvršiti reviziju
+.
+
+*135
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri elementa koji moraju biti obuhvaćeni pri informisanju učesnika pre održavanja sastanka za statičko testiranje?
+-Obaveštavanje o održavanju pregleda, analiza dokumenata, priprema komentara
++Obaveštavanje o održavanju pregleda, saopštavanje teme i cilja, obezbeđivanje pristupa dokumentima
+-Saopštavanje teme i cilja, priprema komentara, kratki grupni sastanak
+-Obezbeđivanje pristupa dokumentima, priprema zamerki, pisani poziv
+.
+
+*136
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri aktivnosti koje učesnik treba da sprovede tokom samostalne pripreme za pregled.
+-Analiza dokumenata, izbor voditelja i vremensko ograničenje
+-Priprema komentara, donošenje odluka i vođenje sastanka
+-Analiza dokumenata, priprema komentara i prisustvovanje sastanku
++Analiza dokumenata, priprema komentara i zamerki, formulisanje pitanja
+.
+
+*137
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri nezavisne odgovornosti koje moderator preuzima tokom sprovođenja statičkog pregleda.
++Sprovođenje pregleda, vođenje svih faza pregleda i evidentiranje dokumentacije o pregledu
+-Kreiranje dokumenta, vođenje svih faza pregleda i evidentiranje informacija iz pregleda
+-Vođenje svih faza pregleda, evidentiranje dokumentacije i identifikovanje nedostataka u dokumentu
+-Upravljanje procesom verifikacije sistema, vođenje faza pregleda i evidentiranje zaključaka
+.
+
+*138
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri karakteristike ili aspekta koji se analiziraju u dve glavne grupe pregleda statičkog testiranja.
+-Ispunjenost plana projekta, karakteristike projekta, testiranje koda
++Funkcionalni zahtevi, nefunkcionalni zahtevi, kvalitet upravljanja projektom
+-Realizacija zahteva, proces razvoja, pronalaženje nedostataka
+-Neformalni pregledi, grupni sastanci, analiza dokumenta
+.
+
+*139
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri karakteristike koje razlikuju walkthrough od inspekcije pri statičkom testiranju dokumenta.
+-Brzo organizovanje, informisanje učesnika, pronalaženje nedostataka
+-Spisak stavki za proveru, unapred određena procedura, neformalan pristup
++Neformalan pregled, bez posebne pripreme, grupni sastanak
+-Formalna procedura, striktno podeljene uloge, fokus na predefinisane aspekte
+.
+
+*140
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri karakteristike koje definiše inspekcija kao formalnu vrstu pregleda koda.
+-Fokus na tehničke aspekte, usklađenost sa specifikacijom, ispunjenost svrhe razvoja
+-Formalna evidentacija podataka, poboljšanje procesa razvoja, naredne inspekcije
++Striktno podeljene uloge, unapred određena procedura, spisak stavki koje se proveravaju
+-Pronalaženje nedostataka, usko postavljen cilj, usklađenost sa standardima
+.
+
+*141
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri ključna aspekta na koja je fokusiran tehnički pregled sistema.
+-Usklađenost sa specifikacijom, brzina izvršavanja i dokumentovanje grešaka
+-Usklađenost sa standardima, analiza rizika i sigurnost podataka
+-Ispunjenost svrhe razvoja, testiranje performansi i recenzija koda
++Usklađenost sa specifikacijom, ispunjenost svrhe razvoja i usklađenost sa standardima
+.
+
+*142
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri faktora od kojih zavisi izbor tipa pregleda dokumenta.
+-Vrsta dokumenta, broj pregledača, i vrsta greške koja se očekuje
+-Formalna dokumentacija, implicitne faze, i neformalnost pregleda
+-Da li je autor prisutan, koliko vremena je dostupno, i koja je veličina tima
++Da li rezultati trebaju biti formalno dokumentovani, koliko je komplikovano organizovati sastanak, i koliko tehničkog znanja je potrebno
+.
+
+*143
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri faktora koji se razmatraju pri izboru tipa statičkog testiranja prema smernicama za izbor pregleda.
+-Formalna dokumentacija rezultata, brzina izvršavanja, dostupnost baze podataka
+-Cena softverskog alata, verzija programskog jezika, tip operativnog sistema
++Formalna dokumentacija rezultata, organizacija grupnog ličnog sastanka, tehničko znanje učesnika
+-Brzina izvršavanja koda, memorijska potrošnja, broj redova koda
+.
+
+*144
+//kognitivni nivo: 4 (relational)
+/t
+Zašto je razumevanje definicije statičkog testiranja kao verifikacije analizom sadržaja bez izvršavanja programa neophodno pre nego što se učenici upoznaju sa vrstama statičkog testiranja?
+-Jer su ciljevi statičkog testiranja pronalaženje nedostataka u funkcionalnostima i dizajnu
++Jer razumevanje osnovnog koncepta verifikacije analizom omogućava razlikovanje između manuelnog i automatskog testiranja
+-Jer se manuelno testiranje može primenjivati samo nakon što je automatsko testiranje završeno
+-Jer se automatsko testiranje može primenjivati samo na mašinski čitljive test objekte sa formalnom strukturom
+.
+
+*145
+//kognitivni nivo: 4 (relational)
+/t
+Kako se definicija statičkog testiranja kao analize sadržaja bez izvršavanja programa povezuje sa njegovim ciljevima?
+-Rano otkrivanje nedostataka zahteva obavezno učešće više učesnika u pregledu
+-Automatski alati mogu analizirati samo mašinski čitljive test objekte sa formalnom strukturom
++Analiza sadržaja omogućava pronalaženje nedostataka u funkcionalnostima i dizajnu u ranim fazama razvoja
+-Izvršavanje programa sa test podacima omogućava otkrivanje problema sa arhitekturom
+.
+
+*146
+//kognitivni nivo: 4 (relational)
+/t
+Zašto je razumevanje što je statičko testiranje (verifikacija analizom sadržaja bez izvršavanja programa) neophodan preduslov za razumevanje njegovih prednosti?
+-Jer se prednosti ostvaruju samo kada se koriste softverski alati za automatsku analizu test objekata
+-Jer prednosti statičkog testiranja zavise od toga koliko učesnika u projektu učestvuje u analizi
++Jer se prednosti (otkrivanje problema sa arhitekturom, provera usklađenosti sa zahtevima) mogu razumeti samo ako znamo da statičko testiranje analizira sadržaj bez izvršavanja programa
+-Jer se prednosti statičkog testiranja mogu ostvariti samo ako se prvo izvršava dinamičko testiranje
+.
+
+*147
+//kognitivni nivo: 4 (relational)
+/t
+Zašto je razumevanje manuelne evaluacije neophodan korak pre primene tehnike pregleda (Review)?
++Jer pregled predstavlja generalni termin za sve tehnike manuelnog statičkog testiranja, a manuelna evaluacija je osnovna analiza dokumenata koju učesnici vrše
+-Jer pregled zahteva izvršavanje programa, što manuelna evaluacija čini mogućim analizom koda
+-Jer manuelna evaluacija sprečava dinamičko testiranje koje bi inače sprečilo primenu pregleda
+-Jer pregled koristi automatske alate za analizu koju je manuelna evaluacija prethodno pripremila
+.
+
+*148
+//kognitivni nivo: 4 (relational)
+/t
+Zašto je razumevanje koncepta pregleda (review) kao tehnike manuelnog statičkog testiranja neophodno pre nego što se uče faze pregleda?
+-Jer faze pregleda mogu biti implicitno ili eksplicitno izražene samo ako se prvo razume šta je review
+-Jer faze pregleda smanjuju broj kasnijih nedostataka što je direktna prednost pregleda
++Jer pregled definiše redosled aktivnosti koji se izvršava tokom pregleda, a taj redosled čine faze pregleda
+-Jer se faze pregleda primenjuju samo u peer review oblicima koji su deo definicije pregleda
+.
+
+*149
+//kognitivni nivo: 4 (relational)
+/t
+Kako sposobnost pregleda da utvrdi nedostatke u ranim fazama razvoja utiče na troškove kasnijih aktivnosti u životnom ciklusu aplikacije?
++Ranije utvrđivanje nedostataka smanjuje broj kasnijih nedostataka i troškove otklanjanja
+-Troškovi pregleda su veći od troškova dinamičkog testiranja u svim fazama
+-Učešće više ljudi u pregledu povećava ukupne troškove razvoja aplikacije
+-Pregled sprečava pronalaženje problema sa arhitekturom u kasnijim fazama
+.
+
+*150
+//kognitivni nivo: 4 (relational)
+/t
+Zašto je razumevanje tehnike Pregleda (Review) neophodno pre identifikovanja mogućih problema tokom pregleda?
+-Jer pregled omogućava ranije utvrđivanje nedostataka koji se kasnije ne mogu otkriti
+-Jer problemi u pregledu su psihološke prirode i direktno se javljaju samo kada se koristi peer review
+-Jer faze pregleda (planiranje, informisanje, sastanak) automatski sprečavaju pojavu problema
++Jer pregled kao generalni termin obuhvata sve tehnike manuelnog statičkog testiranja gde učestvuje više ljudi, a problemi nastaju upravo iz te dinamike
+.
+
+*151
+//kognitivni nivo: 4 (relational)
+/t
+Zašto je identifikovanje problema tokom pregleda dokumenta preduslov za njihovo ublažavanje?
+-Jer problemi u pregledu nastaju samo ako se dokumenti analiziraju bez jasnog cilja
+-Jer ublažavanje problema automatski sprečava kritiku autora od strane ostalih članova tima
+-Jer su problemi u pregledu psihološke prirode i zahtevaju edukaciju učesnika pre nego što se mogu rešiti
++Jer se problemi mogu ublažiti jasnim ciljem i dobrim upravljanjem samo ako se prvo prepoznaju
+.
+
+*152
+//kognitivni nivo: 4 (relational)
+/t
+Kako učešće više ljudi u pregledu utiče na kvalitet rešenja tokom razvoja aplikacije?
+-Povećava se brzina izvršavanja testiranja jer više ljudi simultano pokreće test slučajeve
+-Omogućava se automatsko testiranje koda jer više alata može da analizira isti dokument
++Poboljšava se kvalitet rešenja jer je u razvoj rešenja uključeno više ljudi koji uče jedni od drugih
+-Smanjuje se broj učesnika koji mogu da analiziraju kod, što ubrzava pronalaženje nedostataka
+.
+
+*153
+//kognitivni nivo: 4 (relational)
+/t
+Kako jasni cilj i dobar izbor učesnika ublažavaju probleme koji nastaju tokom pregleda?
+-Omogućavaju da se pregled primeni samo na specifikacije zahteva, a ne na kod
+-Povećavaju broj faza pregleda kako bi se detaljnije analizirao svaki dokument
++Smanjuju psihološke probleme gde autor doživljava kritiku kao lično napad na sebe
+-Sprečavaju da se kod pregleda koriste automatski alati umesto manuelne analize
+.
+
+*154
+//kognitivni nivo: 4 (relational)
+/t
+Kako se različite tehnike analize dokumenata međusobno razlikuju u kontekstu statičkog testiranja?
+-Razlikuju se po vrsti dokumenata koji se mogu analizirati
+-Razlikuju se samo po broju učesnika koji učestvuju u analizi
+-Razlikuju se jer su neke automatske a druge manuelne, bez drugih razlika
++Razlikuju se po intenzitetu, formalnosti, potrebnim resursima i ciljevima
+.
+
+*155
+//kognitivni nivo: 4 (relational)
+/t
+Kako inspekcija kao tehnika manuelne evaluacije funkcioniše u odnosu na peer review kao oblik njene primene?
+-Inspekcija se primenjuje samo na kod, dok peer review obuhvata sve vrste dokumenata u projektu
++Inspekcija je generalni termin, a peer review je specifična tehnika gde učestvuje više ljudi u analizi dokumenata
+-Inspekcija je automatska analiza, a peer review je manuelna evaluacija od strane učesnika
+-Inspekcija se fokusira na pronalaženje nedostataka u dizajnu, a peer review na pronalaženje nedostataka u funkcionalnostima
+.
+
+*156
+//kognitivni nivo: 5 (extended_abstract)
+/t
+Razvojni tim koristi automatsko statičko testiranje da pronađe probleme u kodu, a zatim primenjuje JUnit test runner sa @SpringBootTest anotacijom da verifikuje funkcionalnosti serverskih metoda. Zašto je redosled ovih aktivnosti logičan - prvo statičko, zatim dinamičko testiranje?
+-Statičko testiranje treba da se primeni prvo jer automatski alati analiziraju sadržaj koda bez izvršavanja, što je brže od dinamičkog testiranja sa test runnerom koji zahteva inicijalizaciju Spring kontejnera i izvršavanje test podataka.
+-Dinamičko testiranje sa @SpringBootTest anotacijom treba da se primeni prvo jer inicijalizuje Spring kontejner i omogućava pristup svim objektima koje Spring upravlja, čime se osigurava da su sve zavisnosti dostupne pre nego što se primeni statičko testiranje.
+-Redosled je logičan jer statičko testiranje pronalazi sve moguće probleme u kodu tokom razvoja, pa se dinamičko testiranje nikada ne mora primenjivati jer su svi nedostaci već otklonjeni automatskim alatima.
++Statičko testiranje pronalazi nedostatke u ranim fazama razvoja bez izvršavanja programa, što smanjuje troškove, dok dinamičko testiranje (kroz test runner) verifikuje da li kod zapravo radi kako je namera nakon što su strukturni problemi već otklonjeni.
+.
+
+*157
+//kognitivni nivo: 5 (extended_abstract)
+/t
+Razvojni tim Spring veb aplikacije planira da proveri kvalitet koda pre nego što ga pokrene. Umesto da odmah kreira integracione testove, tim odlučuje da prvo primeni manuelnu analizu dokumenta koda kroz faze pregleda. Zašto bi ovaj redosled (prvo pregled, zatim testiranje) bio opravdan prema principima statičkog testiranja?
++Jer pregled omogućava ranije utvrđivanje nedostataka u funkcionalnostima i dizajnu, što smanjuje troškove kasnijih aktivnosti, a faze pregleda osiguravaju sistematičan redosled aktivnosti tokom te analize.
+-Jer pregled mora biti primenjen na sve tipove dokumenata u projektu—specifikacije, kod, modele i planove—pre nego što se bilo koji oblik testiranja može pokrenuti.
+-Jer faze pregleda osiguravaju da se svaki sloj aplikacije testira pojedinačno sa mock objektima pre nego što se kreiraju integracioni testovi.
+-Jer integraciono testiranje omogućava brže pronalaženje nedostataka kroz izvršavanje test objekta sa konkretnim test podacima, što je efikasnije nego manuelna analiza dokumenta.
+.
+
+*158
+//kognitivni nivo: 5 (extended_abstract)
+/t
+Razvojni tim želi da pronađe probleme u arhitekturi i dizajnu aplikacije što je ranije moguće, pre nego što se kod počne izvršavati. Koju kombinaciju testiranja bi tim trebalo da primeni da bi ostvario ovaj cilj?
+-Dinamičko testiranje kombinovano sa mock objektima koji simuliraju funkcionalnosti drugih slojeva aplikacije tokom izvršavanja koda.
+-Automatsko statičko testiranje korišćenjem softverskih alata za analizu koda kombinovano sa manuelnom evaluacijom specifikacija zahteva i modela sistema pre bilo kakvog izvršavanja.
++Manuelno statičko testiranje kombinovano sa automatskim test runnerima (npr. @SpringBootTest) za verifikaciju test objekata analizom sadržaja bez izvršavanja.
+-Integracione testove koji testiraju više slojeva aplikacije odjednom korišćenjem @SpringBootTest anotacije za inicijalizaciju Spring kontejnera.
+.
+
+*159
+//kognitivni nivo: 5 (extended_abstract)
+/t
+Razvajač veb aplikacije koristi izolovane jedinične testove sa mock objektima za svaki sloj, ali tim želi da osigura da su nedostaci u integraciji između slojeva otkriveni što je moguće ranije. Koji pristup testiranju kombinuje princip rane detekcije nedostataka sa verifikacijom više slojeva odjednom?
+-Peer review koji uključuje više učesnika iz tima, jer omogućava rani uvid u kvalitet rešenja pre nego što se nedostaci otkriju u produkciji.
+-Jedinični testovi sa mock objektima za sve slojeve, jer omogućavaju da se nedostaci u svakom sloju otkriju pojedinačno i što je moguće ranije.
+-Svaki pristup testiranju koji se koristi u razvoju, od pregleda do jediničnih testova i integracijskih testova, jer kombinuju princip rane detekcije sa verifikacijom više slojeva.
++Integracioni testovi koji testiraju više slojeva aplikacije odjednom, jer omogućavaju rani uvid u interakcije između slojeva pre nego što se nedostaci otkriju u produkciji.
+.
+
+*160
+//kognitivni nivo: 5 (extended_abstract)
+/t
+Tim razvoja Spring veb aplikacije planira da organizuje pregled koda pre nego što se testovi pokrenu sa @SpringBootTest anotacijom. Kako formalizacija i dokumentovanje koda tokom pregleda utiče na efikasnost informisanja učesnika o detaljima testiranja?
+-Formalizacija omogućava da se kod jasno iznese učesnicima, što omogućava da test runner pravilno instancira objekte sa @Test metodama i kreira izveštaje o testiranju.
+-Formalizacija omogućava da se @SpringBootTest anotacija pravilno primeni pri inicijalizaciji Spring kontejnera, čime se osigurava da su svi objekti dostupni pre nego što počne testiranje.
+-Formalizacija omogućava da se kod jasno iznese učesnicima u svim fazama razvoja, što sprečava sve moguće nedostatke i osigurava da se testovi nikada ne moraju ponavljati tokom projekta.
++Formalizacija omogućava da se kod jasno iznese učesnicima, čime se osigurava da su svi informisani o odlukama donešenim pri razvoju pre nego što počne testiranje, što sprečava kasnija pitanja i nedostatke.
+.
+
+*161
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je test runner?
+-Biblioteka koja sadrži sve @Test metode u projektu
+-Alat koji piše testove na osnovu koda aplikacije
+-Anotacija koja označava metode koje treba testirati
++Komponenta zadužena za izvršavanje testova i kreiranje izveštaja
+.
+
+*162
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je test runner u kontekstu JUnit testiranja?
+-Biblioteka za pisanje asertcija u testovima
++Komponenta zadužena za izvršavanje testa i kreiranje izveštaja
+-Alat za analizu pokrivanja koda testovima
+-Anotacija koja označava testne metode u kodu
+.
+
+*163
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta anotacija @SpringBootTest vrši pri pokretanju testova od JUnit5?
+-Kreira nove Spring objekte za svaki test
++Inicijalizuje Spring kontejner kako bi bili dostupni objekti
+-Proverava ispravnost svih Bean konfiguracija
+-Automatski generiše izveštaje o testiranju
+.
+
+*164
+//kognitivni nivo: 2 (unistructural)
+/t
+Koja anotacija se koristi za inicijalizaciju Spring kontejnera pri pokretanju testova?
+-@RunWith
++@SpringBootTest
+-@BeforeEach
+-@Test
+.
+
+*165
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je test runner u JUnit-u?
++Komponenta zadužena za izvršavanje testa
+-Objekat koji sadrži Spring kontejner
+-Izveštaj o rezultatima testiranja
+-Anotacija koja označava test metode
+.
+
+*166
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je Test runner komponenta zadužena da radi?
+-Instalira JUnit biblioteku i konfigurira test okruženje
+-Upravlja Spring kontejnerom i inicijalizuje sve Bean objekte
++Instancira objekte sa @Test metodama, izvršava ih i kreira izveštaj
+-Piše test kod i definiše šta svaki test treba da proveri
+.
+
+*167
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta anotacija @SpringBootTest automatski uključuje u JUnit okruženju?
++SpringExtension komponentu koja omogućava testiranje specifično za Spring
+-Mock objekte za simulaciju funkcionalnosti serverskih metoda
+-Konzolni test runner za prikaz rezultata testiranja
+-Test runner komponentu zaduženu za izvršavanje testa
+.
+
+*168
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je test runner u kontekstu testiranja Spring aplikacija?
+-Objektni model koji sadrži sve test podatke
+-Biblioteka za simulaciju mock objekata u testovima
+-Anotacija koja označava test metode u JUnit-u
++Komponenta zadužena za izvršavanje testa i kreiranje izveštaja
+.
+
+*169
+//kognitivni nivo: 2 (unistructural)
+/t
+Koja komponenta se automatski uključuje u JUnit kada koristimo @SpringBootTest anotaciju?
+-JUnit Test Runner
+-Eclipse grafički runner
+-Spring Container Manager
++SpringExtension komponenta
+.
+
+*170
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta se koristi za simulaciju funkcionalnosti drugih slojeva pri izolovanju jediničnih testova po slojevima?
+-Integracioni testovi
++Mock objekti
+-Serverske metode
+-Test podatci
+.
+
+*171
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri glavne zadatke koje test runner obavlja pri izvršavanju testova.
+-Instancira objekat sa @Test metodama, kompajlira kod i prosljeđuje rezultate bazi podataka
++Instancira objekat sa @Test metodama, izvršava test metode i kreira izveštaj o rezultatima
+-Učitava Spring kontejner, izvršava test metode i briše privremene fajlove
+-Kreira izveštaj o rezultatima, upravlja JUnit bibliotekama i inicijalizuje Eclipse grafički interfejs
+.
+
+*172
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri nezavisne funkcionalnosti koje Test runner obavlja pri izvršavanju testova.
+-Učitava test klase, kompajlira kod i generiše dokumentaciju
+-Inicijalizuje Spring kontejner, instancira objekte i prikazuje rezultate u grafičkom interfejsu
+-Validira anotacije, pokreće sve testove paralelno i arhivira rezultate
++Instancira objekte sa @Test metodama, izvršava test metode i kreira izveštaj o testu
+.
+
+*173
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri karakteristike koje se koriste pri testiranju Spring veb aplikacije.
++Izolovani jedinični testovi po slojevima, integracioni testovi više slojeva, inicijalizacija test podataka
+-Jedinični testovi, end-to-end testovi, testiranje sigurnosti
+-Kreiranje skripti, automatizacija deploy-a, optimizacija performansi
+-Mock objekti, verifikovanje funkcionalnosti, simulacija baza podataka
+.
+
+*174
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri karakteristike koje opisuju nedostatke pristupa gde testovi sami inicijalizuju test podatke.
+-Potreba za in-memory bazom, obavezna upotreba @DataJpaTest anotacije, nemogućnost pristupa perzistentnom kontekstu
++Komplikovano testiranje većih entiteta, ponavljanje inicijalizacije podataka, komplikovana inicijalizacija veće količine podataka
+-Zavisnost od TestEntityManager-a, nemogućnost korišćenja realnih baza podataka, kompleksnost Maven konfiguracije
+-Brza inicijalizacija podataka, automatsko čišćenje baze, mogućnost testiranja samo malih entiteta
+.
+
+*175
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri nezavisna komponenta/alata koji se koriste pri testiranju Spring Boot aplikacija prema izvornom materijalu.
+-@DataJpaTest, @MockBean, TestEntityManager
+-TestEntityManager, TestRestTemplate, MockMvc
++@DataJpaTest, @MockBean, TestRestTemplate
+-@MockBean, TestRestTemplate, MockMvc
+.
+
+*176
+//kognitivni nivo: 4 (relational)
+/t
+Zašto je razumevanje opšte definicije test runnera neophodna osnova pre nego što se uče specifični JUnit test runneri?
++Jer test runner kao komponenta zadužena za izvršavanje testova predstavlja opšti koncept čije specifične vrste JUnit predviđa
+-Jer JUnit test runneri zamenjuju koncept test runnera u novijim verzijama
+-Jer JUnit test runneri mogu da rade samo ako je test runner prethodno instaliran na sistemu
+-Jer test runneri i JUnit test runneri izvršavaju testove u različitim redosledima
+.
+
+*177
+//kognitivni nivo: 4 (relational)
+/t
+Zašto je inicijalizacija Spring kontejnera anotacijom @SpringBootTest neophodna za automatsko uključivanje SpringExtension komponente pri pokretanju testova?
+-Jer SpringExtension komponenta zamenjuje JUnit konzolni test runner sa grafičkim test runnerom
++Jer @SpringBootTest anotacija omogućava dostupnost svih Spring upravljanih objekata koje SpringExtension komponenta koristi
+-Jer SpringExtension komponenta kreira test runner koji instancira objekte sa @Test metodama
+-Jer inicijalizacija Spring kontejnera simulira funkcionalnost mock objekata u slojevima aplikacije
+.
+
+*178
+//kognitivni nivo: 4 (relational)
+/t
+Zašto inicijalizacija test podataka unutar samih testova postaje problematična pri testiranju većih entiteta sa povezanim objektima?
+-Jer test runneri ne mogu da izvršavaju testove koji sami kreiraju svoje podatke
+-Jer se mock objekti automatski koriste umesto stvarnih objekata u testovima
++Jer je komplikovano kreiati i održavati inicijalizaciju za veće entitete sa više povezanih objekata
+-Jer Spring kontejner ne može da instancira test podatke bez @SpringBootTest anotacije
+.
+
+*179
+//kognitivni nivo: 4 (relational)
+/t
+Zašto je inicijalizacija test podataka pomoću skripte baze podataka neophodna pre nego što se koristi @DataJpaTest anotacija za testiranje JPA sloja?
++Jer @DataJpaTest anotacija zahteva da test podaci već postoje u bazi kako bi testovi mogli da verifikuju ponašanje aplikacije
+-Jer @DataJpaTest anotacija inicijalizuje Spring kontejner i instancira sve test objekte
+-Jer skripte baze podataka automatski aktiviraju SpringExtension komponentu koja omogućava testiranje
+-Jer konzolni test runner JUnit-a ne može da izvršava testove bez prethodno inicijalizovanih podataka
+.
+
+*180
+//kognitivni nivo: 5 (extended_abstract)
+/t
+Ako je potrebno testirati Angular komponentu koja zavisi od Spring serverskog objekta, zašto je važno da TestBed koristi `inject` metodu umesto ručnog instanciranja objekta, slično kao što `@SpringBootTest` inicijalizuje Spring kontejner?
++Jer druge komponente u okruženju koriste objekat iz okruženja, pa je samo korišćenjem tog objekta iz test okruženja moguće imati ispravan test, baš kao što @SpringBootTest čini dostupnim sve objekte kojima Spring aplikacija upravlja.
+-Jer je `inject` metoda brža od ručnog instanciranja i omogućava test runner da automatski generiše izveštaj o testiranju, slično kako `@SpringBootTest` ubrzava inicijalizaciju Spring kontejnera.
+-Jer korišćenje `inject` metode garantuje da će svi objekti u aplikaciji, uključujući i one izvan test okruženja, biti dostupni iz centralnog okruženja i ispravno inicijalizovani.
+-Jer `inject` metoda osigurava da se TestBed koristi samo za konfiguraciju modula, dok se objekti preuzimaju direktno iz Angular okruženja bez potrebe za ručnom inicijalizacijom komponenti.
+.
+
+*181
+//kognitivni nivo: 5 (extended_abstract)
+/t
+Razvojni tim gradi Spring veb aplikaciju i Angular klijentsku aplikaciju. Tokom testiranja, serverski testovi koriste @SpringBootTest anotaciju, a klijentski testovi koriste TestBed klasu. Zašto oba pristupa zahtevaju inicijalizaciju okruženja pre izvršavanja testova?
+-Inicijalizacija okruženja je obavezna jer @SpringBootTest i TestBed moraju da instanciraju Test runere - samo tako test objekti mogu da budu dostupni tokom izvršavanja testova.
+-Oba pristupa zahtevaju inicijalizaciju okruženja jer svaki test mora da ima pristup svim objektima koji postoje u sistemu - Spring kontejner i Angular okruženje čine dostupnim sve objekte bez obzira na to da li su potrebni za dati test.
+-Inicijalizacija okruženja je neophodna jer Test runner instancira objekat koji sadrži @Test metode i kreira izveštaj o testu - oba framework-a koriste istu logiku za upravljanje životnim ciklom testova.
++Oba okruženja moraju da budu dostupni objekti čijim životnim ciklom upravlja framework - Spring kontejner u Spring testovima i Angular okruženje u Angular testovima - kako bi testovi mogli da verifikuju funkcionalnosti u realističnom kontekstu.
+.
+
+*182
+//kognitivni nivo: 5 (extended_abstract)
+/t
+Razvijač Spring aplikacije želi da testira servisni sloj izolovano, bez izvršavanja koda iz kontrolera ili baze podataka. Zašto je u ovom slučaju neophodno koristiti mock objekte umesto stvarnih objekata drugih slojeva?
++Mock objekti simuliraju funkcionalnosti drugih slojeva, što omogućava izolovano testiranje samo servisnog sloja bez zavisnosti od ostalih slojeva aplikacije.
+-Mock objekti zamenjuju kontroler kako bi se izbegla inicijalizacija Spring kontejnera pri pokretanju testova servisnog sloja.
+-Mock objekti su neophodni jer omogućavaju da se svaka metoda u servisnom sloju testira potpuno izolovano bez bilo kakve komunikacije sa ostalim delovima aplikacije ili okruženja.
+-Mock objekti omogućavaju da se svi slojevi aplikacije testiraju istovremeno, što smanjuje potrebu za pisanjem više odvojenih test grupa.
+.
+
+*183
+//kognitivni nivo: 5 (extended_abstract)
+/t
+Razvojaču Angular aplikacije koji testira veću klijentsku komponentu sa nekoliko zavisnih servisa, preporučuje se da koristi TestBed i inject metodu umesto ručnog instanciranja objekata. Zašto je ovaj pristup analogan problemu koji se javlja pri inicijalizaciji test podataka u Spring testovima većih entiteta?
++Oba pristupa sprečavaju ponavljanje inicijalizacije i osiguravaju konzistentnost u testnom okruženju kada se testiraju veće strukture sa više povezanih komponenti.
+-Oba pristupa koriste mock objekte da bi se izbegla potreba za inicijalizacijom stvarnih zavisnih servisa u test okruženju.
+-Oba pristupa omogućuju da se testovi izvrše izolovano bez potrebe za mock objektima koji simuliraju funkcionalnosti drugih slojeva aplikacije.
+-Oba pristupa sprečavaju sve vrste ponavljanja inicijalizacije u bilo kom testu, bez obzira na veličinu ili kompleksnost testirane strukture.
+.
+
+*184
+//kognitivni nivo: 5 (extended_abstract)
+/t
+Kada testira JPA sloj koristeći @DataJpaTest i TestEntityManager, a zatim želi da testira servis koji zavisi od tog JPA sloja, zašto je važno koristiti mock objekte umesto stvarnih objekata iz drugih slojeva?
+-Jer korišćenje mock objekata umesto stvarnih objekata čini sve testove lakšim za održavanje i bržim u svim slojevima aplikacije.
++Jer izolovani jedinični test servisa omogućava da se testira samo logika servisa bez zavisnosti od stvarnih objekata, što čini test brži i lakšim za održavanje.
+-Jer mock objekti omogućavaju da se JPA sloj testira bez stvarne baze podataka, što je bitno za izolovano testiranje servisne logike.
+-Jer TestEntityManager omogućava pristup perzistentnom kontekstu i omogućava testiranje stvarnih objekata iz baze podataka, što čini test pouzdanijim.
+.
+
+*185
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je esencijalni deo razvoja Angular aplikacija?
+-Dizajn korisničkog interfejsa
+-Optimizacija baze podataka
+-Izbor hosting platforme
++Testiranje aplikacije
+.
+
+*186
+//kognitivni nivo: 2 (unistructural)
+/t
+Koja datoteka se koristi za testiranje Angular komponenti?
+-*.component.ts
+-*.service.ts
++*.spec.ts
+-*.module.ts
+.
+
+*187
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta su Angular Testing utilities?
++Skup klasa i funkcija koje olakšavaju testiranje Angular aplikacija
+-Biblioteka za upravljanje bazom podataka u Angular okruženju
+-Skup funkcija za optimizaciju performansi Angular aplikacija
+-Alati za upravljanje Angular komponentama u produkciji
+.
+
+*188
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je TestBed klasa u Angular testiranju?
++Klasa koja omogućuje testiranje u Angular okruženju
+-Metoda za izolovanje testova bez Angular radnog okvira
+-Funkcija koja konfiguriše datoteke sa .spec.ts ekstenzijom
+-Skup alata za ručnu instancijaciju objekata
+.
+
+*189
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je TestBed u Angular testiranju?
++Klasa koja omogućuje da se test izvrši u Angular okruženju
+-Skup klasa za ručnu instancijaciju objekata bez Angulara
+-Biblioteka za potpuno izolovane testove nezavisne od Angulara
+-Metoda za konfiguraciju početnog test okruženja
+.
+
+*190
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta čini dostupnim objekte čijim životnim ciklusom upravlja Angular?
+-configureTestingModule funkcija
+-Testing utilities klasa
+-Angular radni okvir
++TestBed klasa
+.
+
+*191
+//kognitivni nivo: 2 (unistructural)
+/t
+Koja metoda TestBed klase uspostavlja inicijalno test okruženje?
+-createComponent metoda
+-inject metoda
+-ComponentFixture metoda
++configureTestingModule metoda
+.
+
+*192
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je configureTestingModule metoda?
+-Metoda koja preuzima objekat iz test okruženja
+-Metoda koja omogućuje pristup DOM reprezentaciji
++Metoda koja uspostavlja inicijalno test okruženje
+-Metoda koja kreira Angular komponentu u okruženju
+.
+
+*193
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je glavna funkcija inject metode TestBed-a?
+-Kreira Angular komponentu u skladu sa konfiguracijom okruženja
+-Omogućuje pristup Angular komponenti i njenoj DOM reprezentaciji
+-Postavlja inicijalno test okruženje pomoću TestModuleMetadata objekta
++Preuzima objekat iz test okruženja umesto ručnog instanciranja
+.
+
+*194
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta vraća createComponent metoda TestBed klase?
+-Instancu same Angular komponente
+-Konfiguraciju test okruženja
+-TestModuleMetadata objekat
++Objekat klase ComponentFixture
+.
+
+*195
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je ComponentFixture?
+-Atribut koji sadrži instancu same komponente
+-Klasa koja omogućuje da se test izvrši u Angular okruženju
++Objekat koji omogućuje pristup Angular komponenti i njenoj DOM reprezentaciji
+-Metoda koja uspostavlja inicijalno test okruženje
+.
+
+*196
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je TestModuleMetadata objekat?
+-Metoda koja preuzima objekte iz test okruženja
+-Klasa koja omogućuje izvršavanje testa u Angular okruženju
+-Atribut koji omogućuje pristup Angular komponenti
++Objekat koji se šalje pri inicijalizaciji configureTestingModule metode
+.
+
+*197
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta predstavlja componentInstance atribut klase ComponentFixture?
+-Objekat koji upravlja životnim ciklom komponente
+-DOM reprezentaciju Angular komponente
++Instanca same komponente na koju se objekat odnosi
+-Konfiguraciju test okruženja za komponentu
+.
+
+*198
+//kognitivni nivo: 2 (unistructural)
+/t
+Koji atribut ComponentFixture klase omogućuje pristup DOM reprezentaciji komponente?
+-configureTestingModule atribut
++debugElement atribut
+-componentInstance atribut
+-inject atribut
+.
+
+*199
+//kognitivni nivo: 2 (unistructural)
+/t
+Koji atribut ComponentFixture objekta predstavlja instancu same komponente na koju se objekat odnosi?
+-debugElement atribut
+-detectChanges atribut
+-nativeElement atribut
++componentInstance atribut
+.
+
+*200
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta inicira detectChanges metoda u Angular testiranju?
+-Vraća Promise objekat koji se razrešava kada je test stabilan
++Inicira Angular ciklus koji detektuje promene u objektima
+-Poziva samo ngOnInit bez detekcije promena
+-Zaustavlja detekciju promena u komponentama
+.
+
+*201
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta query metoda DebugElement objekta vraća?
+-Promise objekat koji se razrešava nakon detektovanja promena
+-Sve HTML elemente koji odgovaraju selektoru
++Jedan HTML element po nekom selektoru
+-Nativni HTML element u browseru
+.
+
+*202
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta omogućuje detectChanges metoda ComponentFixture objekta?
++Inicira poziv Angular ciklusa koji detektuje promene i sinhronizuje ih sa HTML komponentama
+-Predstavlja sam HTML element u browseru
+-Omogućuje preuzimanje jednog HTML elementa po nekom selektoru
+-Vraća Promise objekat koji se razrešava kada je ComponentFixture stabilan
+.
+
+*203
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi dva od tri glavna cilja testiranja Angular aplikacije prema definiciji procesa testiranja.
+-Optimizacija performansi i smanjenje veličine bundle fajla
+-Dokumentovanje koda i kreiranje korisničkog uputstva
+-Validacija funkcionalnosti i poboljšanje dizajna korisničkog interfejsa
++Validacija funkcionalnosti aplikacije i identifikovanje grešaka u kodu
+.
+
+*204
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri nezavisna elementa koja čine Angular Testing utilities?
+-TestBed klasa, configureTestingModule metoda, ComponentFixture objekat
+-Jedinično testiranje, izolovano testiranje komponenti, testiranje u Angular okruženju
++Skup klasa i funkcija, omogućavanje komunikacije sa Angular okvirom, testiranje u izolovanju
+-Skup klasa i funkcija, omogućavanje komunikacije sa Angular okvirom, upravljanje životnim ciklom
+.
+
+*205
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri nezavisna elementa koje TestBed klasa čini dostupnim tokom testiranja Angular aplikacije.
+-Životni ciklus objekta, instancu komponente i HTTP zahteve
++Objekte čijim životnim ciklom upravlja Angular, inicijalno test okruženje i pristup komponenti i DOM-u
+-inject metoda, createComponent metoda i configureTestingModule metoda
+-TestModuleMetadata objekat, ComponentFixture klasa i debugElement atribut
+.
+
+*206
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri ključna atributa i metode koje ComponentFixture pruža za pristup Angular komponenti i njenoj DOM reprezentaciji tokom testiranja.
++componentInstance, debugElement, i detectChanges
+-HttpTestingController, expectOne, i componentInstance
+-query, queryAll, i nativeElement
+-whenStable, tick, i fakeAsync
+.
+
+*207
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri nezavisne mogućnosti koje DebugElement klasa pruža za pristup i manipulaciju HTML elementima tokom testiranja.
+-queryAll metoda, waitForAsync funkcija, HttpTestingController
++query metoda, queryAll metoda, nativeElement atribut
+-query metoda, detectChanges metoda, whenStable metoda
+-nativeElement atribut, tick funkcija, expectOne metoda
+.
+
+*208
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri nezavisne karakteristike koje DebugElement klasa omogućuje pri pristupu HTML DOM elementima.
+-query metoda, detectChanges metoda, whenStable objekat
++query metoda, queryAll metoda, nativeElement atribut
+-queryAll metoda, nativeElement atribut, ComponentFixture
+-query metoda, tick funkcija, HttpTestingController
+.
+
+*209
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri nezavisne karakteristike koje fakeAsync funkcija, tick funkcija i HttpTestingController pružaju pri testiranju asinhronog koda.
+-Linearno pisanje koda, praćenje Observable objekata, zamena subscribe metode
++Linearno pisanje koda, simuliranje protoka vremena, simuliranje mrežnih poziva
+-Simuliranje protoka vremena, izvršavanje stvarnih mrežnih poziva, proverava HTTP pozive
+-Linearno pisanje koda, završavanje asinhronih aktivnosti, izvršavanje mrežnih poziva
+.
+
+*210
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri nezavisne karakteristike koje HttpTestingController ima pri testiranju HTTP komunikacije u Angular aplikacijama?
++Zamenjuje komponentu koja komunicira sa backendom, ne vrši stvarne mrežne pozive, i omogućava praćenje HTTP poziva
+-Vrši stvarne mrežne pozive, simulira odgovore flush metodom, i eliminiše zavisnost od backenда
+-Proverava URL poziva, specificira lažne odgovore, i zamenjuje test dvojnika
+-Eliminiše zavisnost od backenда, vrši mrežne pozive, i koristi expectOne metodu
+.
+
+*211
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri nezavisna elementa koja se koriste pri praćenju HTTP poziva u Angular testiranju.
+-Mock objekat, lažni odgovor, i student.service.spec.ts datoteka
+-Flush metoda, izolovano testiranje, i zamena stvarnih zavisnosti
+-httpTestingController, mock objekat, i flush metoda
++httpTestingController, expectOne metoda, i provera HTTP metoda
+.
+
+*212
+//kognitivni nivo: 3 (multistructural)
+/t
+Navedi tri nezavisne karakteristike koje Jasmine spy objekti pružaju pri testiranju Angular komponenti.
++Vraćanje predefinisanih izlaza, špijuniranje korišćenja objekata, i zamena originalnih objekata
+-Vraćanje predefinisanih izlaza, špijuniranje korišćenja objekata, i specificiranje lažnih HTTP odgovora
+-Specificiranje lažnih odgovora, praćenje HTTP zahteva, i vraćanje predefinisanih izlaza
+-Zamena originalnih objekata, izolovano testiranje komponente, i vraćanje predefinisanih izlaza
+.
+
+*213
+//kognitivni nivo: 4 (relational)
+/t
+Zašto je opšte razumevanje testiranja Angular aplikacije neophodna osnova pre nego što se pristupa jediničnom testiranju komponenti?
+-Jer jedinično testiranje i opšte testiranje koriste iste alate i metode bez razlike
+-Jer opšte testiranje automatski generiše sve jedinične testove za sve komponente
++Jer jedinično testiranje zahteva poznavanje kako se validira funkcionalnost i identifikuju greške u celoj aplikaciji
+-Jer se jedinično testiranje fokusira samo na izolovane komponente bez potrebe za poznavanjem opštih principa
+.
+
+*214
+//kognitivni nivo: 4 (relational)
+/t
+Zašto se Angular Testing utilities moraju koristiti pri jediničnom testiranju Angular aplikacija umesto potpuno izolovanog testiranja?
++Jer čine testiranje brže jer izbjegavaju potrebu za pisanjem *.spec.ts datoteka
+-Jer sprečavaju da se greške u kodu detektuju pre nego što se aplikacija pokrene
+-Jer omogućavaju da se sve komponente testiraju simultano umesto izolovano
+-Jer omogućavaju da testirana komponenta komunicira sa Angular radnim okvirom i pristupa objektima čijim životnim ciklom upravlja Angular
+.
+
+*215
+//kognitivni nivo: 4 (relational)
+/t
+Zašto je potrebno razumeti kako TestBed upravlja životnim ciklom objekata pre nego što se koristi ComponentFixture klasa?
++Jer ComponentFixture zavisi od objekata čijim životnim ciklom upravlja TestBed
+-Jer ComponentFixture omogućuje pristup DOM reprezentaciji komponente
+-Jer TestBed inject metoda preuzima objekte iz test okruženja
+-Jer ComponentFixture zahteva ručnu konfiguraciju TestModuleMetadata objekta
+.
+
+*216
+//kognitivni nivo: 4 (relational)
+/t
+Kako DebugElement klasa omogućava pristupu HTML elementima tijekom testiranja Angular komponenti?
+-Preko detectChanges metode koja sinhronizuje promene sa HTML komponentama
+-Preko configureTestingModule metode koja uspostavlja test okruženje
+-Preko inject metode koja preuzima objekte iz test okruženja
++Preko nativeElement atributa koji predstavlja sam HTML element u browseru
+.
+
+*217
+//kognitivni nivo: 4 (relational)
+/t
+Zašto je potrebno pozvati detectChanges metodu pre nego što se koristi fakeAsync i tick funkcija pri testiranju vrednosti u HTML komponenti?
+-Jer tick funkcija simulira protok vremena samo ako je HTML komponenta već ažurirana sa novim vrednostima
++Jer detectChanges inicira Angular ciklus detekcije promena i sinhronizuje objekte sa HTML komponentama, što je preduslov za praćenje asinhronih promena
+-Jer TestBed klasa zahteva da se svi testovi izvršavaju u redosledu koji počinje sa detectChanges pozivom
+-Jer fakeAsync i tick funkcija ne mogu da rade bez prethodnog postavljanja vrednosti u componentInstance atribut
+.
+
+*218
+//kognitivni nivo: 4 (relational)
+/t
+Zašto je neophodno koristiti ComponentFixture sa fakeAsync i tick funkcijom pri testiranju asinhronog ponašanja Angular komponenti?
+-Jer fakeAsync i tick funkcije direktno upravljaju životnim ciklom objekata u TestBed-u
+-Jer ComponentFixture automatski simulira protok vremena bez potrebe za dodatnim funkcijama
++Jer ComponentFixture omogućuje pristup komponenti, a fakeAsync i tick omogućavaju linearno pisanje asinhronog test koda bez subscribe-a
+-Jer ComponentFixture detektuje promene u komponentama, a fakeAsync sprečava asinhrone aktivnosti
+.
+
+*219
+//kognitivni nivo: 4 (relational)
+/t
+Zašto je ComponentFixture neophodna za testiranje Angular komponenti koje koriste HTTP zahteve sa HttpTestingController-om?
++Jer ComponentFixture omogućuje pristup DOM reprezentaciji komponente gde se HTTP odgovori prikazuju
+-Jer detectChanges metoda u ComponentFixture-u automatski simulira HTTP odgovore
+-Jer HttpTestingController zahteva da komponenta bude inicijalizovana kroz TestBed createComponent metodu
+-Jer ComponentFixture sprečava stvarne mrežne pozive i simulira HTTP komunikaciju
+.
+
+*220
+//kognitivni nivo: 5 (extended_abstract)
+/t
+Razvojni tim za Angular aplikaciju primenjuje Build-Operate-Check šablon iz Java testiranja da bi strukturirao svoje jedinične testove. U kojoj fazi ovog šablona bi tim trebao da koristi TestBed klasu da uspostavi inicijalno test okruženje?
++U Build fazi, jer TestBed configureTestingModule metoda kreirа test podatke neophodne za testiranje Angular komponente.
+-U Operate fazi, jer TestBed omogućava testiranoj komponenti da poziva funkcionalnosti objekta čije ponašanje se testira.
+-U Check fazi, jer TestBed proverava da li je komponenta ispravno komunicirala sa Angular radnim okvirom nakon testiranja.
+-U Build fazi i u Operate fazi, jer TestBed treba kontinualno da konfigurira test okruženje tokom celog procesa testiranja.
+.
+
+*221
+//kognitivni nivo: 5 (extended_abstract)
+/t
+Razvijač Angular aplikacije želi da osigura da svaka komponenta funkcioniše ispravno u izolaciji, slično principu nezavisnosti iz Java testiranja. Koju Angular Testing utilities klasu treba koristiti da se uspostavi test okruženje koje omogućava izolovano testiranje svake komponente?
+-ComponentFixture klasa sa detectChanges metodom
++TestBed klasa sa configureTestingModule metodom
+-Angular Testing utilities kao skup svih klasa i funkcija za testiranje
+-Build-operate-check šablon sa instanciranjem test podataka
+.
+
+*222
+//kognitivni nivo: 5 (extended_abstract)
+/t
+Prilikom testiranja Angular komponente koja komunicira sa HTTP servisom, zašto je neophodno da se objekti iz test okruženja preuzmu kroz inject metodu TestBed-a umesto ručnog instanciranja, posebno kada se koristi HttpTestingController?
+-Jer HttpTestingController može biti instanciran samo kroz TestBed inject metodu, što omogućuje da se objekat pravilno inicijalizuje za simulaciju HTTP zahteva.
+-Jer ručno instanciranje bilo kog objekta u test okruženju može dovesti do problema sa sinhronizacijom, bez obzira da li se komponenta koristi sa HTTP servisom ili ne.
+-Jer je potrebno da se objekti instanciraju brzo kako bi testovi bili brzo izvršavani u skladu sa F.I.R.S.T. pravilom Fast, što ručno instanciranje ne omogućuje.
++Jer druge komponente u okruženju koriste objekat iz okruženja, pa je samo korišćenjem tog objekta moguće imati ispravan test koji pravi dvojnik za HTTP komunikaciju.
+.
+
+*223
+//kognitivni nivo: 5 (extended_abstract)
+/t
+Tokom testiranja Angular komponente, developer je postavio vrednost u componentInstance objekat, ali ta vrednost se ne pojavljuje u HTML komponenti. Primenom Build-Operate-Check šablona iz Java testiranja, koja je kritična operacija koju developer mora izvršiti pre nego što prosledi debugElement za proveru DOM-a?
+-Pozvati inject metodu iz TestBed okruženja da se preuzme komponenta iz okruženja umesto ručnog korišćenja componentInstance objekta.
++Pozvati detectChanges metodu da inicira Angular ciklus detekcije promena i sinhronizuje promene iz objekta sa HTML komponentom.
+-Pozvati detectChanges metodu više puta u redosledu kako bi se osiguralo da su sve moguće promene detektovane i da su komponente u različitim okruženjima konzistentne.
+-Pristupiti debugElement atributu ComponentFixture objekta kako bi se direktno manipulisale vrednosti u DOM reprezentaciji elementa.
+.
+
+*224
+//kognitivni nivo: 5 (extended_abstract)
+/t
+Prilikom testiranja Angular komponente, developer je postavio novu vrednost u componentInstance objekat, ali ta vrednost se ne pojavljuje u HTML-u čak i nakon što je pozvao detectChanges metodu. Koja je najverovatnije razlika između detectChanges i whenStable metode koju bi trebao razmotriti ako komponenta sadrži asinhronu operaciju?
+-detectChanges i whenStable su ekvivalentne metode koje se mogu koristiti zamenjivo u svim test scenarijima jer obe garantuju da će sve asinhrone operacije biti završene pre nego što se HTML ažurira.
+-detectChanges i whenStable rade na identičan način jer oba poklapaju promene sa HTML-om, pa je dovoljno pozvati bilo koju od njih jer će rezultat biti isti u asinhronim testovima.
++detectChanges inicira ciklus detekcije promena i sinhronizuje promene sa HTML-om odmah, dok whenStable vraća Promise koji se razrešava tek kada su sve asinhrone operacije završene, što je neophodno za testove sa asinhronim kodom.
+-detectChanges detektuje promene u komponentama ali ne sinhronizuje ih sa HTML-om, dok whenStable čeka da se sve asinhrone operacije završe pre nego što inicira detekciju promena.
+.
+
+*225
+//kognitivni nivo: 2 (unistructural)
+/t
+Koja je prva faza Build-operate-check šablona pri jediničnom testiranju u Javi?
++Kreiranje test podataka instanciranjem objekata
+-Poziv funkcionalnosti objekta čije ponašanje testiramo
+-Verifikacija da je objekat ispravno inicijalizovan
+-Poređenje stanja objekata sa očekivanim vrednostima
+.
+
+*226
+//kognitivni nivo: 2 (unistructural)
+/t
+Koja je prva faza Build-Operate-Check šablona za jedinično testiranje u Javi?
+-Poređenje stanja objekata sa očekivanim stanjem
+-Brisanje test okruženja nakon testiranja
++Kreiranje test podataka
+-Poziv funkcionalnosti objekta čije ponašanje testiramo
+.
+
+*227
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta se u Javi najčešće izvršava tokom Build faze jediničnog testiranja?
+-Poređenje stanja objekata sa očekivanim vrednostima
+-Pisanje Java programskog koda za test
+-Poziv funkcionalnosti objekta čije ponašanje testiramo
++Instanciranje objekata koji će biti korišćeni u testu
+.
+
+*228
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta se dešava u Operate fazi Build-Operate-Check šablona pri jediničnom testiranju u Javi?
+-Brisanje test podataka i čišćenje memorije
+-Instanciranje test objekata i priprema test podataka
++Poziv funkcionalnosti objekta čije ponašanje testiramo
+-Poređenje stanja objekata sa očekivanim stanjem
+.
+
+*229
+//kognitivni nivo: 2 (unistructural)
+/t
+Kako se vrši jedinično testiranje u Javi?
+-Korišćenjem samo grafičkog korisničkog interfejsa
++Pisanjem Java programskog koda
+-Ručnom provjerom bez automatizacije
+-Pisanjem dokumentacije o testovima
+.
+
+*230
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je prema Build-operate-check šablonu treći korak jediničnog testiranja u Javi?
++Poređenje stanja objekata sa očekivanim stanjem
+-Poziv funkcionalnosti objekta čije ponašanje testiramo
+-Dokumentovanje rezultata testiranja u izveštaju
+-Kreiranje test podataka instanciranjem objekata
+.
+
+*231
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je prvi korak u Build-operate-check šablonu za jedinično testiranje u Javi?
++Kreiranje test podataka, najčešće instanciranje objekata
+-Pisanje Java programskog koda za testiranje
+-Poziv funkcionalnosti objekta čije ponašanje testiramo
+-Poređenje stanja objekata sa očekivanim stanjem
+.
+
+*232
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je prema F.I.R.S.T. pravilima karakteristika testova označena sa 'Fast'?
+-Testovi trebaju da se brzo ažuriraju i menjaju
+-Testovi se izvršavaju samo u brzim računarima
++Testovi trebaju biti takvi da se brzo izvršavaju
+-Testovi moraju biti pisani brzo od strane programera
+.
+
+*233
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je najčešće instanciranje objekata u kontekstu kreiranja test podataka u Javi?
+-Poređenje stanja objekata sa očekivanim stanjem
++Kreiranje test podataka kroz instanciranje objekata
+-Poziv funkcionalnosti objekta čije ponašanje testiramo
+-Pisanje Java programskog koda za testove
+.
+
+*234
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je u Javi operacija nad podacima u kontekstu jediničnog testiranja?
++Poziv funkcionalnosti objekta čije ponašanje testiramo
+-Instanciranje objekata za test
+-Poređenje stanja objekata sa očekivanim stanjem
+-Pisanje Java programskog koda za testove
+.
+
+*235
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je u Javi provera podataka nakon operacije u jediničnom testiranju?
++Poređenje stanja objekata sa očekivanim stanjem
+-Pisanje Java programskog koda za testiranje
+-Poziv funkcionalnosti objekta čije ponašanje testiramo
+-Instanciranje objekata kao test podataka
+.
+
+*236
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta F.I.R.S.T. pravila zahtevaju u pogledu brzine izvršavanja jediničnih testova?
+-Testovi trebaju imati jedan boolean rezultat
+-Testovi trebaju moći da se izvrše u različitim okruženjima
++Testovi trebaju biti takvi da se brzo izvršavaju
+-Testovi trebaju biti pisani pre nego što se piše kod koji će biti testiran
+.
+
+*237
+//kognitivni nivo: 2 (unistructural)
+/t
+Prema F.I.R.S.T. pravilima, šta testovi ne smeju da rade jedni prema drugima?
+-Testovi ne smeju da se izvršavaju u različitim okruženjima
+-Testovi ne smeju da se izvršavaju brzo
+-Testovi ne smeju da imaju boolean rezultat
++Testovi ne smeju da zavise jedan od drugog
+.
+
+*238
+//kognitivni nivo: 2 (unistructural)
+/t
+Prema F.I.R.S.T. pravilima, šta testovi trebaju moći da urade u različitim okruženjima?
++Da se ponove u različitim okruženjima gde se aplikacija razvija i koristi
+-Da imaju jedan boolean rezultat bez ručnog poređenja
+-Da se brzo izvršavaju kako bi bili često pokretani
+-Da se izvršavaju nezavisno jedan od drugog
+.
+
+*239
+//kognitivni nivo: 2 (unistructural)
+/t
+Koja je najnovija verzija JUnit radnog okvira za testiranje Java programa?
+-JUnit 3
+-JUnit 7
++JUnit 5
+-JUnit 4
+.
+
+*240
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je jedan od razloga zbog kojeg testovi trebaju da se brzo izvršavaju?
+-Jer će biti lakši za pisanje i razumevanje
+-Jer će imati jedan boolean rezultat
+-Jer će moći da se izvrše u različitim okruženjima
++Jer će se često pokretati i poboljšati kvalitet softvera
+.
+
+*241
+//kognitivni nivo: 2 (unistructural)
+/t
+Prema konceptu Self-Validating iz F.I.R.S.T. pravila, kako treba da se dobije rezultat testa?
+-Ručnim poređenjem očekivane i dobijene vrednosti
+-Kombinovanjem više testova i njihovim ručnim analizama
++Izvršavanjem testa, a ne ručnim poređenjem ili subjektivnom procenom
+-Subjektivnom procenom od strane testera
+.
+
+*242
+//kognitivni nivo: 2 (unistructural)
+/t
+Prema F.I.R.S.T. pravilima, kada treba napisati test u odnosu na kod koji će biti testiran?
+-Nakon što je kod potpuno završen i testiran
+-Samo kada se pojave greške u kodu
++Pre koda koji će biti testiran
+-Istovremeno sa pisanjem koda
+.
+
+*243
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je JUnit?
+-Sistem za dokumentovanje Java projekata
+-Biblioteka za upravljanje verzijama Java koda
++Radni okvir za testiranje Java programa
+-Alat za kompajliranje Java izvornog koda
+.
+
+*244
+//kognitivni nivo: 2 (unistructural)
+/t
+Koja je najnovija verzija JUnit radnog okvira?
+-JUnit 6 iz 2018. godine
+-JUnit 4 iz 2016. godine
+-JUnit 3 iz 2015. godine
++JUnit 5 iz septembra 2017.
+.
+
+*245
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je TestNG?
++Radni okvir za testiranje Java programa
+-Alat za kompajliranje Java koda
+-Biblioteka za pisanje koda na Javi
+-Sistem za upravljanje verzijama koda
+.
+
+*246
+//kognitivni nivo: 2 (unistructural)
+/t
+Šta je asertacija u kontekstu testiranja?
+-Biblioteka specijalizovana za pisanje testova
++Deo koda koji vrši poređenje očekivane i stvarne vrednosti
+-Radni okvir za izvršavanje Java programa
+-Izveštaj koji se generiše nakon testiranja
+.
+
+*247
+//kognitivni nivo: 2 (unistructural)
+/t
+Koji radni okvir je prema istraživanju najčešće uključivan kao eksterna biblioteka u Java projekte?
+-TestNG
+-Selenium
++JUnit
+-Mockito
+.
+
+*248
+//kognitivni nivo: 2 (unistructural)
+/t
+Koja dva najpopularnija radna okvira za testiranje Java programa su navedena u materijalu?
++JUnit i TestNG
+-JUnit i Maven
+-JUnit i Mockito
+-TestNG i Selenium
+.
