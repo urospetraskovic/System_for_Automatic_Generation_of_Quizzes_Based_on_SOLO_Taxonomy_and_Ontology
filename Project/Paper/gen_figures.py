@@ -366,6 +366,372 @@ def fig_kalibracija():
     save(fig, 'fig_kalibracija.png')
 
 
+# ---------------------------------------------------------------- 11. pilot tok
+def fig_pilot_tok():
+    fig, ax = plt.subplots(figsize=(12.8, 6.4))
+    ax.set_xlim(0, 12.8); ax.set_ylim(0, 6.4); ax.axis('off')
+
+    def box(x, y, w, h, t, c, fc, fs=9.8):
+        rbox(ax, x, y, w, h, fc, c, 1.6)
+        ax.text(x + w/2, y + h/2, t, ha='center', va='center', fontsize=fs)
+
+    def arr(x0, y0, x1, y1, c=MUT, style='-|>', rad=0.0):
+        ax.annotate('', xy=(x1, y1), xytext=(x0, y0),
+                    arrowprops=dict(arrowstyle=style, lw=1.8, color=c,
+                                    connectionstyle=f'arc3,rad={rad}'))
+
+    # gornja grana: EduQG
+    box(0.25, 4.9, 2.6, 1.15, 'скуп EduQG\n(12 уџбеника,\n3.397 питања)', C_EXPERT, '#EDEAF7')
+    box(3.55, 5.25, 2.9, 0.8, '149 експертских\nпитања (пилот узорак)', C_EXPERT, '#EDEAF7', 9.2)
+    box(3.55, 4.15, 2.9, 0.8, 'изворни пасуси', C_UNI, '#DCE9F9', 9.2)
+    arr(2.85, 5.6, 3.5, 5.65)
+    arr(2.85, 5.3, 3.5, 4.6)
+
+    # sredina: naš sistem
+    box(0.25, 2.2, 2.6, 0.9, 'обједињени PDF\n(по уџбенику\nи поглављу)', C_UNI, '#DCE9F9', 8.8)
+    arr(3.6, 4.1, 1.7, 3.2)
+    box(3.55, 1.85, 2.9, 1.6, 'наш систем:\nрашчлањивање (45 секција),\nонтологија (275 веза),\nгенерисање питања', C_MULTI, '#DDF0EC', 9.0)
+    arr(2.85, 2.65, 3.5, 2.65)
+    box(7.0, 2.25, 2.5, 0.85, '100 наших питања\n(40/30/20/10\nпо СОЛО нивоима)', C_MULTI, '#DDF0EC', 8.8)
+    arr(6.5, 2.65, 6.95, 2.65)
+
+    # desno: baterija provera
+    box(10.05, 3.3, 2.5, 1.3, 'исти скуп\nод 12 провера\n(исти модел)', C_EXT, '#F7E0D7')
+    arr(9.55, 2.85, 10.4, 3.25)
+    arr(6.5, 5.65, 11.3, 4.65, rad=-0.15)
+
+    # dole: poređenje
+    box(10.05, 0.9, 2.5, 1.0, 'директно поређење\nбез доменског и\nјезичког помака', MUT, '#EAEAEA', 9.0)
+    arr(11.3, 3.25, 11.3, 1.95)
+
+    ax.text(0.25, 0.35, 'експертска и наша питања потичу из истог изворног текста и '
+            'пролазе кроз исте провере', fontsize=10.5, style='italic', color=MUT)
+    save(fig, 'fig_pilot_tok.png')
+
+
+# ---------------------------------------------------------------- 12. model podataka
+def fig_model_podataka():
+    fig, ax = plt.subplots(figsize=(12.6, 7.2))
+    ax.set_xlim(0, 12.6); ax.set_ylim(0, 7.2); ax.axis('off')
+
+    def ent(x, y, w, title, attrs, c, fc):
+        h = 0.52 + 0.34 * len(attrs)
+        rbox(ax, x, y, w, h, fc, c, 1.6)
+        rbox(ax, x, y + h - 0.5, w, 0.5, c, c)
+        ax.text(x + w/2, y + h - 0.25, title, ha='center', va='center',
+                fontsize=10.5, fontweight='bold', color='white')
+        for i, a in enumerate(attrs):
+            ax.text(x + 0.14, y + h - 0.72 - i*0.34, a, ha='left', va='center',
+                    fontsize=8.6, color=INK)
+        return (x, y, w, h)
+
+    def link(x0, y0, x1, y1, lab, la=0.5, rad=0.0):
+        ax.annotate('', xy=(x1, y1), xytext=(x0, y0),
+                    arrowprops=dict(arrowstyle='-', lw=1.5, color=MUT,
+                                    connectionstyle=f'arc3,rad={rad}'))
+        ax.text(x0 + (x1-x0)*la, y0 + (y1-y0)*la + 0.13, lab, ha='center',
+                fontsize=8.4, color=MUT, style='italic')
+
+    kurs = ent(0.3, 5.5, 2.5, 'КУРС',
+               ['идентификатор', 'назив', 'опис'], C_UNI, '#EAF2FC')
+    lek = ent(3.6, 5.5, 2.6, 'ЛЕКЦИЈА',
+              ['идентификатор', 'наслов', 'изворна датотека'], C_UNI, '#EAF2FC')
+    sek = ent(7.0, 5.5, 2.6, 'СЕКЦИЈА',
+              ['идентификатор', 'наслов', 'странице'], C_MULTI, '#EAF7F4')
+    lo = ent(10.0, 4.9, 2.45, 'НАСТАВНИ ОБЈЕКАТ',
+             ['идентификатор', 'наслов и садржај', 'тип објекта',
+              'кључне речи'], C_MULTI, '#EAF7F4')
+    veza = ent(9.4, 2.4, 3.05, 'ОНТОЛОШКА ВЕЗА',
+               ['изворни објекат', 'циљни објекат', 'тип везе', 'опис'],
+               C_EXT, '#FCEFE9')
+    pit = ent(4.6, 1.2, 3.3, 'ПИТАЊЕ',
+              ['текст питања', 'четири опције', 'тачан одговор',
+               'објашњење', 'цитат (source_line)', 'СОЛО ниво'],
+              C_REL, '#FBF3E0')
+    kviz = ent(0.3, 1.6, 2.5, 'ПРОВЕРА (КВИЗ)',
+               ['наслов', 'временско ограничење'], C_REL, '#FBF3E0')
+    kes = ent(0.3, 3.6, 2.5, 'КЕШ',
+              ['позиви модела', 'уградње', 'извештаји провера'],
+              MUT, '#F0F0F0')
+
+    link(2.8, 6.35, 3.6, 6.35, '1 : N')
+    link(6.2, 6.35, 7.0, 6.35, '1 : N')
+    link(9.6, 6.2, 10.6, 6.05, '1 : N')
+    link(11.2, 4.9, 11.2, 4.15, 'N : N', la=0.45)
+    link(9.4, 3.0, 7.9, 2.4, 'генерисано из', la=0.55, rad=0.12)
+    link(10.6, 4.9, 7.9, 2.8, 'сидро', la=0.65, rad=-0.1)
+    link(4.6, 2.0, 2.8, 2.3, 'N : N', la=0.5)
+    link(2.8, 4.3, 4.6, 3.0, 'резултати по питању', la=0.35, rad=0.1)
+    save(fig, 'fig_model_podataka.png')
+
+
+# ---------------------------------------------------------------- 13. use-case
+def fig_use_case():
+    fig, ax = plt.subplots(figsize=(11.8, 8.2))
+    ax.set_xlim(0, 11.8); ax.set_ylim(0, 8.2); ax.axis('off')
+
+    def actor(x, y, name):
+        ax.add_patch(plt.Circle((x, y + 0.62), 0.16, fc='white', ec=INK, lw=1.6))
+        ax.plot([x, x], [y + 0.46, y + 0.06], color=INK, lw=1.6)
+        ax.plot([x - 0.22, x + 0.22], [y + 0.32, y + 0.32], color=INK, lw=1.6)
+        ax.plot([x, x - 0.18], [y + 0.06, y - 0.3], color=INK, lw=1.6)
+        ax.plot([x, x + 0.18], [y + 0.06, y - 0.3], color=INK, lw=1.6)
+        ax.text(x, y - 0.58, name, ha='center', fontsize=11, fontweight='bold')
+
+    def uc(x, y, t, w=2.5, h=0.72):
+        e = matplotlib.patches.Ellipse((x, y), w, h, fc='#F4F7FB', ec=C_UNI, lw=1.5)
+        ax.add_patch(e)
+        ax.text(x, y, t, ha='center', va='center', fontsize=8.9)
+        return (x, y)
+
+    # okvir sistema
+    rbox(ax, 2.15, 0.25, 7.4, 7.75, 'white', MUT, 1.4)
+    ax.text(5.85, 7.78, 'Систем за генерисање провера знања', ha='center',
+            fontsize=11, fontweight='bold', color=MUT)
+
+    actor(0.95, 4.2, 'Наставник')
+    actor(10.9, 3.0, 'Студент')
+
+    u1 = uc(4.0, 7.0, 'управљање курсевима\nи лекцијама')
+    u2 = uc(4.0, 6.0, 'рашчлањивање\nматеријала')
+    u3 = uc(4.0, 5.0, 'преглед и исправка\nструктуре и онтологије')
+    u4 = uc(4.0, 4.0, 'генерисање питања\nпо СОЛО нивоима')
+    u5 = uc(4.0, 3.0, 'преглед и уређивање\nбанке питања')
+    u6 = uc(4.0, 2.0, 'покретање провера\nквалитета')
+    u7 = uc(4.0, 1.0, 'састављање\nпровере')
+    u8 = uc(7.8, 5.6, 'упити SPARQL над\nграфом знања')
+    u9 = uc(7.8, 4.5, 'превођење\nпровере')
+    u10 = uc(7.8, 3.2, 'решавање провере\nса објашњењима')
+    u11 = uc(7.8, 2.1, 'питања чет-боту\nо градиву')
+
+    for (x, y) in (u1, u2, u3, u4, u5, u6, u7):
+        ax.plot([1.35, x - 1.28], [4.2, y], color=INK, lw=1.1)
+    for (x, y) in (u8, u9):
+        ax.plot([1.35, x - 1.28], [4.25, y], color=INK, lw=1.1)
+    for (x, y) in (u10, u11):
+        ax.plot([10.5, x + 1.28], [3.0, y], color=INK, lw=1.1)
+    # include veze
+    ax.annotate('', xy=(4.0, 6.36), xytext=(4.0, 6.64),
+                arrowprops=dict(arrowstyle='-|>', lw=1.1, color=MUT, linestyle='--'))
+    ax.text(4.15, 6.5, '«укључује»', fontsize=7.6, color=MUT, style='italic')
+    save(fig, 'fig_use_case.png')
+
+
+# ---------------------------------------------------------------- 14. sekvenca
+def fig_sekvenca():
+    fig, ax = plt.subplots(figsize=(12.6, 7.6))
+    ax.set_xlim(0, 12.6); ax.set_ylim(0, 7.6); ax.axis('off')
+
+    actors = [('Наставник', 0.9), ('React\nапликација', 3.0),
+              ('Flask API', 5.1), ('Генератор\nпитања', 7.1),
+              ('Кеш', 8.9), ('LLM\nпровајдер', 10.4), ('База\nподатака', 11.9)]
+    for name, x in actors:
+        rbox(ax, x - 0.62, 6.7, 1.24, 0.7, '#EAF2FC', C_UNI, 1.4)
+        ax.text(x, 7.05, name, ha='center', va='center', fontsize=8.6)
+        ax.plot([x, x], [0.5, 6.7], color=MUT, lw=1.0, linestyle='--', alpha=0.7)
+
+    def msg(x0, x1, y, t, ret=False, fs=8.2):
+        style = '-|>' if not ret else '-|>'
+        ls = '--' if ret else '-'
+        ax.annotate('', xy=(x1, y), xytext=(x0, y),
+                    arrowprops=dict(arrowstyle=style, lw=1.3, color=INK,
+                                    linestyle=ls))
+        ax.text((x0 + x1) / 2, y + 0.1, t, ha='center', fontsize=fs, color=INK)
+
+    msg(0.9, 3.0, 6.3, 'избор лекција, нивоа и броја питања')
+    msg(3.0, 5.1, 5.85, 'POST /questions/generate')
+    msg(5.1, 7.1, 5.4, 'генериши(објекат, ниво)')
+    msg(7.1, 8.9, 4.95, 'провери кеш(захтев)')
+    msg(8.9, 7.1, 4.55, 'промашај', ret=True)
+    msg(7.1, 10.4, 4.1, 'захтев (улога, дефиниција, пример, правила)')
+    msg(10.4, 7.1, 3.65, 'JSON: питање, опције, одговор, цитат', ret=True)
+    msg(7.1, 8.9, 3.2, 'упиши у кеш')
+    ax.text(7.1, 2.85, 'рашчлани JSON; провери дупликат (сидро + одговор)',
+            ha='center', fontsize=8.2, style='italic', color=C_EXT)
+    msg(7.1, 11.9, 2.4, 'сачувај питање')
+    msg(7.1, 5.1, 1.95, 'листа питања', ret=True)
+    msg(5.1, 3.0, 1.5, '200 OK: генерисана питања', ret=True)
+    msg(3.0, 0.9, 1.05, 'приказ у банци питања', ret=True)
+    ax.text(6.1, 0.55, 'петља се понавља за сваки наставни објекат и сваки тражени СОЛО ниво',
+            ha='center', fontsize=9, style='italic', color=MUT)
+    save(fig, 'fig_sekvenca.png')
+
+
+# ---------------------------------------------------------------- 15. EA dva prolaza
+def fig_ea_dva_prolaza():
+    fig, ax = plt.subplots(figsize=(12.4, 4.6))
+    ax.set_xlim(0, 12.4); ax.set_ylim(0, 4.6); ax.axis('off')
+
+    rbox(ax, 0.2, 1.3, 2.5, 2.0, '#EAF2FC', C_UNI, 1.6)
+    ax.text(1.45, 2.85, 'улаз', ha='center', fontsize=10, fontweight='bold', color=C_UNI)
+    ax.text(1.45, 2.15, 'фокус секција,\nонтолошка веза,\nсадржај оба\nобјекта', ha='center',
+            va='center', fontsize=9)
+
+    rbox(ax, 3.3, 1.05, 3.4, 2.5, '#DDF0EC', C_MULTI, 1.8)
+    ax.text(5.0, 3.25, 'ПРОЛАЗ 1', ha='center', fontsize=11, fontweight='bold', color=C_MULTI)
+    ax.text(5.0, 2.15, 'нов сценарио,\nтекст питања,\nтачан одговор,\nобјашњење и цитат',
+            ha='center', va='center', fontsize=9.4)
+
+    rbox(ax, 7.3, 1.05, 3.4, 2.5, '#F8ECD4', C_REL, 1.8)
+    ax.text(9.0, 3.25, 'ПРОЛАЗ 2', ha='center', fontsize=11, fontweight='bold', color='#A67C1B')
+    ax.text(9.0, 2.15, 'три дистрактора,\nсваки по задатој\nстратегији, без\nпарафразе одговора',
+            ha='center', va='center', fontsize=9.4)
+
+    rbox(ax, 11.15, 1.55, 1.1, 1.5, '#F7E0D7', C_EXT, 1.6)
+    ax.text(11.7, 2.3, 'готово\nпитање', ha='center', va='center', fontsize=9)
+
+    for x0, x1 in ((2.7, 3.3), (6.7, 7.3), (10.7, 11.15)):
+        ax.annotate('', xy=(x1, 2.3), xytext=(x0, 2.3),
+                    arrowprops=dict(arrowstyle='-|>', lw=1.8, color=MUT))
+    ax.text(5.0, 0.55, 'одвојени позиви модела: пажња се не дели између сценарија и дистрактора',
+            ha='center', fontsize=9.4, style='italic', color=MUT)
+    save(fig, 'fig_ea_dva_prolaza.png')
+
+
+# ---------------------------------------------------------------- 16. CoVe tok
+def fig_cove_tok():
+    fig, ax = plt.subplots(figsize=(10.8, 8.6))
+    ax.set_xlim(0, 10.8); ax.set_ylim(0, 8.6); ax.axis('off')
+
+    def step(y, title, body, c, fc, h=1.35):
+        rbox(ax, 1.3, y, 6.1, h, fc, c, 1.7)
+        ax.text(1.55, y + h - 0.32, title, fontsize=10.2, fontweight='bold',
+                color=c, ha='left')
+        ax.text(1.55, y + (h - 0.5) / 2, body, fontsize=9.2, ha='left', va='center')
+
+    step(7.0, '1. Улаз', 'питање и тачан одговор, уз цитат и садржај\nнаставног објекта (шири контекст)', C_UNI, '#EAF2FC', 1.25)
+    step(5.2, '2. Планирање верификације',
+         'модел саставља два до три независна питања чији\nодговори заједно потврђују или обарају одговор', C_MULTI, '#EAF7F4', 1.45)
+    step(3.4, '3. Независни одговори',
+         'на свако верификационо питање одговара се\nпосебним позивом, само на основу материјала', C_MULTI, '#EAF7F4', 1.45)
+    step(1.6, '4. Суд', 'поређењем одговора доноси се коначан суд', C_EXT, '#FCEFE9', 1.25)
+
+    for y0, y1 in ((7.0, 6.65), (5.2, 4.85), (3.4, 3.05)):
+        ax.annotate('', xy=(4.35, y1 - 0.18), xytext=(4.35, y0),
+                    arrowprops=dict(arrowstyle='-|>', lw=1.8, color=MUT))
+
+    # primer sa desne strane
+    rbox(ax, 7.75, 3.3, 2.85, 4.95, '#FBFBF8', MUT, 1.2)
+    ax.text(9.17, 7.95, 'пример', ha='center', fontsize=9.5,
+            fontweight='bold', color=MUT)
+    ax.text(7.95, 7.0, 'одговор: „узајамно\nискључивање спречава\nистовремени приступ\nкритичној секцији"',
+            fontsize=8.2, ha='left', va='center', style='italic')
+    ax.text(7.95, 5.5, 'В1: Шта је критична\nсекција?\nВ2: Шта гарантује\nузајамно искључивање?',
+            fontsize=8.2, ha='left', va='center')
+    ax.text(7.95, 4.0, 'одговори пронађени у\nматеријалу и сагласни\nса тачним одговором',
+            fontsize=8.2, ha='left', va='center')
+
+    # ishodi
+    outs = [('потврђено', C_MULTI, 0.7), ('неодређено', '#A67C1B', 3.1),
+            ('оборено', C_EXT, 5.5)]
+    for t, c, x in outs:
+        rbox(ax, x, 0.25, 2.1, 0.7, 'white', c, 1.7)
+        ax.text(x + 1.05, 0.6, t, ha='center', va='center', fontsize=9.6,
+                fontweight='bold', color=c)
+        ax.annotate('', xy=(x + 1.05, 0.98), xytext=(4.35, 1.58),
+                    arrowprops=dict(arrowstyle='-|>', lw=1.4, color=MUT))
+    ax.text(9.15, 0.6, 'неодређена и оборена\nпитања иду на преглед',
+            fontsize=8.6, ha='center', va='center', style='italic', color=MUT)
+    save(fig, 'fig_cove_tok.png')
+
+
+# ---------------------------------------------------------------- 17. parsiranje
+def fig_parsiranje():
+    fig, ax = plt.subplots(figsize=(11.4, 9.2))
+    ax.set_xlim(0, 11.4); ax.set_ylim(0, 9.2); ax.axis('off')
+
+    def step(y, title, body, c, fc, h=1.15, x=0.5, w=6.4):
+        rbox(ax, x, y, w, h, fc, c, 1.7)
+        ax.text(x + 0.25, y + h - 0.32, title, fontsize=10.2,
+                fontweight='bold', color=c, ha='left')
+        ax.text(x + 0.25, y + (h - 0.45) / 2, body, fontsize=9.2,
+                ha='left', va='center')
+
+    def arrow(y0, y1, x=3.7):
+        ax.annotate('', xy=(x, y1 - 0.16), xytext=(x, y0),
+                    arrowprops=dict(arrowstyle='-|>', lw=1.8, color=MUT))
+
+    step(7.9, 'Документ PDF', 'извлачење текста по странама, уз памћење '
+         'бројева страна', C_UNI, '#EAF2FC', 1.05)
+    arrow(7.9, 7.45)
+    step(6.3, 'Детекција секција (LLM)',
+         'модел препознаје наслове и природне границе\nизлагања и дели '
+         'лекцију на секције', C_UNI, '#EAF2FC', 1.35)
+    arrow(6.3, 5.85)
+
+    rbox(ax, 0.3, 1.7, 6.8, 4.15, '#FBFDF9', C_MULTI, 1.4)
+    ax.text(0.55, 5.55, 'за сваку секцију: три пролаза', fontsize=10,
+            fontweight='bold', color=C_MULTI, ha='left')
+    step(4.35, 'Пролаз 1: језгро', 'издвајање основних наставних '
+         'објеката секције', C_MULTI, '#EAF7F4', 1.0)
+    arrow(4.35, 3.95)
+    step(3.0, 'Пролаз 2: односи', 'објекти се обогаћују предусловима и '
+         'међусобним\nодносима', C_MULTI, '#EAF7F4', 1.2)
+    arrow(3.0, 2.6)
+    step(1.85, 'Пролаз 3: попуна празнина', 'модел тражи важне појмове '
+         'које је први пролаз\nпропустио и допуњава листу', C_MULTI,
+         '#EAF7F4', 1.2, w=6.4)
+    arrow(1.85, 1.78)
+    step(0.25, 'Типизирани наставни објекти',
+         'наслов, садржај, тип, кључне речи и странице\nса којих објекат '
+         'потиче', C_REL, '#FBF3E0', 1.35)
+
+    # primer sa desne strane
+    rbox(ax, 7.55, 2.7, 3.55, 4.95, '#FBFBF8', MUT, 1.2)
+    ax.text(9.32, 7.35, 'пример (лекција Процеси)', ha='center',
+            fontsize=9.3, fontweight='bold', color=MUT)
+    ax.text(7.75, 6.35, 'Пролаз 1 налази објекте\n„Дефиниција процеса" и\n'
+            '„Карактеристике процеса"', fontsize=8.4, ha='left', va='center')
+    ax.text(7.75, 4.95, 'Пролаз 2 бележи да\nдефиниција мора да\nпретходи '
+            'карактеристикама\n(предуслов)', fontsize=8.4, ha='left',
+            va='center')
+    ax.text(7.75, 3.45, 'Пролаз 3 допуњава\nпропуштени појам\n„Показивачи '
+            'на меморијске\nблокове"', fontsize=8.4, ha='left', va='center')
+    save(fig, 'fig_parsiranje.png')
+
+
+# ---------------------------------------------------------------- 18. ontologija prolazi
+def fig_ontologija_prolazi():
+    fig, ax = plt.subplots(figsize=(12.4, 6.6))
+    ax.set_xlim(0, 12.4); ax.set_ylim(0, 6.6); ax.axis('off')
+
+    def prolaz(x, title, body, primer, c, fc):
+        rbox(ax, x, 2.6, 2.85, 3.3, fc, c, 1.7)
+        ax.text(x + 1.42, 5.55, title, ha='center', fontsize=10,
+                fontweight='bold', color=c)
+        ax.text(x + 1.42, 4.55, body, ha='center', va='center', fontsize=8.8)
+        ax.text(x + 1.42, 3.3, primer, ha='center', va='center',
+                fontsize=8.2, style='italic', color=MUT)
+
+    prolaz(0.25, 'Пролаз 1:\nхијерархијске везе',
+           '„део целине",\n„врста",\n„дефинише"',
+           '„Стање" је део\nцелине „Атрибути\nпроцеса"', C_UNI, '#EAF2FC')
+    prolaz(3.3, 'Пролаз 2:\nпредуслови',
+           'редослед којим\nпојмове треба\nучити',
+           '„Дефиниција процеса"\nје предуслов за\n„Карактеристике '
+           'процеса"', C_MULTI, '#EAF7F4')
+    prolaz(6.35, 'Пролаз 3:\nсемантичке везе',
+           '„односи се на",\n„омогућава",\n„у супротности са"',
+           '„Дељење процесора"\nомогућава „Ефикасну\nупотребу ресурса"',
+           C_REL, '#FBF3E0')
+    prolaz(9.4, 'Пролаз 4:\nмеђусекцијске везе',
+           'везе које прелазе\nгранице секција\nисте лекције',
+           'појам из секције о\nстањима везан за појам\nиз секције о '
+           'нитима', C_EXT, '#FCEFE9')
+
+    for x in (3.1, 6.15, 9.2):
+        ax.annotate('', xy=(x + 0.2, 4.25), xytext=(x, 4.25),
+                    arrowprops=dict(arrowstyle='-|>', lw=1.8, color=MUT))
+
+    rbox(ax, 3.5, 0.5, 5.4, 1.3, '#F0F0F0', MUT, 1.5)
+    ax.text(6.2, 1.15, 'граф знања: свака веза чува тип, опис и оба '
+            'појма;\nизвоз у OWL и упити SPARQL', ha='center', va='center',
+            fontsize=9.4)
+    ax.annotate('', xy=(6.2, 1.85), xytext=(6.2, 2.55),
+                arrowprops=dict(arrowstyle='-|>', lw=1.8, color=MUT))
+    save(fig, 'fig_ontologija_prolazi.png')
+
+
 if __name__ == '__main__':
     fig_solo()
     fig_tok()
