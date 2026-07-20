@@ -637,8 +637,8 @@ def fig_cove_tok():
 
 # ---------------------------------------------------------------- 17. parsiranje
 def fig_parsiranje():
-    fig, ax = plt.subplots(figsize=(11.4, 9.2))
-    ax.set_xlim(0, 11.4); ax.set_ylim(0, 9.2); ax.axis('off')
+    fig, ax = plt.subplots(figsize=(11.4, 9.6))
+    ax.set_xlim(0, 11.4); ax.set_ylim(-0.4, 9.2); ax.axis('off')
 
     def step(y, title, body, c, fc, h=1.15, x=0.5, w=6.4):
         rbox(ax, x, y, w, h, fc, c, 1.7)
@@ -651,7 +651,7 @@ def fig_parsiranje():
         ax.annotate('', xy=(x, y1 - 0.16), xytext=(x, y0),
                     arrowprops=dict(arrowstyle='-|>', lw=1.8, color=MUT))
 
-    step(7.9, 'Документ PDF', 'извлачење текста по странама, уз памћење '
+    step(7.9, 'PDF документ', 'извлачење текста по странама, уз памћење '
          'бројева страна', C_UNI, '#EAF2FC', 1.05)
     arrow(7.9, 7.45)
     step(6.3, 'Детекција секција (LLM)',
@@ -671,8 +671,8 @@ def fig_parsiranje():
     step(1.85, 'Пролаз 3: попуна празнина', 'модел тражи важне појмове '
          'које је први пролаз\nпропустио и допуњава листу', C_MULTI,
          '#EAF7F4', 1.2, w=6.4)
-    arrow(1.85, 1.78)
-    step(0.25, 'Типизирани наставни објекти',
+    arrow(1.85, 1.36)
+    step(-0.15, 'Типизирани наставни објекти',
          'наслов, садржај, тип, кључне речи и странице\nса којих објекат '
          'потиче', C_REL, '#FBF3E0', 1.35)
 
@@ -697,7 +697,7 @@ def fig_ontologija_prolazi():
 
     def prolaz(x, title, body, primer, c, fc):
         rbox(ax, x, 2.6, 2.85, 3.3, fc, c, 1.7)
-        ax.text(x + 1.42, 5.55, title, ha='center', fontsize=10,
+        ax.text(x + 1.42, 5.62, title, ha='center', va='top', fontsize=10,
                 fontweight='bold', color=c)
         ax.text(x + 1.42, 4.55, body, ha='center', va='center', fontsize=8.8)
         ax.text(x + 1.42, 3.3, primer, ha='center', va='center',
